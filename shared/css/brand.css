@@ -9,22 +9,22 @@
   --gold-glow: rgba(212, 175, 55, 0.25);
   --gold-glow-strong: rgba(245, 211, 110, 0.45);
 
-  /* Menu Pure Dark Palette */
+  /* Menu Pure Black Palette (Zero Gray, Zero Navy) */
   --bg-deep: #000000;
-  --bg-surface: #090a0d;
-  --bg-card: #0d0f14;
-  --bg-card-hover: #141720;
-  --bg-pill-inactive: #13161c;
+  --bg-surface: #000000;
+  --bg-card: #08080a;
+  --bg-card-hover: #111114;
+  --bg-pill-inactive: #000000;
 
-  /* Borders */
-  --border-gold: rgba(212, 175, 55, 0.25);
-  --border-gold-bright: #f5d36e;
-  --border-subtle: rgba(255, 255, 255, 0.08);
+  /* Luxury Gold Borders */
+  --border-gold: rgba(212, 175, 55, 0.4);
+  --border-gold-bright: #d4af37;
+  --border-subtle: rgba(255, 255, 255, 0.14);
 
-  /* Typography */
+  /* High-Contrast Crisp Typography */
   --text-primary: #ffffff;
-  --text-secondary: #9ea4af;
-  --text-muted: #646b77;
+  --text-secondary: #f8fafc;
+  --text-muted: #cbd5e1;
   --text-gold: #f5d36e;
 
   /* Accents */
@@ -236,9 +236,9 @@ body {
 
 .menu-cat-pill {
   white-space: nowrap;
-  background: var(--bg-pill-inactive);
-  border: 1.5px solid var(--border-subtle);
-  color: #8c939e;
+  background: #000000;
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  color: #ffffff;
   padding: 8px 16px;
   border-radius: var(--radius-full);
   font-family: var(--font-arabic);
@@ -257,11 +257,11 @@ body {
 }
 
 .menu-cat-pill.active {
-  background: rgba(212, 175, 55, 0.12);
+  background: #000000;
   color: var(--gold-bright);
   border: 2px solid var(--gold-bright);
-  box-shadow: 0 0 15px var(--gold-glow);
-  font-weight: 800;
+  box-shadow: 0 0 18px rgba(212, 175, 55, 0.35);
+  font-weight: 900;
 }
 
 .cat-count-badge {
@@ -356,20 +356,20 @@ body {
 
 .drink-card-art-holder {
   width: 100%;
-  height: 120px;
+  height: 155px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 75%);
   border-radius: 12px;
   margin-bottom: 8px;
 }
 
 .drink-art-svg {
-  width: 110px;
-  height: 110px;
-  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.6));
+  width: 122px;
+  height: 148px;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.85));
   transition: transform 0.25s ease;
 }
 
@@ -505,7 +505,7 @@ body {
   top: 0;
   left: 0;
   background: rgba(255, 255, 255, 0.08);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-gold);
   color: #ffffff;
   padding: 6px 14px;
   border-radius: var(--radius-full);
@@ -513,12 +513,38 @@ body {
   font-size: 0.78rem;
   font-weight: 800;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.detail-close-btn:hover {
+  background: rgba(212, 175, 55, 0.2);
+  border-color: var(--gold-bright);
+}
+
+.detail-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-bright);
+}
+
+.rescue-siren-icon, .rescue-prob-icon, .rescue-sol-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .detail-art-wrap {
-  width: 130px;
-  height: 130px;
+  width: 140px;
+  height: 165px;
   margin: 0 auto 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .detail-drink-name {
@@ -589,7 +615,7 @@ body {
 }
 
 .recipe-metric-tile {
-  background: #141820;
+  background: #000000;
   border: 1.5px solid var(--border-gold);
   border-radius: var(--radius-sm);
   padding: 10px 6px;
@@ -598,8 +624,10 @@ body {
 
 .metric-tile-label {
   display: block;
-  font-size: 0.68rem;
-  color: var(--text-secondary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #ffffff;
+  opacity: 0.9;
   margin-bottom: 2px;
 }
 
@@ -607,75 +635,79 @@ body {
   display: block;
   font-family: var(--font-mono);
   font-size: 1.15rem;
-  font-weight: 800;
-  color: #ffffff;
+  font-weight: 900;
+  color: var(--gold-bright);
   direction: ltr;
 }
 
 /* SOP Steps List */
 .detail-steps-list {
-  background: #12151b;
-  border: 1px dashed var(--border-subtle);
+  background: #000000;
+  border: 1px dashed var(--border-gold);
   border-radius: var(--radius-sm);
-  padding: 14px 24px 14px 14px;
-  font-size: 0.84rem;
-  color: #e2e8f0;
-  line-height: 1.6;
+  padding: 14px 26px 14px 14px;
+  font-size: 0.88rem;
+  color: #ffffff;
+  line-height: 1.7;
 }
 
 .detail-steps-list li {
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 /* Pro Tip Box */
 .detail-tip-box {
-  background: rgba(212, 175, 55, 0.1);
-  border-right: 4px solid var(--gold-primary);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  padding: 10px 14px;
+  background: #000000;
+  border: 1px solid var(--border-gold);
+  border-right: 4px solid var(--gold-bright);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
   display: flex;
-  gap: 10px;
+  gap: 12px;
   margin-bottom: 16px;
 }
 
 .tip-icon-gold {
-  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
 }
 
 .tip-text strong {
   display: block;
   color: var(--gold-bright);
-  font-size: 0.82rem;
-  margin-bottom: 2px;
+  font-size: 0.86rem;
+  font-weight: 800;
+  margin-bottom: 4px;
 }
 
 .tip-text p {
-  font-size: 0.78rem;
-  color: #d1d5db;
-  line-height: 1.45;
+  font-size: 0.82rem;
+  color: #ffffff;
+  line-height: 1.5;
 }
 
 /* Dedicated Zero-Waste Error Button & Collapsible */
 .detail-rescue-section {
-  margin-top: 14px;
+  margin-top: 16px;
 }
 
 .btn-toggle-rescue {
   width: 100%;
-  background: linear-gradient(90deg, #991b1b, #b91c1c);
-  border: 1.5px solid #ef4444;
+  background: #000000;
+  border: 2px solid #ef4444;
   color: #ffffff;
   font-family: var(--font-arabic);
-  font-weight: 800;
-  font-size: 0.85rem;
-  padding: 12px 14px;
+  font-weight: 900;
+  font-size: 0.88rem;
+  padding: 12px 16px;
   border-radius: var(--radius-md);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.25);
   transition: all 0.2s ease;
 }
 
@@ -684,12 +716,52 @@ body {
 }
 
 .rescue-collapse-box {
-  background: #18090a;
-  border: 1.5px solid #ef4444;
+  background: #000000;
+  border: 2px solid #ef4444;
   border-top: none;
   border-radius: 0 0 var(--radius-md) var(--radius-md);
   padding: 14px;
   animation: fadeIn 0.25s ease;
+}
+
+.rescue-card-problem {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  font-size: 0.82rem;
+  color: #ffffff;
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.rescue-card-problem strong {
+  color: #f87171;
+}
+
+.rescue-card-solution {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 0.82rem;
+  color: #ffffff;
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.rescue-card-solution strong {
+  color: #34d399;
+}
+
+.rescue-card-solution p {
+  margin-top: 4px;
+  color: #ffffff;
 }
 
 @keyframes fadeIn {

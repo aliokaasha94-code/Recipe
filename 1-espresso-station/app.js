@@ -1,4 +1,15 @@
 // Emad Afandi Specialty Coffee Lab - Menu-Style Visual SOP Engine
+const SvgIcons = {
+  search: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
+  crown: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f5d36e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z"/><circle cx="12" cy="4" r="1.2" fill="#f5d36e"/><circle cx="2" cy="4" r="1.2" fill="#f5d36e"/><circle cx="22" cy="4" r="1.2" fill="#f5d36e"/></svg>`,
+  siren: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M4.93 4.93l2.83 2.83M2 12h4M20 12h4M19.07 4.93l-2.83 2.83M12 6a6 6 0 0 0-6 6v5h12v-5a6 6 0 0 0-6-6zM4 21h16"/></svg>`,
+  alert: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
+  bulb: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M15 9a3 3 0 0 0-6 0c0 1.3.5 2 1.5 2.5v1.5h4V11.5c1-.5 1.5-1.2 1.5-2.5z"/></svg>`,
+  clipboard: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>`,
+  timer: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+  close: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`
+};
+
 class StationApp {
   constructor(stationDataUrl) {
     this.stationDataUrl = stationDataUrl;
@@ -120,7 +131,7 @@ class StationApp {
     if (matchesFound === 0) {
       html = `
         <div style="text-align:center; padding: 60px 20px; color: var(--text-secondary);">
-          <div style="font-size:2.2rem; margin-bottom:10px; color:var(--gold-primary);">🔍</div>
+          <div style="margin-bottom:12px; display:inline-flex; align-items:center; justify-content:center; width:52px; height:52px; border-radius:50%; background:rgba(212,175,55,0.1); border:1px solid var(--border-gold);">${SvgIcons.search}</div>
           <div style="font-size:1.15rem; font-weight:800; color:var(--gold-bright);">لم يتم العثور على أي صنف</div>
           <p style="font-size:0.85rem; margin-top:6px; color:var(--text-muted);">تأكد من كتابة الاسم بشكل صحيح أو اختر قسماً آخر من الأعلى</p>
         </div>
@@ -258,7 +269,7 @@ class StationApp {
       stepsHtml = `
         <div class="detail-block">
           <h4 class="detail-block-title">
-            <span>⏱️</span>
+            <span class="detail-icon-wrap">${SvgIcons.timer}</span>
             <span>طريقة التشغيل خطوة بخطوة (SOP):</span>
           </h4>
           <ol class="detail-steps-list">
@@ -273,7 +284,7 @@ class StationApp {
     if (item.proTip) {
       tipHtml = `
         <div class="detail-tip-box">
-          <div class="tip-icon-gold">👑</div>
+          <div class="tip-icon-gold">${SvgIcons.crown}</div>
           <div class="tip-text">
             <strong>نصيحة التشغيل الذهبية:</strong>
             <p>${item.proTip}</p>
@@ -288,17 +299,21 @@ class StationApp {
       rescueHtml = `
         <div class="detail-rescue-section">
           <button class="btn-toggle-rescue" onclick="window.app.toggleRescuePanel()">
-            <span>🚨</span>
+            <span class="rescue-siren-icon">${SvgIcons.siren}</span>
             <span>الأخطاء المحتملة وكيفية علاجها فوراً (اضغط هنا)</span>
             <span class="rescue-arrow" id="rescue-arrow-icon">▼</span>
           </button>
           <div class="rescue-collapse-box" id="rescue-collapse-box" style="display:none;">
             <div class="rescue-card-problem">
-              ⚠️ <strong>الخطأ الشائع:</strong> ${item.rescue.problem}
+              <span class="rescue-prob-icon">${SvgIcons.alert}</span>
+              <div><strong>الخطأ الشائع:</strong> ${item.rescue.problem}</div>
             </div>
             <div class="rescue-card-solution">
-              💡 <strong>إجراء الإنقاذ السريع (بدون رمي الأوردر):</strong>
-              <p>${item.rescue.solution}</p>
+              <span class="rescue-sol-icon">${SvgIcons.bulb}</span>
+              <div>
+                <strong>إجراء الإنقاذ السريع (بدون رمي الأوردر):</strong>
+                <p>${item.rescue.solution}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -316,7 +331,10 @@ class StationApp {
 
     content.innerHTML = `
       <div class="detail-sheet-header">
-        <button class="detail-close-btn" onclick="window.app.closeRecipeDetail()">✕ إغلاق</button>
+        <button class="detail-close-btn" onclick="window.app.closeRecipeDetail()">
+          ${SvgIcons.close}
+          <span>إغلاق</span>
+        </button>
         <div class="detail-top-hero">
           <div class="detail-art-wrap">
             ${svgIllustration}
@@ -331,7 +349,7 @@ class StationApp {
 
         <div class="detail-block">
           <h4 class="detail-block-title">
-            <span>📋</span>
+            <span class="detail-icon-wrap">${SvgIcons.clipboard}</span>
             <span>المقادير والجرامات المعيارية:</span>
           </h4>
           <div class="detail-metrics-grid">
