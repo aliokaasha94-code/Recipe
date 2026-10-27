@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>عماد أفندي | محطة مكنة الإسبريسو والفلتر ☕👑</title>
+  <link rel="icon" type="image/png" href="https://files.catbox.moe/o427lf.png">
+  <link rel="stylesheet" href="../../shared/css/brand.css">
+</head>
+<body>
+
+  <!-- Top Brand Navigation -->
+  <header class="brand-header">
+    <div class="brand-info">
+      <a href="../../index.html" style="text-decoration:none;">
+        <img src="https://files.catbox.moe/o427lf.png" alt="عماد أفندي" class="brand-logo">
+      </a>
+      <div>
+        <div class="brand-title">كافيه ومحمصة عماد أفندي</div>
+        <div class="brand-subtitle">محطة الإسبريسو والفلتر كوفي • SOP</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="btn-toggle-rush" id="btn-rush-mode" title="وضع ضغط العمل يعرض الأرقام والمقاييس فقط بحجم كبير">
+        ⚡ وضع الضغط
+      </button>
+      <a href="../../index.html" class="filter-btn" style="padding:6px 12px; font-size:0.75rem; text-decoration:none;">
+        🏠 المحطات
+      </a>
+    </div>
+  </header>
+
+  <!-- Station Hero -->
+  <section class="station-hero">
+    <div class="station-badge" id="station-badge">Espresso Bar Station</div>
+    <h1 class="station-title" id="station-title">محطة مكنة الإسبريسو والفلتر</h1>
+    <p class="station-desc" id="station-desc">المعيار الذهبي للاستخلاص والتبخير الحريري</p>
+    <div class="station-meta-pill" id="station-meta" style="display:none;"></div>
+  </section>
+
+  <!-- Search & Filter Controls -->
+  <div class="search-container">
+    <div style="position:relative;">
+      <input type="text" class="search-box" id="search-box" placeholder="ابحث عن أي مشروب (لاتيه، فلات وايت، سبانيش، V60...)...">
+      <span class="search-icon">🔍</span>
+    </div>
+  </div>
+
+  <div class="filter-tabs" id="filter-tabs">
+    <!-- Populated dynamically via JS -->
+  </div>
+
+  <!-- Main Content Area -->
+  <main class="content-area" id="content-area">
+    <div style="text-align:center; padding:50px 20px; color:var(--gold-soft);">
+      جاري تحميل ريسيبي محطة الإسبريسو... ☕
+    </div>
+  </main>
+
+  <!-- Floating Checklist Button -->
+  <button class="btn-checklist-toggle" onclick="openChecklistModal()">
+    <span>🧹</span>
+    <span>نظافة المحطة</span>
+  </button>
+
+  <!-- Checklist Modal -->
+  <div class="modal-overlay" id="checklist-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">🧹 قائمة تدقيق ونظافة محطة الإسبريسو</h3>
+        <button class="modal-close" onclick="closeChecklistModal()">&times;</button>
+      </div>
+      <p style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:14px;">
+        الالتزام بهذه الخطوات يضمن الحفاظ على ماكينة الإسبريسو ومطاحن البن وثبات الطعم بنسبة 100%.
+      </p>
+      <div id="checklist-items"></div>
+      <div style="margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
+        <button onclick="resetChecklist()" style="background:transparent; border:1px solid var(--border-gold); color:var(--gold-bright); padding:6px 14px; border-radius:var(--radius-sm); font-family:var(--font-arabic); font-size:0.78rem; cursor:pointer;">
+          إعادة تعيين اليوم
+        </button>
+        <button onclick="closeChecklistModal()" style="background:var(--gold-primary); border:none; color:#000; font-weight:800; padding:6px 18px; border-radius:var(--radius-sm); font-family:var(--font-arabic); font-size:0.82rem; cursor:pointer;">
+          تم الفحص ✓
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="brand-footer">
+    <p>كافيه ومحمصة عماد أفندي • "قهوتك على مزاجك" ☕👑</p>
+    <p style="margin-top:4px; font-size:0.72rem; color:var(--gold-soft);">
+      نظام التشغيل القياسي (SOP) • إشراف الإدارة ومجموعة العطيان
+    </p>
+  </footer>
+
+  <script src="../../shared/js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      window.app = new StationApp('../../data/espresso.json');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>كافيه ومحمصة عماد أفندي | بوابة محطات التشغيل الذكية (Smart Bar SOP) ☕👑</title>
+  <link rel="icon" type="image/png" href="https://files.catbox.moe/o427lf.png">
+  <link rel="stylesheet" href="shared/css/brand.css">
+  <style>
+    .hub-hero {
+      text-align: center;
+      padding: 40px 20px 24px;
+      background: radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.15) 0%, transparent 75%);
+    }
+    .hub-logo-large {
+      width: 90px;
+      height: 90px;
+      border-radius: var(--radius-full);
+      border: 2px solid var(--gold-primary);
+      box-shadow: 0 0 25px var(--gold-glow-strong);
+      margin-bottom: 16px;
+      object-fit: cover;
+    }
+    .hub-title {
+      font-size: 1.85rem;
+      font-weight: 900;
+      color: var(--gold-bright);
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+    .hub-tagline {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      max-width: 580px;
+      margin: 0 auto;
+    }
+    .stations-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 10px 18px 40px;
+    }
+    @media (min-width: 768px) {
+      .stations-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .station-hub-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      padding: 24px 20px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .station-hub-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold-primary), var(--gold-bright));
+      opacity: 0.8;
+    }
+    .station-hub-card:hover {
+      border-color: var(--gold-bright);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-gold), var(--shadow-card);
+      background: var(--bg-card-hover);
+    }
+    .hub-card-icon {
+      font-size: 2.4rem;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+    .hub-card-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+    .hub-card-en {
+      font-family: var(--font-num);
+      font-size: 0.78rem;
+      color: var(--gold-soft);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    .hub-card-features {
+      list-style: none;
+      padding: 0;
+      margin: 12px 0 20px;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+    .hub-card-features li {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hub-card-features li span {
+      color: var(--gold-primary);
+    }
+    .hub-btn-primary {
+      display: block;
+      text-align: center;
+      background: var(--gold-primary);
+      color: #000;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.92rem;
+      padding: 12px 18px;
+      border-radius: var(--radius-md);
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 15px var(--gold-glow);
+    }
+    .hub-btn-primary:hover {
+      background: var(--gold-bright);
+      box-shadow: 0 4px 20px var(--gold-glow-strong);
+      transform: scale(1.02);
+    }
+    .hub-btn-qr {
+      display: block;
+      text-align: center;
+      background: transparent;
+      border: 1px solid var(--border-gold);
+      color: var(--gold-soft);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      margin-top: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .hub-btn-qr:hover {
+      background: rgba(212, 175, 55, 0.1);
+      color: var(--gold-bright);
+      border-color: var(--gold-bright);
+    }
+    .qr-preview-box {
+      text-align: center;
+      padding: 20px;
+    }
+    .qr-canvas-holder {
+      background: #ffffff;
+      padding: 16px;
+      border-radius: 12px;
+      display: inline-block;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+      margin-bottom: 12px;
+    }
+    .qr-canvas-holder canvas, .qr-canvas-holder img {
+      display: block;
+      max-width: 200px;
+      height: auto;
+    }
+    .print-banner {
+      max-width: 1080px;
+      margin: 10px auto 40px;
+      padding: 20px;
+      background: var(--bg-card);
+      border: 1px dashed var(--border-gold);
+      border-radius: var(--radius-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 12px;
+    }
+    @media (min-width: 768px) {
+      .print-banner {
+        flex-direction: row;
+        text-align: right;
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Brand Navigation -->
+  <header class="brand-header">
+    <div class="brand-info">
+      <img src="https://files.catbox.moe/o427lf.png" alt="عماد أفندي" class="brand-logo">
+      <div>
+        <div class="brand-title">كافيه ومحمصة عماد أفندي</div>
+        <div class="brand-subtitle">نظام البار الذكي وكتيب التشغيل الرقمي • SOP</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="filter-btn active" onclick="openPrintModal()" style="font-size:0.8rem; padding:6px 14px;">
+        🖨️ طباعة الـ QR
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Header -->
+  <section class="hub-hero">
+    <img src="https://files.catbox.moe/o427lf.png" alt="شعار عماد أفندي" class="hub-logo-large">
+    <div class="station-badge">منظومة عماد أفندي لتشغيل البار ☕👑</div>
+    <h1 class="hub-title">محطات التشغيل المعياري (Station SOPs)</h1>
+    <p class="hub-tagline">
+      امسح الـ QR كود في كل محطة للوصول الفوري للمقادير الدقيقة، خطوات التحضير، عيادة إنقاذ الأوردر، وشيك ليست النظافة.
+    </p>
+  </section>
+
+  <!-- Stations Grid -->
+  <main class="stations-grid">
+
+    <!-- Station 1: Espresso Bar -->
+    <div class="station-hub-card">
+      <div>
+        <div class="hub-card-icon">☕</div>
+        <h2 class="hub-card-title">محطة مكنة الإسبريسو والفلتر</h2>
+        <div class="hub-card-en">Espresso Bar & Filter Coffee Station</div>
+        <ul class="hub-card-features">
+          <li><span>✓</span> مشروبات ساخنة: لاتيه، فلات وايت، سبانيش، بيستاشيو...</li>
+          <li><span>✓</span> مشروبات باردة: آيس لاتيه، آيس سبانيش، آيس موكا...</li>
+          <li><span>✓</span> قهوة مقطرة: V60، كيمكس، كولد برو...</li>
+          <li><span>✓</span> تبديل مقاسات الأكواب (8oz / 12oz / 16oz) تلقائياً.</li>
+          <li><span>✓</span> عيادة معالجة الاستخلاص وتفادي هدر البن.</li>
+        </ul>
+      </div>
+      <div>
+        <a href="stations/espresso/index.html" class="hub-btn-primary">
+          فتح محطة الإسبريسو ➔
+        </a>
+        <button class="hub-btn-qr" onclick="showStationQr('espresso', 'محطة مكنة الإسبريسو والفلتر', 'stations/espresso/index.html')">
+          📱 كود QR للمحطة
+        </button>
+      </div>
+    </div>
+
+    <!-- Station 2: Turkish & Traditional Bar -->
+    <div class="station-hub-card">
+      <div>
+        <div class="hub-card-icon">🏺</div>
+        <h2 class="hub-card-title">محطة التركي والتراثي والساخن</h2>
+        <div class="hub-card-en">Turkish, Traditional Brews & Hot Specials</div>
+        <ul class="hub-card-features">
+          <li><span>✓</span> تركي سادة ومحوج: فاتح، وسط، غامق (سنجل ودبل).</li>
+          <li><span>✓</span> بن فرنساي بالحليب: كلاسيك، بندق، كراميل، شيكولاتة، فانيليا.</li>
+          <li><span>✓</span> قهوة عربي، قهوة الجَبَنَة السودانية، وسنجل أوريجين.</li>
+          <li><span>✓</span> هوت شوكليت فاخر، هوت بطاطا، هوت لوتس، بيستاشيو.</li>
+          <li><span>✓</span> شاي كرك هندي، شاي عدني، وشاي ماسالا بالتوابل.</li>
+        </ul>
+      </div>
+      <div>
+        <a href="stations/traditional/index.html" class="hub-btn-primary">
+          فتح محطة التركي والتراثي ➔
+        </a>
+        <button class="hub-btn-qr" onclick="showStationQr('traditional', 'محطة القهوة التركية والتراثية', 'stations/traditional/index.html')">
+          📱 كود QR للمحطة
+        </button>
+      </div>
+    </div>
+
+    <!-- Station 3: Back Bar (Cold & Bakery) -->
+    <div class="station-hub-card">
+      <div>
+        <div class="hub-card-icon">🥤</div>
+        <h2 class="hub-card-title">محطة الباك بار والحلويات</h2>
+        <div class="hub-card-en">Cold Bar & Bakery Station</div>
+        <ul class="hub-card-features">
+          <li><span>✓</span> فرابيه: كوفي، شيكولاتة، فانيليا، موكا، توفي كوفي.</li>
+          <li><span>✓</span> ميلك شيك ثقيل: أوريو، لوتس، كيندر، نوتيلا، فيريرو، فواكه.</li>
+          <li><span>✓</span> سموذي مثلج (19 صنف): مانجو فريش، ليمون نعناع، بيري...</li>
+          <li><span>✓</span> موكتيلات وبوبا فيز فوارة بـ 5 نكهات ساحرة.</li>
+          <li><span>✓</span> محطة الحلويات: وافل مقرمش وبان كيك إسفنجي وتوبينج.</li>
+        </ul>
+      </div>
+      <div>
+        <a href="stations/backbar/index.html" class="hub-btn-primary">
+          فتح محطة الباك بار ➔
+        </a>
+        <button class="hub-btn-qr" onclick="showStationQr('backbar', 'محطة الباك بار والحلويات', 'stations/backbar/index.html')">
+          📱 كود QR للمحطة
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Print Sheet Banner -->
+  <section class="print-banner">
+    <div>
+      <h3 style="color:var(--gold-bright); font-size:1.1rem; margin-bottom:4px;">🖨️ طباعة استيكرات البار المقاومة للماء (QR Labels)</h3>
+      <p style="color:var(--text-secondary); font-size:0.82rem;">
+        تم تجهيز أكواد QR ثابتة عالية الدقة لكل محطة، جاهزة للطباعة على فينيل عازل للحرارة أو وضعها في ستاندات أكريليك أنيقة.
+      </p>
+    </div>
+    <button class="hub-btn-primary" onclick="openPrintModal()" style="white-space:nowrap; padding:10px 22px;">
+      معاينة شيت الطباعة 🖨️
+    </button>
+  </section>
+
+  <!-- QR Modal -->
+  <div class="modal-overlay" id="qr-modal">
+    <div class="modal-content" style="max-width:440px; text-align:center;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="qr-modal-title">كود QR للمحطة</h3>
+        <button class="modal-close" onclick="closeQrModal()">&times;</button>
+      </div>
+      <div class="qr-preview-box">
+        <div class="qr-canvas-holder" id="qr-canvas-holder">
+          <!-- QR Canvas generated here -->
+        </div>
+        <p style="font-size:0.82rem; color:var(--text-primary); font-weight:700; margin-top:8px;" id="qr-modal-desc"></p>
+        <p style="font-size:0.75rem; color:var(--text-secondary); margin-top:4px;">
+          امسح الكود بكاميرا الموبايل لفتح شاشة المحطة فوراً
+        </p>
+        <div style="margin-top:16px;">
+          <a id="qr-download-btn" download="emad-station-qr.png" class="hub-btn-primary" style="display:inline-block; font-size:0.85rem; padding:8px 18px;">
+            تحميل الصورة للطباعة ⬇️
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Full Print Sheet Modal -->
+  <div class="modal-overlay" id="print-modal">
+    <div class="modal-content" style="max-width:700px;">
+      <div class="modal-header">
+        <h3 class="modal-title">🖨️ شيت طباعة الأكواد للبار (3 محطات)</h3>
+        <button class="modal-close" onclick="closePrintModal()">&times;</button>
+      </div>
+      <p style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:16px;">
+        يمكنك طباعة هذا الشيت مباشرة (Ctrl + P) أو قص كل مربع ولصقه على ستاند الأكريليك في المحطة المخصصة:
+      </p>
+      
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:16px; text-align:center;" id="print-sheet-grid">
+        <!-- Rendered via JS -->
+      </div>
+
+      <div style="margin-top:20px; text-align:center;">
+        <button onclick="window.print()" class="hub-btn-primary" style="display:inline-block; padding:10px 30px;">
+          إرسال لأمر الطباعة الآن (Print) 🖨️
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="brand-footer">
+    <div style="margin-bottom:10px;">
+      <img src="https://files.catbox.moe/o427lf.png" alt="عماد أفندي" style="width:36px; height:36px; border-radius:50%; border:1px solid var(--gold-primary); vertical-align:middle;">
+      <span style="color:var(--gold-bright); font-weight:800; margin-right:8px; font-size:0.95rem;">كافيه ومحمصة عماد أفندي</span>
+    </div>
+    <p>شعارنا الدائم: "قهوتك على مزاجك" ☕👑</p>
+    <p style="margin-top:6px; font-size:0.75rem; color:var(--text-secondary);">
+      إشراف وتوجيه: <strong>إبراهيم عماد العطيان</strong> — CEO مجموعة العطيان وعماد أفندي
+    </p>
+    <p style="margin-top:4px; font-size:0.7rem; color:var(--gold-soft);">
+      كفر الشيخ، جمهورية مصر العربية • جميع الحقوق محفوظة © 2026
+    </p>
+  </footer>
+
+  <!-- QR Code Library (cdnjs) -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script>
+    const STATIONS = [
+      {
+        id: 'espresso',
+        title: 'محطة مكنة الإسبريسو والفلتر',
+        subtitle: 'Espresso Bar & Filter Coffee',
+        path: 'stations/espresso/index.html',
+        icon: '☕'
+      },
+      {
+        id: 'traditional',
+        title: 'محطة التركي والتراثي والساخن',
+        subtitle: 'Turkish & Traditional Brews',
+        path: 'stations/traditional/index.html',
+        icon: '🏺'
+      },
+      {
+        id: 'backbar',
+        title: 'محطة الباك بار والحلويات',
+        subtitle: 'Cold Bar & Bakery Station',
+        path: 'stations/backbar/index.html',
+        icon: '🥤'
+      }
+    ];
+
+    function getStationFullUrl(relPath) {
+      // Returns full url relative to origin or current location
+      const loc = window.location.href.split('?')[0].split('#')[0];
+      const base = loc.substring(0, loc.lastIndexOf('/') + 1);
+      return base + relPath;
+    }
+
+    function showStationQr(stationId, title, path) {
+      const modal = document.getElementById('qr-modal');
+      const titleEl = document.getElementById('qr-modal-title');
+      const descEl = document.getElementById('qr-modal-desc');
+      const holder = document.getElementById('qr-canvas-holder');
+      const dlBtn = document.getElementById('qr-download-btn');
+
+      titleEl.textContent = title;
+      descEl.textContent = `مسح الكود يفتح شاشة ${title} مباشرة`;
+      holder.innerHTML = '';
+
+      const targetUrl = getStationFullUrl(path);
+
+      new QRCode(holder, {
+        text: targetUrl,
+        width: 180,
+        height: 180,
+        colorDark: '#0a0b0d',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H
+      });
+
+      setTimeout(() => {
+        const img = holder.querySelector('img') || holder.querySelector('canvas');
+        if (img) {
+          dlBtn.href = img.src || img.toDataURL();
+          dlBtn.download = `emad-afandi-${stationId}-qr.png`;
+        }
+      }, 300);
+
+      modal.classList.add('open');
+    }
+
+    function closeQrModal() {
+      document.getElementById('qr-modal').classList.remove('open');
+    }
+
+    function openPrintModal() {
+      const modal = document.getElementById('print-modal');
+      const grid = document.getElementById('print-sheet-grid');
+      grid.innerHTML = '';
+
+      STATIONS.forEach(st => {
+        const fullUrl = getStationFullUrl(st.path);
+        const cardId = `qr-print-${st.id}`;
+
+        const card = document.createElement('div');
+        card.style.cssText = 'background:#ffffff; color:#000000; padding:16px 12px; border-radius:12px; border:2px solid #d4af37; box-shadow:0 4px 15px rgba(0,0,0,0.3);';
+        card.innerHTML = `
+          <div style="font-weight:900; font-size:0.95rem; color:#96741b; margin-bottom:2px;">كافيه عماد أفندي</div>
+          <div style="font-weight:800; font-size:0.85rem; color:#000; margin-bottom:8px;">${st.icon} ${st.title}</div>
+          <div id="${cardId}" style="display:flex; justify-content:center; margin-bottom:8px;"></div>
+          <div style="font-size:0.7rem; color:#555; font-weight:600;">امسح الكود لفتح الريسيبي • SOP</div>
+        `;
+        grid.appendChild(card);
+
+        setTimeout(() => {
+          new QRCode(document.getElementById(cardId), {
+            text: fullUrl,
+            width: 140,
+            height: 140,
+            colorDark: '#000000',
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.H
+          });
+        }, 100);
+      });
+
+      modal.classList.add('open');
+    }
+
+    function closePrintModal() {
+      document.getElementById('print-modal').classList.remove('open');
+    }
+  </script>
+</body>
+</html>
