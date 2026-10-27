@@ -1,65 +1,12 @@
-// Emad Afandi Specialty Coffee Lab - Vector Icon System (Zero Emojis)
-const ICONS = {
-  search: `<svg class="lab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>`,
-  
-  espresso: `<svg class="lab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>`,
-  
-  flame: `<svg class="lab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>`,
-  
-  snowflake: `<svg class="lab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="12" x2="22" y2="12"></line><line x1="12" y1="2" x2="12" y2="22"></line><path d="m20 16-4-4 4-4"></path><path d="m4 8 4 4-4 4"></path><path d="m16 4-4 4-4-4"></path><path d="m8 20 4-4 4 4"></path></svg>`,
-  
-  flask: `<svg class="lab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.31L4.1 19.46A2 2 0 0 0 5.8 22h12.4a2 2 0 0 0 1.7-2.54L14 9.31V2"></path><line x1="8.5" y1="2" x2="15.5" y2="2"></line><line x1="7.5" y1="15" x2="16.5" y2="15"></line></svg>`,
-  
-  scale: `<svg class="lab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="M7 21h10"></path><path d="M12 3v18"></path><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"></path></svg>`,
-  
-  droplet: `<svg class="lab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"></path></svg>`,
-  
-  timer: `<svg class="lab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`,
-  
-  thermometer: `<svg class="lab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"></path></svg>`,
-  
-  zap: `<svg class="lab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>`,
-  
-  alertTriangle: `<svg class="lab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>`,
-  
-  wrench: `<svg class="lab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>`,
-  
-  sparkles: `<svg class="lab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>`,
-  
-  cup: `<svg class="lab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"></path><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path></svg>`,
-  
-  check: `<svg class="lab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`,
-  
-  cleanBrush: `<svg class="lab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6"></path><path d="M21.5 8 16 2.5l-9.5 9.5a3.5 3.5 0 0 0-1 2.5V19h4.5a3.5 3.5 0 0 0 2.5-1l9-9.5z"></path><path d="M2 22h20"></path></svg>`,
-  
-  qr: `<svg class="lab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>`,
-  
-  home: `<svg class="lab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>`,
-  
-  close: `<svg class="lab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`,
-  
-  gauge: `<svg class="lab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"></path><path d="M3.34 19a10 10 0 1 1 17.32 0"></path></svg>`,
-  
-  layers: `<svg class="lab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>`,
-
-  lightbulb: `<svg class="lab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="18" x2="15" y2="18"></line><line x1="10" y1="22" x2="14" y2="22"></line><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path></svg>`
-};
-
-function getIcon(name, extraClass = '') {
-  const svg = ICONS[name] || '';
-  if (!extraClass) return svg;
-  return svg.replace('class="lab-icon"', `class="lab-icon ${extraClass}"`);
-}
-
-
-// Emad Afandi Specialty Coffee Lab - SOP Engine (Zero Emojis, Laboratory Grade)
+// Emad Afandi Specialty Coffee Lab - Menu-Style Visual SOP Engine
 class StationApp {
   constructor(stationDataUrl) {
     this.stationDataUrl = stationDataUrl;
     this.data = null;
-    this.activeCategory = 'all';
+    this.activeCategory = null;
     this.searchQuery = '';
-    this.rushMode = localStorage.getItem('emad_rush_mode') === 'true';
+    this.activeDetailItem = null;
+    this.activeDetailSizeKey = null;
 
     this.init();
   }
@@ -68,19 +15,23 @@ class StationApp {
     try {
       const response = await fetch(this.stationDataUrl);
       this.data = await response.json();
+
+      // Default active category is the FIRST category (NO "ALL" TAB)
+      if (this.data.categories && this.data.categories.length > 0) {
+        this.activeCategory = this.data.categories[0].id;
+      }
+
       this.renderHeader();
       this.renderCategories();
       this.renderContent();
       this.initEvents();
       this.initChecklist();
-      this.applyRushMode(this.rushMode);
     } catch (err) {
       console.error('Failed to load station data:', err);
       const container = document.getElementById('content-area');
       if (container) {
         container.innerHTML = `
           <div style="text-align:center; padding:40px; color:#f87171; background:rgba(239,68,68,0.1); border-radius:12px; border:1px solid #ef4444;">
-            ${typeof getIcon === 'function' ? getIcon('alertTriangle', 'icon-lg') : ''}
             <div style="margin-top:10px; font-weight:700;">خطأ في تحميل بيانات المعمل: ${err.message}</div>
           </div>
         `;
@@ -93,37 +44,27 @@ class StationApp {
     const titleEl = document.getElementById('station-title');
     const descEl = document.getElementById('station-desc');
     const badgeEl = document.getElementById('station-badge');
-    const metaEl = document.getElementById('station-meta');
 
     if (titleEl) titleEl.textContent = station.name;
     if (descEl) descEl.textContent = station.tagline;
     if (badgeEl) {
       badgeEl.innerHTML = `<span class="lab-led pulse-gold"></span> ${station.englishName}`;
     }
-    if (metaEl && station.targetStandard) {
-      metaEl.innerHTML = `${getIcon('gauge', 'icon-gold')} <span>${station.targetStandard}</span>`;
-      metaEl.style.display = 'inline-flex';
-    }
   }
 
   renderCategories() {
     const filterContainer = document.getElementById('filter-tabs');
-    if (!filterContainer) return;
+    if (!filterContainer || !this.data.categories) return;
 
-    let html = `
-      <button class="filter-btn active" data-cat="all">
-        ${getIcon('layers')}
-        <span>الكل (${this.getTotalItems()})</span>
-      </button>
-    `;
-
-    this.data.categories.forEach(cat => {
+    // Strict Rule: NO "الكل" (ALL) TAB! Every category has its own distinct pill
+    let html = '';
+    this.data.categories.forEach((cat, idx) => {
+      const isActive = cat.id === this.activeCategory ? 'active' : '';
       const count = cat.items ? cat.items.length : 0;
-      const iconType = this.getCategoryIcon(cat.id);
       html += `
-        <button class="filter-btn" data-cat="${cat.id}">
-          ${getIcon(iconType)}
-          <span>${cat.name} (${count})</span>
+        <button class="menu-cat-pill ${isActive}" data-cat="${cat.id}">
+          <span>${cat.name}</span>
+          <span class="cat-count-badge">${count}</span>
         </button>
       `;
     });
@@ -131,32 +72,25 @@ class StationApp {
     filterContainer.innerHTML = html;
   }
 
-  getCategoryIcon(catId) {
-    if (catId.includes('espresso')) return 'espresso';
-    if (catId.includes('filter')) return 'flask';
-    if (catId.includes('turkish') || catId.includes('heritage')) return 'flame';
-    if (catId.includes('cold') || catId.includes('frappes') || catId.includes('iced')) return 'snowflake';
-    if (catId.includes('smoothie')) return 'droplet';
-    if (catId.includes('boba') || catId.includes('mocktail')) return 'sparkles';
-    if (catId.includes('bakery')) return 'flame';
-    return 'cup';
-  }
-
-  getTotalItems() {
-    return this.data.categories.reduce((acc, cat) => acc + (cat.items ? cat.items.length : 0), 0);
-  }
-
   renderContent() {
     const container = document.getElementById('content-area');
     if (!container) return;
 
     const query = this.searchQuery.trim().toLowerCase();
+    let targetCategories = [];
+
+    if (query) {
+      // If searching, search across all categories
+      targetCategories = this.data.categories;
+    } else {
+      // Otherwise only show the single selected category
+      targetCategories = this.data.categories.filter(c => c.id === this.activeCategory);
+    }
+
     let html = '';
     let matchesFound = 0;
 
-    this.data.categories.forEach(cat => {
-      if (this.activeCategory !== 'all' && this.activeCategory !== cat.id) return;
-
+    targetCategories.forEach(cat => {
       const filteredItems = (cat.items || []).filter(item => {
         if (!query) return true;
         const nameMatch = item.name.toLowerCase().includes(query);
@@ -169,16 +103,15 @@ class StationApp {
       matchesFound += filteredItems.length;
 
       html += `
-        <section class="category-section" id="cat-${cat.id}">
-          <div class="category-header">
-            <h2 class="category-title">
-              ${getIcon(this.getCategoryIcon(cat.id), 'icon-gold')}
+        <section class="menu-section" id="cat-${cat.id}">
+          <div class="menu-section-header">
+            <h2 class="menu-section-title">
               <span>${cat.name}</span>
             </h2>
-            <span class="badge-num" style="font-size:0.78rem; color:var(--gold-soft); font-family:var(--font-mono);">${filteredItems.length} SPEC</span>
+            <span class="section-items-badge">${filteredItems.length} صنف</span>
           </div>
-          <div class="items-grid">
-            ${filteredItems.map(item => this.renderRecipeCard(item)).join('')}
+          <div class="visual-cards-grid">
+            ${filteredItems.map(item => this.renderDrinkCard(item)).join('')}
           </div>
         </section>
       `;
@@ -187,9 +120,9 @@ class StationApp {
     if (matchesFound === 0) {
       html = `
         <div style="text-align:center; padding: 60px 20px; color: var(--text-secondary);">
-          <div style="margin-bottom:12px; color:var(--gold-primary);">${getIcon('search', 'icon-lg')}</div>
-          <div style="font-size:1.1rem; font-weight:700; color:var(--gold-bright);">لم يتم العثور على أي صنف مطابق للبحث</div>
-          <p style="font-size:0.85rem; margin-top:6px; color:var(--text-muted);">تحقق من الاسم أو استعرض كافة التصنيفات بالأعلى</p>
+          <div style="font-size:2.2rem; margin-bottom:10px; color:var(--gold-primary);">🔍</div>
+          <div style="font-size:1.15rem; font-weight:800; color:var(--gold-bright);">لم يتم العثور على أي صنف</div>
+          <p style="font-size:0.85rem; margin-top:6px; color:var(--text-muted);">تأكد من كتابة الاسم بشكل صحيح أو اختر قسماً آخر من الأعلى</p>
         </div>
       `;
     }
@@ -197,135 +130,262 @@ class StationApp {
     container.innerHTML = html;
   }
 
-  renderRecipeCard(item) {
-    const hasSizes = !!item.sizes;
-    const hasSingleDouble = !!(item.single && item.double);
+  renderDrinkCard(item) {
+    // Generate colored vector illustration for this drink
+    const svgIllustration = typeof getDrinkSvg === 'function' ? getDrinkSvg(item) : '';
+    
+    // Subtitle / English name
+    const subTitle = item.name_en || (item.id.replace(/-/g, ' ').toUpperCase());
 
+    // Check if item has sizes
+    let sizeBadge = '';
+    if (item.sizes) {
+      sizeBadge = `<span class="card-size-tag">3 أحجام</span>`;
+    } else if (item.single && item.double) {
+      sizeBadge = `<span class="card-size-tag">سنجل / دبل</span>`;
+    } else if (item.cup) {
+      sizeBadge = `<span class="card-size-tag">${item.cup}</span>`;
+    }
+
+    return `
+      <div class="drink-visual-card" onclick="window.app.openRecipeDetail('${item.id}')">
+        <div class="drink-card-art-holder">
+          ${svgIllustration}
+          ${sizeBadge}
+        </div>
+        <div class="drink-card-body">
+          <h3 class="drink-card-name">${item.name}</h3>
+          <div class="drink-card-en">${subTitle}</div>
+        </div>
+        <div class="drink-card-action">
+          <span>الريسيبي وطريقة التشغيل</span>
+          <span class="card-arrow">←</span>
+        </div>
+      </div>
+    `;
+  }
+
+  openRecipeDetail(itemId) {
+    let found = null;
+    this.data.categories.forEach(cat => {
+      const it = (cat.items || []).find(x => x.id === itemId);
+      if (it) found = it;
+    });
+
+    if (!found) return;
+    this.activeDetailItem = found;
+
+    const modal = document.getElementById('recipe-detail-modal');
+    const content = document.getElementById('recipe-detail-content');
+    if (!modal || !content) return;
+
+    // Default size
+    if (found.sizes) {
+      this.activeDetailSizeKey = Object.keys(found.sizes)[0];
+    } else if (found.single && found.double) {
+      this.activeDetailSizeKey = 'single';
+    } else {
+      this.activeDetailSizeKey = null;
+    }
+
+    this.renderDetailModalContent();
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  renderDetailModalContent() {
+    const item = this.activeDetailItem;
+    const content = document.getElementById('recipe-detail-content');
+    if (!item || !content) return;
+
+    const svgIllustration = typeof getDrinkSvg === 'function' ? getDrinkSvg(item) : '';
+
+    // Size Switchers
     let sizeSwitchHtml = '';
-    let metricsHtml = '';
+    let currentData = item;
 
-    if (hasSizes) {
+    if (item.sizes) {
       const keys = Object.keys(item.sizes);
-      const defaultKey = keys[0];
-      const activeData = item.sizes[defaultKey];
+      const activeKey = this.activeDetailSizeKey || keys[0];
+      currentData = item.sizes[activeKey];
 
       sizeSwitchHtml = `
-        <div class="size-switchers" data-recipe-id="${item.id}">
-          ${keys.map((k, idx) => `
-            <button class="size-pill ${idx === 0 ? 'active' : ''}" 
-                    data-size-key="${k}" 
-                    onclick="window.app.switchSize('${item.id}', '${k}')">
+        <div class="detail-size-switchers">
+          ${keys.map(k => `
+            <button class="detail-size-btn ${k === activeKey ? 'active' : ''}" 
+                    onclick="window.app.switchDetailSize('${k}')">
               ${item.sizes[k].sizeLabel || k}
             </button>
           `).join('')}
         </div>
       `;
-      metricsHtml = `<div class="flash-metrics" id="metrics-${item.id}">${this.renderMetricsFromObject(activeData)}</div>`;
-    } else if (hasSingleDouble) {
+    } else if (item.single && item.double) {
+      const activeKey = this.activeDetailSizeKey || 'single';
+      currentData = item[activeKey];
+
       sizeSwitchHtml = `
-        <div class="size-switchers" data-recipe-id="${item.id}">
-          <button class="size-pill active" onclick="window.app.switchSingleDouble('${item.id}', 'single')">سنجل (Single)</button>
-          <button class="size-pill" onclick="window.app.switchSingleDouble('${item.id}', 'double')">دبل (Double)</button>
+        <div class="detail-size-switchers">
+          <button class="detail-size-btn ${activeKey === 'single' ? 'active' : ''}" 
+                  onclick="window.app.switchDetailSize('single')">
+            سنجل (Single)
+          </button>
+          <button class="detail-size-btn ${activeKey === 'double' ? 'active' : ''}" 
+                  onclick="window.app.switchDetailSize('double')">
+            دبل (Double)
+          </button>
         </div>
       `;
-      metricsHtml = `<div class="flash-metrics" id="metrics-${item.id}">${this.renderMetricsFromObject(item.single)}</div>`;
-    } else {
-      metricsHtml = `<div class="flash-metrics">${this.renderMetricsFromObject(item)}</div>`;
     }
+
+    // Recipe Metrics Grid
+    const metricsHtml = this.renderMetricsFromObject(currentData);
 
     // SOP Steps
     let stepsHtml = '';
     if (item.steps && item.steps.length > 0) {
       stepsHtml = `
-        <div class="recipe-steps">
-          <div class="steps-title">
-            ${getIcon('timer', 'icon-gold')}
-            <span>بروتوكول التحضير المعملي (SOP):</span>
-          </div>
-          <ol class="steps-list">
+        <div class="detail-block">
+          <h4 class="detail-block-title">
+            <span>⏱️</span>
+            <span>طريقة التشغيل خطوة بخطوة (SOP):</span>
+          </h4>
+          <ol class="detail-steps-list">
             ${item.steps.map(s => `<li>${s}</li>`).join('')}
           </ol>
         </div>
       `;
     }
 
-    // Zero-Waste Diagnostic Panel
-    let rescueHtml = '';
-    if (item.rescue) {
-      rescueHtml = `
-        <div class="rescue-box">
-          <div class="rescue-header">
-            ${getIcon('wrench')}
-            <span>عيادة إنقاذ الأوردر (Zero-Waste Diagnostic):</span>
-          </div>
-          <div class="rescue-problem"><strong>التشخيص:</strong> ${item.rescue.problem}</div>
-          <div class="rescue-solution"><strong>إجراء الإنقاذ الفوري:</strong> ${item.rescue.solution}</div>
-        </div>
-      `;
-    }
-
-    // Pro Tip
+    // Pro Tip / Warning
     let tipHtml = '';
     if (item.proTip) {
       tipHtml = `
-        <div class="recipe-pro-tip">
-          ${getIcon('sparkles', 'icon-gold')}
-          <div><strong>سر معمل عماد أفندي:</strong> ${item.proTip}</div>
+        <div class="detail-tip-box">
+          <div class="tip-icon-gold">👑</div>
+          <div class="tip-text">
+            <strong>نصيحة التشغيل الذهبية:</strong>
+            <p>${item.proTip}</p>
+          </div>
         </div>
       `;
     }
 
-    // Cup badge
-    const cupText = item.cup || (item.sizes && item.sizes.small ? item.sizes.small.cup : (item.single ? item.single.cup : ''));
-
-    return `
-      <div class="recipe-card" id="card-${item.id}">
-        <div class="card-top">
-          <h3 class="recipe-name">${item.name}</h3>
-          ${cupText ? `<span class="recipe-cup" id="cup-${item.id}">${getIcon('cup')} <span>${cupText}</span></span>` : ''}
+    // Dedicated Zero-Waste Error Button
+    let rescueHtml = '';
+    if (item.rescue) {
+      rescueHtml = `
+        <div class="detail-rescue-section">
+          <button class="btn-toggle-rescue" onclick="window.app.toggleRescuePanel()">
+            <span>🚨</span>
+            <span>الأخطاء المحتملة وكيفية علاجها فوراً (اضغط هنا)</span>
+            <span class="rescue-arrow" id="rescue-arrow-icon">▼</span>
+          </button>
+          <div class="rescue-collapse-box" id="rescue-collapse-box" style="display:none;">
+            <div class="rescue-card-problem">
+              ⚠️ <strong>الخطأ الشائع:</strong> ${item.rescue.problem}
+            </div>
+            <div class="rescue-card-solution">
+              💡 <strong>إجراء الإنقاذ السريع (بدون رمي الأوردر):</strong>
+              <p>${item.rescue.solution}</p>
+            </div>
+          </div>
         </div>
+      `;
+    }
+
+    content.innerHTML = `
+      <div class="detail-sheet-header">
+        <button class="detail-close-btn" onclick="window.app.closeRecipeDetail()">✕ إغلاق</button>
+        <div class="detail-top-hero">
+          <div class="detail-art-wrap">
+            ${svgIllustration}
+          </div>
+          <h2 class="detail-drink-name">${item.name}</h2>
+          <div class="detail-drink-sub">${item.notes || ''}</div>
+        </div>
+      </div>
+
+      <div class="detail-sheet-body">
         ${sizeSwitchHtml}
-        ${metricsHtml}
+
+        <div class="detail-block">
+          <h4 class="detail-block-title">
+            <span>📋</span>
+            <span>المقادير والجرامات المعيارية:</span>
+          </h4>
+          <div class="detail-metrics-grid">
+            ${metricsHtml}
+          </div>
+        </div>
+
         ${stepsHtml}
-        ${rescueHtml}
         ${tipHtml}
+        ${rescueHtml}
       </div>
     `;
   }
 
+  switchDetailSize(sizeKey) {
+    this.activeDetailSizeKey = sizeKey;
+    this.renderDetailModalContent();
+  }
+
+  toggleRescuePanel() {
+    const box = document.getElementById('rescue-collapse-box');
+    const arrow = document.getElementById('rescue-arrow-icon');
+    if (!box) return;
+
+    if (box.style.display === 'none') {
+      box.style.display = 'block';
+      if (arrow) arrow.textContent = '▲';
+    } else {
+      box.style.display = 'none';
+      if (arrow) arrow.textContent = '▼';
+    }
+  }
+
+  closeRecipeDetail() {
+    const modal = document.getElementById('recipe-detail-modal');
+    if (modal) modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
   renderMetricsFromObject(obj) {
     const fields = [
-      { key: 'flour', label: 'دقيق', icon: 'scale' },
-      { key: 'eggs', label: 'بيض', icon: 'cup' },
-      { key: 'vanilla', label: 'فانيليا', icon: 'sparkles' },
-      { key: 'sugar', label: 'سكر', icon: 'scale' },
-      { key: 'butter', label: 'زبدة', icon: 'droplet' },
-      { key: 'oil', label: 'زيت', icon: 'droplet' },
-      { key: 'tang', label: 'تانج', icon: 'sparkles' },
-      { key: 'bakingPowder', label: 'بيكنج بودر', icon: 'scale' },
-      { key: 'yieldCount', label: 'الإنتاج', icon: 'cup' },
-      { key: 'batterDose', label: 'صب العجين', icon: 'droplet' },
-      { key: 'miniPortion', label: 'الكمية', icon: 'cup' },
-      { key: 'coffeeGram', label: 'بن', icon: 'scale' },
-      { key: 'coffee', label: 'بن', icon: 'scale' },
-      { key: 'extractionMl', label: 'استخلاص', icon: 'droplet' },
-      { key: 'milk', label: 'حليب', icon: 'droplet' },
-      { key: 'water', label: 'مياه', icon: 'droplet' },
-      { key: 'condensedMilk', label: 'مكثف', icon: 'droplet' },
-      { key: 'sauce', label: 'صوص', icon: 'droplet' },
-      { key: 'syrup', label: 'سيرب', icon: 'droplet' },
-      { key: 'powder', label: 'بودر', icon: 'scale' },
-      { key: 'ice', label: 'ثلج', icon: 'snowflake' },
-      { key: 'iceCream', label: 'آيس كريم', icon: 'snowflake' },
-      { key: 'cream', label: 'كريمة', icon: 'droplet' },
-      { key: 'puree', label: 'بيوريه', icon: 'droplet' },
-      { key: 'crush', label: 'كراش', icon: 'droplet' },
-      { key: 'chips', label: 'شيبس', icon: 'sparkles' },
-      { key: 'starch', label: 'نشا', icon: 'scale' },
-      { key: 'temp', label: 'حرارة', icon: 'thermometer' },
-      { key: 'time', label: 'وقت', icon: 'timer' },
-      { key: 'timer', label: 'مؤقت', icon: 'timer' },
-      { key: 'ratio', label: 'ريشيو', icon: 'gauge' }
+      { key: 'flour', label: 'دقيق' },
+      { key: 'eggs', label: 'بيض' },
+      { key: 'vanilla', label: 'فانيليا' },
+      { key: 'sugar', label: 'سكر' },
+      { key: 'butter', label: 'زبدة' },
+      { key: 'oil', label: 'زيت' },
+      { key: 'tang', label: 'تانج' },
+      { key: 'bakingPowder', label: 'بيكنج بودر' },
+      { key: 'yieldCount', label: 'الإنتاج' },
+      { key: 'batterDose', label: 'صب العجين' },
+      { key: 'miniPortion', label: 'الكمية' },
+      { key: 'coffeeGram', label: 'وزن البن' },
+      { key: 'coffee', label: 'وزن البن' },
+      { key: 'extractionMl', label: 'الاستخلاص' },
+      { key: 'milk', label: 'الحليب' },
+      { key: 'water', label: 'الماء' },
+      { key: 'condensedMilk', label: 'حليب مكثف' },
+      { key: 'sauce', label: 'الصوص' },
+      { key: 'sauceBatata', label: 'صوص بطاطا' },
+      { key: 'sauceCaramel', label: 'صوص كراميل' },
+      { key: 'syrup', label: 'السيرب' },
+      { key: 'powder', label: 'البودر' },
+      { key: 'ice', label: 'الثلج' },
+      { key: 'iceCream', label: 'آيس كريم' },
+      { key: 'cream', label: 'كريمة خفق' },
+      { key: 'puree', label: 'بيوريه' },
+      { key: 'crush', label: 'كراش' },
+      { key: 'chips', label: 'شوكليت شيبس' },
+      { key: 'starch', label: 'نشا' },
+      { key: 'temp', label: 'الحرارة' },
+      { key: 'time', label: 'الوقت' },
+      { key: 'timer', label: 'المؤقت' },
+      { key: 'ratio', label: 'الريشيو' },
+      { key: 'cup', label: 'الكوب' }
     ];
 
     let itemsHtml = '';
@@ -333,76 +393,15 @@ class StationApp {
       const val = obj[f.key];
       if (val && val !== '-') {
         itemsHtml += `
-          <div class="metric-item">
-            <div class="metric-label">
-              ${getIcon(f.icon)}
-              <span>${f.label}</span>
-            </div>
-            <div class="metric-value">${val}</div>
+          <div class="recipe-metric-tile">
+            <span class="metric-tile-label">${f.label}</span>
+            <strong class="metric-tile-val">${val}</strong>
           </div>
         `;
       }
     });
 
     return itemsHtml;
-  }
-
-  switchSize(itemId, sizeKey) {
-    let targetItem = null;
-    this.data.categories.forEach(cat => {
-      const it = (cat.items || []).find(x => x.id === itemId);
-      if (it) targetItem = it;
-    });
-
-    if (!targetItem || !targetItem.sizes || !targetItem.sizes[sizeKey]) return;
-
-    const sizeData = targetItem.sizes[sizeKey];
-    const metricsContainer = document.getElementById(`metrics-${itemId}`);
-    if (metricsContainer) {
-      metricsContainer.innerHTML = this.renderMetricsFromObject(sizeData);
-    }
-
-    const cupBadge = document.getElementById(`cup-${itemId}`);
-    if (cupBadge && sizeData.cup) {
-      cupBadge.innerHTML = `${getIcon('cup')} <span>${sizeData.cup}</span>`;
-    }
-
-    const card = document.getElementById(`card-${itemId}`);
-    if (card) {
-      const pills = card.querySelectorAll('.size-pill');
-      pills.forEach(p => {
-        p.classList.toggle('active', p.getAttribute('data-size-key') === sizeKey);
-      });
-    }
-  }
-
-  switchSingleDouble(itemId, type) {
-    let targetItem = null;
-    this.data.categories.forEach(cat => {
-      const it = (cat.items || []).find(x => x.id === itemId);
-      if (it) targetItem = it;
-    });
-
-    if (!targetItem || !targetItem[type]) return;
-
-    const dataObj = targetItem[type];
-    const metricsContainer = document.getElementById(`metrics-${itemId}`);
-    if (metricsContainer) {
-      metricsContainer.innerHTML = this.renderMetricsFromObject(dataObj);
-    }
-
-    const cupBadge = document.getElementById(`cup-${itemId}`);
-    if (cupBadge && dataObj.cup) {
-      cupBadge.innerHTML = `${getIcon('cup')} <span>${dataObj.cup}</span>`;
-    }
-
-    const card = document.getElementById(`card-${itemId}`);
-    if (card) {
-      const pills = card.querySelectorAll('.size-pill');
-      pills.forEach((p, idx) => {
-        p.classList.toggle('active', (type === 'single' && idx === 0) || (type === 'double' && idx === 1));
-      });
-    }
   }
 
   initEvents() {
@@ -417,41 +416,15 @@ class StationApp {
     const filterContainer = document.getElementById('filter-tabs');
     if (filterContainer) {
       filterContainer.addEventListener('click', (e) => {
-        const btn = e.target.closest('.filter-btn');
+        const btn = e.target.closest('.menu-cat-pill');
         if (!btn) return;
 
-        filterContainer.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        filterContainer.querySelectorAll('.menu-cat-pill').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
         this.activeCategory = btn.getAttribute('data-cat');
         this.renderContent();
       });
-    }
-
-    const rushBtn = document.getElementById('btn-rush-mode');
-    if (rushBtn) {
-      rushBtn.addEventListener('click', () => {
-        this.rushMode = !this.rushMode;
-        localStorage.setItem('emad_rush_mode', this.rushMode);
-        this.applyRushMode(this.rushMode);
-      });
-    }
-  }
-
-  applyRushMode(enable) {
-    const rushBtn = document.getElementById('btn-rush-mode');
-    if (enable) {
-      document.body.classList.add('rush-mode');
-      if (rushBtn) {
-        rushBtn.classList.add('active');
-        rushBtn.innerHTML = `${getIcon('zap')} <span>وضع الضغط نشط</span>`;
-      }
-    } else {
-      document.body.classList.remove('rush-mode');
-      if (rushBtn) {
-        rushBtn.classList.remove('active');
-        rushBtn.innerHTML = `${getIcon('zap')} <span>وضع الضغط</span>`;
-      }
     }
   }
 
@@ -476,7 +449,7 @@ class StationApp {
           <input type="checkbox" data-idx="${idx}" ${isChecked ? 'checked' : ''} onchange="window.app.toggleCheckItem(${idx})">
           <div style="flex:1;">
             <div class="checklist-text">${item.task}</div>
-            <div class="checklist-freq">${getIcon('timer')} الموعد المعتمد: ${item.frequency}</div>
+            <div class="checklist-freq">الموعد المعتمد: ${item.frequency}</div>
           </div>
         </label>
       `;

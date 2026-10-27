@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <meta name="theme-color" content="#07080a">
+  <meta name="theme-color" content="#000000">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>عماد أفندي | معمل مكنة الإسبريسو والفلتر (Espresso Station SOP)</title>
+  <title>عماد أفندي | محطة مكنة الإسبريسو والفلتر (Espresso Station SOP)</title>
   <link rel="icon" type="image/png" href="assets/emad-logo.png">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -24,60 +24,48 @@
       </div>
     </div>
     <div class="header-actions">
-      <button class="btn-toggle-rush" id="btn-rush-mode" title="وضع ضغط العمل يعرض الأرقام والمقاييس فقط بحجم كبير">
-        <span id="rush-icon"></span>
-        <span>وضع الضغط</span>
-      </button>
       <a href="../index.html" class="btn-header-link" title="العودة للبوابة الرئيسية">
-        <span id="home-icon"></span>
-        <span>المحطات</span>
+        <span>المحطات الرئيسية</span>
+        <span>←</span>
       </a>
     </div>
   </header>
 
-  <!-- Station Hero -->
-  <section class="station-hero">
-    <div class="lab-tech-pill" id="station-badge">
-      <span class="lab-led pulse-gold"></span>
-      <span>ESPRESSO LAB SPECIFICATION</span>
-    </div>
-    <h1 class="station-title" id="station-title">محطة مكنة الإسبريسو والفلتر</h1>
-    <p class="station-desc" id="station-desc">المعيار الذهبي للاستخلاص المعملي والتبخير الحريري</p>
-    <div class="station-meta-pill" id="station-meta" style="display:none;"></div>
-  </section>
-
-  <!-- Search & Navigation -->
+  <!-- Search Bar -->
   <div class="search-container">
     <div class="search-box-wrap">
-      <input type="text" class="search-box" id="search-box" placeholder="ابحث عن أي مشروب (لاتيه، فلات وايت، سبانيش، كورتادو، V60...)...">
-      <span class="search-icon-pos" id="search-icon"></span>
+      <input type="text" class="search-box" id="search-box" placeholder="ابحث في مشروبات الإسبريسو بالكامل...">
+      <span class="search-icon-pos">🔍</span>
     </div>
   </div>
 
+  <!-- Horizontal Category Pills (NO "ALL" TAB) -->
   <div class="filter-tabs" id="filter-tabs"></div>
 
-  <!-- Content Area -->
+  <!-- Grid Content Area (Visual Drink Cards) -->
   <main class="content-area" id="content-area">
     <div style="text-align:center; padding:50px 20px; color:var(--gold-soft);">
-      جاري تحميل بيانات معمل الإسبريسو...
+      جاري تحميل مشروبات محطة الإسبريسو... ☕
     </div>
   </main>
 
   <!-- Floating Checklist Button -->
   <button class="btn-checklist-toggle" onclick="openChecklistModal()">
-    <span id="clean-icon"></span>
+    <span>🧹</span>
     <span>نظافة المحطة</span>
   </button>
+
+  <!-- Recipe Detail Modal / Drawer -->
+  <div class="recipe-detail-modal" id="recipe-detail-modal" onclick="if(event.target===this) window.app.closeRecipeDetail()">
+    <div class="recipe-detail-sheet" id="recipe-detail-content"></div>
+  </div>
 
   <!-- Checklist Modal -->
   <div class="modal-overlay" id="checklist-modal">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title">
-          <span id="modal-clean-icon"></span>
-          <span>بروتوكول نظافة ومعايرة محطة الإسبريسو</span>
-        </h3>
-        <button class="modal-close" onclick="closeChecklistModal()"><span id="close-modal-icon"></span></button>
+        <h3 class="modal-title">🧹 بروتوكول نظافة ومعايرة محطة الإسبريسو</h3>
+        <button class="modal-close" onclick="closeChecklistModal()">&times;</button>
       </div>
       <p style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:14px;">
         الالتزام بهذه المعايير يضمن حماية ماكينات الإسبريسو والمطاحن وثبات النكهة بنسبة 100%.
@@ -88,7 +76,7 @@
           إعادة تعيين اليوم
         </button>
         <button onclick="closeChecklistModal()" style="background:var(--gold-primary); border:none; color:#000; font-weight:800; padding:8px 22px; border-radius:var(--radius-sm); font-family:var(--font-arabic); font-size:0.84rem; cursor:pointer;">
-          اعتماد الفحص
+          اعتماد الفحص ✓
         </button>
       </div>
     </div>
@@ -103,16 +91,10 @@
     </p>
   </footer>
 
+  <script src="drink-visuals.js"></script>
   <script src="app.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('rush-icon').innerHTML = getIcon('zap');
-      document.getElementById('home-icon').innerHTML = getIcon('home');
-      document.getElementById('search-icon').innerHTML = getIcon('search');
-      document.getElementById('clean-icon').innerHTML = getIcon('cleanBrush');
-      document.getElementById('modal-clean-icon').innerHTML = getIcon('cleanBrush', 'icon-gold');
-      document.getElementById('close-modal-icon').innerHTML = getIcon('close');
-
       window.app = new StationApp('recipes.json');
     });
   </script>

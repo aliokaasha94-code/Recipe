@@ -1,11 +1,12 @@
-// Emad Afandi Specialty Coffee Lab - SOP Engine (Zero Emojis, Laboratory Grade)
+// Emad Afandi Specialty Coffee Lab - Menu-Style Visual SOP Engine
 class StationApp {
   constructor(stationDataUrl) {
     this.stationDataUrl = stationDataUrl;
     this.data = null;
-    this.activeCategory = 'all';
+    this.activeCategory = null;
     this.searchQuery = '';
-    this.rushMode = localStorage.getItem('emad_rush_mode') === 'true';
+    this.activeDetailItem = null;
+    this.activeDetailSizeKey = null;
 
     this.init();
   }
@@ -14,19 +15,23 @@ class StationApp {
     try {
       const response = await fetch(this.stationDataUrl);
       this.data = await response.json();
+
+      // Default active category is the FIRST category (NO "ALL" TAB)
+      if (this.data.categories && this.data.categories.length > 0) {
+        this.activeCategory = this.data.categories[0].id;
+      }
+
       this.renderHeader();
       this.renderCategories();
       this.renderContent();
       this.initEvents();
       this.initChecklist();
-      this.applyRushMode(this.rushMode);
     } catch (err) {
       console.error('Failed to load station data:', err);
       const container = document.getElementById('content-area');
       if (container) {
         container.innerHTML = `
           <div style="text-align:center; padding:40px; color:#f87171; background:rgba(239,68,68,0.1); border-radius:12px; border:1px solid #ef4444;">
-            ${typeof getIcon === 'function' ? getIcon('alertTriangle', 'icon-lg') : ''}
             <div style="margin-top:10px; font-weight:700;">خطأ في تحميل بيانات المعمل: ${err.message}</div>
           </div>
         `;
@@ -39,37 +44,27 @@ class StationApp {
     const titleEl = document.getElementById('station-title');
     const descEl = document.getElementById('station-desc');
     const badgeEl = document.getElementById('station-badge');
-    const metaEl = document.getElementById('station-meta');
 
     if (titleEl) titleEl.textContent = station.name;
     if (descEl) descEl.textContent = station.tagline;
     if (badgeEl) {
       badgeEl.innerHTML = `<span class="lab-led pulse-gold"></span> ${station.englishName}`;
     }
-    if (metaEl && station.targetStandard) {
-      metaEl.innerHTML = `${getIcon('gauge', 'icon-gold')} <span>${station.targetStandard}</span>`;
-      metaEl.style.display = 'inline-flex';
-    }
   }
 
   renderCategories() {
     const filterContainer = document.getElementById('filter-tabs');
-    if (!filterContainer) return;
+    if (!filterContainer || !this.data.categories) return;
 
-    let html = `
-      <button class="filter-btn active" data-cat="all">
-        ${getIcon('layers')}
-        <span>الكل (${this.getTotalItems()})</span>
-      </button>
-    `;
-
-    this.data.categories.forEach(cat => {
+    // Strict Rule: NO "الكل" (ALL) TAB! Every category has its own distinct pill
+    let html = '';
+    this.data.categories.forEach((cat, idx) => {
+      const isActive = cat.id === this.activeCategory ? 'active' : '';
       const count = cat.items ? cat.items.length : 0;
-      const iconType = this.getCategoryIcon(cat.id);
       html += `
-        <button class="filter-btn" data-cat="${cat.id}">
-          ${getIcon(iconType)}
-          <span>${cat.name} (${count})</span>
+        <button class="menu-cat-pill ${isActive}" data-cat="${cat.id}">
+          <span>${cat.name}</span>
+          <span class="cat-count-badge">${count}</span>
         </button>
       `;
     });
@@ -77,32 +72,25 @@ class StationApp {
     filterContainer.innerHTML = html;
   }
 
-  getCategoryIcon(catId) {
-    if (catId.includes('espresso')) return 'espresso';
-    if (catId.includes('filter')) return 'flask';
-    if (catId.includes('turkish') || catId.includes('heritage')) return 'flame';
-    if (catId.includes('cold') || catId.includes('frappes') || catId.includes('iced')) return 'snowflake';
-    if (catId.includes('smoothie')) return 'droplet';
-    if (catId.includes('boba') || catId.includes('mocktail')) return 'sparkles';
-    if (catId.includes('bakery')) return 'flame';
-    return 'cup';
-  }
-
-  getTotalItems() {
-    return this.data.categories.reduce((acc, cat) => acc + (cat.items ? cat.items.length : 0), 0);
-  }
-
   renderContent() {
     const container = document.getElementById('content-area');
     if (!container) return;
 
     const query = this.searchQuery.trim().toLowerCase();
+    let targetCategories = [];
+
+    if (query) {
+      // If searching, search across all categories
+      targetCategories = this.data.categories;
+    } else {
+      // Otherwise only show the single selected category
+      targetCategories = this.data.categories.filter(c => c.id === this.activeCategory);
+    }
+
     let html = '';
     let matchesFound = 0;
 
-    this.data.categories.forEach(cat => {
-      if (this.activeCategory !== 'all' && this.activeCategory !== cat.id) return;
-
+    targetCategories.forEach(cat => {
       const filteredItems = (cat.items || []).filter(item => {
         if (!query) return true;
         const nameMatch = item.name.toLowerCase().includes(query);
@@ -115,16 +103,15 @@ class StationApp {
       matchesFound += filteredItems.length;
 
       html += `
-        <section class="category-section" id="cat-${cat.id}">
-          <div class="category-header">
-            <h2 class="category-title">
-              ${getIcon(this.getCategoryIcon(cat.id), 'icon-gold')}
+        <section class="menu-section" id="cat-${cat.id}">
+          <div class="menu-section-header">
+            <h2 class="menu-section-title">
               <span>${cat.name}</span>
             </h2>
-            <span class="badge-num" style="font-size:0.78rem; color:var(--gold-soft); font-family:var(--font-mono);">${filteredItems.length} SPEC</span>
+            <span class="section-items-badge">${filteredItems.length} صنف</span>
           </div>
-          <div class="items-grid">
-            ${filteredItems.map(item => this.renderRecipeCard(item)).join('')}
+          <div class="visual-cards-grid">
+            ${filteredItems.map(item => this.renderDrinkCard(item)).join('')}
           </div>
         </section>
       `;
@@ -133,9 +120,9 @@ class StationApp {
     if (matchesFound === 0) {
       html = `
         <div style="text-align:center; padding: 60px 20px; color: var(--text-secondary);">
-          <div style="margin-bottom:12px; color:var(--gold-primary);">${getIcon('search', 'icon-lg')}</div>
-          <div style="font-size:1.1rem; font-weight:700; color:var(--gold-bright);">لم يتم العثور على أي صنف مطابق للبحث</div>
-          <p style="font-size:0.85rem; margin-top:6px; color:var(--text-muted);">تحقق من الاسم أو استعرض كافة التصنيفات بالأعلى</p>
+          <div style="font-size:2.2rem; margin-bottom:10px; color:var(--gold-primary);">🔍</div>
+          <div style="font-size:1.15rem; font-weight:800; color:var(--gold-bright);">لم يتم العثور على أي صنف</div>
+          <p style="font-size:0.85rem; margin-top:6px; color:var(--text-muted);">تأكد من كتابة الاسم بشكل صحيح أو اختر قسماً آخر من الأعلى</p>
         </div>
       `;
     }
@@ -143,135 +130,262 @@ class StationApp {
     container.innerHTML = html;
   }
 
-  renderRecipeCard(item) {
-    const hasSizes = !!item.sizes;
-    const hasSingleDouble = !!(item.single && item.double);
+  renderDrinkCard(item) {
+    // Generate colored vector illustration for this drink
+    const svgIllustration = typeof getDrinkSvg === 'function' ? getDrinkSvg(item) : '';
+    
+    // Subtitle / English name
+    const subTitle = item.name_en || (item.id.replace(/-/g, ' ').toUpperCase());
 
+    // Check if item has sizes
+    let sizeBadge = '';
+    if (item.sizes) {
+      sizeBadge = `<span class="card-size-tag">3 أحجام</span>`;
+    } else if (item.single && item.double) {
+      sizeBadge = `<span class="card-size-tag">سنجل / دبل</span>`;
+    } else if (item.cup) {
+      sizeBadge = `<span class="card-size-tag">${item.cup}</span>`;
+    }
+
+    return `
+      <div class="drink-visual-card" onclick="window.app.openRecipeDetail('${item.id}')">
+        <div class="drink-card-art-holder">
+          ${svgIllustration}
+          ${sizeBadge}
+        </div>
+        <div class="drink-card-body">
+          <h3 class="drink-card-name">${item.name}</h3>
+          <div class="drink-card-en">${subTitle}</div>
+        </div>
+        <div class="drink-card-action">
+          <span>الريسيبي وطريقة التشغيل</span>
+          <span class="card-arrow">←</span>
+        </div>
+      </div>
+    `;
+  }
+
+  openRecipeDetail(itemId) {
+    let found = null;
+    this.data.categories.forEach(cat => {
+      const it = (cat.items || []).find(x => x.id === itemId);
+      if (it) found = it;
+    });
+
+    if (!found) return;
+    this.activeDetailItem = found;
+
+    const modal = document.getElementById('recipe-detail-modal');
+    const content = document.getElementById('recipe-detail-content');
+    if (!modal || !content) return;
+
+    // Default size
+    if (found.sizes) {
+      this.activeDetailSizeKey = Object.keys(found.sizes)[0];
+    } else if (found.single && found.double) {
+      this.activeDetailSizeKey = 'single';
+    } else {
+      this.activeDetailSizeKey = null;
+    }
+
+    this.renderDetailModalContent();
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  renderDetailModalContent() {
+    const item = this.activeDetailItem;
+    const content = document.getElementById('recipe-detail-content');
+    if (!item || !content) return;
+
+    const svgIllustration = typeof getDrinkSvg === 'function' ? getDrinkSvg(item) : '';
+
+    // Size Switchers
     let sizeSwitchHtml = '';
-    let metricsHtml = '';
+    let currentData = item;
 
-    if (hasSizes) {
+    if (item.sizes) {
       const keys = Object.keys(item.sizes);
-      const defaultKey = keys[0];
-      const activeData = item.sizes[defaultKey];
+      const activeKey = this.activeDetailSizeKey || keys[0];
+      currentData = item.sizes[activeKey];
 
       sizeSwitchHtml = `
-        <div class="size-switchers" data-recipe-id="${item.id}">
-          ${keys.map((k, idx) => `
-            <button class="size-pill ${idx === 0 ? 'active' : ''}" 
-                    data-size-key="${k}" 
-                    onclick="window.app.switchSize('${item.id}', '${k}')">
+        <div class="detail-size-switchers">
+          ${keys.map(k => `
+            <button class="detail-size-btn ${k === activeKey ? 'active' : ''}" 
+                    onclick="window.app.switchDetailSize('${k}')">
               ${item.sizes[k].sizeLabel || k}
             </button>
           `).join('')}
         </div>
       `;
-      metricsHtml = `<div class="flash-metrics" id="metrics-${item.id}">${this.renderMetricsFromObject(activeData)}</div>`;
-    } else if (hasSingleDouble) {
+    } else if (item.single && item.double) {
+      const activeKey = this.activeDetailSizeKey || 'single';
+      currentData = item[activeKey];
+
       sizeSwitchHtml = `
-        <div class="size-switchers" data-recipe-id="${item.id}">
-          <button class="size-pill active" onclick="window.app.switchSingleDouble('${item.id}', 'single')">سنجل (Single)</button>
-          <button class="size-pill" onclick="window.app.switchSingleDouble('${item.id}', 'double')">دبل (Double)</button>
+        <div class="detail-size-switchers">
+          <button class="detail-size-btn ${activeKey === 'single' ? 'active' : ''}" 
+                  onclick="window.app.switchDetailSize('single')">
+            سنجل (Single)
+          </button>
+          <button class="detail-size-btn ${activeKey === 'double' ? 'active' : ''}" 
+                  onclick="window.app.switchDetailSize('double')">
+            دبل (Double)
+          </button>
         </div>
       `;
-      metricsHtml = `<div class="flash-metrics" id="metrics-${item.id}">${this.renderMetricsFromObject(item.single)}</div>`;
-    } else {
-      metricsHtml = `<div class="flash-metrics">${this.renderMetricsFromObject(item)}</div>`;
     }
+
+    // Recipe Metrics Grid
+    const metricsHtml = this.renderMetricsFromObject(currentData);
 
     // SOP Steps
     let stepsHtml = '';
     if (item.steps && item.steps.length > 0) {
       stepsHtml = `
-        <div class="recipe-steps">
-          <div class="steps-title">
-            ${getIcon('timer', 'icon-gold')}
-            <span>بروتوكول التحضير المعملي (SOP):</span>
-          </div>
-          <ol class="steps-list">
+        <div class="detail-block">
+          <h4 class="detail-block-title">
+            <span>⏱️</span>
+            <span>طريقة التشغيل خطوة بخطوة (SOP):</span>
+          </h4>
+          <ol class="detail-steps-list">
             ${item.steps.map(s => `<li>${s}</li>`).join('')}
           </ol>
         </div>
       `;
     }
 
-    // Zero-Waste Diagnostic Panel
-    let rescueHtml = '';
-    if (item.rescue) {
-      rescueHtml = `
-        <div class="rescue-box">
-          <div class="rescue-header">
-            ${getIcon('wrench')}
-            <span>عيادة إنقاذ الأوردر (Zero-Waste Diagnostic):</span>
-          </div>
-          <div class="rescue-problem"><strong>التشخيص:</strong> ${item.rescue.problem}</div>
-          <div class="rescue-solution"><strong>إجراء الإنقاذ الفوري:</strong> ${item.rescue.solution}</div>
-        </div>
-      `;
-    }
-
-    // Pro Tip
+    // Pro Tip / Warning
     let tipHtml = '';
     if (item.proTip) {
       tipHtml = `
-        <div class="recipe-pro-tip">
-          ${getIcon('sparkles', 'icon-gold')}
-          <div><strong>سر معمل عماد أفندي:</strong> ${item.proTip}</div>
+        <div class="detail-tip-box">
+          <div class="tip-icon-gold">👑</div>
+          <div class="tip-text">
+            <strong>نصيحة التشغيل الذهبية:</strong>
+            <p>${item.proTip}</p>
+          </div>
         </div>
       `;
     }
 
-    // Cup badge
-    const cupText = item.cup || (item.sizes && item.sizes.small ? item.sizes.small.cup : (item.single ? item.single.cup : ''));
-
-    return `
-      <div class="recipe-card" id="card-${item.id}">
-        <div class="card-top">
-          <h3 class="recipe-name">${item.name}</h3>
-          ${cupText ? `<span class="recipe-cup" id="cup-${item.id}">${getIcon('cup')} <span>${cupText}</span></span>` : ''}
+    // Dedicated Zero-Waste Error Button
+    let rescueHtml = '';
+    if (item.rescue) {
+      rescueHtml = `
+        <div class="detail-rescue-section">
+          <button class="btn-toggle-rescue" onclick="window.app.toggleRescuePanel()">
+            <span>🚨</span>
+            <span>الأخطاء المحتملة وكيفية علاجها فوراً (اضغط هنا)</span>
+            <span class="rescue-arrow" id="rescue-arrow-icon">▼</span>
+          </button>
+          <div class="rescue-collapse-box" id="rescue-collapse-box" style="display:none;">
+            <div class="rescue-card-problem">
+              ⚠️ <strong>الخطأ الشائع:</strong> ${item.rescue.problem}
+            </div>
+            <div class="rescue-card-solution">
+              💡 <strong>إجراء الإنقاذ السريع (بدون رمي الأوردر):</strong>
+              <p>${item.rescue.solution}</p>
+            </div>
+          </div>
         </div>
+      `;
+    }
+
+    content.innerHTML = `
+      <div class="detail-sheet-header">
+        <button class="detail-close-btn" onclick="window.app.closeRecipeDetail()">✕ إغلاق</button>
+        <div class="detail-top-hero">
+          <div class="detail-art-wrap">
+            ${svgIllustration}
+          </div>
+          <h2 class="detail-drink-name">${item.name}</h2>
+          <div class="detail-drink-sub">${item.notes || ''}</div>
+        </div>
+      </div>
+
+      <div class="detail-sheet-body">
         ${sizeSwitchHtml}
-        ${metricsHtml}
+
+        <div class="detail-block">
+          <h4 class="detail-block-title">
+            <span>📋</span>
+            <span>المقادير والجرامات المعيارية:</span>
+          </h4>
+          <div class="detail-metrics-grid">
+            ${metricsHtml}
+          </div>
+        </div>
+
         ${stepsHtml}
-        ${rescueHtml}
         ${tipHtml}
+        ${rescueHtml}
       </div>
     `;
   }
 
+  switchDetailSize(sizeKey) {
+    this.activeDetailSizeKey = sizeKey;
+    this.renderDetailModalContent();
+  }
+
+  toggleRescuePanel() {
+    const box = document.getElementById('rescue-collapse-box');
+    const arrow = document.getElementById('rescue-arrow-icon');
+    if (!box) return;
+
+    if (box.style.display === 'none') {
+      box.style.display = 'block';
+      if (arrow) arrow.textContent = '▲';
+    } else {
+      box.style.display = 'none';
+      if (arrow) arrow.textContent = '▼';
+    }
+  }
+
+  closeRecipeDetail() {
+    const modal = document.getElementById('recipe-detail-modal');
+    if (modal) modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
   renderMetricsFromObject(obj) {
     const fields = [
-      { key: 'flour', label: 'دقيق', icon: 'scale' },
-      { key: 'eggs', label: 'بيض', icon: 'cup' },
-      { key: 'vanilla', label: 'فانيليا', icon: 'sparkles' },
-      { key: 'sugar', label: 'سكر', icon: 'scale' },
-      { key: 'butter', label: 'زبدة', icon: 'droplet' },
-      { key: 'oil', label: 'زيت', icon: 'droplet' },
-      { key: 'tang', label: 'تانج', icon: 'sparkles' },
-      { key: 'bakingPowder', label: 'بيكنج بودر', icon: 'scale' },
-      { key: 'yieldCount', label: 'الإنتاج', icon: 'cup' },
-      { key: 'batterDose', label: 'صب العجين', icon: 'droplet' },
-      { key: 'miniPortion', label: 'الكمية', icon: 'cup' },
-      { key: 'coffeeGram', label: 'بن', icon: 'scale' },
-      { key: 'coffee', label: 'بن', icon: 'scale' },
-      { key: 'extractionMl', label: 'استخلاص', icon: 'droplet' },
-      { key: 'milk', label: 'حليب', icon: 'droplet' },
-      { key: 'water', label: 'مياه', icon: 'droplet' },
-      { key: 'condensedMilk', label: 'مكثف', icon: 'droplet' },
-      { key: 'sauce', label: 'صوص', icon: 'droplet' },
-      { key: 'syrup', label: 'سيرب', icon: 'droplet' },
-      { key: 'powder', label: 'بودر', icon: 'scale' },
-      { key: 'ice', label: 'ثلج', icon: 'snowflake' },
-      { key: 'iceCream', label: 'آيس كريم', icon: 'snowflake' },
-      { key: 'cream', label: 'كريمة', icon: 'droplet' },
-      { key: 'puree', label: 'بيوريه', icon: 'droplet' },
-      { key: 'crush', label: 'كراش', icon: 'droplet' },
-      { key: 'chips', label: 'شيبس', icon: 'sparkles' },
-      { key: 'starch', label: 'نشا', icon: 'scale' },
-      { key: 'temp', label: 'حرارة', icon: 'thermometer' },
-      { key: 'time', label: 'وقت', icon: 'timer' },
-      { key: 'timer', label: 'مؤقت', icon: 'timer' },
-      { key: 'ratio', label: 'ريشيو', icon: 'gauge' }
+      { key: 'flour', label: 'دقيق' },
+      { key: 'eggs', label: 'بيض' },
+      { key: 'vanilla', label: 'فانيليا' },
+      { key: 'sugar', label: 'سكر' },
+      { key: 'butter', label: 'زبدة' },
+      { key: 'oil', label: 'زيت' },
+      { key: 'tang', label: 'تانج' },
+      { key: 'bakingPowder', label: 'بيكنج بودر' },
+      { key: 'yieldCount', label: 'الإنتاج' },
+      { key: 'batterDose', label: 'صب العجين' },
+      { key: 'miniPortion', label: 'الكمية' },
+      { key: 'coffeeGram', label: 'وزن البن' },
+      { key: 'coffee', label: 'وزن البن' },
+      { key: 'extractionMl', label: 'الاستخلاص' },
+      { key: 'milk', label: 'الحليب' },
+      { key: 'water', label: 'الماء' },
+      { key: 'condensedMilk', label: 'حليب مكثف' },
+      { key: 'sauce', label: 'الصوص' },
+      { key: 'sauceBatata', label: 'صوص بطاطا' },
+      { key: 'sauceCaramel', label: 'صوص كراميل' },
+      { key: 'syrup', label: 'السيرب' },
+      { key: 'powder', label: 'البودر' },
+      { key: 'ice', label: 'الثلج' },
+      { key: 'iceCream', label: 'آيس كريم' },
+      { key: 'cream', label: 'كريمة خفق' },
+      { key: 'puree', label: 'بيوريه' },
+      { key: 'crush', label: 'كراش' },
+      { key: 'chips', label: 'شوكليت شيبس' },
+      { key: 'starch', label: 'نشا' },
+      { key: 'temp', label: 'الحرارة' },
+      { key: 'time', label: 'الوقت' },
+      { key: 'timer', label: 'المؤقت' },
+      { key: 'ratio', label: 'الريشيو' },
+      { key: 'cup', label: 'الكوب' }
     ];
 
     let itemsHtml = '';
@@ -279,76 +393,15 @@ class StationApp {
       const val = obj[f.key];
       if (val && val !== '-') {
         itemsHtml += `
-          <div class="metric-item">
-            <div class="metric-label">
-              ${getIcon(f.icon)}
-              <span>${f.label}</span>
-            </div>
-            <div class="metric-value">${val}</div>
+          <div class="recipe-metric-tile">
+            <span class="metric-tile-label">${f.label}</span>
+            <strong class="metric-tile-val">${val}</strong>
           </div>
         `;
       }
     });
 
     return itemsHtml;
-  }
-
-  switchSize(itemId, sizeKey) {
-    let targetItem = null;
-    this.data.categories.forEach(cat => {
-      const it = (cat.items || []).find(x => x.id === itemId);
-      if (it) targetItem = it;
-    });
-
-    if (!targetItem || !targetItem.sizes || !targetItem.sizes[sizeKey]) return;
-
-    const sizeData = targetItem.sizes[sizeKey];
-    const metricsContainer = document.getElementById(`metrics-${itemId}`);
-    if (metricsContainer) {
-      metricsContainer.innerHTML = this.renderMetricsFromObject(sizeData);
-    }
-
-    const cupBadge = document.getElementById(`cup-${itemId}`);
-    if (cupBadge && sizeData.cup) {
-      cupBadge.innerHTML = `${getIcon('cup')} <span>${sizeData.cup}</span>`;
-    }
-
-    const card = document.getElementById(`card-${itemId}`);
-    if (card) {
-      const pills = card.querySelectorAll('.size-pill');
-      pills.forEach(p => {
-        p.classList.toggle('active', p.getAttribute('data-size-key') === sizeKey);
-      });
-    }
-  }
-
-  switchSingleDouble(itemId, type) {
-    let targetItem = null;
-    this.data.categories.forEach(cat => {
-      const it = (cat.items || []).find(x => x.id === itemId);
-      if (it) targetItem = it;
-    });
-
-    if (!targetItem || !targetItem[type]) return;
-
-    const dataObj = targetItem[type];
-    const metricsContainer = document.getElementById(`metrics-${itemId}`);
-    if (metricsContainer) {
-      metricsContainer.innerHTML = this.renderMetricsFromObject(dataObj);
-    }
-
-    const cupBadge = document.getElementById(`cup-${itemId}`);
-    if (cupBadge && dataObj.cup) {
-      cupBadge.innerHTML = `${getIcon('cup')} <span>${dataObj.cup}</span>`;
-    }
-
-    const card = document.getElementById(`card-${itemId}`);
-    if (card) {
-      const pills = card.querySelectorAll('.size-pill');
-      pills.forEach((p, idx) => {
-        p.classList.toggle('active', (type === 'single' && idx === 0) || (type === 'double' && idx === 1));
-      });
-    }
   }
 
   initEvents() {
@@ -363,41 +416,15 @@ class StationApp {
     const filterContainer = document.getElementById('filter-tabs');
     if (filterContainer) {
       filterContainer.addEventListener('click', (e) => {
-        const btn = e.target.closest('.filter-btn');
+        const btn = e.target.closest('.menu-cat-pill');
         if (!btn) return;
 
-        filterContainer.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        filterContainer.querySelectorAll('.menu-cat-pill').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
         this.activeCategory = btn.getAttribute('data-cat');
         this.renderContent();
       });
-    }
-
-    const rushBtn = document.getElementById('btn-rush-mode');
-    if (rushBtn) {
-      rushBtn.addEventListener('click', () => {
-        this.rushMode = !this.rushMode;
-        localStorage.setItem('emad_rush_mode', this.rushMode);
-        this.applyRushMode(this.rushMode);
-      });
-    }
-  }
-
-  applyRushMode(enable) {
-    const rushBtn = document.getElementById('btn-rush-mode');
-    if (enable) {
-      document.body.classList.add('rush-mode');
-      if (rushBtn) {
-        rushBtn.classList.add('active');
-        rushBtn.innerHTML = `${getIcon('zap')} <span>وضع الضغط نشط</span>`;
-      }
-    } else {
-      document.body.classList.remove('rush-mode');
-      if (rushBtn) {
-        rushBtn.classList.remove('active');
-        rushBtn.innerHTML = `${getIcon('zap')} <span>وضع الضغط</span>`;
-      }
     }
   }
 
@@ -422,7 +449,7 @@ class StationApp {
           <input type="checkbox" data-idx="${idx}" ${isChecked ? 'checked' : ''} onchange="window.app.toggleCheckItem(${idx})">
           <div style="flex:1;">
             <div class="checklist-text">${item.task}</div>
-            <div class="checklist-freq">${getIcon('timer')} الموعد المعتمد: ${item.frequency}</div>
+            <div class="checklist-freq">الموعد المعتمد: ${item.frequency}</div>
           </div>
         </label>
       `;

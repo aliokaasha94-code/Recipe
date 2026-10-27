@@ -3,51 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <meta name="theme-color" content="#07080a">
+  <meta name="theme-color" content="#000000">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>عماد أفندي | معمل القهوة التركية والتراثية والمشروبات الدافئة</title>
+  <title>عماد أفندي | محطة القهوة التركية والتراثية والساخن (Traditional SOP)</title>
   <link rel="icon" type="image/png" href="assets/emad-logo.png">
   <link rel="stylesheet" href="style.css">
   <style>
     .sugar-banner {
-      margin: 12px 18px 0;
+      margin: 10px 18px 4px;
       background: linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(10, 12, 16, 0.9) 100%);
       border: 1px solid var(--border-gold);
       border-radius: var(--radius-md);
-      padding: 14px 16px;
+      padding: 12px 14px;
     }
     .sugar-title {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 800;
       color: var(--gold-bright);
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      margin-bottom: 8px;
     }
     .sugar-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
       gap: 6px;
     }
     .sugar-chip {
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: var(--radius-sm);
-      padding: 6px 8px;
+      padding: 5px 6px;
       text-align: center;
     }
     .sugar-name {
       font-weight: 800;
-      font-size: 0.78rem;
-      color: var(--text-primary);
+      font-size: 0.76rem;
+      color: #ffffff;
     }
     .sugar-desc {
-      font-size: 0.68rem;
+      font-size: 0.66rem;
       color: var(--gold-soft);
       font-family: var(--font-mono);
-      margin-top: 2px;
+      margin-top: 1px;
     }
   </style>
 </head>
@@ -56,99 +53,84 @@
   <!-- Top Sticky Navigation Header -->
   <header class="brand-header">
     <div class="brand-info">
-      <a href="../index.html" class="brand-logo-container" style="text-decoration:none;">
+      <div class="brand-logo-container">
         <img src="assets/emad-logo.png" alt="عماد أفندي" class="brand-logo">
-      </a>
+      </div>
       <div class="brand-title-wrap">
         <div class="brand-title">كافيه ومحمصة عماد أفندي</div>
         <div class="brand-subtitle">محطة القهوة التركية والتراثية والساخن • SOP</div>
       </div>
     </div>
     <div class="header-actions">
-      <button class="btn-toggle-rush" id="btn-rush-mode" title="وضع ضغط العمل">
-        <span id="rush-icon"></span>
-        <span>وضع الضغط</span>
-      </button>
       <a href="../index.html" class="btn-header-link" title="العودة للبوابة الرئيسية">
-        <span id="home-icon"></span>
-        <span>المحطات</span>
+        <span>المحطات الرئيسية</span>
+        <span>←</span>
       </a>
     </div>
   </header>
 
-  <!-- Station Hero -->
-  <section class="station-hero">
-    <div class="lab-tech-pill" id="station-badge">
-      <span class="lab-led pulse-gold"></span>
-      <span>TRADITIONAL COFFEE LAB</span>
-    </div>
-    <h1 class="station-title" id="station-title">محطة القهوة التركية والمشروبات الدافئة</h1>
-    <p class="station-desc" id="station-desc">أصالة المذاق التراثي وسر صنعة عماد أفندي</p>
-    <div class="station-meta-pill" id="station-meta" style="display:none;"></div>
-  </section>
-
   <!-- Sugar Scale Cheat Sheet -->
   <div class="sugar-banner">
-    <div class="sugar-title">
-      <span id="sugar-icon"></span>
-      <span>معيار درجات السكر المعتمد للقهوة التركية:</span>
-    </div>
+    <div class="sugar-title">🥄 معيار سكر القهوة التركية المعتمد لعماد أفندي:</div>
     <div class="sugar-grid">
       <div class="sugar-chip">
         <div class="sugar-name">سادة</div>
-        <div class="sugar-desc">0g (بدون سكر)</div>
+        <div class="sugar-desc">0g</div>
       </div>
       <div class="sugar-chip">
-        <div class="sugar-name">حبانوه / ع الريحة</div>
-        <div class="sugar-desc">2-3g (ربع ملعقة)</div>
+        <div class="sugar-name">حبانوه / ريحة</div>
+        <div class="sugar-desc">2-3g</div>
       </div>
       <div class="sugar-chip">
         <div class="sugar-name">مظبوط</div>
-        <div class="sugar-desc">5-6g (ملعقة ممسوحة)</div>
+        <div class="sugar-desc">5-6g</div>
       </div>
       <div class="sugar-chip">
         <div class="sugar-name">مانو</div>
-        <div class="sugar-desc">8-9g (ملعقة ونصف)</div>
+        <div class="sugar-desc">8-9g</div>
       </div>
       <div class="sugar-chip">
         <div class="sugar-name">زيادة</div>
-        <div class="sugar-desc">12-14g (ملعقتين)</div>
+        <div class="sugar-desc">12-14g</div>
       </div>
     </div>
   </div>
 
-  <!-- Search & Navigation -->
+  <!-- Search Bar -->
   <div class="search-container">
     <div class="search-box-wrap">
-      <input type="text" class="search-box" id="search-box" placeholder="ابحث عن (تركي فاتح، فرنساوي بندق، عربي، كرك، هوت شوكليت، لوتس...)...">
-      <span class="search-icon-pos" id="search-icon"></span>
+      <input type="text" class="search-box" id="search-box" placeholder="ابحث في القهوة التركية والتراثية بالكامل...">
+      <span class="search-icon-pos">🔍</span>
     </div>
   </div>
 
+  <!-- Horizontal Category Pills (NO "ALL" TAB) -->
   <div class="filter-tabs" id="filter-tabs"></div>
 
-  <!-- Content Area -->
+  <!-- Grid Content Area (Visual Drink Cards) -->
   <main class="content-area" id="content-area">
     <div style="text-align:center; padding:50px 20px; color:var(--gold-soft);">
-      جاري تحميل بيانات محطة القهوة التركية...
+      جاري تحميل مشروبات محطة القهوة التركية... 🏺
     </div>
   </main>
 
   <!-- Floating Checklist Button -->
   <button class="btn-checklist-toggle" onclick="openChecklistModal()">
-    <span id="clean-icon"></span>
+    <span>🧹</span>
     <span>نظافة المحطة</span>
   </button>
+
+  <!-- Recipe Detail Modal / Drawer -->
+  <div class="recipe-detail-modal" id="recipe-detail-modal" onclick="if(event.target===this) window.app.closeRecipeDetail()">
+    <div class="recipe-detail-sheet" id="recipe-detail-content"></div>
+  </div>
 
   <!-- Checklist Modal -->
   <div class="modal-overlay" id="checklist-modal">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title">
-          <span id="modal-clean-icon"></span>
-          <span>بروتوكول نظافة محطة التركي والرمالة والدلات</span>
-        </h3>
-        <button class="modal-close" onclick="closeChecklistModal()"><span id="close-modal-icon"></span></button>
+        <h3 class="modal-title">🧹 بروتوكول نظافة محطة التركي والرمالة والدلات</h3>
+        <button class="modal-close" onclick="closeChecklistModal()">&times;</button>
       </div>
       <p style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:14px;">
         نظافة الكنك النحاسي والرمالة تحمي النكهة الملكية المعتمدة لعماد أفندي.
@@ -159,7 +141,7 @@
           إعادة تعيين اليوم
         </button>
         <button onclick="closeChecklistModal()" style="background:var(--gold-primary); border:none; color:#000; font-weight:800; padding:8px 22px; border-radius:var(--radius-sm); font-family:var(--font-arabic); font-size:0.84rem; cursor:pointer;">
-          اعتماد الفحص
+          اعتماد الفحص ✓
         </button>
       </div>
     </div>
@@ -174,17 +156,10 @@
     </p>
   </footer>
 
+  <script src="drink-visuals.js"></script>
   <script src="app.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('rush-icon').innerHTML = getIcon('zap');
-      document.getElementById('home-icon').innerHTML = getIcon('home');
-      document.getElementById('sugar-icon').innerHTML = getIcon('scale', 'icon-gold');
-      document.getElementById('search-icon').innerHTML = getIcon('search');
-      document.getElementById('clean-icon').innerHTML = getIcon('cleanBrush');
-      document.getElementById('modal-clean-icon').innerHTML = getIcon('cleanBrush', 'icon-gold');
-      document.getElementById('close-modal-icon').innerHTML = getIcon('close');
-
       window.app = new StationApp('recipes.json');
     });
   </script>
