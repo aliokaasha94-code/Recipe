@@ -6,29 +6,29 @@
   <meta name="theme-color" content="#07080a">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>عماد أفندي | محطة مكنة الإسبريسو والفلتر المعملية</title>
-  <link rel="icon" type="image/png" href="../../assets/emad-logo.png">
-  <link rel="stylesheet" href="../../shared/css/brand.css">
+  <title>عماد أفندي | معمل مكنة الإسبريسو والفلتر (Espresso Station SOP)</title>
+  <link rel="icon" type="image/png" href="assets/emad-logo.png">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Top Sticky Navigation -->
+  <!-- Top Sticky Navigation Header -->
   <header class="brand-header">
     <div class="brand-info">
-      <a href="../../index.html" class="brand-logo-container" style="text-decoration:none;">
-        <img src="../../assets/emad-logo.png" alt="عماد أفندي" class="brand-logo">
-      </a>
+      <div class="brand-logo-container">
+        <img src="assets/emad-logo.png" alt="عماد أفندي" class="brand-logo">
+      </div>
       <div class="brand-title-wrap">
         <div class="brand-title">كافيه ومحمصة عماد أفندي</div>
         <div class="brand-subtitle">محطة الإسبريسو والفلتر كوفي • SOP</div>
       </div>
     </div>
     <div class="header-actions">
-      <button class="btn-toggle-rush" id="btn-rush-mode" title="وضع ضغط العمل">
+      <button class="btn-toggle-rush" id="btn-rush-mode" title="وضع ضغط العمل يعرض الأرقام والمقاييس فقط بحجم كبير">
         <span id="rush-icon"></span>
         <span>وضع الضغط</span>
       </button>
-      <a href="../../index.html" class="btn-header-link">
+      <a href="../index.html" class="btn-header-link" title="العودة للبوابة الرئيسية">
         <span id="home-icon"></span>
         <span>المحطات</span>
       </a>
@@ -46,7 +46,7 @@
     <div class="station-meta-pill" id="station-meta" style="display:none;"></div>
   </section>
 
-  <!-- Search & Navigation Bar -->
+  <!-- Search & Navigation -->
   <div class="search-container">
     <div class="search-box-wrap">
       <input type="text" class="search-box" id="search-box" placeholder="ابحث عن أي مشروب (لاتيه، فلات وايت، سبانيش، كورتادو، V60...)...">
@@ -96,15 +96,14 @@
 
   <!-- Footer -->
   <footer class="brand-footer">
-    <img src="../../assets/emad-logo.png" alt="عماد أفندي" class="brand-footer-logo">
+    <img src="assets/emad-logo.png" alt="عماد أفندي" class="brand-footer-logo">
     <p>كافيه ومحمصة عماد أفندي • "قهوتك على مزاجك" ☕👑</p>
     <p style="margin-top:4px; font-size:0.72rem; color:var(--gold-soft);">
       نظام التشغيل القياسي (SOP) • إشراف الإدارة ومجموعة العطيان
     </p>
   </footer>
 
-  <script src="../../shared/js/icons.js"></script>
-  <script src="../../shared/js/app.js"></script>
+  <script src="app.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('rush-icon').innerHTML = getIcon('zap');
@@ -114,7 +113,7 @@
       document.getElementById('modal-clean-icon').innerHTML = getIcon('cleanBrush', 'icon-gold');
       document.getElementById('close-modal-icon').innerHTML = getIcon('close');
 
-      window.app = new StationApp('../../data/espresso.json');
+      window.app = new StationApp('recipes.json');
     });
   </script>
 </body>

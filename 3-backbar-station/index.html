@@ -6,9 +6,9 @@
   <meta name="theme-color" content="#07080a">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>عماد أفندي | محطة الباك بار والحلويات السريعة</title>
-  <link rel="icon" type="image/png" href="../../assets/emad-logo.png">
-  <link rel="stylesheet" href="../../shared/css/brand.css">
+  <title>عماد أفندي | معمل الباك بار والحلويات السريعة (Back Bar SOP)</title>
+  <link rel="icon" type="image/png" href="assets/emad-logo.png">
+  <link rel="stylesheet" href="style.css">
   <style>
     .rules-banner {
       margin: 12px 18px 0;
@@ -47,11 +47,11 @@
 </head>
 <body>
 
-  <!-- Top Sticky Navigation -->
+  <!-- Top Sticky Navigation Header -->
   <header class="brand-header">
     <div class="brand-info">
-      <a href="../../index.html" class="brand-logo-container" style="text-decoration:none;">
-        <img src="../../assets/emad-logo.png" alt="عماد أفندي" class="brand-logo">
+      <a href="../index.html" class="brand-logo-container" style="text-decoration:none;">
+        <img src="assets/emad-logo.png" alt="عماد أفندي" class="brand-logo">
       </a>
       <div class="brand-title-wrap">
         <div class="brand-title">كافيه ومحمصة عماد أفندي</div>
@@ -63,7 +63,7 @@
         <span id="rush-icon"></span>
         <span>وضع الضغط</span>
       </button>
-      <a href="../../index.html" class="btn-header-link">
+      <a href="../index.html" class="btn-header-link" title="العودة للبوابة الرئيسية">
         <span id="home-icon"></span>
         <span>المحطات</span>
       </a>
@@ -106,7 +106,7 @@
   <!-- Search & Navigation -->
   <div class="search-container">
     <div class="search-box-wrap">
-      <input type="text" class="search-box" id="search-box" placeholder="ابحث عن (فرابيه كوفي، شيك أوريو، سموذي ليمون نعناع، بوبا فيز، وافل، بان كيك...)...">
+      <input type="text" class="search-box" id="search-box" placeholder="ابحث عن (عجينة الوافل، فرابيه كوفي، شيك أوريو، سموذي ليمون نعناع، بوبا فيز، بان كيك...)...">
       <span class="search-icon-pos" id="search-icon"></span>
     </div>
   </div>
@@ -153,15 +153,14 @@
 
   <!-- Footer -->
   <footer class="brand-footer">
-    <img src="../../assets/emad-logo.png" alt="عماد أفندي" class="brand-footer-logo">
+    <img src="assets/emad-logo.png" alt="عماد أفندي" class="brand-footer-logo">
     <p>كافيه ومحمصة عماد أفندي • "قهوتك على مزاجك" ☕👑</p>
     <p style="margin-top:4px; font-size:0.72rem; color:var(--gold-soft);">
       نظام التشغيل القياسي (SOP) • إشراف الإدارة ومجموعة العطيان
     </p>
   </footer>
 
-  <script src="../../shared/js/icons.js"></script>
-  <script src="../../shared/js/app.js"></script>
+  <script src="app.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('rush-icon').innerHTML = getIcon('zap');
@@ -172,7 +171,7 @@
       document.getElementById('modal-clean-icon').innerHTML = getIcon('cleanBrush', 'icon-gold');
       document.getElementById('close-modal-icon').innerHTML = getIcon('close');
 
-      window.app = new StationApp('../../data/backbar.json');
+      window.app = new StationApp('recipes.json');
     });
   </script>
 </body>
