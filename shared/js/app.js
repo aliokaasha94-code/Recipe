@@ -134,17 +134,29 @@ class StationApp {
     // Generate colored vector illustration for this drink
     const svgIllustration = typeof getDrinkSvg === 'function' ? getDrinkSvg(item) : '';
     
-    // Subtitle / English name
-    const subTitle = item.name_en || (item.id.replace(/-/g, ' ').toUpperCase());
+    // Clean Arabic Name and English Specialty Name
+    let nameAr = item.name;
+    let nameEn = item.name_en || '';
+    const parenMatch = item.name.match(/\((.*?)\)/);
+    if (parenMatch) {
+      nameAr = item.name.replace(/\s*\(.*?\)\s*/g, '').trim();
+      if (!nameEn) {
+        nameEn = parenMatch[1].trim();
+      }
+    }
+    if (!nameEn) {
+      nameEn = item.id.replace(/-/g, ' ').toUpperCase();
+    }
 
-    // Check if item has sizes
+    // Clean concise size badge (never wraps awkwardly)
     let sizeBadge = '';
     if (item.sizes) {
-      sizeBadge = `<span class="card-size-tag">3 أحجام</span>`;
+      sizeBadge = `<span class="card-size-tag">8 / 12 / 16 oz</span>`;
     } else if (item.single && item.double) {
-      sizeBadge = `<span class="card-size-tag">سنجل / دبل</span>`;
+      sizeBadge = `<span class="card-size-tag">Single / Double</span>`;
     } else if (item.cup) {
-      sizeBadge = `<span class="card-size-tag">${item.cup}</span>`;
+      let shortCup = item.cup.split('/')[0].split('(')[0].trim();
+      sizeBadge = `<span class="card-size-tag">${shortCup}</span>`;
     }
 
     return `
@@ -154,8 +166,8 @@ class StationApp {
           ${sizeBadge}
         </div>
         <div class="drink-card-body">
-          <h3 class="drink-card-name">${item.name}</h3>
-          <div class="drink-card-en">${subTitle}</div>
+          <h3 class="drink-card-name">${nameAr}</h3>
+          <div class="drink-card-en">${nameEn}</div>
         </div>
         <div class="drink-card-action">
           <span>الريسيبي وطريقة التشغيل</span>
@@ -293,6 +305,15 @@ class StationApp {
       `;
     }
 
+    // Clean title in modal
+    let nameAr = item.name;
+    let nameEn = item.name_en || '';
+    const parenMatch = item.name.match(/\((.*?)\)/);
+    if (parenMatch) {
+      nameAr = item.name.replace(/\s*\(.*?\)\s*/g, '').trim();
+      if (!nameEn) nameEn = parenMatch[1].trim();
+    }
+
     content.innerHTML = `
       <div class="detail-sheet-header">
         <button class="detail-close-btn" onclick="window.app.closeRecipeDetail()">✕ إغلاق</button>
@@ -300,8 +321,8 @@ class StationApp {
           <div class="detail-art-wrap">
             ${svgIllustration}
           </div>
-          <h2 class="detail-drink-name">${item.name}</h2>
-          <div class="detail-drink-sub">${item.notes || ''}</div>
+          <h2 class="detail-drink-name">${nameAr}</h2>
+          <div class="detail-drink-sub">${nameEn ? nameEn + (item.notes ? ' • ' + item.notes : '') : (item.notes || '')}</div>
         </div>
       </div>
 

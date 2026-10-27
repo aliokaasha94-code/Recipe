@@ -379,16 +379,21 @@ body {
 
 .card-size-tag {
   position: absolute;
-  top: 4px;
-  left: 4px;
-  background: rgba(0, 0, 0, 0.7);
+  top: 6px;
+  left: 6px;
+  background: rgba(0, 0, 0, 0.8);
   border: 1px solid var(--border-gold);
   color: var(--gold-bright);
-  font-size: 0.64rem;
+  font-size: 0.62rem;
   font-weight: 700;
-  padding: 2px 6px;
+  padding: 2px 7px;
   border-radius: 4px;
   font-family: var(--font-mono);
+  white-space: nowrap;
+  max-width: 85%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  backdrop-filter: blur(4px);
 }
 
 .drink-card-body {
