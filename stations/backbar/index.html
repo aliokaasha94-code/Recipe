@@ -2,23 +2,26 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>عماد أفندي | محطة الباك بار والحلويات (Cold Bar & Bakery) 🥤🧇👑</title>
-  <link rel="icon" type="image/png" href="https://files.catbox.moe/o427lf.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#07080a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>عماد أفندي | محطة الباك بار والحلويات السريعة</title>
+  <link rel="icon" type="image/png" href="../../assets/emad-logo.png">
   <link rel="stylesheet" href="../../shared/css/brand.css">
   <style>
     .rules-banner {
       margin: 12px 18px 0;
-      background: linear-gradient(135deg, rgba(56, 189, 248, 0.12) 0%, rgba(10, 11, 13, 0.8) 100%);
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.1) 0%, rgba(10, 12, 16, 0.9) 100%);
       border: 1px solid rgba(56, 189, 248, 0.3);
       border-radius: var(--radius-md);
-      padding: 12px 16px;
+      padding: 14px 16px;
     }
     .rules-title {
       font-size: 0.85rem;
       font-weight: 800;
       color: #7dd3fc;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       display: flex;
       align-items: center;
       gap: 6px;
@@ -29,13 +32,13 @@
       gap: 8px;
     }
     .rule-card {
-      background: rgba(0, 0, 0, 0.45);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: var(--radius-sm);
-      padding: 8px 10px;
-      font-size: 0.74rem;
+      padding: 9px 12px;
+      font-size: 0.76rem;
       color: #e2e8f0;
-      line-height: 1.4;
+      line-height: 1.45;
     }
     .rule-card strong {
       color: var(--gold-bright);
@@ -44,78 +47,82 @@
 </head>
 <body>
 
-  <!-- Top Brand Navigation -->
+  <!-- Top Sticky Navigation -->
   <header class="brand-header">
     <div class="brand-info">
-      <a href="../../index.html" style="text-decoration:none;">
-        <img src="https://files.catbox.moe/o427lf.png" alt="عماد أفندي" class="brand-logo">
+      <a href="../../index.html" class="brand-logo-container" style="text-decoration:none;">
+        <img src="../../assets/emad-logo.png" alt="عماد أفندي" class="brand-logo">
       </a>
-      <div>
+      <div class="brand-title-wrap">
         <div class="brand-title">كافيه ومحمصة عماد أفندي</div>
-        <div class="brand-subtitle">محطة الباك بار والحلويات السريعة • SOP</div>
+        <div class="brand-subtitle">محطة الباك بار والحلويات • SOP</div>
       </div>
     </div>
     <div class="header-actions">
       <button class="btn-toggle-rush" id="btn-rush-mode" title="وضع ضغط العمل">
-        ⚡ وضع الضغط
+        <span id="rush-icon"></span>
+        <span>وضع الضغط</span>
       </button>
-      <a href="../../index.html" class="filter-btn" style="padding:6px 12px; font-size:0.75rem; text-decoration:none;">
-        🏠 المحطات
+      <a href="../../index.html" class="btn-header-link">
+        <span id="home-icon"></span>
+        <span>المحطات</span>
       </a>
     </div>
   </header>
 
   <!-- Station Hero -->
   <section class="station-hero">
-    <div class="station-badge" id="station-badge" style="border-color:rgba(56, 189, 248, 0.4); color:#7dd3fc;">Cold Bar & Bakery Station</div>
+    <div class="lab-tech-pill" id="station-badge" style="border-color:rgba(56, 189, 248, 0.4); color:#7dd3fc;">
+      <span class="lab-led pulse-cyan"></span>
+      <span>COLD BAR & BAKERY SPECIFICATION</span>
+    </div>
     <h1 class="station-title" id="station-title">محطة الباك بار والحلويات</h1>
-    <p class="station-desc" id="station-desc">انتعاش المشروبات الباردة والسموذي والميلك شيك وأشهى وافل وبان كيك</p>
+    <p class="station-desc" id="station-desc">معايير المشروبات المثلجة والسموذي والميلك شيك وأشهى وافل وبان كيك</p>
     <div class="station-meta-pill" id="station-meta" style="display:none;"></div>
   </section>
 
   <!-- Golden Rules of the Station -->
   <div class="rules-banner">
     <div class="rules-title">
-      <span>⚡</span> القواعد الذهبية لتشغيل محطة الباك بار:
+      <span id="banner-rules-icon"></span>
+      <span>البروتوكول المعملي لتشغيل محطة الباك بار:</span>
     </div>
     <div class="rules-grid">
       <div class="rule-card">
-        🥤 <strong>السموذي:</strong> البلندر على الميزان ➔ المياه ➔ المكونات ➔ الثلج ➔ خلط على سرعة 2 ➔ تقفيل ليد سيفتي.
+        <strong>السموذي:</strong> البلندر على الميزان ➔ المياه ➔ المكونات ➔ الثلج ➔ خلط سرعة 2 ➔ تقفيل ليد سيفتي.
       </div>
       <div class="rule-card">
-        🍦 <strong>الميلك شيك:</strong> الآيس كريم أولاً بالميزان ➔ الحليب ➔ الصوصات ➔ خلط على سرعة 2. البسكوت (أوريو/لوتس/دايجستف) يضاف في آخر 5 ثوانٍ فقط.
+        <strong>الميلك شيك:</strong> الآيس كريم أولاً بالميزان ➔ الحليب ➔ الصوصات ➔ خلط سرعة 2. البسكوت يضاف آخر 5 ثوانٍ فقط.
       </div>
       <div class="rule-card">
-        ☕ <strong>الفرابيه:</strong> الحليب أولاً ➔ بودر الفرابيه والصوص ➔ الثلج ➔ خلط على سرعة 3 ➔ كريمة خفق وليد بومبيه.
+        <strong>الفرابيه:</strong> الحليب أولاً ➔ بودر الفرابيه والصوص ➔ الثلج ➔ خلط سرعة 3 ➔ كريمة خفق وليد بومبيه 16oz.
       </div>
       <div class="rule-card">
-        🧇 <strong>الوافل والبان كيك:</strong> حرارة ماكينة الوافل (185°C - 190°C) لمدة 3.5 دقيقة بالضبط. حرارة البان كيك 170°C.
+        <strong>الوافل والبان كيك:</strong> حرارة ماكينة الوافل (185°C - 190°C) لمدة 3.5 دقيقة بالثانية. حرارة البان كيك 170°C.
       </div>
     </div>
   </div>
 
-  <!-- Search & Filter Controls -->
+  <!-- Search & Navigation -->
   <div class="search-container">
-    <div style="position:relative;">
+    <div class="search-box-wrap">
       <input type="text" class="search-box" id="search-box" placeholder="ابحث عن (فرابيه كوفي، شيك أوريو، سموذي ليمون نعناع، بوبا فيز، وافل، بان كيك...)...">
-      <span class="search-icon">🔍</span>
+      <span class="search-icon-pos" id="search-icon"></span>
     </div>
   </div>
 
-  <div class="filter-tabs" id="filter-tabs">
-    <!-- Populated dynamically via JS -->
-  </div>
+  <div class="filter-tabs" id="filter-tabs"></div>
 
-  <!-- Main Content Area -->
+  <!-- Content Area -->
   <main class="content-area" id="content-area">
     <div style="text-align:center; padding:50px 20px; color:var(--gold-soft);">
-      جاري تحميل ريسيبي محطة الباك بار والحلويات... 🥤
+      جاري تحميل بيانات معمل الباك بار والحلويات...
     </div>
   </main>
 
   <!-- Floating Checklist Button -->
   <button class="btn-checklist-toggle" onclick="openChecklistModal()">
-    <span>🧹</span>
+    <span id="clean-icon"></span>
     <span>نظافة المحطة</span>
   </button>
 
@@ -123,19 +130,22 @@
   <div class="modal-overlay" id="checklist-modal">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title">🧹 قائمة تدقيق ونظافة الباك بار والحلويات</h3>
-        <button class="modal-close" onclick="closeChecklistModal()">&times;</button>
+        <h3 class="modal-title">
+          <span id="modal-clean-icon"></span>
+          <span>بروتوكول نظافة وتعقيم الباك بار والحلويات</span>
+        </h3>
+        <button class="modal-close" onclick="closeChecklistModal()"><span id="close-modal-icon"></span></button>
       </div>
       <p style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:14px;">
-        التعقيم الفوري لشفرات البلندر وماكينات الوافل يحمي صحة الضيوف وجودة النكهات.
+        التعقيم الفوري لشفرات البلندر وماكينات الوافل وصواني التقطيع يحمي سلامة الضيوف.
       </p>
       <div id="checklist-items"></div>
       <div style="margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
-        <button onclick="resetChecklist()" style="background:transparent; border:1px solid var(--border-gold); color:var(--gold-bright); padding:6px 14px; border-radius:var(--radius-sm); font-family:var(--font-arabic); font-size:0.78rem; cursor:pointer;">
+        <button onclick="resetChecklist()" style="background:transparent; border:1px solid var(--border-gold); color:var(--gold-bright); padding:8px 16px; border-radius:var(--radius-sm); font-family:var(--font-arabic); font-size:0.78rem; font-weight:700; cursor:pointer;">
           إعادة تعيين اليوم
         </button>
-        <button onclick="closeChecklistModal()" style="background:var(--gold-primary); border:none; color:#000; font-weight:800; padding:6px 18px; border-radius:var(--radius-sm); font-family:var(--font-arabic); font-size:0.82rem; cursor:pointer;">
-          تم الفحص ✓
+        <button onclick="closeChecklistModal()" style="background:var(--gold-primary); border:none; color:#000; font-weight:800; padding:8px 22px; border-radius:var(--radius-sm); font-family:var(--font-arabic); font-size:0.84rem; cursor:pointer;">
+          اعتماد الفحص
         </button>
       </div>
     </div>
@@ -143,15 +153,25 @@
 
   <!-- Footer -->
   <footer class="brand-footer">
+    <img src="../../assets/emad-logo.png" alt="عماد أفندي" class="brand-footer-logo">
     <p>كافيه ومحمصة عماد أفندي • "قهوتك على مزاجك" ☕👑</p>
     <p style="margin-top:4px; font-size:0.72rem; color:var(--gold-soft);">
       نظام التشغيل القياسي (SOP) • إشراف الإدارة ومجموعة العطيان
     </p>
   </footer>
 
+  <script src="../../shared/js/icons.js"></script>
   <script src="../../shared/js/app.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('rush-icon').innerHTML = getIcon('zap');
+      document.getElementById('home-icon').innerHTML = getIcon('home');
+      document.getElementById('banner-rules-icon').innerHTML = getIcon('sparkles', 'icon-cyan');
+      document.getElementById('search-icon').innerHTML = getIcon('search');
+      document.getElementById('clean-icon').innerHTML = getIcon('cleanBrush');
+      document.getElementById('modal-clean-icon').innerHTML = getIcon('cleanBrush', 'icon-gold');
+      document.getElementById('close-modal-icon').innerHTML = getIcon('close');
+
       window.app = new StationApp('../../data/backbar.json');
     });
   </script>

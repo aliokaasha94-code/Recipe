@@ -1,4 +1,4 @@
-// Emad Afandi SOP & Recipe Engine
+// Emad Afandi Specialty Coffee Lab - SOP Engine (Zero Emojis, Laboratory Grade)
 class StationApp {
   constructor(stationDataUrl) {
     this.stationDataUrl = stationDataUrl;
@@ -24,7 +24,12 @@ class StationApp {
       console.error('Failed to load station data:', err);
       const container = document.getElementById('content-area');
       if (container) {
-        container.innerHTML = `<div style="text-align:center; padding:40px; color:#f87171;">حدث خطأ أثناء تحميل بيانات الوصفات: ${err.message}</div>`;
+        container.innerHTML = `
+          <div style="text-align:center; padding:40px; color:#f87171; background:rgba(239,68,68,0.1); border-radius:12px; border:1px solid #ef4444;">
+            ${typeof getIcon === 'function' ? getIcon('alertTriangle', 'icon-lg') : ''}
+            <div style="margin-top:10px; font-weight:700;">خطأ في تحميل بيانات المعمل: ${err.message}</div>
+          </div>
+        `;
       }
     }
   }
@@ -38,10 +43,12 @@ class StationApp {
 
     if (titleEl) titleEl.textContent = station.name;
     if (descEl) descEl.textContent = station.tagline;
-    if (badgeEl) badgeEl.textContent = station.englishName;
+    if (badgeEl) {
+      badgeEl.innerHTML = `<span class="lab-led pulse-gold"></span> ${station.englishName}`;
+    }
     if (metaEl && station.targetStandard) {
-      metaEl.textContent = station.targetStandard;
-      metaEl.style.display = 'inline-block';
+      metaEl.innerHTML = `${getIcon('gauge', 'icon-gold')} <span>${station.targetStandard}</span>`;
+      metaEl.style.display = 'inline-flex';
     }
   }
 
@@ -49,14 +56,36 @@ class StationApp {
     const filterContainer = document.getElementById('filter-tabs');
     if (!filterContainer) return;
 
-    let html = `<button class="filter-btn active" data-cat="all">⭐ الكل (${this.getTotalItems()})</button>`;
+    let html = `
+      <button class="filter-btn active" data-cat="all">
+        ${getIcon('layers')}
+        <span>الكل (${this.getTotalItems()})</span>
+      </button>
+    `;
 
     this.data.categories.forEach(cat => {
       const count = cat.items ? cat.items.length : 0;
-      html += `<button class="filter-btn" data-cat="${cat.id}">${cat.name} (${count})</button>`;
+      const iconType = this.getCategoryIcon(cat.id);
+      html += `
+        <button class="filter-btn" data-cat="${cat.id}">
+          ${getIcon(iconType)}
+          <span>${cat.name} (${count})</span>
+        </button>
+      `;
     });
 
     filterContainer.innerHTML = html;
+  }
+
+  getCategoryIcon(catId) {
+    if (catId.includes('espresso')) return 'espresso';
+    if (catId.includes('filter')) return 'flask';
+    if (catId.includes('turkish') || catId.includes('heritage')) return 'flame';
+    if (catId.includes('cold') || catId.includes('frappes') || catId.includes('iced')) return 'snowflake';
+    if (catId.includes('smoothie')) return 'droplet';
+    if (catId.includes('boba') || catId.includes('mocktail')) return 'sparkles';
+    if (catId.includes('bakery')) return 'flame';
+    return 'cup';
   }
 
   getTotalItems() {
@@ -89,9 +118,10 @@ class StationApp {
         <section class="category-section" id="cat-${cat.id}">
           <div class="category-header">
             <h2 class="category-title">
-              <span>☕</span> ${cat.name}
+              ${getIcon(this.getCategoryIcon(cat.id), 'icon-gold')}
+              <span>${cat.name}</span>
             </h2>
-            <span class="badge-num" style="font-size:0.8rem; color:var(--gold-soft);">${filteredItems.length} صنف</span>
+            <span class="badge-num" style="font-size:0.78rem; color:var(--gold-soft); font-family:var(--font-mono);">${filteredItems.length} SPEC</span>
           </div>
           <div class="items-grid">
             ${filteredItems.map(item => this.renderRecipeCard(item)).join('')}
@@ -103,9 +133,9 @@ class StationApp {
     if (matchesFound === 0) {
       html = `
         <div style="text-align:center; padding: 60px 20px; color: var(--text-secondary);">
-          <div style="font-size:2.5rem; margin-bottom:10px;">🔍</div>
-          <div style="font-size:1.1rem; font-weight:700; color:var(--gold-bright);">لم يتم العثور على مشروب بهذا الاسم</div>
-          <p style="font-size:0.85rem; margin-top:6px;">جرب البحث بكلمة أخرى أو تصفح الأقسام الكاملة بالأعلى</p>
+          <div style="margin-bottom:12px; color:var(--gold-primary);">${getIcon('search', 'icon-lg')}</div>
+          <div style="font-size:1.1rem; font-weight:700; color:var(--gold-bright);">لم يتم العثور على أي صنف مطابق للبحث</div>
+          <p style="font-size:0.85rem; margin-top:6px; color:var(--text-muted);">تحقق من الاسم أو استعرض كافة التصنيفات بالأعلى</p>
         </div>
       `;
     }
@@ -114,10 +144,8 @@ class StationApp {
   }
 
   renderRecipeCard(item) {
-    // Check if item has multiple sizes
     const hasSizes = !!item.sizes;
     const hasSingleDouble = !!(item.single && item.double);
-    const hasVariants = !!(item.variants && item.variants.length > 0);
 
     let sizeSwitchHtml = '';
     let metricsHtml = '';
@@ -151,12 +179,15 @@ class StationApp {
       metricsHtml = `<div class="flash-metrics">${this.renderMetricsFromObject(item)}</div>`;
     }
 
-    // Steps
+    // SOP Steps
     let stepsHtml = '';
     if (item.steps && item.steps.length > 0) {
       stepsHtml = `
         <div class="recipe-steps">
-          <div class="steps-title"><span>⏱️</span> خطوات التشغيل (SOP):</div>
+          <div class="steps-title">
+            ${getIcon('timer', 'icon-gold')}
+            <span>بروتوكول التحضير المعملي (SOP):</span>
+          </div>
           <ol class="steps-list">
             ${item.steps.map(s => `<li>${s}</li>`).join('')}
           </ol>
@@ -164,17 +195,17 @@ class StationApp {
       `;
     }
 
-    // Zero-Waste Rescue
+    // Zero-Waste Diagnostic Panel
     let rescueHtml = '';
     if (item.rescue) {
       rescueHtml = `
         <div class="rescue-box">
           <div class="rescue-header">
-            <span>🚨</span>
-            <span>عيادة إنقاذ الأوردر (Zero Waste):</span>
+            ${getIcon('wrench')}
+            <span>عيادة إنقاذ الأوردر (Zero-Waste Diagnostic):</span>
           </div>
-          <div class="rescue-problem">⚠️ <strong>المشكلة:</strong> ${item.rescue.problem}</div>
-          <div class="rescue-solution">💡 <strong>الحل الفوري:</strong> ${item.rescue.solution}</div>
+          <div class="rescue-problem"><strong>التشخيص:</strong> ${item.rescue.problem}</div>
+          <div class="rescue-solution"><strong>إجراء الإنقاذ الفوري:</strong> ${item.rescue.solution}</div>
         </div>
       `;
     }
@@ -184,8 +215,8 @@ class StationApp {
     if (item.proTip) {
       tipHtml = `
         <div class="recipe-pro-tip">
-          <span>👑</span>
-          <div><strong>سر عماد أفندي:</strong> ${item.proTip}</div>
+          ${getIcon('sparkles', 'icon-gold')}
+          <div><strong>سر معمل عماد أفندي:</strong> ${item.proTip}</div>
         </div>
       `;
     }
@@ -197,7 +228,7 @@ class StationApp {
       <div class="recipe-card" id="card-${item.id}">
         <div class="card-top">
           <h3 class="recipe-name">${item.name}</h3>
-          ${cupText ? `<span class="recipe-cup" id="cup-${item.id}">${cupText}</span>` : ''}
+          ${cupText ? `<span class="recipe-cup" id="cup-${item.id}">${getIcon('cup')} <span>${cupText}</span></span>` : ''}
         </div>
         ${sizeSwitchHtml}
         ${metricsHtml}
@@ -210,27 +241,27 @@ class StationApp {
 
   renderMetricsFromObject(obj) {
     const fields = [
-      { key: 'coffeeGram', label: 'بن' },
-      { key: 'coffee', label: 'بن' },
-      { key: 'extractionMl', label: 'استخلاص' },
-      { key: 'milk', label: 'حليب' },
-      { key: 'water', label: 'مياه' },
-      { key: 'condensedMilk', label: 'مكثف' },
-      { key: 'sauce', label: 'صوص' },
-      { key: 'syrup', label: 'سيرب' },
-      { key: 'powder', label: 'بودر' },
-      { key: 'ice', label: 'ثلج' },
-      { key: 'iceCream', label: 'آيس كريم' },
-      { key: 'cream', label: 'كريمة' },
-      { key: 'puree', label: 'بيوريه' },
-      { key: 'crush', label: 'كراش' },
-      { key: 'sugar', label: 'سكر' },
-      { key: 'chips', label: 'شيبس' },
-      { key: 'starch', label: 'نشا' },
-      { key: 'temp', label: 'حرارة' },
-      { key: 'time', label: 'وقت' },
-      { key: 'timer', label: 'مؤقت' },
-      { key: 'ratio', label: 'ريشيو' }
+      { key: 'coffeeGram', label: 'بن', icon: 'scale' },
+      { key: 'coffee', label: 'بن', icon: 'scale' },
+      { key: 'extractionMl', label: 'استخلاص', icon: 'droplet' },
+      { key: 'milk', label: 'حليب', icon: 'droplet' },
+      { key: 'water', label: 'مياه', icon: 'droplet' },
+      { key: 'condensedMilk', label: 'مكثف', icon: 'droplet' },
+      { key: 'sauce', label: 'صوص', icon: 'droplet' },
+      { key: 'syrup', label: 'سيرب', icon: 'droplet' },
+      { key: 'powder', label: 'بودر', icon: 'scale' },
+      { key: 'ice', label: 'ثلج', icon: 'snowflake' },
+      { key: 'iceCream', label: 'آيس كريم', icon: 'snowflake' },
+      { key: 'cream', label: 'كريمة', icon: 'droplet' },
+      { key: 'puree', label: 'بيوريه', icon: 'droplet' },
+      { key: 'crush', label: 'كراش', icon: 'droplet' },
+      { key: 'sugar', label: 'سكر', icon: 'scale' },
+      { key: 'chips', label: 'شيبس', icon: 'sparkles' },
+      { key: 'starch', label: 'نشا', icon: 'scale' },
+      { key: 'temp', label: 'حرارة', icon: 'thermometer' },
+      { key: 'time', label: 'وقت', icon: 'timer' },
+      { key: 'timer', label: 'مؤقت', icon: 'timer' },
+      { key: 'ratio', label: 'ريشيو', icon: 'gauge' }
     ];
 
     let itemsHtml = '';
@@ -239,7 +270,10 @@ class StationApp {
       if (val && val !== '-') {
         itemsHtml += `
           <div class="metric-item">
-            <div class="metric-label">${f.label}</div>
+            <div class="metric-label">
+              ${getIcon(f.icon)}
+              <span>${f.label}</span>
+            </div>
             <div class="metric-value">${val}</div>
           </div>
         `;
@@ -266,10 +300,9 @@ class StationApp {
 
     const cupBadge = document.getElementById(`cup-${itemId}`);
     if (cupBadge && sizeData.cup) {
-      cupBadge.textContent = sizeData.cup;
+      cupBadge.innerHTML = `${getIcon('cup')} <span>${sizeData.cup}</span>`;
     }
 
-    // Update active pill
     const card = document.getElementById(`card-${itemId}`);
     if (card) {
       const pills = card.querySelectorAll('.size-pill');
@@ -296,7 +329,7 @@ class StationApp {
 
     const cupBadge = document.getElementById(`cup-${itemId}`);
     if (cupBadge && dataObj.cup) {
-      cupBadge.textContent = dataObj.cup;
+      cupBadge.innerHTML = `${getIcon('cup')} <span>${dataObj.cup}</span>`;
     }
 
     const card = document.getElementById(`card-${itemId}`);
@@ -309,7 +342,6 @@ class StationApp {
   }
 
   initEvents() {
-    // Search input
     const searchInput = document.getElementById('search-box');
     if (searchInput) {
       searchInput.addEventListener('input', (e) => {
@@ -318,7 +350,6 @@ class StationApp {
       });
     }
 
-    // Category filter clicks
     const filterContainer = document.getElementById('filter-tabs');
     if (filterContainer) {
       filterContainer.addEventListener('click', (e) => {
@@ -333,7 +364,6 @@ class StationApp {
       });
     }
 
-    // Rush hour button
     const rushBtn = document.getElementById('btn-rush-mode');
     if (rushBtn) {
       rushBtn.addEventListener('click', () => {
@@ -350,13 +380,13 @@ class StationApp {
       document.body.classList.add('rush-mode');
       if (rushBtn) {
         rushBtn.classList.add('active');
-        rushBtn.innerHTML = '⚡ وضع الضغط نشط';
+        rushBtn.innerHTML = `${getIcon('zap')} <span>وضع الضغط نشط</span>`;
       }
     } else {
       document.body.classList.remove('rush-mode');
       if (rushBtn) {
         rushBtn.classList.remove('active');
-        rushBtn.innerHTML = '⚡ وضع الضغط';
+        rushBtn.innerHTML = `${getIcon('zap')} <span>وضع الضغط</span>`;
       }
     }
   }
@@ -382,7 +412,7 @@ class StationApp {
           <input type="checkbox" data-idx="${idx}" ${isChecked ? 'checked' : ''} onchange="window.app.toggleCheckItem(${idx})">
           <div style="flex:1;">
             <div class="checklist-text">${item.task}</div>
-            <div class="checklist-freq">📌 الموعد: ${item.frequency}</div>
+            <div class="checklist-freq">${getIcon('timer')} الموعد المعتمد: ${item.frequency}</div>
           </div>
         </label>
       `;
