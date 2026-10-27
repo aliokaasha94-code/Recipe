@@ -241,6 +241,17 @@ class StationApp {
 
   renderMetricsFromObject(obj) {
     const fields = [
+      { key: 'flour', label: 'دقيق', icon: 'scale' },
+      { key: 'eggs', label: 'بيض', icon: 'cup' },
+      { key: 'vanilla', label: 'فانيليا', icon: 'sparkles' },
+      { key: 'sugar', label: 'سكر', icon: 'scale' },
+      { key: 'butter', label: 'زبدة', icon: 'droplet' },
+      { key: 'oil', label: 'زيت', icon: 'droplet' },
+      { key: 'tang', label: 'تانج', icon: 'sparkles' },
+      { key: 'bakingPowder', label: 'بيكنج بودر', icon: 'scale' },
+      { key: 'yieldCount', label: 'الإنتاج', icon: 'cup' },
+      { key: 'batterDose', label: 'صب العجين', icon: 'droplet' },
+      { key: 'miniPortion', label: 'الكمية', icon: 'cup' },
       { key: 'coffeeGram', label: 'بن', icon: 'scale' },
       { key: 'coffee', label: 'بن', icon: 'scale' },
       { key: 'extractionMl', label: 'استخلاص', icon: 'droplet' },
@@ -255,7 +266,6 @@ class StationApp {
       { key: 'cream', label: 'كريمة', icon: 'droplet' },
       { key: 'puree', label: 'بيوريه', icon: 'droplet' },
       { key: 'crush', label: 'كراش', icon: 'droplet' },
-      { key: 'sugar', label: 'سكر', icon: 'scale' },
       { key: 'chips', label: 'شيبس', icon: 'sparkles' },
       { key: 'starch', label: 'نشا', icon: 'scale' },
       { key: 'temp', label: 'حرارة', icon: 'thermometer' },
