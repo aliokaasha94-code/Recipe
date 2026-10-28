@@ -1,3 +1,139 @@
+// Emad Afandi Specialty Coffee Lab - 3D Photorealistic & Vector Visual System
+// Official 3D Studio Drink Assets with High-Craft SVG Fallback Engine.
+
+const DRINK_3D_CATALOG = {
+  "espresso-single": "assets/images/drinks/hot_espresso/espresso.webp",
+  "latte": "assets/images/drinks/hot_espresso/latte.webp",
+  "flat-white": "assets/images/drinks/hot_espresso/flat_white.webp",
+  "cappuccino": "assets/images/drinks/hot_espresso/cappuccino.webp",
+  "cortado": "assets/images/drinks/hot_espresso/cortado.webp",
+  "piccolo": "assets/images/drinks/hot_espresso/picolo_latte.webp",
+  "spanish-latte": "assets/images/drinks/hot_espresso/hot_spanish_latte.webp",
+  "pistachio-latte": "assets/images/drinks/hot_espresso/hot_pistachio_latte.webp",
+  "white-mocha": "assets/images/drinks/hot_espresso/hot_white_mocha.webp",
+  "caramel-macchiato": "assets/images/drinks/hot_espresso/hot_caramel_macchiato.webp",
+  "americano": "assets/images/drinks/hot_espresso/americano.webp",
+  "hot-mocha": "assets/images/drinks/hot_espresso/hot_mocha.webp",
+  "espresso-con-panna": "assets/images/drinks/hot_espresso/espresso.webp",
+  "espresso-macchiato": "assets/images/drinks/hot_espresso/espresso.webp",
+  "affogato": "assets/images/drinks/iced_espresso/espresso_affogato.webp",
+  "cafe-bombon": "assets/images/drinks/hot_espresso/cafe_bombon.webp",
+  "iced-espresso": "assets/images/drinks/iced_espresso/ice_espresso.webp",
+  "iced-americano": "assets/images/drinks/iced_espresso/ice_americano.webp",
+  "iced-latte": "assets/images/drinks/iced_espresso/ice_latte.webp",
+  "iced-spanish-latte": "assets/images/drinks/iced_espresso/ice_spanish_latte.webp",
+  "iced-pistachio-latte": "assets/images/drinks/iced_espresso/ice_pistachio_latte.webp",
+  "iced-white-mocha": "assets/images/drinks/iced_espresso/ice_white_mocha.webp",
+  "iced-caramel-macchiato": "assets/images/drinks/iced_espresso/ice_caramel_macchiato.webp",
+  "iced-mocha": "assets/images/drinks/iced_espresso/ice_mocha.webp",
+  "v60-hot": "assets/images/drinks/drip_coffee/hario_v60.webp",
+  "chemex": "assets/images/drinks/drip_coffee/chimix.webp",
+  "cold-brew": "assets/images/drinks/drip_coffee/cold_brew.webp",
+  "turkish-plain-light": "assets/images/drinks/turkish_frensh_coffee/turkish_coffee.webp",
+  "turkish-plain-medium": "assets/images/drinks/turkish_frensh_coffee/turkish_coffee.webp",
+  "turkish-plain-dark": "assets/images/drinks/turkish_frensh_coffee/turkish_coffee.webp",
+  "turkish-spiced-light": "assets/images/drinks/turkish_frensh_coffee/turkish_coffee.webp",
+  "turkish-spiced-medium": "assets/images/drinks/turkish_frensh_coffee/turkish_coffee.webp",
+  "turkish-spiced-dark": "assets/images/drinks/turkish_frensh_coffee/turkish_coffee.webp",
+  "french-classic": "assets/images/drinks/turkish_frensh_coffee/frensh_coffee.webp",
+  "french-caramel": "assets/images/drinks/turkish_frensh_coffee/frensh_coffee.webp",
+  "french-hazelnut": "assets/images/drinks/turkish_frensh_coffee/frensh_coffee.webp",
+  "french-chocolate": "assets/images/drinks/milk_shake/chocolate_milk_shake.webp",
+  "french-vanilla": "assets/images/drinks/turkish_frensh_coffee/frensh_coffee.webp",
+  "arabic-coffee": "assets/images/drinks/other_hot_drinks_tea/arabian_coffee.webp",
+  "sudanese-jabana": "assets/images/drinks/other_hot_drinks_tea/sudanese_coffee.webp",
+  "single-origin-turkish": "assets/images/drinks/turkish_frensh_coffee/turkish_coffee.webp",
+  "hot-chocolate": "assets/images/drinks/other_hot_drinks_tea/hot_chocolate.webp",
+  "hot-batata": "assets/images/drinks/hot_espresso/hot_caramel_macchiato.webp",
+  "hot-lotus": "assets/images/drinks/waffle/lotus_waffle.webp",
+  "hot-pistachio": "assets/images/drinks/hot_espresso/hot_pistachio_latte.webp",
+  "chai-karak": "assets/images/drinks/other_hot_drinks_tea/karak_tea.webp",
+  "chai-adani": "assets/images/drinks/other_hot_drinks_tea/adani_tea.webp",
+  "chai-masala": "assets/images/drinks/other_hot_drinks_tea/masala_tea.webp",
+  "frappe-coffee": "assets/images/drinks/frappes_matcha/coffee_frappe.webp",
+  "frappe-chocolate": "assets/images/drinks/milk_shake/chocolate_milk_shake.webp",
+  "frappe-vanilla": "assets/images/drinks/frappes_matcha/vanilla_frappe.webp",
+  "frappe-mocha": "assets/images/drinks/frappes_matcha/mocha_frappe.webp",
+  "frappe-toffee-coffee": "assets/images/drinks/frappes_matcha/coffee_frappe.webp",
+  "shake-vanilla": "assets/images/drinks/milk_shake/vanilla_milk_shake.webp",
+  "shake-chocolate": "assets/images/drinks/milk_shake/chocolate_milk_shake.webp",
+  "shake-caramel": "assets/images/drinks/milk_shake/caramel_milk_shake.webp",
+  "shake-oreo": "assets/images/drinks/milk_shake/oreo_milk_shake.webp",
+  "shake-lotus": "assets/images/drinks/milk_shake/lotus_milk_shake.webp",
+  "shake-kinder": "assets/images/drinks/milk_shake/bueno_milk_shake.webp",
+  "shake-raffaello": "assets/images/drinks/milk_shake/raffaello_milk_shake.webp",
+  "shake-nutella": "assets/images/drinks/milk_shake/nutella_milk_shake.webp",
+  "shake-ferrero": "assets/images/drinks/milk_shake/ferrero_rocher_milk_shake.webp",
+  "shake-pistachio": "assets/images/drinks/milk_shake/pistachio_milk_shake.webp",
+  "shake-digestive-berry": "assets/images/drinks/milk_shake/mix_berries_digestive_milk_shake.webp",
+  "shake-fruits-family": "assets/images/drinks/milk_shake/strawberry_milk_shake.webp",
+  "smoothie-mango": "assets/images/drinks/smoothies/mango_smoothies.webp",
+  "smoothie-lemon-mint": "assets/images/drinks/smoothies/lemon_mint_smoothies.webp",
+  "smoothie-guava": "assets/images/drinks/smoothies/guava_smoothies.webp",
+  "smoothie-green-apple": "assets/images/drinks/smoothies/green_apple_smoothies.webp",
+  "smoothie-strawberry": "assets/images/drinks/smoothies/strawberry_smoothies.webp",
+  "smoothie-watermelon": "assets/images/drinks/smoothies/watermelon_smoothies.webp",
+  "smoothie-blueberry": "assets/images/drinks/smoothies/blueberry_smoothies.webp",
+  "smoothie-mixed-berry": "assets/images/drinks/smoothies/mix_berries_smoothies.webp",
+  "smoothie-tropical": "assets/images/drinks/smoothies/tropical_fruits_smoothies.webp",
+  "smoothie-kiwi": "assets/images/drinks/smoothies/kiwi_smoothies.webp",
+  "smoothie-peach": "assets/images/drinks/smoothies/peach_smoothies.webp",
+  "smoothie-cherry": "assets/images/drinks/smoothies/cherry_smoothies.webp",
+  "smoothie-coconut": "assets/images/drinks/smoothies/coconut_smoothies.webp",
+  "smoothie-lychee": "assets/images/drinks/smoothies/mango_smoothies.webp",
+  "smoothie-karkadeh": "assets/images/drinks/smoothies/hibiscus_smoothies.webp",
+  "smoothie-passion": "assets/images/drinks/smoothies/passion_fruit_smoothies.webp",
+  "smoothie-pineapple": "assets/images/drinks/smoothies/tropical_fruits_smoothies.webp",
+  "boba-fizz-family": "assets/images/drinks/boba/blueberry_boba_fizz.webp",
+  "mojito-lemon-mint": "assets/images/drinks/mojitos_ice_tea/lemon_mint_mojito.webp",
+  "mojito-blueberry": "assets/images/drinks/mojitos_ice_tea/blueberry_mojito.webp",
+  "blue-passion-fruit": "assets/images/drinks/mojitos_ice_tea/blue_passion_fruit_mojito.webp",
+  "cherry-cola": "assets/images/drinks/mojitos_ice_tea/cherry_cola_mojito.webp",
+  "iced-tea-family": "assets/images/drinks/mojitos_ice_tea/ice_tea_peach_mojito.webp",
+  "waffle-batter-master": "assets/images/drinks/waffle/nutella_waffle.webp",
+  "waffle-classic": "assets/images/drinks/waffle/nutella_waffle.webp",
+  "pancake-stack": "assets/images/drinks/mini_pancake/lotus_mini_pancake.webp"
+};
+
+function getDrinkVisual(item, size) {
+  size = size || 'card';
+  if (!item) return '';
+  const id = (item.id || '').toLowerCase();
+  let imgRel = DRINK_3D_CATALOG[item.id] || DRINK_3D_CATALOG[id];
+
+  if (!imgRel) {
+    const cleanId = id.replace(/-/g, '_');
+    for (const k in DRINK_3D_CATALOG) {
+      if (k.replace(/-/g, '_') === cleanId || cleanId.includes(k.replace(/-/g, '_'))) {
+        imgRel = DRINK_3D_CATALOG[k];
+        break;
+      }
+    }
+  }
+
+  const svgFallback = typeof getDrinkSvg === 'function' ? getDrinkSvg(item) : '';
+
+  if (imgRel) {
+    const prefix = (typeof window !== 'undefined' && window.location.pathname.includes('-station')) ? '../' : '';
+    const fullImgSrc = prefix + imgRel;
+
+    return `
+      <div class="drink-visual-container ${size === 'detail' ? 'detail-visual-size' : ''}">
+        <img src="${fullImgSrc}" 
+             alt="${item.name || ''}" 
+             class="drink-3d-photo" 
+             loading="lazy" 
+             onerror="this.style.display='none'; if(this.nextElementSibling) { this.nextElementSibling.style.display='block'; }">
+        <div class="drink-svg-fallback" style="display:none; width:100%; height:100%;">
+          ${svgFallback}
+        </div>
+      </div>
+    `;
+  }
+
+  return svgFallback;
+}
+
 // Emad Afandi Specialty Coffee Lab - World-Class Vector Visual System
 // High-Craft SVGs: Clear Iced PET Cups (Over-Iced Menu Style), Craft Cutaway Hot Cups,
 // 4oz Gibraltar Specialty Glass (Cortado/Piccolo), and Royal Turkish Finjans.

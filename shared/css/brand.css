@@ -353,20 +353,48 @@ body {
 }
 
 .landscape-art-wrap {
-  width: 80px;
-  height: 105px;
+  width: 92px;
+  height: 110px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.02);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: radial-gradient(circle at center, rgba(212, 175, 55, 0.08) 0%, rgba(0, 0, 0, 0.7) 80%);
+  border-radius: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  padding: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.drink-visual-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.drink-3d-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.95));
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 8px;
+  user-select: none;
+  pointer-events: none;
+}
+
+.drink-landscape-card:hover .drink-3d-photo {
+  transform: scale(1.1) translateY(-2px);
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 1)) drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
 }
 
 .landscape-art-wrap .drink-art-svg {
-  width: 72px;
-  height: 98px;
+  width: 76px;
+  height: 100px;
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.9));
   transition: transform 0.2s ease;
 }
@@ -570,12 +598,24 @@ body {
 }
 
 .detail-art-wrap {
-  width: 140px;
-  height: 165px;
-  margin: 0 auto 6px;
+  width: 170px;
+  height: 190px;
+  margin: 0 auto 12px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: radial-gradient(circle at center, rgba(212, 175, 55, 0.15) 0%, rgba(0, 0, 0, 0.75) 80%);
+  border-radius: 16px;
+  border: 1.5px solid var(--border-gold);
+  padding: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.detail-visual-size .drink-3d-photo {
+  max-width: 160px;
+  max-height: 175px;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 1)) drop-shadow(0 0 25px rgba(212, 175, 55, 0.3));
 }
 
 .detail-drink-name {

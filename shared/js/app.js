@@ -142,8 +142,10 @@ class StationApp {
   }
 
   renderDrinkCard(item) {
-    // Generate colored vector illustration for this drink
-    const svgIllustration = typeof getDrinkSvg === 'function' ? getDrinkSvg(item) : '';
+    // Generate photorealistic 3D visual or vector illustration for this drink
+    const visualIllustration = typeof getDrinkVisual === 'function' 
+      ? getDrinkVisual(item, 'card') 
+      : (typeof getDrinkSvg === 'function' ? getDrinkSvg(item) : '');
     
     // Clean Arabic Name and English Specialty Name
     let nameAr = item.name;
@@ -187,7 +189,7 @@ class StationApp {
     return `
       <div class="drink-landscape-card" onclick="window.app.openRecipeDetail('${item.id}')">
         <div class="landscape-art-wrap">
-          ${svgIllustration}
+          ${visualIllustration}
         </div>
         <div class="landscape-info-wrap">
           <div class="landscape-top-row">
@@ -238,7 +240,9 @@ class StationApp {
     const content = document.getElementById('recipe-detail-content');
     if (!item || !content) return;
 
-    const svgIllustration = typeof getDrinkSvg === 'function' ? getDrinkSvg(item) : '';
+    const visualIllustration = typeof getDrinkVisual === 'function' 
+      ? getDrinkVisual(item, 'detail') 
+      : (typeof getDrinkSvg === 'function' ? getDrinkSvg(item) : '');
 
     // Size Switchers
     let sizeSwitchHtml = '';
@@ -359,7 +363,7 @@ class StationApp {
         </button>
         <div class="detail-top-hero">
           <div class="detail-art-wrap">
-            ${svgIllustration}
+            ${visualIllustration}
           </div>
           <h2 class="detail-drink-name">${nameAr}</h2>
           <div class="detail-drink-sub">${nameEn ? nameEn + (item.notes ? ' • ' + item.notes : '') : (item.notes || '')}</div>
