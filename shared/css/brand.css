@@ -891,8 +891,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   margin-bottom: 14px;
-  padding-bottom: 8px;
+  padding-bottom: 10px;
   border-bottom: 1px solid var(--border-gold);
 }
 
@@ -903,11 +904,50 @@ body {
 }
 
 .modal-close {
-  background: transparent;
-  border: none;
-  color: var(--text-secondary);
+  background: rgba(212, 175, 55, 0.1);
+  border: 1.5px solid var(--border-gold);
+  color: var(--gold-bright);
   font-size: 1.4rem;
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  min-height: 38px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0;
+  line-height: 1;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  background: var(--gold-bright);
+  color: #000000;
+  border-color: var(--gold-bright);
+  transform: scale(1.08);
+}
+
+.modal-close:active {
+  transform: scale(0.92);
+}
+
+.lab-icon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  stroke-width: 2;
+  flex-shrink: 0;
+}
+
+.icon-lg {
+  width: 26px;
+  height: 26px;
 }
 
 .checklist-item {

@@ -366,11 +366,11 @@
   </section>
 
   <!-- Single QR Modal -->
-  <div class="modal-overlay" id="qr-modal">
+  <div class="modal-overlay" id="qr-modal" onclick="if(event.target===this) closeQrModal()">
     <div class="modal-content" style="max-width:440px; text-align:center;">
       <div class="modal-header">
         <h3 class="modal-title" id="qr-modal-title">كود QR للمحطة</h3>
-        <button class="modal-close" onclick="closeQrModal()"><span id="modal-close-icon"></span></button>
+        <button class="modal-close" onclick="closeQrModal()" title="إغلاق" aria-label="إغلاق">&times;</button>
       </div>
       <div style="padding:15px;">
         <div class="qr-canvas-holder" id="qr-canvas-holder"></div>
@@ -378,21 +378,26 @@
         <p style="font-size:0.75rem; color:var(--text-secondary); margin-top:4px;">
           امسح الكود بكاميرا الموبايل لفتح شاشة المحطة فوراً
         </p>
-        <div style="margin-top:16px;">
+        <div style="margin-top:18px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
           <a id="qr-download-btn" download="emad-station-qr.png" class="hub-btn-primary" style="display:inline-flex; font-size:0.85rem; padding:10px 20px;">
             تحميل الصورة للطباعة
           </a>
+          <button onclick="closeQrModal()" style="display:inline-flex; align-items:center; justify-content:center; padding:10px 20px; background:rgba(255,255,255,0.08); border:1px solid var(--border-gold); color:#ffffff; font-weight:700; font-family:var(--font-arabic); font-size:0.85rem; border-radius:var(--radius-md); cursor:pointer; transition:all 0.2s ease;">
+            إغلاق
+          </button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Full Print Sheet Modal -->
-  <div class="modal-overlay" id="print-modal">
+  <div class="modal-overlay" id="print-modal" onclick="if(event.target===this) closePrintModal()">
     <div class="modal-content" style="max-width:760px;">
       <div class="modal-header">
-        <h3 class="modal-title">شيت طباعة استيكرات المحطات الثلاث</h3>
-        <button class="modal-close" onclick="closePrintModal()"><span id="print-close-icon"></span></button>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <h3 class="modal-title" style="margin:0;">شيت طباعة استيكرات المحطات الثلاث</h3>
+        </div>
+        <button class="modal-close" onclick="closePrintModal()" title="إغلاق النافذة (Esc)" aria-label="إغلاق النافذة">&times;</button>
       </div>
       <p style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:16px;">
         أبعاد مجهزة للقص ولصقها على ستاندات الأكريليك الخاصة بمحطات كافيه ومحمصة عماد أفندي:
@@ -400,9 +405,12 @@
       
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:16px; text-align:center;" id="print-sheet-grid"></div>
 
-      <div style="margin-top:24px; text-align:center;">
-        <button onclick="window.print()" class="hub-btn-primary" style="display:inline-flex; padding:12px 32px;">
+      <div style="margin-top:24px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; align-items:center;">
+        <button onclick="window.print()" class="hub-btn-primary" style="display:inline-flex; padding:12px 28px;">
           <span>إرسال لأمر الطباعة الآن (Print)</span>
+        </button>
+        <button onclick="closePrintModal()" style="display:inline-flex; align-items:center; justify-content:center; padding:12px 24px; background:rgba(255,255,255,0.06); border:1px solid var(--border-gold); color:#ffffff; font-weight:800; font-family:var(--font-arabic); font-size:0.9rem; border-radius:var(--radius-md); cursor:pointer; transition:all 0.2s ease;">
+          <span>إغلاق النافذة ✕</span>
         </button>
       </div>
     </div>
@@ -441,8 +449,10 @@
       document.getElementById('qr-btn-icon-2').innerHTML = getIcon('qr');
       document.getElementById('qr-btn-icon-3').innerHTML = getIcon('qr');
       document.getElementById('banner-print-icon').innerHTML = getIcon('qr');
-      document.getElementById('modal-close-icon').innerHTML = getIcon('close');
-      document.getElementById('print-close-icon').innerHTML = getIcon('close');
+      const mClose = document.getElementById('modal-close-icon');
+      if (mClose) mClose.innerHTML = getIcon('close');
+      const pClose = document.getElementById('print-close-icon');
+      if (pClose) pClose.innerHTML = getIcon('close');
     });
 
     const STATIONS = [
@@ -552,6 +562,14 @@
     function closePrintModal() {
       document.getElementById('print-modal').classList.remove('open');
     }
+
+    // Keyboard support (Escape key to dismiss active modals)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closePrintModal();
+        closeQrModal();
+      }
+    });
   </script>
 </body>
 </html>

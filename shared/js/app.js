@@ -487,6 +487,14 @@ class StationApp {
         this.renderContent();
       });
     }
+
+    // Keyboard support (Escape key to dismiss modal drawers)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        this.closeRecipeDetail();
+        if (typeof closeChecklistModal === 'function') closeChecklistModal();
+      }
+    });
   }
 
   initChecklist() {

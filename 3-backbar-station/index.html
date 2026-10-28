@@ -120,11 +120,11 @@
   </div>
 
   <!-- Checklist Modal -->
-  <div class="modal-overlay" id="checklist-modal">
+  <div class="modal-overlay" id="checklist-modal" onclick="if(event.target===this) closeChecklistModal()">
     <div class="modal-content">
       <div class="modal-header">
         <h3 class="modal-title">بروتوكول نظافة وتعقيم الباك بار والمخبوزات</h3>
-        <button class="modal-close" onclick="closeChecklistModal()">&times;</button>
+        <button class="modal-close" onclick="closeChecklistModal()" title="إغلاق">&times;</button>
       </div>
       <p style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:14px;">
         التعقيم الفوري لشفرات البلندر وماكينات الوافل وصواني التقطيع يحمي سلامة الضيوف.
