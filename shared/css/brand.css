@@ -307,11 +307,21 @@ body {
 }
 
 /* Grid of Drink Visual Cards (2 columns on mobile) */
-/* Stacked Landscape Cards Layout (One above the other) */
+/* Stacked Landscape Cards Layout (One above the other on mobile, 2 columns on desktop) */
 .visual-cards-grid {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (min-width: 992px) {
+  .visual-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
 }
 
 /* Drink Landscape Card */
