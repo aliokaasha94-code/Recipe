@@ -170,19 +170,36 @@ class StationApp {
       sizeBadge = `<span class="card-size-tag">${shortCup}</span>`;
     }
 
+    // Teaser sequence (تجهيز الأول، ثم الثاني، ثم الثالث)
+    const sequence = typeof getDrinkSequence === 'function' ? getDrinkSequence(item) : [];
+    let sequenceHtml = '';
+    if (sequence && sequence.length > 0) {
+      sequenceHtml = `
+        <div class="landscape-steps-teaser">
+          ${sequence.map((step, idx) => `
+            <span class="landscape-step-pill">${step}</span>
+            ${idx < sequence.length - 1 ? '<span class="landscape-step-arrow">➔</span>' : ''}
+          `).join('')}
+        </div>
+      `;
+    }
+
     return `
-      <div class="drink-visual-card" onclick="window.app.openRecipeDetail('${item.id}')">
-        <div class="drink-card-art-holder">
+      <div class="drink-landscape-card" onclick="window.app.openRecipeDetail('${item.id}')">
+        <div class="landscape-art-wrap">
           ${svgIllustration}
-          ${sizeBadge}
         </div>
-        <div class="drink-card-body">
-          <h3 class="drink-card-name">${nameAr}</h3>
-          <div class="drink-card-en">${nameEn}</div>
-        </div>
-        <div class="drink-card-action">
-          <span>الريسيبي وطريقة التشغيل</span>
-          <span class="card-arrow">←</span>
+        <div class="landscape-info-wrap">
+          <div class="landscape-top-row">
+            <h3 class="landscape-drink-name">${nameAr}</h3>
+            ${sizeBadge ? `<span class="landscape-size-badge">${sizeBadge}</span>` : ''}
+          </div>
+          <div class="landscape-drink-en">${nameEn}</div>
+          ${sequenceHtml}
+          <div class="landscape-card-footer">
+            <span>عرض المقادير وطريقة التشغيل والإنقاذ</span>
+            <span class="landscape-arrow">←</span>
+          </div>
         </div>
       </div>
     `;
@@ -263,18 +280,23 @@ class StationApp {
     // Recipe Metrics Grid
     const metricsHtml = this.renderMetricsFromObject(currentData);
 
-    // SOP Steps
+    // SOP Chronological Steps (تجهيز الأول، ثم الثاني، ثم الثالث)
     let stepsHtml = '';
     if (item.steps && item.steps.length > 0) {
       stepsHtml = `
         <div class="detail-block">
           <h4 class="detail-block-title">
             <span class="detail-icon-wrap">${SvgIcons.timer}</span>
-            <span>طريقة التشغيل خطوة بخطوة (SOP):</span>
+            <span>خطوات التشغيل المعيارية (مرتبة بالتسلسل):</span>
           </h4>
-          <ol class="detail-steps-list">
-            ${item.steps.map(s => `<li>${s}</li>`).join('')}
-          </ol>
+          <div class="detail-steps-stack">
+            ${item.steps.map((s, idx) => `
+              <div class="detail-step-card">
+                <span class="step-card-num">${idx + 1}</span>
+                <div class="step-card-text">${s}</div>
+              </div>
+            `).join('')}
+          </div>
         </div>
       `;
     }
