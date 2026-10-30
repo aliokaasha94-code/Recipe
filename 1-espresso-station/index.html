@@ -6,9 +6,9 @@
   <meta name="theme-color" content="#000000">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>عماد أفندي | محطة مكنة الإسبريسو والفلتر (Espresso Station SOP)</title>
+  <title>عماد أفندي | محطة الإسبريسو والفلتر</title>
   <link rel="icon" type="image/png" href="assets/emad-logo.png">
-  <link rel="stylesheet" href="style.css?v=7.0">
+  <link rel="stylesheet" href="style.css?v=8.0">
 </head>
 <body>
 
@@ -19,14 +19,14 @@
     <aside class="desktop-mode-bar" id="desktopModeBar" aria-label="أوضاع عرض المحطة">
       <div class="mode-bar-info">
         <span class="mode-status-dot"></span>
-        <span class="mode-bar-title">محاكي جوال الباريستا • Barista Mobile View</span>
+        <span class="mode-bar-title" id="desktopModeBarTitle">محاكي جوال الباريستا • Barista Mobile View</span>
       </div>
       <div class="mode-bar-toggles">
         <button class="btn-device-toggle active" id="togglePhoneMode" onclick="setDeviceView('phone')" title="عرض الجوال (الافتراضي)">
-          <span>📱 وضع الجوال</span>
+          <span id="labelPhoneMode">📱 وضع الجوال</span>
         </button>
         <button class="btn-device-toggle" id="toggleDesktopMode" onclick="setDeviceView('desktop')" title="عرض الشاشة الكاملة">
-          <span>🖥️ شاشة كاملة</span>
+          <span id="labelDesktopMode">🖥️ شاشة كاملة</span>
         </button>
       </div>
     </aside>
@@ -39,7 +39,7 @@
         <span class="status-time">09:41</span>
         <div class="status-dynamic-pill">
           <span class="pill-dot"></span>
-          <span class="pill-text">عماد أفندي</span>
+          <span class="pill-text" id="statusPillText">عماد أفندي</span>
         </div>
         <div class="status-icons">
           <svg class="status-icon" viewBox="0 0 24 24"><path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98C20.93 5.9 16.69 4 12 4z"/></svg>
@@ -57,22 +57,22 @@
               <img src="assets/emad-logo.png" alt="عماد أفندي" class="brand-logo">
             </div>
             <div class="brand-title-wrap">
-              <div class="brand-title">كافيه ومحمصة عماد أفندي</div>
-              <div class="brand-subtitle">محطة الإسبريسو والفلتر كوفي • SOP</div>
+              <div class="brand-title" id="brandHeaderTitle">عماد أفندي كافيه</div>
+              <div class="brand-subtitle" id="brandHeaderSubtitle">محطة الإسبريسو والفلتر</div>
             </div>
           </div>
           <div class="header-actions">
-            <a href="../index.html" class="btn-header-link" title="العودة للبوابة الرئيسية">
-              <span>المحطات</span>
-              <span>←</span>
-            </a>
+            <button class="btn-lang-toggle" id="btnLangToggle" onclick="window.app.toggleLanguage()" title="تبديل اللغة • Switch Language">
+              <svg class="lang-globe-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              <span id="langToggleText">English</span>
+            </button>
           </div>
         </header>
 
         <!-- Search Bar -->
         <div class="search-container">
           <div class="search-box-wrap">
-            <input type="text" class="search-box" id="search-box" placeholder="ابحث في مشروبات الإسبريسو بالكامل...">
+            <input type="text" class="search-box" id="search-box" placeholder="ابحث في مشروبات المحطة...">
             <span class="search-icon-pos">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
             </span>
@@ -140,8 +140,8 @@
 
   </div> <!-- /device-simulator-wrapper -->
 
-  <script src="drink-visuals.js?v=7.0"></script>
-  <script src="app.js?v=7.0"></script>
+  <script src="drink-visuals.js?v=8.0"></script>
+  <script src="app.js?v=8.0"></script>
   <script>
     // Device View Mode Switcher
     function setDeviceView(mode) {

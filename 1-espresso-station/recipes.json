@@ -1,15 +1,16 @@
 {
   "station": {
     "id": "espresso",
-    "name": "محطة مكنة الإسبريسو والفلتر",
-    "englishName": "Espresso Bar & Filter Coffee Station",
+    "name": "محطة الإسبريسو والفلتر",
+    "englishName": "Espresso & Filter Station",
     "tagline": "المعيار الذهبي للاستخلاص والتبخير الحريري ☕",
     "targetStandard": "Dose: 18g | Yield: 36-40ml | Time: 25-30s | Temp: 92-94°C"
   },
   "categories": [
     {
       "id": "hot-espresso",
-      "name": "مشروبات الإسبريسو الساخنة (Hot Drinks)",
+      "name": "المشروبات الساخنة",
+      "name_en": "Hot Drinks",
       "items": [
         {
           "id": "espresso-single",
@@ -448,7 +449,8 @@
     },
     {
       "id": "iced-espresso",
-      "name": "مشروبات الإسبريسو الباردة (Iced Drinks)",
+      "name": "المشروبات الباردة",
+      "name_en": "Iced Drinks",
       "items": [
         {
           "id": "iced-espresso",
@@ -611,7 +613,8 @@
     },
     {
       "id": "filter-coffee",
-      "name": "القهوة المقطرة والفلتر (Filter & Manual Brew)",
+      "name": "القهوة المقطرة",
+      "name_en": "Filter Coffee",
       "items": [
         {
           "id": "v60-hot",

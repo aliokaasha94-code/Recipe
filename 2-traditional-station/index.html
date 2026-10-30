@@ -6,42 +6,42 @@
   <meta name="theme-color" content="#000000">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>عماد أفندي | محطة القهوة التركية والتراثية والساخن (Traditional SOP)</title>
+  <title>عماد أفندي | محطة التركي والتراثي</title>
   <link rel="icon" type="image/png" href="assets/emad-logo.png">
-  <link rel="stylesheet" href="style.css?v=4.0">
+  <link rel="stylesheet" href="style.css?v=8.0">
   <style>
     .sugar-banner {
-      margin: 10px 18px 4px;
+      margin: 10px 14px 4px;
       background: linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(10, 12, 16, 0.9) 100%);
       border: 1px solid var(--border-gold);
       border-radius: var(--radius-md);
-      padding: 12px 14px;
+      padding: 10px 12px;
     }
     .sugar-title {
-      font-size: 0.82rem;
+      font-size: 0.80rem;
       font-weight: 800;
       color: var(--gold-bright);
       margin-bottom: 8px;
     }
     .sugar-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
       gap: 6px;
     }
     .sugar-chip {
-      background: rgba(0, 0, 0, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: var(--radius-sm);
       padding: 5px 6px;
       text-align: center;
     }
     .sugar-name {
       font-weight: 800;
-      font-size: 0.76rem;
+      font-size: 0.74rem;
       color: #ffffff;
     }
     .sugar-desc {
-      font-size: 0.66rem;
+      font-size: 0.65rem;
       color: var(--gold-soft);
       font-family: var(--font-mono);
       margin-top: 1px;
@@ -50,119 +50,187 @@
 </head>
 <body>
 
-  <!-- Top Sticky Navigation Header -->
-  <header class="brand-header">
-    <div class="brand-info">
-      <div class="brand-logo-container">
-        <img src="assets/emad-logo.png" alt="عماد أفندي" class="brand-logo">
-      </div>
-      <div class="brand-title-wrap">
-        <div class="brand-title">كافيه ومحمصة عماد أفندي</div>
-        <div class="brand-subtitle">محطة القهوة التركية والتراثية والساخن • SOP</div>
-      </div>
-    </div>
-    <div class="header-actions">
-      <a href="../index.html" class="btn-header-link" title="العودة للبوابة الرئيسية">
-        <span>المحطات الرئيسية</span>
-        <span>←</span>
-      </a>
-    </div>
-  </header>
+  <!-- Device Simulator Wrapper (Provides Mobile Simulator on Desktop & Native Edge-to-Edge on Mobile) -->
+  <div class="device-simulator-wrapper" id="deviceSimulatorWrapper">
 
-  <!-- Sugar Scale Cheat Sheet -->
-  <div class="sugar-banner">
-    <div class="sugar-title">معيار سكر القهوة التركية المعتمد لعماد أفندي:</div>
-    <div class="sugar-grid">
-      <div class="sugar-chip">
-        <div class="sugar-name">سادة</div>
-        <div class="sugar-desc">0g</div>
+    <!-- Desktop Simulator Control Bar (Visible only on desktop screens >= 640px) -->
+    <aside class="desktop-mode-bar" id="desktopModeBar" aria-label="أوضاع عرض المحطة">
+      <div class="mode-bar-info">
+        <span class="mode-status-dot"></span>
+        <span class="mode-bar-title" id="desktopModeBarTitle">محاكي جوال الباريستا • Barista Mobile View</span>
       </div>
-      <div class="sugar-chip">
-        <div class="sugar-name">حبانوه / ريحة</div>
-        <div class="sugar-desc">2-3g</div>
-      </div>
-      <div class="sugar-chip">
-        <div class="sugar-name">مظبوط</div>
-        <div class="sugar-desc">5-6g</div>
-      </div>
-      <div class="sugar-chip">
-        <div class="sugar-name">مانو</div>
-        <div class="sugar-desc">8-9g</div>
-      </div>
-      <div class="sugar-chip">
-        <div class="sugar-name">زيادة</div>
-        <div class="sugar-desc">12-14g</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Search Bar -->
-  <div class="search-container">
-    <div class="search-box-wrap">
-      <input type="text" class="search-box" id="search-box" placeholder="ابحث في القهوة التركية والتراثية بالكامل...">
-      <span class="search-icon-pos">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      </span>
-    </div>
-  </div>
-
-  <!-- Horizontal Category Pills (NO "ALL" TAB) -->
-  <div class="filter-tabs" id="filter-tabs"></div>
-
-  <!-- Grid Content Area (Visual Drink Cards) -->
-  <main class="content-area" id="content-area">
-    <div style="text-align:center; padding:50px 20px; color:var(--gold-soft);">
-      جاري تحميل مشروبات محطة القهوة التركية...
-    </div>
-  </main>
-
-  <!-- Floating Checklist Button -->
-  <button class="btn-checklist-toggle" onclick="openChecklistModal()">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5-6.5-5-6.5 5 2-7.5L2 9h7z"/></svg>
-    <span>نظافة المحطة</span>
-  </button>
-
-  <!-- Recipe Detail Modal / Drawer -->
-  <div class="recipe-detail-modal" id="recipe-detail-modal" onclick="if(event.target===this) window.app.closeRecipeDetail()">
-    <div class="recipe-detail-sheet" id="recipe-detail-content"></div>
-  </div>
-
-  <!-- Checklist Modal -->
-  <div class="modal-overlay" id="checklist-modal" onclick="if(event.target===this) closeChecklistModal()">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title">بروتوكول نظافة محطة التركي والرمالة والدلات</h3>
-        <button class="modal-close" onclick="closeChecklistModal()" title="إغلاق">&times;</button>
-      </div>
-      <p style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:14px;">
-        نظافة الكنك النحاسي والرمالة تحمي النكهة الملكية المعتمدة لعماد أفندي.
-      </p>
-      <div id="checklist-items"></div>
-      <div style="margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
-        <button onclick="resetChecklist()" style="background:transparent; border:1px solid var(--border-gold); color:var(--gold-bright); padding:8px 16px; border-radius:var(--radius-sm); font-family:var(--font-arabic); font-size:0.78rem; font-weight:700; cursor:pointer;">
-          إعادة تعيين اليوم
+      <div class="mode-bar-toggles">
+        <button class="btn-device-toggle active" id="togglePhoneMode" onclick="setDeviceView('phone')" title="عرض الجوال (الافتراضي)">
+          <span id="labelPhoneMode">📱 وضع الجوال</span>
         </button>
-        <button onclick="closeChecklistModal()" style="background:var(--gold-primary); border:none; color:#000; font-weight:800; padding:8px 22px; border-radius:var(--radius-sm); font-family:var(--font-arabic); font-size:0.84rem; cursor:pointer;">
-          اعتماد الفحص
+        <button class="btn-device-toggle" id="toggleDesktopMode" onclick="setDeviceView('desktop')" title="عرض الشاشة الكاملة">
+          <span id="labelDesktopMode">🖥️ شاشة كاملة</span>
         </button>
       </div>
-    </div>
-  </div>
+    </aside>
 
-  <!-- Footer -->
-  <footer class="brand-footer">
-    <img src="assets/emad-logo.png" alt="عماد أفندي" class="brand-footer-logo">
-    <p>كافيه ومحمصة عماد أفندي • "قهوتك على مزاجك"</p>
-    <p style="margin-top:4px; font-size:0.72rem; color:var(--gold-soft);">
-      نظام التشغيل القياسي (SOP) • إشراف الإدارة ومجموعة العطيان
-    </p>
-  </footer>
+    <!-- Phone Chassis (Active phone casing on desktop; transparent on mobile) -->
+    <div class="phone-chassis" id="phoneChassis">
 
-  <script src="drink-visuals.js?v=4.0"></script>
-  <script src="app.js?v=4.0"></script>
+      <!-- Phone Status Bar & Dynamic Island (Desktop Simulator Only) -->
+      <div class="phone-status-header">
+        <span class="status-time">09:41</span>
+        <div class="status-dynamic-pill">
+          <span class="pill-dot"></span>
+          <span class="pill-text" id="statusPillText">عماد أفندي</span>
+        </div>
+        <div class="status-icons">
+          <svg class="status-icon" viewBox="0 0 24 24"><path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98C20.93 5.9 16.69 4 12 4z"/></svg>
+          <svg class="status-icon" viewBox="0 0 24 24"><path d="M17 4h-3V2h-4v2H7v18h10V4z"/></svg>
+        </div>
+      </div>
+
+      <!-- Phone Viewport Screen (Scrollable App Interior) -->
+      <div class="phone-viewport-container" id="phoneViewportContainer">
+
+        <!-- Top Sticky Navigation Header -->
+        <header class="brand-header">
+          <div class="brand-info">
+            <div class="brand-logo-container">
+              <img src="assets/emad-logo.png" alt="عماد أفندي" class="brand-logo">
+            </div>
+            <div class="brand-title-wrap">
+              <div class="brand-title" id="brandHeaderTitle">عماد أفندي كافيه</div>
+              <div class="brand-subtitle" id="brandHeaderSubtitle">محطة التركي والتراثي</div>
+            </div>
+          </div>
+          <div class="header-actions">
+            <button class="btn-lang-toggle" id="btnLangToggle" onclick="window.app.toggleLanguage()" title="تبديل اللغة • Switch Language">
+              <svg class="lang-globe-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              <span id="langToggleText">English</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- Sugar Scale Cheat Sheet -->
+        <div class="sugar-banner">
+          <div class="sugar-title">معيار سكر القهوة التركية المعتمد لعماد أفندي:</div>
+          <div class="sugar-grid">
+            <div class="sugar-chip">
+              <div class="sugar-name">سادة</div>
+              <div class="sugar-desc">0g</div>
+            </div>
+            <div class="sugar-chip">
+              <div class="sugar-name">حبانوه / ريحة</div>
+              <div class="sugar-desc">2-3g</div>
+            </div>
+            <div class="sugar-chip">
+              <div class="sugar-name">مظبوط</div>
+              <div class="sugar-desc">5-6g</div>
+            </div>
+            <div class="sugar-chip">
+              <div class="sugar-name">مانو</div>
+              <div class="sugar-desc">8-9g</div>
+            </div>
+            <div class="sugar-chip">
+              <div class="sugar-name">زيادة</div>
+              <div class="sugar-desc">12-14g</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+          <div class="search-box-wrap">
+            <input type="text" class="search-box" id="search-box" placeholder="ابحث في مشروبات المحطة...">
+            <span class="search-icon-pos">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </span>
+          </div>
+        </div>
+
+        <!-- Horizontal Category Pills (NO "ALL" TAB) -->
+        <div class="filter-tabs" id="filter-tabs"></div>
+
+        <!-- Grid Content Area (Visual Drink Cards) -->
+        <main class="content-area" id="content-area">
+          <div style="text-align:center; padding:50px 20px; color:var(--gold-soft);">
+            جاري تحميل مشروبات محطة القهوة التركية والتراثية...
+          </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="brand-footer">
+          <img src="assets/emad-logo.png" alt="عماد أفندي" class="brand-footer-logo">
+          <p>كافيه ومحمصة عماد أفندي • "قهوتك على مزاجك"</p>
+          <p style="margin-top:4px; font-size:0.72rem; color:var(--gold-soft);">
+            نظام التشغيل القياسي (SOP) • إشراف الإدارة ومجموعة العطيان
+          </p>
+        </footer>
+
+      </div> <!-- /phone-viewport-container -->
+
+      <!-- Floating Checklist Button -->
+      <button class="btn-checklist-toggle" onclick="openChecklistModal()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5-6.5-5-6.5 5 2-7.5L2 9h7z"/></svg>
+        <span>نظافة المحطة</span>
+      </button>
+
+      <!-- Recipe Detail Modal / Drawer -->
+      <div class="recipe-detail-modal" id="recipe-detail-modal" onclick="if(event.target===this) window.app.closeRecipeDetail()">
+        <div class="recipe-detail-sheet" id="recipe-detail-content"></div>
+      </div>
+
+      <!-- Checklist Modal -->
+      <div class="modal-overlay" id="checklist-modal" onclick="if(event.target===this) closeChecklistModal()">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">بروتوكول نظافة محطة التركي والرمالة والدلات</h3>
+            <button class="modal-close" onclick="closeChecklistModal()" title="إغلاق">&times;</button>
+          </div>
+          <p style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:14px;">
+            نظافة الكنك النحاسي والرمالة تحمي النكهة الملكية المعتمدة لعماد أفندي.
+          </p>
+          <div id="checklist-items"></div>
+          <div style="margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
+            <button onclick="resetChecklist()" style="background:transparent; border:1px solid var(--border-gold); color:var(--gold-bright); padding:8px 16px; border-radius:var(--radius-sm); font-family:var(--font-arabic); font-size:0.78rem; font-weight:700; cursor:pointer;">
+              إعادة تعيين اليوم
+            </button>
+            <button onclick="closeChecklistModal()" style="background:var(--gold-primary); border:none; color:#000; font-weight:800; padding:8px 22px; border-radius:var(--radius-sm); font-family:var(--font-arabic); font-size:0.84rem; cursor:pointer;">
+              اعتماد الفحص
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone Home Indicator Bar (Desktop Simulator Only) -->
+      <div class="phone-home-bar"></div>
+
+    </div> <!-- /phone-chassis -->
+
+  </div> <!-- /device-simulator-wrapper -->
+
+  <script src="drink-visuals.js?v=8.0"></script>
+  <script src="app.js?v=8.0"></script>
   <script>
+    // Device View Mode Switcher
+    function setDeviceView(mode) {
+      if (mode === 'desktop') {
+        document.body.classList.add('view-desktop-full');
+        document.getElementById('toggleDesktopMode')?.classList.add('active');
+        document.getElementById('togglePhoneMode')?.classList.remove('active');
+        localStorage.setItem('emad_view_mode', 'desktop');
+      } else {
+        document.body.classList.remove('view-desktop-full');
+        document.getElementById('togglePhoneMode')?.classList.add('active');
+        document.getElementById('toggleDesktopMode')?.classList.remove('active');
+        localStorage.setItem('emad_view_mode', 'phone');
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       window.app = new StationApp('recipes.json');
+      const savedMode = localStorage.getItem('emad_view_mode');
+      if (savedMode === 'desktop') {
+        setDeviceView('desktop');
+      } else {
+        setDeviceView('phone');
+      }
     });
   </script>
 </body>

@@ -1,8 +1,8 @@
 {
   "station": {
     "id": "backbar",
-    "name": "محطة الباك بار والحلويات (Cold Bar & Bakery)",
-    "englishName": "Cold Drinks, Smoothies, Shakes & Bakery Station",
+    "name": "محطة الباك بار والحلويات",
+    "englishName": "Back Bar & Desserts Station",
     "tagline": "انتعاش الصيف وأشهى حلويات الوافل والبان كيك 🥤🧇👑",
     "goldenRules": {
       "blenderSmoothie": "ضع البلندر على الميزان أولاً، ثم المياه، ثم المكونات، ثم الثلج، ويتم الضرب على السرعة 2 والتقفيل ليد سيفتي.",
@@ -14,7 +14,7 @@
   "categories": [
     {
       "id": "frappes",
-      "name": "الفرابيه الكريمي المثلج (Frappes)",
+      "name": "الفرابيه",
       "items": [
         {
           "id": "frappe-coffee",
@@ -118,11 +118,12 @@
           },
           "proTip": "المشروب الأكثر تميزاً لمحبي الكراميل المقرمش والقهوة الغنية."
         }
-      ]
+      ],
+      "name_en": "Frappes"
     },
     {
       "id": "milkshakes",
-      "name": "الميلك شيك الثقيل والمخفوقات (Milkshakes)",
+      "name": "الميلك شيك",
       "items": [
         {
           "id": "shake-vanilla",
@@ -347,11 +348,12 @@
             "وضع الآيس كريم والحليب و70g من نكهة الفاكهة المحددة والضرب على سرعة 2 والتزيين بالكريمة."
           ]
         }
-      ]
+      ],
+      "name_en": "Milkshakes"
     },
     {
       "id": "smoothies",
-      "name": "السموذي المنعش والفواكه المثلجة (Smoothies)",
+      "name": "السموذي",
       "items": [
         {
           "id": "smoothie-mango",
@@ -566,11 +568,12 @@
             "خلط المكونات على سرعة 2."
           ]
         }
-      ]
+      ],
+      "name_en": "Smoothies"
     },
     {
       "id": "boba-mocktails",
-      "name": "البوبا فيز والموكتيل المنعش (Boba Fizz & Mocktails)",
+      "name": "الموكتيل والبوبا",
       "items": [
         {
           "id": "boba-fizz-family",
@@ -685,11 +688,12 @@
             "وضع السيرب في الشيكر مع الثلج والرج جيداً، ثم الصب في كوب 16 أونز واستكمال الصودا."
           ]
         }
-      ]
+      ],
+      "name_en": "Mocktails & Boba"
     },
     {
       "id": "bakery-station",
-      "name": "محطة الحلويات السريعة (الوافل والبان كيك)",
+      "name": "الحلويات والمخبوزات",
       "items": [
         {
           "id": "waffle-batter-master",
@@ -783,7 +787,8 @@
           },
           "proTip": "ترك العجينة ترتاح 20 دقيقة بالثلاجة يسمح لحبيبات البيكنج بودر بالتفاعل مع الحليب لإنتاج قطع بان كيك إسفنجية ناعمة تذوب في الفم."
         }
-      ]
+      ],
+      "name_en": "Desserts & Bakery"
     }
   ],
   "cleaningChecklist": [
