@@ -1,6 +1,7 @@
 // Emad Afandi Specialty Coffee Lab - 3D Architectural Vector Visual System
-// Inspired directly by Specialty Coffee Infographics & Takeaway Studio References
-// Pure High-Craft SVG with 3D Cylindrical Shading, Cutaway Stratification & Realistic Physics
+// Tailored to Emad Afandi's EXACT Cafe Packaging:
+// 1. Hot Drinks: Matte Deep-Black Takeaway Paper Cup with Matte Black Lid (Matching Image 1)
+// 2. Iced Drinks: Clear Contoured PET Cup with Asymmetrical Raised Sipping Lid (Matching Image 2)
 
 let _svgUidCounter = 0;
 function getNextSvgId(prefix) {
@@ -9,10 +10,10 @@ function getNextSvgId(prefix) {
 }
 
 // ========================================================
-// 1. 3D HOT TAKEAWAY PAPER CUP (Reference: "The Different Types of Coffee")
+// 1. 3D MATTE BLACK HOT TAKEAWAY CUP (Matching Emad Afandi Image 1)
 // ========================================================
 function render3DHotCup(options) {
-  const id = getNextSvgId('hot_cup');
+  const id = getNextSvgId('hot_cup_black');
   const layers = options.layers || [
     { pct: 35, col: '#2a1206', colLight: '#46200c', colDark: '#1a0902' },
     { pct: 50, col: '#faf5ee', colLight: '#ffffff', colDark: '#ebe2d5' },
@@ -21,7 +22,7 @@ function render3DHotCup(options) {
   const topStyle = options.topStyle || 'foam'; // 'foam', 'cocoa', 'caramel', 'crema', 'flat', 'pistachio'
   const isAmericano = options.isAmericano || false;
 
-  // Cutaway window coordinates (leaving solid white paper borders on sides)
+  // Cutaway window coordinates (leaving deep black paper borders on sides)
   const winTop = 38;
   const winBottom = 140;
   const totalH = winBottom - winTop;
@@ -98,62 +99,63 @@ function render3DHotCup(options) {
           <feGaussianBlur stdDeviation="3"/>
         </filter>
 
-        <!-- 3D Cylindrical White Paper Cup Shell Gradient (Studio Lighting) -->
-        <linearGradient id="${id}_paper" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#b0a79a"/>
-          <stop offset="12%" stop-color="#ded8ce"/>
-          <stop offset="28%" stop-color="#ffffff"/>
-          <stop offset="65%" stop-color="#f0ebe0"/>
-          <stop offset="88%" stop-color="#c6beaec"/>
-          <stop offset="100%" stop-color="#9a9182"/>
+        <!-- 3D Matte Deep-Black Paper Cup Shell Gradient (Matching Emad Afandi Cup) -->
+        <linearGradient id="${id}_black_cup" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#111215"/>
+          <stop offset="14%" stop-color="#1f2229"/>
+          <stop offset="32%" stop-color="#2d323d"/>
+          <stop offset="68%" stop-color="#21242c"/>
+          <stop offset="86%" stop-color="#18191f"/>
+          <stop offset="100%" stop-color="#0c0d10"/>
         </linearGradient>
 
-        <!-- 3D Mocha Brown Takeaway Lid Gradients -->
+        <!-- 3D Matte Black Takeaway Lid Gradients -->
         <linearGradient id="${id}_lid_cap" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#3d2114"/>
-          <stop offset="22%" stop-color="#693e28"/>
-          <stop offset="50%" stop-color="#845339"/>
-          <stop offset="82%" stop-color="#55301e"/>
-          <stop offset="100%" stop-color="#2d150b"/>
+          <stop offset="0%" stop-color="#17181c"/>
+          <stop offset="22%" stop-color="#2c303a"/>
+          <stop offset="50%" stop-color="#3a404d"/>
+          <stop offset="80%" stop-color="#242730"/>
+          <stop offset="100%" stop-color="#121316"/>
         </linearGradient>
 
         <linearGradient id="${id}_lid_rim" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#2f170d"/>
-          <stop offset="25%" stop-color="#5a3320"/>
-          <stop offset="50%" stop-color="#764730"/>
-          <stop offset="80%" stop-color="#472615"/>
-          <stop offset="100%" stop-color="#200e06"/>
+          <stop offset="0%" stop-color="#131417"/>
+          <stop offset="25%" stop-color="#262932"/>
+          <stop offset="50%" stop-color="#343945"/>
+          <stop offset="80%" stop-color="#20222a"/>
+          <stop offset="100%" stop-color="#0e0f12"/>
         </linearGradient>
 
         <!-- 3D Cylindrical Volumetric Light & Shadow Overlay for Liquid -->
         <linearGradient id="${id}_cyl" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="rgba(0,0,0,0.55)"/>
+          <stop offset="0%" stop-color="rgba(0,0,0,0.58)"/>
           <stop offset="16%" stop-color="rgba(255,255,255,0.0)"/>
           <stop offset="30%" stop-color="rgba(255,255,255,0.22)"/>
           <stop offset="68%" stop-color="rgba(0,0,0,0.0)"/>
-          <stop offset="88%" stop-color="rgba(0,0,0,0.30)"/>
-          <stop offset="100%" stop-color="rgba(0,0,0,0.60)"/>
+          <stop offset="88%" stop-color="rgba(0,0,0,0.32)"/>
+          <stop offset="100%" stop-color="rgba(0,0,0,0.65)"/>
         </linearGradient>
 
-        <!-- Cutaway Window ClipPath (Leaving clear paper margins) -->
+        <!-- Cutaway Window ClipPath (Leaving crisp black paper margins) -->
         <clipPath id="${id}_cutaway">
           <path d="M 28 37 Q 60 41 92 37 L 83 140 Q 60 144 37 140 Z"/>
         </clipPath>
       </defs>
 
       <!-- 1. Floor Drop Shadow -->
-      <ellipse cx="60" cy="154" rx="36" ry="5.5" fill="rgba(0,0,0,0.85)" filter="url(#${id}_blur)"/>
+      <ellipse cx="60" cy="154" rx="36" ry="5.5" fill="rgba(0,0,0,0.9)" filter="url(#${id}_blur)"/>
 
-      <!-- 2. Outer 3D Paper Cup Silhouette -->
-      <path d="M 18 32 L 31 146 Q 32 149 36 149 L 84 149 Q 88 149 89 146 L 102 32 Z" fill="url(#${id}_paper)"/>
+      <!-- 2. Outer 3D Matte Black Paper Cup Body -->
+      <path d="M 18 32 L 31 146 Q 32 149 36 149 L 84 149 Q 88 149 89 146 L 102 32 Z" fill="url(#${id}_black_cup)"/>
       
-      <!-- Cup Bottom Rolled Rim -->
-      <path d="M 30 145 Q 60 149 90 145 L 89 149 Q 60 153 31 149 Z" fill="#8c8476"/>
+      <!-- White Rolled Paper Base Rim (As shown in Image 1) -->
+      <path d="M 30 145 Q 60 149 90 145 L 89 149 Q 60 153 31 149 Z" fill="#e2e8f0"/>
+      <path d="M 31 146 Q 60 150 89 146" stroke="#94a3b8" stroke-width="0.8" fill="none"/>
 
       <!-- 3. Cutaway Window: Liquids & 3D Shading -->
       <g clip-path="url(#${id}_cutaway)">
-        <!-- Dark interior cavity background -->
-        <rect x="20" y="32" width="80" height="118" fill="#18110b"/>
+        <!-- Deep dark cavity background -->
+        <rect x="20" y="32" width="80" height="118" fill="#0d0b09"/>
 
         <!-- Colored Liquid Strata -->
         ${layersHtml}
@@ -163,42 +165,45 @@ function render3DHotCup(options) {
         <rect x="20" y="32" width="80" height="118" fill="url(#${id}_cyl)"/>
 
         <!-- Inner Bevel Shadows framing the cutaway -->
-        <path d="M 28 37 L 37 140" stroke="rgba(0,0,0,0.45)" stroke-width="1.8"/>
-        <path d="M 92 37 L 83 140" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-        <path d="M 28 37 Q 60 41 92 37" stroke="rgba(0,0,0,0.5)" stroke-width="2"/>
+        <path d="M 28 37 L 37 140" stroke="rgba(0,0,0,0.55)" stroke-width="2"/>
+        <path d="M 92 37 L 83 140" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+        <path d="M 28 37 Q 60 41 92 37" stroke="rgba(0,0,0,0.6)" stroke-width="2.2"/>
       </g>
 
-      <!-- 4. Subtle Gold Accent Border framing Cutaway -->
-      <path d="M 28 37 Q 60 41 92 37 L 83 140 Q 60 144 37 140 Z" stroke="rgba(212,175,55,0.75)" stroke-width="1.1" fill="none"/>
+      <!-- 4. Emad Afandi Luxury Gold Accent Border framing Cutaway -->
+      <path d="M 28 37 Q 60 41 92 37 L 83 140 Q 60 144 37 140 Z" stroke="rgba(212,175,55,0.85)" stroke-width="1.2" fill="none"/>
 
-      <!-- 5. 3D Takeaway Lid Drop Shadow onto Paper Cup -->
-      <path d="M 16 33 Q 60 38 104 33 L 103 38 Q 60 43 17 38 Z" fill="rgba(0,0,0,0.5)"/>
+      <!-- 5. 3D Takeaway Lid Drop Shadow onto Black Cup Body -->
+      <path d="M 16 33 Q 60 38 104 33 L 103 39 Q 60 44 17 39 Z" fill="rgba(0,0,0,0.7)"/>
 
-      <!-- 6. 3D Mocha Takeaway Lid (High-Craft Architecture) -->
+      <!-- 6. 3D Matte Black Takeaway Lid (Exact Geometry of Image 1) -->
       <!-- Bottom Rim Flange that clips on cup -->
-      <path d="M 14 28 L 17 33 Q 60 37 103 33 L 106 28 Q 60 32 14 28 Z" fill="url(#${id}_lid_rim)"/>
-      <ellipse cx="60" cy="28" rx="46" ry="4.5" fill="url(#${id}_lid_cap)"/>
-      <ellipse cx="60" cy="27.5" rx="45.5" ry="4" stroke="rgba(255,255,255,0.45)" stroke-width="0.8" fill="none"/>
+      <path d="M 13 28 L 16 33 Q 60 37 104 33 L 107 28 Q 60 32 13 28 Z" fill="url(#${id}_lid_rim)"/>
+      <ellipse cx="60" cy="28" rx="47" ry="4.5" fill="url(#${id}_lid_cap)"/>
+      <ellipse cx="60" cy="27.5" rx="46.5" ry="4" stroke="rgba(255,255,255,0.25)" stroke-width="0.8" fill="none"/>
 
       <!-- Lid Stepped Middle Neck -->
-      <path d="M 24 21 L 26 27 Q 60 30 94 27 L 96 21 Q 60 24 24 21 Z" fill="url(#${id}_lid_rim)"/>
-      <ellipse cx="60" cy="21" rx="36" ry="3.5" fill="url(#${id}_lid_cap)"/>
+      <path d="M 23 21 L 25 27 Q 60 30 95 27 L 97 21 Q 60 24 23 21 Z" fill="url(#${id}_lid_rim)"/>
+      <ellipse cx="60" cy="21" rx="37" ry="3.5" fill="url(#${id}_lid_cap)"/>
 
-      <!-- Lid Raised Crown with Spout -->
-      <ellipse cx="60" cy="15" rx="28" ry="3.2" fill="url(#${id}_lid_cap)"/>
-      <ellipse cx="60" cy="14.5" rx="27.5" ry="2.8" stroke="rgba(255,255,255,0.4)" stroke-width="0.8" fill="none"/>
+      <!-- Lid Raised Crown with Spout & Wedge -->
+      <ellipse cx="60" cy="15" rx="29" ry="3.2" fill="url(#${id}_lid_cap)"/>
+      <ellipse cx="60" cy="14.5" rx="28.5" ry="2.8" stroke="rgba(255,255,255,0.3)" stroke-width="0.8" fill="none"/>
 
-      <!-- Drinking Notch Spout with Inner Shadow -->
-      <ellipse cx="38" cy="15" rx="5.4" ry="1.9" fill="#140a05" stroke="#734a35" stroke-width="0.8"/>
+      <!-- Rear Raised Wedge (Image 1 feature) -->
+      <path d="M 46 14.5 L 74 14.5 L 72 12 L 48 12 Z" fill="#2d323e" opacity="0.8"/>
+
+      <!-- Oval Drinking Spout Hole with Recessed Lip -->
+      <ellipse cx="38" cy="15" rx="5.4" ry="1.9" fill="#090a0d" stroke="#3d4352" stroke-width="0.8"/>
     </svg>
   `;
 }
 
 // ========================================================
-// 2. 3D CLEAR ICED TAKEAWAY CUP (Reference: "Over Iced Coffee Menu")
+// 2. 3D CLEAR CONTOURED ICED CUP WITH ASYMMETRICAL SIP LID (Matching Image 2)
 // ========================================================
 function render3DIcedCup(options) {
-  const id = getNextSvgId('iced_cup');
+  const id = getNextSvgId('iced_cup_contoured');
   const layers = options.layers || [
     { pct: 28, col: '#fef3c7', colLight: '#fffbeb', colDark: '#fde68a' }, // Condensed milk / syrup
     { pct: 38, col: '#f7eee3', colLight: '#ffffff', colDark: '#ede2d3' }, // Cold milk
@@ -252,7 +257,7 @@ function render3DIcedCup(options) {
     <g opacity="0.95">
       <!-- Cube 1 (Top Left) -->
       <g transform="translate(32, 35) rotate(-10)">
-        <polygon points="0,6 10,0 22,5 12,11" fill="rgba(255,255,255,0.85)"/>
+        <polygon points="0,6 10,0 22,5 12,11" fill="rgba(255,255,255,0.88)"/>
         <polygon points="0,6 12,11 12,23 0,18" fill="rgba(220,242,255,0.55)"/>
         <polygon points="12,11 22,5 22,17 12,23" fill="rgba(186,225,250,0.65)"/>
         <polygon points="0,6 10,0 22,5 12,11" stroke="rgba(255,255,255,0.95)" stroke-width="0.8" fill="none"/>
@@ -261,7 +266,7 @@ function render3DIcedCup(options) {
 
       <!-- Cube 2 (Top Right) -->
       <g transform="translate(66, 38) rotate(14)">
-        <polygon points="0,5 9,0 20,4 11,10" fill="rgba(255,255,255,0.88)"/>
+        <polygon points="0,5 9,0 20,4 11,10" fill="rgba(255,255,255,0.90)"/>
         <polygon points="0,5 11,10 11,21 0,16" fill="rgba(220,242,255,0.50)"/>
         <polygon points="11,10 20,4 20,15 11,21" fill="rgba(186,225,250,0.60)"/>
         <polygon points="0,5 9,0 20,4 11,10" stroke="rgba(255,255,255,0.95)" stroke-width="0.8" fill="none"/>
@@ -270,7 +275,7 @@ function render3DIcedCup(options) {
 
       <!-- Cube 3 (Middle Floating) -->
       <g transform="translate(45, 62) rotate(6)">
-        <polygon points="0,5 8,0 18,4 10,9" fill="rgba(255,255,255,0.75)"/>
+        <polygon points="0,5 8,0 18,4 10,9" fill="rgba(255,255,255,0.78)"/>
         <polygon points="0,5 10,9 10,19 0,15" fill="rgba(220,242,255,0.45)"/>
         <polygon points="10,9 18,4 18,14 10,19" fill="rgba(186,225,250,0.55)"/>
         <polygon points="0,5 8,0 18,4 10,9" stroke="rgba(255,255,255,0.9)" stroke-width="0.8" fill="none"/>
@@ -278,7 +283,7 @@ function render3DIcedCup(options) {
 
       <!-- Cube 4 (Right Floating) -->
       <g transform="translate(68, 68) rotate(-12)">
-        <polygon points="0,4 7,0 16,3 9,8" fill="rgba(255,255,255,0.75)"/>
+        <polygon points="0,4 7,0 16,3 9,8" fill="rgba(255,255,255,0.78)"/>
         <polygon points="0,4 9,8 9,17 0,13" fill="rgba(220,242,255,0.40)"/>
         <polygon points="9,8 16,3 16,12 9,17" fill="rgba(186,225,250,0.50)"/>
         <polygon points="0,4 7,0 16,3 9,8" stroke="rgba(255,255,255,0.9)" stroke-width="0.8" fill="none"/>
@@ -286,8 +291,8 @@ function render3DIcedCup(options) {
     </g>
 
     <!-- Marbled Espresso Infiltration Streams -->
-    <path d="M 40 45 Q 44 68 38 88 Q 42 108 40 125" stroke="#251006" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.85"/>
-    <path d="M 75 42 Q 70 70 76 95 Q 73 115 76 130" stroke="#251006" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0.85"/>
+    <path d="M 40 45 Q 44 68 38 88 Q 42 108 40 125" stroke="#251006" stroke-width="2.6" stroke-linecap="round" fill="none" opacity="0.85"/>
+    <path d="M 75 42 Q 70 70 76 95 Q 73 115 76 130" stroke="#251006" stroke-width="2.3" stroke-linecap="round" fill="none" opacity="0.85"/>
   `;
 
   if (isAffogato) {
@@ -310,25 +315,26 @@ function render3DIcedCup(options) {
           <feGaussianBlur stdDeviation="3"/>
         </filter>
 
-        <!-- Clear PET Cup Specular Reflections -->
+        <!-- Clear PET Cup Specular Glass Sheen -->
         <linearGradient id="${id}_pet_sheen" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="rgba(255,255,255,0.45)"/>
-          <stop offset="12%" stop-color="rgba(255,255,255,0.12)"/>
+          <stop offset="0%" stop-color="rgba(255,255,255,0.48)"/>
+          <stop offset="12%" stop-color="rgba(255,255,255,0.14)"/>
           <stop offset="50%" stop-color="rgba(255,255,255,0.0)"/>
-          <stop offset="85%" stop-color="rgba(255,255,255,0.15)"/>
-          <stop offset="100%" stop-color="rgba(255,255,255,0.55)"/>
+          <stop offset="85%" stop-color="rgba(255,255,255,0.18)"/>
+          <stop offset="100%" stop-color="rgba(255,255,255,0.58)"/>
         </linearGradient>
 
-        <!-- Clear PET Cup Shell ClipPath -->
+        <!-- Clear PET Cup Contoured Shell ClipPath (Matching Image 2) -->
         <clipPath id="${id}_iced_clip">
-          <path d="M 18 30 L 30 144 Q 31 147 35 147 L 85 147 Q 89 147 90 144 L 102 30 Z"/>
+          <!-- Outer contour with slight horizontal ridge step at y=46 -->
+          <path d="M 18 30 L 20 46 L 22 48 L 30 144 Q 31 147 35 147 L 85 147 Q 89 147 90 144 L 98 48 L 100 46 L 102 30 Z"/>
         </clipPath>
       </defs>
 
       <!-- Floor Drop Shadow -->
       <ellipse cx="60" cy="154" rx="36" ry="5.5" fill="rgba(0,0,0,0.85)" filter="url(#${id}_blur)"/>
 
-      <!-- Cup Contents clipped to Cup Shape -->
+      <!-- Cup Contents clipped to Contoured Cup Shape -->
       <g clip-path="url(#${id}_iced_clip)">
         <rect x="15" y="28" width="90" height="122" fill="#140a05"/>
         ${layersHtml}
@@ -339,20 +345,37 @@ function render3DIcedCup(options) {
         <rect x="15" y="28" width="90" height="122" fill="url(#${id}_pet_sheen)"/>
       </g>
 
-      <!-- Clear PET Cup Outer Rim & Outline -->
-      <path d="M 18 30 L 30 144 Q 31 147 35 147 L 85 147 Q 89 147 90 144 L 102 30 Z" stroke="rgba(212,175,55,0.75)" stroke-width="1.2" fill="none"/>
+      <!-- Clear PET Cup Outer Rim & Contoured Outline -->
+      <path d="M 18 30 L 20 46 L 22 48 L 30 144 Q 31 147 35 147 L 85 147 Q 89 147 90 144 L 98 48 L 100 46 L 102 30 Z" stroke="rgba(212,175,55,0.75)" stroke-width="1.2" fill="none"/>
       
+      <!-- Horizontal Measurement Fill Marks (Exact feature from Image 2) -->
+      <line x1="23" y1="64" x2="36" y2="64" stroke="rgba(255,255,255,0.6)" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="84" y1="64" x2="97" y2="64" stroke="rgba(255,255,255,0.6)" stroke-width="1.2" stroke-linecap="round"/>
+      
+      <line x1="25" y1="92" x2="34" y2="92" stroke="rgba(255,255,255,0.5)" stroke-width="1.1" stroke-linecap="round"/>
+      <line x1="86" y1="92" x2="95" y2="92" stroke="rgba(255,255,255,0.5)" stroke-width="1.1" stroke-linecap="round"/>
+
+      <line x1="27" y1="120" x2="33" y2="120" stroke="rgba(255,255,255,0.4)" stroke-width="1.0" stroke-linecap="round"/>
+      <line x1="87" y1="120" x2="93" y2="120" stroke="rgba(255,255,255,0.4)" stroke-width="1.0" stroke-linecap="round"/>
+
       <!-- Cup Bottom Ridge -->
       <path d="M 32 144 Q 60 147 88 144" stroke="rgba(255,255,255,0.6)" stroke-width="1.2" fill="none"/>
 
-      <!-- Diagonal Takeaway Gold Straw -->
-      <line x1="72" y1="8" x2="48" y2="92" stroke="#d4af37" stroke-width="4.5" stroke-linecap="round"/>
-      <line x1="72" y1="8" x2="48" y2="92" stroke="#f5d36e" stroke-width="1.2" stroke-linecap="round"/>
+      <!-- ======================================================== -->
+      <!-- ICONIC ASYMMETRICAL RAISED SIPPER LID (Exact Image 2 Lid) -->
+      <!-- ======================================================== -->
+      <!-- Locking Rim that clicks over rolled cup rim -->
+      <path d="M 14 28 L 17 33 Q 60 37 103 33 L 106 28 Q 60 31 14 28 Z" fill="rgba(235,246,255,0.45)" stroke="rgba(255,255,255,0.85)" stroke-width="0.8"/>
+      
+      <!-- Asymmetrical Ergonomic Raised Dome Curve (Higher on Right with Sipping Spout) -->
+      <path d="M 15 28 C 15 22 26 18 46 20 C 65 22 75 10 93 10 C 103 10 106 18 106 28 Z" fill="rgba(230,245,255,0.38)"/>
+      <path d="M 15 28 C 15 22 26 18 46 20 C 65 22 75 10 93 10 C 103 10 106 18 106 28" stroke="rgba(255,255,255,0.95)" stroke-width="1.3" fill="none"/>
 
-      <!-- Clear Flat Lid with Rolled Rim -->
-      <path d="M 14 26 L 17 31 Q 60 35 103 31 L 106 26 Q 60 30 14 26 Z" fill="rgba(240,248,255,0.5)" stroke="rgba(255,255,255,0.8)" stroke-width="0.8"/>
-      <ellipse cx="60" cy="26" rx="46" ry="4.5" fill="rgba(235,248,255,0.4)" stroke="rgba(255,255,255,0.9)" stroke-width="0.8"/>
-      <ellipse cx="60" cy="25.5" rx="24" ry="2.5" fill="rgba(200,230,250,0.5)" stroke="rgba(255,255,255,0.8)" stroke-width="0.6"/>
+      <!-- Contoured Sipping Spout Opening (Raised on the Right Peak) -->
+      <ellipse cx="91" cy="14" rx="4.8" ry="2.2" fill="rgba(195,225,245,0.6)" stroke="#ffffff" stroke-width="0.8"/>
+
+      <!-- Gloss Reflection Line on the Asymmetrical Curve -->
+      <path d="M 32 23 Q 55 24 72 17" stroke="rgba(255,255,255,0.7)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
     </svg>
   `;
 }
