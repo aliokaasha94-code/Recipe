@@ -16,7 +16,7 @@ const I18N = {
     toggleBtn: "English",
     searchPlaceholder: "ابحث في مشروبات المحطة...",
     sopBtn: "عرض التشغيل",
-    sopArrow: "←",
+    sopArrow: "",
     checklistBtn: "نظافة المحطة",
     sectionItems: "صنف",
     noResultsTitle: "لم يتم العثور على أي صنف",
@@ -38,37 +38,52 @@ const I18N = {
     metrics: {
       coffeeGram: "وزن البن",
       coffee: "وزن البن",
+      blend: "التوليفة",
+      roast: "درجة التحميص",
+      spices: "البهارات والتحويجة",
       extractionMl: "الاستخلاص",
       milk: "الحليب",
       water: "الماء",
       condensedMilk: "حليب مكثف",
+      cream: "كريمة خفق",
+      iceCream: "آيس كريم",
       sauce: "الصوص",
       sauceBatata: "صوص بطاطا",
       sauceCaramel: "صوص كراميل",
       syrup: "السيرب",
       powder: "البودر",
-      ice: "الثلج",
-      iceCream: "آيس كريم",
-      cream: "كريمة خفق",
-      puree: "بيوريه",
-      crush: "كراش",
+      puree: "بيوريه الفاكهة",
+      freshJuice: "عصير فريش",
+      fresh: "فواكه فريش",
+      freshIngredients: "المكونات الطازجة",
+      commonIngredients: "مكونات مشتركة",
+      soda: "صودا غازية",
+      blueCuracao: "بلو كوراساو",
+      ice: "مكعبات الثلج",
+      crush: "ثلج مجروش",
       chips: "شوكليت شيبس",
+      toppings: "توبينج وإضافات",
+      garnish: "التزيين والجارنيش",
+      biscuitGarnish: "بسكويت التزيين",
+      specialAdd: "إضافات مميزة",
       starch: "نشا",
-      temp: "الحرارة",
-      time: "الوقت",
-      timer: "المؤقت",
-      ratio: "الريشيو",
-      cup: "الكوب",
       flour: "دقيق",
       eggs: "بيض",
       sugar: "سكر",
       butter: "زبدة",
       oil: "زيت",
-      tang: "تانج",
+      tang: "بودرة تانج",
       bakingPowder: "بيكنج بودر",
-      yieldCount: "الإنتاج",
+      vanilla: "فانيليا",
+      temp: "درجة الحرارة",
+      time: "وقت التحضير",
+      timer: "المؤقت",
+      steepTime: "وقت النقع",
+      ratio: "الريشيو",
+      cup: "الكوب المعتمد",
+      yieldCount: "الإنتاج المتوقع",
       batterDose: "صب العجين",
-      miniPortion: "الكمية"
+      miniPortion: "حجم الحصة"
     }
   },
   en: {
@@ -76,7 +91,7 @@ const I18N = {
     toggleBtn: "عربي",
     searchPlaceholder: "Search station drinks & SOP...",
     sopBtn: "View SOP",
-    sopArrow: "→",
+    sopArrow: "",
     checklistBtn: "Checklist",
     sectionItems: "Items",
     noResultsTitle: "No Drinks Found",
@@ -98,27 +113,35 @@ const I18N = {
     metrics: {
       coffeeGram: "Coffee Dose",
       coffee: "Coffee Dose",
+      blend: "Coffee Blend",
+      roast: "Roast Level",
+      spices: "Spices & Cardamom",
       extractionMl: "Yield",
       milk: "Milk",
       water: "Water",
       condensedMilk: "Condensed Milk",
+      cream: "Whipping Cream",
+      iceCream: "Ice Cream",
       sauce: "Sauce",
       sauceBatata: "Sweet Potato Sauce",
       sauceCaramel: "Caramel Sauce",
       syrup: "Syrup",
       powder: "Powder",
-      ice: "Ice",
-      iceCream: "Ice Cream",
-      cream: "Whipping Cream",
       puree: "Fruit Puree",
+      freshJuice: "Fresh Juice",
+      fresh: "Fresh Fruit",
+      freshIngredients: "Fresh Ingredients",
+      commonIngredients: "Common Ingredients",
+      soda: "Soda",
+      blueCuracao: "Blue Curacao",
+      ice: "Ice Cubes",
       crush: "Crushed Ice",
       chips: "Chocolate Chips",
+      toppings: "Toppings",
+      garnish: "Garnish",
+      biscuitGarnish: "Biscuit Garnish",
+      specialAdd: "Special Additions",
       starch: "Starch",
-      temp: "Temperature",
-      time: "Time",
-      timer: "Timer",
-      ratio: "Brew Ratio",
-      cup: "Cup Size",
       flour: "Flour",
       eggs: "Eggs",
       sugar: "Sugar",
@@ -126,9 +149,16 @@ const I18N = {
       oil: "Oil",
       tang: "Tang Powder",
       bakingPowder: "Baking Powder",
-      yieldCount: "Yield",
+      vanilla: "Vanilla",
+      temp: "Temperature",
+      time: "Brew Time",
+      timer: "Timer",
+      steepTime: "Steep Time",
+      ratio: "Brew Ratio",
+      cup: "Approved Cup",
+      yieldCount: "Expected Yield",
       batterDose: "Batter Pour",
-      miniPortion: "Portion"
+      miniPortion: "Portion Size"
     }
   }
 };
@@ -360,7 +390,6 @@ class StationApp {
           <div class="landscape-action-row">
             <div class="btn-card-sop">
               <span>${t.sopBtn}</span>
-              <span class="btn-sop-arrow">${t.sopArrow}</span>
             </div>
           </div>
         </div>
@@ -466,7 +495,7 @@ class StationApp {
       stepsHtml = `
         <div class="sop-section-block">
           <div class="sop-section-header">
-            <span class="sop-section-num">[ ${isAr ? '٢' : '2'} ]</span>
+            <span class="sop-section-badge">2</span>
             <h4 class="sop-section-title">${t.secSteps}</h4>
           </div>
           <div class="sop-steps-list">
@@ -488,7 +517,7 @@ class StationApp {
       tipHtml = `
         <div class="sop-section-block">
           <div class="sop-section-header">
-            <span class="sop-section-num">[ ${isAr ? '٣' : '3'} ]</span>
+            <span class="sop-section-badge">3</span>
             <h4 class="sop-section-title">${t.secTip}</h4>
           </div>
           <div class="sop-tip-card">
@@ -509,7 +538,7 @@ class StationApp {
       rescueHtml = `
         <div class="sop-section-block">
           <div class="sop-section-header">
-            <span class="sop-section-num">[ ${isAr ? '٤' : '4'} ]</span>
+            <span class="sop-section-badge">4</span>
             <h4 class="sop-section-title">${t.secRescue}</h4>
           </div>
           <div class="sop-rescue-box">
@@ -549,10 +578,10 @@ class StationApp {
         <!-- Section [1]: Standard Recipe & Dosing -->
         <div class="sop-section-block">
           <div class="sop-section-header">
-            <span class="sop-section-num">[ ${isAr ? '١' : '1'} ]</span>
+            <span class="sop-section-badge">1</span>
             <h4 class="sop-section-title">${t.secMetrics}</h4>
           </div>
-          <div class="sop-metrics-grid">
+          <div class="sop-metrics-stack">
             ${metricsHtml}
           </div>
         </div>
@@ -582,28 +611,52 @@ class StationApp {
 
   renderMetricsFromObject(obj, isAr) {
     const t = I18N[this.currentLang];
-    const metricKeys = [
-      'coffeeGram', 'coffee', 'extractionMl', 'milk', 'water', 'condensedMilk',
-      'sauce', 'sauceBatata', 'sauceCaramel', 'syrup', 'powder', 'ice',
-      'iceCream', 'cream', 'puree', 'crush', 'chips', 'temp', 'time',
-      'timer', 'ratio', 'cup', 'flour', 'eggs', 'sugar', 'butter', 'oil'
+    // Barista sequential preparation workflow order:
+    const orderedKeys = [
+      // 1. Preparation & Dosing
+      'coffeeGram', 'coffee', 'blend', 'roast', 'spices', 'flour', 'eggs', 'sugar', 'butter', 'oil', 'bakingPowder', 'vanilla', 'starch',
+      // 2. Extraction & Brewing
+      'extractionMl', 'ratio', 'time', 'timer', 'steepTime', 'temp',
+      // 3. Dairy, Sauces, Syrups & Additions
+      'water', 'milk', 'condensedMilk', 'cream', 'iceCream', 'sauce', 'sauceBatata', 'sauceCaramel',
+      'syrup', 'powder', 'puree', 'freshJuice', 'fresh', 'freshIngredients', 'commonIngredients',
+      'soda', 'blueCuracao', 'tang', 'ice', 'crush', 'chips',
+      // 4. Garnishes & Finishing
+      'toppings', 'garnish', 'biscuitGarnish', 'specialAdd',
+      // 5. Serving & Cup
+      'cup', 'yieldCount', 'batterDose', 'miniPortion'
     ];
 
-    let itemsHtml = '';
-    metricKeys.forEach(key => {
-      const val = obj[key];
-      if (val && val !== '-') {
-        const label = t.metrics[key] || key;
-        itemsHtml += `
-          <div class="sop-metric-tile">
-            <span class="sop-metric-label">${label}</span>
-            <strong class="sop-metric-val">${val}</strong>
-          </div>
-        `;
+    const presentKeys = orderedKeys.filter(key => obj[key] && obj[key] !== '-');
+
+    // Include any extra attributes if present
+    const excludedKeys = new Set([
+      'id', 'name', 'name_en', 'category', 'category_en', 'notes',
+      'steps', 'steps_en', 'proTip', 'proTip_en', 'rescue', 'sizes',
+      'single', 'double', 'sizeLabel'
+    ]);
+
+    Object.keys(obj).forEach(k => {
+      if (!orderedKeys.includes(k) && !excludedKeys.has(k) && obj[k] && obj[k] !== '-' && !presentKeys.includes(k)) {
+        presentKeys.push(k);
       }
     });
 
-    return itemsHtml;
+    if (presentKeys.length === 0) return '';
+
+    return presentKeys.map((key, idx) => {
+      const label = t.metrics[key] || key;
+      const val = obj[key];
+      return `
+        <div class="sop-metric-row">
+          <div class="sop-metric-info">
+            <span class="sop-metric-order-num">${idx + 1}</span>
+            <span class="sop-metric-label">${label}</span>
+          </div>
+          <strong class="sop-metric-val">${val}</strong>
+        </div>
+      `;
+    }).join('');
   }
 
   initEvents() {

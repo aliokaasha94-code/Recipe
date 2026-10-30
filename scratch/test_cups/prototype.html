@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>3D Cup Architecture Verification</title>
+  <style>
+    body {
+      background: #000000;
+      color: #ffffff;
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 30px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #08080a;
+      border: 1.5px solid #d4af37;
+      border-radius: 16px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.7);
+    }
+    .art-wrap {
+      width: 86px;
+      height: 112px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, rgba(212, 175, 55, 0.08) 0%, rgba(0, 0, 0, 0.7) 80%);
+      border-radius: 12px;
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      padding: 4px;
+    }
+    .art-wrap svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.95));
+    }
+    .info {
+      flex: 1;
+    }
+    .title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 2px;
+    }
+    .en {
+      font-family: monospace;
+      font-size: 0.72rem;
+      color: #d4af37;
+      margin-bottom: 6px;
+    }
+    .steps {
+      display: flex;
+      gap: 4px;
+      font-size: 0.68rem;
+      color: #aaa;
+    }
+    .step-pill {
+      background: #141418;
+      border: 1px solid #333;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="text-align:center; color:#d4af37; margin-bottom:24px;">معاينة الكوبايات الـ 3D المعمارية (طبقاً للريفرنس)</h1>
+  <div class="grid" id="test-grid"></div>
+
+  <script>
+    // 3D CUP RENDER ENGINE
+    let uidCounter = 0;
+    function getNextId() {
+      return 'cup_3d_' + (++uidCounter);
+    }
+
+    // 1. HOT 3D TAKEAWAY CUP (The Reference Model)
+    function render3DHotCup(options) {
+      const id = getNextId();
+      const layers = options.layers || [];
+      const topStyle = options.topStyle || 'foam';
+      
+      const winTop = 36;
+      const winBottom = 140;
+      const totalH = winBottom - winTop;
+
+      let currentBottom = winBottom;
+      let layersHtml = '';
+
+      layers.forEach((l, idx) => {
+        const h = (l.pct / 100) * totalH;
+        const currentTop = currentBottom - h;
+        const gradId = `${id}_layer_${idx}`;
+
+        layersHtml += `
+          <linearGradient id="${gradId}" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="${l.col}" stop-opacity="0.88"/>
+            <stop offset="35%" stop-color="${l.colLight || l.col}" stop-opacity="1"/>
+            <stop offset="100%" stop-color="${l.colDark || l.col}" stop-opacity="0.95"/>
+          </linearGradient>
+
+          <path d="M 24 ${currentTop} Q 60 ${currentTop + 3.8} 96 ${currentTop} L 96 ${currentBottom} Q 60 ${currentBottom + 3.8} 24 ${currentBottom} Z" fill="url(#${gradId})"/>
+          <path d="M 25 ${currentTop} Q 60 ${currentTop + 3.8} 95 ${currentTop}" stroke="rgba(255,255,255,0.35)" stroke-width="0.8" fill="none"/>
+        `;
+        currentBottom = currentTop;
+      });
+
+      let decorHtml = '';
+      if (topStyle === 'cocoa') {
+        decorHtml = `
+          <ellipse cx="60" cy="${currentBottom + 2}" rx="26" ry="4" fill="#3a1b0b" opacity="0.85"/>
+          <circle cx="52" cy="${currentBottom + 2}" r="1" fill="#200d04"/>
+          <circle cx="64" cy="${currentBottom + 1.5}" r="1.2" fill="#200d04"/>
+          <circle cx="71" cy="${currentBottom + 2.5}" r="0.9" fill="#200d04"/>
+          <circle cx="45" cy="${currentBottom + 2.5}" r="0.8" fill="#200d04"/>
+        `;
+      } else if (topStyle === 'caramel') {
+        decorHtml = `
+          <path d="M 38 ${currentBottom + 2} Q 60 ${currentBottom - 1} 82 ${currentBottom + 2}" stroke="#d97706" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+          <path d="M 44 ${currentBottom + 4} Q 60 ${currentBottom + 1} 76 ${currentBottom + 4}" stroke="#b45309" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+          <path d="M 48 ${currentBottom} L 54 ${currentBottom + 5}" stroke="#d97706" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M 64 ${currentBottom} L 70 ${currentBottom + 5}" stroke="#d97706" stroke-width="1.8" stroke-linecap="round"/>
+        `;
+      } else if (topStyle === 'crema') {
+        decorHtml = `
+          <ellipse cx="60" cy="${currentBottom + 1.5}" rx="28" ry="4" fill="#d97706" opacity="0.95"/>
+          <ellipse cx="60" cy="${currentBottom + 1.5}" rx="22" ry="3" fill="#b45309" opacity="0.7"/>
+          <circle cx="54" cy="${currentBottom + 1.5}" r="1.2" fill="#f59e0b"/>
+          <circle cx="67" cy="${currentBottom + 2}" r="1" fill="#f59e0b"/>
+        `;
+      }
+
+      return `
+        <svg viewBox="0 0 120 160" fill="none" class="drink-art-svg">
+          <defs>
+            <filter id="${id}_blur" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="2.5"/>
+            </filter>
+
+            <linearGradient id="${id}_paper" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#b8b0a2"/>
+              <stop offset="12%" stop-color="#ded8cc"/>
+              <stop offset="28%" stop-color="#ffffff"/>
+              <stop offset="70%" stop-color="#eee9df"/>
+              <stop offset="90%" stop-color="#c8c0b2"/>
+              <stop offset="100%" stop-color="#9e9688"/>
+            </linearGradient>
+
+            <linearGradient id="${id}_lid_cap" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#4a2e20"/>
+              <stop offset="30%" stop-color="#734a35"/>
+              <stop offset="60%" stop-color="#8c5d45"/>
+              <stop offset="85%" stop-color="#5a3726"/>
+              <stop offset="100%" stop-color="#361f14"/>
+            </linearGradient>
+
+            <linearGradient id="${id}_lid_rim" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#382015"/>
+              <stop offset="25%" stop-color="#69422f"/>
+              <stop offset="50%" stop-color="#80533c"/>
+              <stop offset="80%" stop-color="#4d2c1d"/>
+              <stop offset="100%" stop-color="#28140a"/>
+            </linearGradient>
+
+            <linearGradient id="${id}_cyl" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="rgba(0,0,0,0.48)"/>
+              <stop offset="18%" stop-color="rgba(255,255,255,0.0)"/>
+              <stop offset="32%" stop-color="rgba(255,255,255,0.22)"/>
+              <stop offset="65%" stop-color="rgba(0,0,0,0.0)"/>
+              <stop offset="88%" stop-color="rgba(0,0,0,0.32)"/>
+              <stop offset="100%" stop-color="rgba(0,0,0,0.58)"/>
+            </linearGradient>
+
+            <clipPath id="${id}_cutaway">
+              <path d="M 24 35 Q 60 39 96 35 L 86 142 Q 60 146 34 142 Z"/>
+            </clipPath>
+          </defs>
+
+          <!-- 1. Soft Floor Shadow -->
+          <ellipse cx="60" cy="153" rx="34" ry="5.5" fill="rgba(0,0,0,0.85)" filter="url(#${id}_blur)"/>
+
+          <!-- 2. Outer 3D Paper Cup Body -->
+          <path d="M 20 32 L 32 145 Q 33 148 37 148 L 83 148 Q 87 148 88 145 L 100 32 Z" fill="url(#${id}_paper)"/>
+          <path d="M 31 144 Q 60 148 89 144 L 88 148 Q 60 152 32 148 Z" fill="#8a8274"/>
+
+          <!-- 3. Inside Cutaway Window: Liquids & 3D Shading -->
+          <g clip-path="url(#${id}_cutaway)">
+            <rect x="20" y="32" width="80" height="116" fill="#181310"/>
+            ${layersHtml}
+            ${decorHtml}
+            <rect x="20" y="32" width="80" height="116" fill="url(#${id}_cyl)"/>
+            <path d="M 24 35 L 34 142" stroke="rgba(0,0,0,0.4)" stroke-width="1.8"/>
+            <path d="M 96 35 L 86 142" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+            <path d="M 24 35 Q 60 39 96 35" stroke="rgba(0,0,0,0.5)" stroke-width="2"/>
+          </g>
+
+          <!-- 4. Subtle Gold Outline Border around Cutaway -->
+          <path d="M 24 35 Q 60 39 96 35 L 86 142 Q 60 146 34 142 Z" stroke="rgba(212,175,55,0.6)" stroke-width="1" fill="none"/>
+
+          <!-- 5. 3D Takeaway Lid Drop Shadow onto Cup -->
+          <path d="M 19 33 Q 60 38 101 33 L 100 38 Q 60 43 20 38 Z" fill="rgba(0,0,0,0.45)"/>
+
+          <!-- 6. 3D Realistic Mocha Takeaway Lid -->
+          <path d="M 16 28 L 19 33 Q 60 37 101 33 L 104 28 Q 60 32 16 28 Z" fill="url(#${id}_lid_rim)"/>
+          <ellipse cx="60" cy="28" rx="44" ry="4.5" fill="url(#${id}_lid_cap)"/>
+          <ellipse cx="60" cy="27.5" rx="43.5" ry="4" stroke="rgba(255,255,255,0.4)" stroke-width="0.8" fill="none"/>
+
+          <path d="M 26 21 L 28 27 Q 60 30 92 27 L 94 21 Q 60 24 26 21 Z" fill="url(#${id}_lid_rim)"/>
+          <ellipse cx="60" cy="21" rx="34" ry="3.5" fill="url(#${id}_lid_cap)"/>
+
+          <ellipse cx="60" cy="15" rx="27" ry="3.2" fill="url(#${id}_lid_cap)"/>
+          <ellipse cx="60" cy="14.5" rx="26.5" ry="2.8" stroke="rgba(255,255,255,0.35)" stroke-width="0.7" fill="none"/>
+          <ellipse cx="40" cy="15" rx="5" ry="1.8" fill="#140a05" stroke="#734a35" stroke-width="0.7"/>
+        </svg>
+      `;
+    }
+
+    // 2. CLEAR ICED 3D CUP
+    function render3DIcedCup(options) {
+      const id = getNextId();
+      const layers = options.layers || [];
+      const drizzleCol = options.drizzleCol || null;
+      
+      const winTop = 32;
+      const winBottom = 142;
+      const totalH = winBottom - winTop;
+
+      let currentBottom = winBottom;
+      let layersHtml = '';
+
+      layers.forEach((l, idx) => {
+        const h = (l.pct / 100) * totalH;
+        const currentTop = currentBottom - h;
+        const gradId = `${id}_iced_lay_${idx}`;
+
+        layersHtml += `
+          <linearGradient id="${gradId}" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="${l.col}" stop-opacity="0.85"/>
+            <stop offset="35%" stop-color="${l.colLight || l.col}" stop-opacity="0.95"/>
+            <stop offset="100%" stop-color="${l.colDark || l.col}" stop-opacity="0.9"/>
+          </linearGradient>
+
+          <path d="M 22 ${currentTop} Q 60 ${currentTop + 4} 98 ${currentTop} L 98 ${currentBottom} Q 60 ${currentBottom + 4} 22 ${currentBottom} Z" fill="url(#${gradId})"/>
+          <path d="M 23 ${currentTop} Q 60 ${currentTop + 4} 97 ${currentTop}" stroke="rgba(255,255,255,0.4)" stroke-width="0.8" fill="none"/>
+        `;
+        currentBottom = currentTop;
+      });
+
+      let drizzleHtml = '';
+      if (drizzleCol) {
+        drizzleHtml = `
+          <path d="M 32 40 Q 36 68 33 98 Q 30 115 32 130" stroke="${drizzleCol}" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.9"/>
+          <path d="M 88 38 Q 82 65 86 102 Q 88 120 85 135" stroke="${drizzleCol}" stroke-width="3.2" stroke-linecap="round" fill="none" opacity="0.9"/>
+          <path d="M 48 46 Q 52 74 49 106" stroke="${drizzleCol}" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0.8"/>
+          <path d="M 72 44 Q 68 70 71 96" stroke="${drizzleCol}" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.8"/>
+        `;
+      }
+
+      return `
+        <svg viewBox="0 0 120 160" fill="none" class="drink-art-svg">
+          <defs>
+            <filter id="${id}_blur" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="2.5"/>
+            </filter>
+
+            <linearGradient id="${id}_glass" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.45)"/>
+              <stop offset="12%" stop-color="rgba(255,255,255,0.12)"/>
+              <stop offset="35%" stop-color="rgba(255,255,255,0.35)"/>
+              <stop offset="65%" stop-color="rgba(255,255,255,0.05)"/>
+              <stop offset="90%" stop-color="rgba(255,255,255,0.2)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0.5)"/>
+            </linearGradient>
+
+            <clipPath id="${id}_iced_clip">
+              <path d="M 22 28 L 33 144 Q 34 147 38 147 L 82 147 Q 86 147 87 144 L 98 28 Z"/>
+            </clipPath>
+          </defs>
+
+          <!-- Drop Shadow -->
+          <ellipse cx="60" cy="153" rx="34" ry="5.5" fill="rgba(0,0,0,0.85)" filter="url(#${id}_blur)"/>
+
+          <g clip-path="url(#${id}_iced_clip)">
+            <rect x="20" y="26" width="80" height="124" fill="#14110f"/>
+            ${layersHtml}
+            ${drizzleHtml}
+
+            <!-- 3D Ice Cubes -->
+            <g opacity="0.95">
+              <rect x="36" y="36" width="18" height="17" rx="3" transform="rotate(-12 45 44)" fill="rgba(235,248,255,0.55)" stroke="rgba(255,255,255,0.95)" stroke-width="1.2"/>
+              <rect x="65" y="38" width="19" height="16" rx="3" transform="rotate(15 74 46)" fill="rgba(235,248,255,0.5)" stroke="rgba(255,255,255,0.9)" stroke-width="1.2"/>
+              <rect x="46" y="60" width="18" height="16" rx="3" transform="rotate(8 55 68)" fill="rgba(235,248,255,0.4)" stroke="rgba(255,255,255,0.85)" stroke-width="1"/>
+              <rect x="68" y="66" width="16" height="15" rx="3" transform="rotate(-10 76 73)" fill="rgba(235,248,255,0.38)" stroke="rgba(255,255,255,0.8)" stroke-width="1"/>
+            </g>
+
+            <rect x="20" y="26" width="80" height="124" fill="url(#${id}_glass)"/>
+          </g>
+
+          <path d="M 22 28 L 33 144 Q 34 147 38 147 L 82 147 Q 86 147 87 144 L 98 28 Z" fill="none" stroke="#d4af37" stroke-width="1.2"/>
+          <path d="M 27 34 L 36 140" stroke="rgba(255,255,255,0.7)" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M 31 36 L 39 138" stroke="rgba(255,255,255,0.3)" stroke-width="1.2" stroke-linecap="round"/>
+
+          <rect x="18" y="25" width="84" height="4.5" rx="2" fill="rgba(255,255,255,0.65)" stroke="#d4af37" stroke-width="0.9"/>
+          <path d="M 16 26 L 20 18 Q 60 15 100 18 L 104 26 Z" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.8)" stroke-width="1"/>
+          <line x1="59" y1="5" x2="64" y2="34" stroke="#d4af37" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="60" y1="5" x2="64.5" y2="34" stroke="#fef08a" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      `;
+    }
+
+    // 3. 4oz GIBRALTAR GLASS
+    function render3DGibraltarGlass() {
+      const id = getNextId();
+      return `
+        <svg viewBox="0 0 120 160" fill="none" class="drink-art-svg">
+          <defs>
+            <filter id="${id}_blur" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="2.5"/>
+            </filter>
+            <clipPath id="${id}_glass_clip">
+              <path d="M 24 44 L 34 130 Q 36 142 44 142 L 76 142 Q 84 142 86 130 L 96 44 Z"/>
+            </clipPath>
+          </defs>
+
+          <ellipse cx="60" cy="148" rx="28" ry="4.5" fill="rgba(0,0,0,0.85)" filter="url(#${id}_blur)"/>
+
+          <g clip-path="url(#${id}_glass_clip)">
+            <!-- 50% Espresso -->
+            <path d="M 30 90 Q 60 94 90 90 L 86 130 Q 60 134 34 130 Z" fill="#291206"/>
+            <path d="M 30 90 Q 60 94 90 90" stroke="#c2680f" stroke-width="2.5"/>
+
+            <!-- 50% Steamed Milk -->
+            <path d="M 24 48 Q 60 52 96 48 L 90 90 Q 60 94 30 90 Z" fill="#fcf6ec"/>
+            <ellipse cx="60" cy="48" rx="36" ry="4.5" fill="#ffffff" stroke="#f3ece0" stroke-width="0.8"/>
+
+            <!-- Heavy Base -->
+            <rect x="30" y="130" width="60" height="15" fill="rgba(255,255,255,0.22)" stroke="rgba(255,255,255,0.4)" stroke-width="0.9"/>
+          </g>
+
+          <path d="M 24 44 L 34 130 Q 36 142 44 142 L 76 142 Q 84 142 86 130 L 96 44 Z" fill="none" stroke="#d4af37" stroke-width="1.3"/>
+          <line x1="38" y1="48" x2="44" y2="130" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+          <line x1="52" y1="48" x2="54" y2="130" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+          <line x1="68" y1="48" x2="66" y2="130" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+          <line x1="82" y1="48" x2="76" y2="130" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+          <ellipse cx="60" cy="44" rx="36" ry="4.5" fill="none" stroke="#d4af37" stroke-width="1.2"/>
+        </svg>
+      `;
+    }
+
+    // TEST ITEMS LIST
+    const testItems = [
+      {
+        name: 'كورتادو إسباني',
+        en: 'SPECIALTY CORTADO',
+        steps: ['1. دبل إسبريسو 50%', '2. حليب دافئ 50%', '3. كاس جبل طارق'],
+        svg: render3DGibraltarGlass()
+      },
+      {
+        name: 'لاتيه ساخن كلاسيك',
+        en: 'HOT CAFFE LATTE',
+        steps: ['1. دبل إسبريسو', '2. حليب مبخر 65°C', '3. فوم ناعم'],
+        svg: render3DHotCup({
+          layers: [
+            { pct: 35, col: '#2d1407', colLight: '#45200c', colDark: '#1e0c03' },
+            { pct: 50, col: '#f7eee3', colLight: '#ffffff', colDark: '#ece1d2' },
+            { pct: 15, col: '#ffffff', colLight: '#ffffff', colDark: '#f4ede4' }
+          ],
+          topStyle: 'foam'
+        })
+      },
+      {
+        name: 'كابتشينو إيطالي',
+        en: 'ITALIAN CAPPUCCINO',
+        steps: ['1. إسبريسو سنجل', '2. حليب مبخر 1/3', '3. فوم كثيف + كاكاو'],
+        svg: render3DHotCup({
+          layers: [
+            { pct: 33, col: '#2d1407', colLight: '#45200c', colDark: '#1e0c03' },
+            { pct: 33, col: '#f7eee3', colLight: '#ffffff', colDark: '#ece1d2' },
+            { pct: 34, col: '#ffffff', colLight: '#ffffff', colDark: '#f4ede4' }
+          ],
+          topStyle: 'cocoa'
+        })
+      },
+      {
+        name: 'سبانيش لاتيه ساخن',
+        en: 'HOT SPANISH LATTE',
+        steps: ['1. حليب مكثف محلى', '2. دبل إسبريسو', '3. حليب مبخر'],
+        svg: render3DHotCup({
+          layers: [
+            { pct: 25, col: '#fef3c7', colLight: '#fffbeb', colDark: '#fde68a' },
+            { pct: 35, col: '#2b1307', colLight: '#48220e', colDark: '#1d0b03' },
+            { pct: 30, col: '#f7eee3', colLight: '#ffffff', colDark: '#ede2d3' },
+            { pct: 10, col: '#ffffff', colLight: '#ffffff', colDark: '#f5eee5' }
+          ],
+          topStyle: 'foam'
+        })
+      },
+      {
+        name: 'بيستاشيو لاتيه ساخن',
+        en: 'HOT PISTACHIO LATTE',
+        steps: ['1. صوص بيستاشيو بالكوب', '2. دبل إسبريسو', '3. حليب + فستق'],
+        svg: render3DHotCup({
+          layers: [
+            { pct: 25, col: '#4d7c0f', colLight: '#65a30d', colDark: '#3f6212' },
+            { pct: 35, col: '#2b1307', colLight: '#48220e', colDark: '#1d0b03' },
+            { pct: 30, col: '#f7eee3', colLight: '#ffffff', colDark: '#ede2d3' },
+            { pct: 10, col: '#ffffff', colLight: '#ffffff', colDark: '#f5eee5' }
+          ],
+          topStyle: 'foam'
+        })
+      },
+      {
+        name: 'أمريكانو ساخن',
+        en: 'HOT AMERICANO',
+        steps: ['1. ماء ساخن 92°C', '2. دبل إسبريسو فوق الماء', '3. تقديم الكريما'],
+        svg: render3DHotCup({
+          layers: [
+            { pct: 30, col: '#240f04', colLight: '#3d1b09', colDark: '#180802' },
+            { pct: 70, col: '#8dc5dd', colLight: '#b4def0', colDark: '#6dafcb' }
+          ],
+          topStyle: 'crema'
+        })
+      },
+      {
+        name: 'آيس سبانيش لاتيه',
+        en: 'ICED SPANISH LATTE',
+        steps: ['1. حليب مكثف محلى', '2. حليب بارد + ثلج', '3. دبل إسبريسو فوق الثلج'],
+        svg: render3DIcedCup({
+          layers: [
+            { pct: 26, col: '#fff8eb', colLight: '#ffffff', colDark: '#fde68a' },
+            { pct: 40, col: '#f7eee3', colLight: '#ffffff', colDark: '#ede2d3' },
+            { pct: 34, col: '#241005', colLight: '#421f0b', colDark: '#170802' }
+          ],
+          drizzleCol: '#b45309'
+        })
+      },
+      {
+        name: 'آيس كراميل ماكياتو',
+        en: 'ICED CARAMEL MACCHIATO',
+        steps: ['1. حليب وسيرب فانيليا', '2. مكعبات ثلج وفيرة', '3. دبل إسبريسو + كراميل'],
+        svg: render3DIcedCup({
+          layers: [
+            { pct: 46, col: '#fcf8f0', colLight: '#ffffff', colDark: '#f4ece0' },
+            { pct: 40, col: '#291206', colLight: '#47220e', colDark: '#1a0902' },
+            { pct: 14, col: '#b45309', colLight: '#d97706', colDark: '#92400e' }
+          ],
+          drizzleCol: '#b45309'
+        })
+      },
+      {
+        name: 'آيس بيستاشيو لاتيه',
+        en: 'ICED PISTACHIO LATTE',
+        steps: ['1. صوص بيستاشيو بالقاع', '2. حليب بارد + ثلج', '3. دبل إسبريسو'],
+        svg: render3DIcedCup({
+          layers: [
+            { pct: 28, col: '#4d7c0f', colLight: '#65a30d', colDark: '#3f6212' },
+            { pct: 38, col: '#f7eee3', colLight: '#ffffff', colDark: '#ede2d3' },
+            { pct: 34, col: '#261105', colLight: '#441f0b', colDark: '#180802' }
+          ],
+          drizzleCol: '#3f6212'
+        })
+      }
+    ];
+
+    const grid = document.getElementById('test-grid');
+    grid.innerHTML = testItems.map(item => `
+      <div class="card">
+        <div class="art-wrap">
+          ${item.svg}
+        </div>
+        <div class="info">
+          <div class="title">${item.name}</div>
+          <div class="en">${item.en}</div>
+          <div class="steps">
+            ${item.steps.map(s => `<span class="step-pill">${s}</span>`).join('')}
+          </div>
+        </div>
+      </div>
+    `).join('');
+  </script>
+</body>
+</html>

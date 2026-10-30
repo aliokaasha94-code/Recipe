@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Noto+Kufi+Arabic:wght@400;500;600;700;800;900&family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap');
 
 :root {
   /* Emad Afandi Royal Gold Palette */
@@ -34,8 +34,9 @@
   --accent-blue: #38bdf8;
 
   /* Fonts */
-  --font-arabic: 'Noto Kufi Arabic', 'Cairo', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Outfit', monospace;
+  --font-arabic: 'Cairo', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-latin: 'Outfit', 'Cairo', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Outfit', 'Cairo', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Radius */
   --radius-sm: 8px;
@@ -273,7 +274,7 @@ body {
 }
 
 .cat-count-badge {
-  font-family: var(--font-mono);
+  font-family: var(--font-latin);
   font-size: 0.70rem;
   opacity: 0.85;
   background: rgba(212, 175, 55, 0.15);
@@ -312,7 +313,7 @@ body {
 .section-items-badge {
   font-size: 0.72rem;
   color: var(--gold-soft);
-  font-family: var(--font-mono);
+  font-family: var(--font-arabic);
   font-weight: 700;
 }
 
@@ -413,7 +414,7 @@ body {
   color: var(--gold-bright);
   font-size: 0.65rem;
   font-weight: 800;
-  font-family: var(--font-mono);
+  font-family: var(--font-latin);
   padding: 2px 7px;
   border-radius: 5px;
   white-space: nowrap;
@@ -421,9 +422,9 @@ body {
 }
 
 .landscape-drink-en {
-  font-size: 0.68rem;
+  font-size: 0.70rem;
   color: var(--gold-soft);
-  font-family: var(--font-mono);
+  font-family: var(--font-latin);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -444,13 +445,14 @@ body {
   border: 1.5px solid var(--gold-primary);
   color: var(--gold-bright);
   font-family: var(--font-arabic);
-  font-size: 0.76rem;
+  font-size: 0.80rem;
   font-weight: 800;
-  padding: 5px 12px;
+  padding: 6px 16px;
   border-radius: 8px;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  min-width: 110px;
   cursor: pointer;
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
@@ -461,20 +463,6 @@ body {
   color: #000000;
   border-color: var(--gold-bright);
   box-shadow: 0 0 14px var(--gold-glow);
-}
-
-.btn-sop-arrow {
-  font-size: 0.85rem;
-  font-weight: 900;
-  transition: transform 0.22s ease;
-}
-
-.drink-landscape-card:hover .btn-sop-arrow {
-  transform: translateX(-4px);
-}
-
-html[dir="ltr"] .drink-landscape-card:hover .btn-sop-arrow {
-  transform: translateX(4px);
 }
 
 /* ========================================================
@@ -598,11 +586,12 @@ html[dir="ltr"] .modal-circular-close {
 }
 
 .detail-drink-sub {
-  font-size: 0.80rem;
-  color: var(--gold-soft);
-  font-family: var(--font-mono);
-  font-weight: 700;
-  letter-spacing: 0.3px;
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  font-family: var(--font-arabic);
+  font-weight: 600;
+  line-height: 1.6;
+  margin-top: 4px;
 }
 
 /* Size Switcher Pills inside Modal */
@@ -650,55 +639,105 @@ html[dir="ltr"] .modal-circular-close {
 .sop-section-header {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   margin-bottom: 12px;
   padding-bottom: 8px;
   border-bottom: 1px solid rgba(212, 175, 55, 0.2);
 }
 
-.sop-section-num {
-  font-family: var(--font-mono);
-  font-weight: 900;
+.sop-section-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: #141722;
+  border: 1.5px solid var(--gold-bright);
   color: var(--gold-bright);
-  font-size: 1.05rem;
+  font-family: var(--font-latin);
+  font-size: 0.92rem;
+  font-weight: 900;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.25);
+  flex-shrink: 0;
 }
 
 .sop-section-title {
   font-size: 0.96rem;
-  font-weight: 900;
+  font-weight: 800;
   color: #ffffff;
   letter-spacing: 0.2px;
 }
 
-/* Section 1: Standard Metrics Grid */
-.sop-metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+/* Section 1: Sequential Stacked Recipe & Dosing Rows */
+.sop-metrics-stack {
+  display: flex;
+  flex-direction: column;
   gap: 8px;
 }
 
-.sop-metric-tile {
+.sop-metric-row {
   background: #11141c;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
-  padding: 8px 12px;
+  border-radius: 10px;
+  padding: 10px 14px;
   display: flex;
-  flex-direction: column;
-  gap: 3px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  transition: all 0.2s ease;
+}
+
+.sop-metric-row:hover {
+  border-color: rgba(212, 175, 55, 0.35);
+  background: #141824;
+}
+
+.sop-metric-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.sop-metric-order-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid var(--gold-primary);
+  color: var(--gold-bright);
+  font-family: var(--font-latin);
+  font-size: 0.76rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .sop-metric-label {
-  font-size: 0.70rem;
-  color: var(--gold-soft);
+  font-size: 0.84rem;
+  color: #e2e8f0;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .sop-metric-val {
-  font-size: 0.92rem;
-  color: #ffffff;
-  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--gold-bright);
+  font-family: var(--font-latin);
   font-weight: 800;
+  text-align: left;
+  letter-spacing: 0.3px;
   word-break: break-word;
+}
+
+html[dir="rtl"] .sop-metric-val {
+  text-align: left;
+}
+html[dir="ltr"] .sop-metric-val {
+  text-align: right;
 }
 
 /* Section 2: Chronological Steps */
@@ -730,7 +769,7 @@ html[dir="ltr"] .modal-circular-close {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  font-family: var(--font-mono);
+  font-family: var(--font-latin);
   box-shadow: 0 0 10px var(--gold-glow);
   margin-top: 2px;
 }
