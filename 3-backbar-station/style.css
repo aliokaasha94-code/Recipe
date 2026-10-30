@@ -71,313 +71,44 @@ body {
 }
 
 /* ========================================================
-   DESKTOP SMARTPHONE SIMULATOR & RESPONSIVE VIEW ENGINE
-   ======================================================== */
-.device-simulator-wrapper {
-  width: 100%;
-}
-
-/* Hardware notch and status elements hidden by default */
-.desktop-mode-bar,
-.phone-hardware-notch,
-.phone-status-header,
-.phone-home-bar {
-  display: none;
-}
-
-/* 1. MOBILE NATIVE VIEWPORT (Screen width < 640px) */
-@media (max-width: 639px) {
-  body {
-    background-color: #000000 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-  .device-simulator-wrapper {
-    display: block;
-    width: 100%;
-  }
-  .phone-chassis {
-    width: 100%;
-    min-height: 100dvh;
-    background: transparent;
-    display: flex;
-    flex-direction: column;
-  }
-  .phone-viewport-container {
-    width: 100%;
-    min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    padding-bottom: max(30px, env(safe-area-inset-bottom));
-  }
-}
-
-/* 2. DESKTOP PHONE SIMULATOR (Screen width >= 640px) */
-@media (min-width: 640px) {
-  body {
-    background: radial-gradient(circle at 50% 15%, #181c26 0%, #06070a 100%);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 24px 16px 48px;
-    box-sizing: border-box;
-  }
-
-  .device-simulator-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    width: 100%;
-  }
-
-  /* Desktop Mode Control Bar */
-  .desktop-mode-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 440px;
-    background: rgba(14, 17, 24, 0.95);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(212, 175, 55, 0.45);
-    border-radius: 16px;
-    padding: 8px 14px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8), 0 0 15px rgba(212, 175, 55, 0.15);
-    transition: all 0.3s ease;
-  }
-
-  .mode-bar-info {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .mode-status-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #10b981;
-    box-shadow: 0 0 8px #10b981;
-  }
-
-  .mode-bar-title {
-    font-size: 0.82rem;
-    font-weight: 800;
-    color: var(--gold-bright);
-    letter-spacing: 0.3px;
-  }
-
-  .mode-bar-toggles {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .btn-device-toggle {
-    background: #090a0d;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: #cbd5e1;
-    font-family: var(--font-arabic);
-    font-size: 0.74rem;
-    font-weight: 700;
-    padding: 6px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-
-  .btn-device-toggle:hover {
-    border-color: var(--gold-soft);
-    color: #ffffff;
-  }
-
-  .btn-device-toggle.active {
-    background: var(--gold-primary);
-    border-color: var(--gold-bright);
-    color: #000000;
-    font-weight: 900;
-    box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
-  }
-
-  /* iPhone / Smartphone Realistic Chassis */
-  .phone-chassis {
-    width: 420px;
-    height: 880px;
-    background: #000000;
-    border: 11px solid #1c1f26;
-    outline: 2px solid rgba(212, 175, 55, 0.6);
-    border-radius: 52px;
-    box-shadow: 
-      0 25px 70px rgba(0, 0, 0, 0.95),
-      0 0 35px rgba(212, 175, 55, 0.22),
-      inset 0 0 4px rgba(255, 255, 255, 0.2);
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  /* Phone Status Header & Dynamic Island */
-  .phone-status-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 22px 4px;
-    background: #000000;
-    color: #ffffff;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    font-size: 0.78rem;
-    font-weight: 700;
-    z-index: 105;
-    flex-shrink: 0;
-    user-select: none;
-  }
-
-  .status-time {
-    font-weight: 800;
-    letter-spacing: -0.2px;
-    width: 45px;
-  }
-
-  .status-dynamic-pill {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: #0a0b0e;
-    border: 1px solid rgba(212, 175, 55, 0.4);
-    padding: 3px 12px;
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.15);
-  }
-
-  .pill-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--gold-bright);
-    box-shadow: 0 0 6px var(--gold-bright);
-  }
-
-  .pill-text {
-    font-size: 0.68rem;
-    font-weight: 800;
-    color: var(--gold-bright);
-    font-family: var(--font-arabic);
-  }
-
-  .status-icons {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    width: 45px;
-    justify-content: flex-end;
-  }
-
-  .status-icon {
-    width: 14px;
-    height: 14px;
-    fill: #ffffff;
-  }
-
-  /* Internal scrolling viewport inside phone */
-  .phone-viewport-container {
-    flex: 1;
-    overflow-y: auto;
-    overflow-x: hidden;
-    position: relative;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(212, 175, 55, 0.35) transparent;
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 24px;
-  }
-
-  .phone-viewport-container::-webkit-scrollbar {
-    width: 5px;
-  }
-  .phone-viewport-container::-webkit-scrollbar-thumb {
-    background: rgba(212, 175, 55, 0.4);
-    border-radius: 10px;
-  }
-
-  /* Phone Home Indicator Bar */
-  .phone-home-bar {
-    display: block;
-    width: 130px;
-    height: 4.5px;
-    background: rgba(255, 255, 255, 0.45);
-    border-radius: 10px;
-    margin: 8px auto 6px;
-    flex-shrink: 0;
-  }
-
-  /* Positioning modals & checklist button strictly inside the phone frame */
-  body:not(.view-desktop-full) .recipe-detail-modal,
-  body:not(.view-desktop-full) .modal-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 200;
-    border-radius: 40px;
-    overflow: hidden;
-  }
-  body:not(.view-desktop-full) .btn-checklist-toggle {
-    position: absolute;
-    bottom: 24px;
-    left: 20px;
-    z-index: 95;
-  }
-
-  /* Full Desktop Mode Toggle Override */
-  body.view-desktop-full .desktop-mode-bar {
-    max-width: 1200px;
-  }
-  body.view-desktop-full .phone-chassis {
-    width: 100%;
-    max-width: 1200px;
-    height: auto;
-    min-height: 90vh;
-    border: 1.5px solid var(--border-gold);
-    border-radius: 20px;
-    outline: none;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.85);
-  }
-  body.view-desktop-full .phone-status-header,
-  body.view-desktop-full .phone-home-bar {
-    display: none !important;
-  }
-  body.view-desktop-full .phone-viewport-container {
-    overflow: visible;
-  }
-  body.view-desktop-full .visual-cards-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-}
-
-/* ========================================================
-   HEADER STICKY BAR
+   RESPONSIVE LUXURY APP LAYOUT (MOBILE & DESKTOP NATIVE)
    ======================================================== */
 .brand-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(9, 10, 13, 0.95);
+  background: rgba(9, 10, 13, 0.96);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border-gold);
+  border-bottom: 1.5px solid var(--border-gold);
+  width: 100%;
+}
+
+.header-inner {
+  max-width: 960px;
+  margin: 0 auto;
   padding: 10px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+}
+
+.app-main-layout {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  min-height: calc(100dvh - 65px);
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .visual-cards-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+  }
 }
 
 .brand-info {
