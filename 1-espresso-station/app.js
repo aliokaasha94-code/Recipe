@@ -420,9 +420,21 @@ class StationApp {
       this.activeDetailSizeKey = null;
     }
 
+    // Reset styles from any previous drag gesture
+    content.style.transform = '';
+    content.style.opacity = '';
+    content.style.transition = '';
+    content.scrollTop = 0;
+    modal.style.background = '';
+
     this.renderDetailModalContent();
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
+
+    // Push history state so Android hardware/system back button & swipe back gesture closes modal
+    if (!history.state || !history.state.sopModalOpen) {
+      history.pushState({ sopModalOpen: true, modalType: 'recipe-detail' }, '');
+    }
   }
 
   renderDetailModalContent() {
@@ -559,6 +571,11 @@ class StationApp {
     }
 
     content.innerHTML = `
+      <!-- Sleek Drag Handle for Mobile Swipe-to-Dismiss Gesture -->
+      <div class="sheet-drag-handle-bar">
+        <span class="sheet-drag-handle-pill"></span>
+      </div>
+
       <!-- Sleek Circular Luxury Close Button (Requested by User) -->
       <button class="modal-circular-close" onclick="window.app.closeRecipeDetail()" aria-label="Close">✕</button>
 
@@ -613,10 +630,24 @@ class StationApp {
     this.renderDetailModalContent();
   }
 
-  closeRecipeDetail() {
+  closeRecipeDetail(popHistory = true) {
     const modal = document.getElementById('recipe-detail-modal');
-    if (modal) modal.classList.remove('open');
+    const content = document.getElementById('recipe-detail-content');
+    if (content) {
+      content.style.transform = '';
+      content.style.opacity = '';
+      content.style.transition = '';
+    }
+    if (modal) {
+      modal.classList.remove('open');
+      modal.style.background = '';
+    }
     document.body.style.overflow = '';
+    this.activeDetailItem = null;
+
+    if (popHistory && history.state && history.state.sopModalOpen) {
+      history.back();
+    }
   }
 
   translateMetricValue(val) {
@@ -754,6 +785,129 @@ class StationApp {
         this.renderContent();
       });
     }
+
+    // Android Hardware / Navigation Back Button & Browser Back (Swiping from screen edge)
+    window.addEventListener('popstate', (e) => {
+      const detailModal = document.getElementById('recipe-detail-modal');
+      const checkModal = document.getElementById('checklist-modal');
+
+      if (detailModal && detailModal.classList.contains('open')) {
+        this.closeRecipeDetail(false);
+      }
+      if (checkModal && checkModal.classList.contains('open')) {
+        closeChecklistModal(false);
+      }
+    });
+
+    // Keyboard ESC key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const detailModal = document.getElementById('recipe-detail-modal');
+        if (detailModal && detailModal.classList.contains('open')) {
+          this.closeRecipeDetail(true);
+        }
+        const checkModal = document.getElementById('checklist-modal');
+        if (checkModal && checkModal.classList.contains('open')) {
+          closeChecklistModal(true);
+        }
+      }
+    });
+
+    // Mobile Swipe-down Gesture to Dismiss
+    this.setupSheetGestures();
+  }
+
+  setupSheetGestures() {
+    const modal = document.getElementById('recipe-detail-modal');
+    const sheet = document.getElementById('recipe-detail-content');
+    if (!modal || !sheet) return;
+
+    let startY = 0;
+    let currentY = 0;
+    let isDragging = false;
+    let startTime = 0;
+
+    sheet.addEventListener('touchstart', (e) => {
+      if (e.touches.length !== 1) return;
+      const target = e.target;
+      const isDragHandle = target.closest('.sheet-drag-handle-bar');
+      const isAtTop = sheet.scrollTop <= 0;
+
+      if (isDragHandle || isAtTop) {
+        startY = e.touches[0].clientY;
+        currentY = startY;
+        startTime = Date.now();
+        isDragging = false;
+      }
+    }, { passive: true });
+
+    sheet.addEventListener('touchmove', (e) => {
+      if (e.touches.length !== 1) return;
+      const touchY = e.touches[0].clientY;
+      const deltaY = touchY - startY;
+
+      if (deltaY > 0 && (sheet.scrollTop <= 0 || e.target.closest('.sheet-drag-handle-bar'))) {
+        if (!isDragging && deltaY > 8) {
+          isDragging = true;
+          sheet.classList.add('dragging');
+        }
+
+        if (isDragging) {
+          if (e.cancelable) e.preventDefault();
+          const dampenedY = deltaY < 150 ? deltaY : 150 + (deltaY - 150) * 0.45;
+          sheet.style.transform = `translateY(${dampenedY}px)`;
+          sheet.style.transition = 'none';
+          const bgOpacity = Math.max(0.25, 0.88 - (deltaY / 500));
+          modal.style.background = `rgba(0, 0, 0, ${bgOpacity})`;
+        }
+      } else if (deltaY < 0 && isDragging) {
+        sheet.style.transform = '';
+        isDragging = false;
+        sheet.classList.remove('dragging');
+      }
+    }, { passive: false });
+
+    const finishDrag = (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      sheet.classList.remove('dragging');
+
+      const deltaY = currentY - startY;
+      const duration = Date.now() - startTime;
+      const velocity = deltaY / Math.max(1, duration);
+
+      if (deltaY > 70 || (velocity > 0.4 && deltaY > 25)) {
+        sheet.style.transition = 'transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease';
+        sheet.style.transform = 'translateY(100%)';
+        sheet.style.opacity = '0';
+        setTimeout(() => {
+          this.closeRecipeDetail(true);
+        }, 200);
+      } else {
+        sheet.style.transition = 'transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)';
+        sheet.style.transform = '';
+        modal.style.background = '';
+        setTimeout(() => {
+          sheet.style.transition = '';
+        }, 220);
+      }
+    };
+
+    sheet.addEventListener('touchend', (e) => {
+      if (e.changedTouches.length) {
+        currentY = e.changedTouches[0].clientY;
+      }
+      finishDrag(e);
+    }, { passive: true });
+
+    sheet.addEventListener('touchcancel', () => {
+      isDragging = false;
+      sheet.classList.remove('dragging');
+      sheet.style.transition = 'transform 0.2s ease';
+      sheet.style.transform = '';
+      modal.style.background = '';
+      setTimeout(() => { sheet.style.transition = ''; }, 200);
+    }, { passive: true });
   }
 
   initChecklist() {
@@ -812,12 +966,24 @@ class StationApp {
 // Modal controls
 function openChecklistModal() {
   const modal = document.getElementById('checklist-modal');
-  if (modal) modal.classList.add('open');
+  if (modal) {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    if (!history.state || !history.state.sopModalOpen) {
+      history.pushState({ sopModalOpen: true, modalType: 'checklist' }, '');
+    }
+  }
 }
 
-function closeChecklistModal() {
+function closeChecklistModal(popHistory = true) {
   const modal = document.getElementById('checklist-modal');
-  if (modal) modal.classList.remove('open');
+  if (modal) {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  if (popHistory && history.state && history.state.sopModalOpen) {
+    history.back();
+  }
 }
 
 function resetChecklist() {

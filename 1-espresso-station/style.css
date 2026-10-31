@@ -629,6 +629,35 @@ html[dir="ltr"] .search-icon-pos {
   background: var(--gold-primary);
 }
 
+/* Drag Handle Bar for Mobile Swipe-to-Dismiss Gesture */
+.sheet-drag-handle-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0 12px;
+  cursor: grab;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.sheet-drag-handle-pill {
+  width: 44px;
+  height: 5px;
+  border-radius: 9999px;
+  background: rgba(212, 175, 55, 0.45);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+  transition: all 0.2s ease;
+}
+
+.sheet-drag-handle-bar:active .sheet-drag-handle-pill,
+.recipe-detail-sheet.dragging .sheet-drag-handle-pill {
+  background: var(--gold-bright);
+  transform: scaleY(1.3);
+  box-shadow: 0 0 12px var(--gold-glow);
+}
+
 /* Circular Luxury Close Button */
 .modal-circular-close {
   position: absolute;
