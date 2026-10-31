@@ -275,6 +275,46 @@
             "Pour the top foam into the serving cup first, return briefly to heat, then pour remaining coffee along the cup wall."
           ],
           "proTip_en": "Never let Turkish coffee reach a violent boiling roll; excessive boil breaks the delicate aromatic foam."
+        },
+        {
+          "id": "single-origin-turkish",
+          "name": "تركي مختص سنجل أوريجين (Specialty Turkish Single Origin)",
+          "name_en": "Specialty Single Origin Turkish Coffee",
+          "category": "turkish-classics",
+          "category_en": "Specialty Turkish Coffee",
+          "cup": "فنجان تركي مختص 70 / 140 ml",
+          "notes": "محصول بن مختص إثيوبي أو كولومبي معالج مجفف، يُسوى بهدوء على حرارة 88-92 مئوية لإبراز إيحاءات الفاكهة والزهور الطبيعية.",
+          "notes_en": "Specialty single origin Ethiopian or Colombian beans gently brewed at 88-92°C to showcase delicate florals and fruity notes.",
+          "single": {
+            "coffee": "9g بن مختص إثيوبي أو كولومبي",
+            "water": "75ml ماء مقطر",
+            "temp": "تسوية هادئة 88-92°C",
+            "cup": "فنجان تركي سنجل"
+          },
+          "double": {
+            "coffee": "18g بن مختص إثيوبي أو كولومبي",
+            "water": "145ml ماء مقطر",
+            "temp": "تسوية هادئة 88-92°C",
+            "cup": "فنجان تركي دبل"
+          },
+          "steps": [
+            "طحن البن المختص طحنة تركية فائقة النعومة مع تبريد الشفرات للحفاظ على الزيوت العطرية.",
+            "خلط البن بالماء المفلتر بدرجة 60 مئوية داخل كنكة النحاس وتسريعه على الرمالة بهدوء.",
+            "الرفع فور انتفاخ الوش الأول وتكوين الكريما للاحتفاظ بالإيحاءات الطبيعية دون مرارة كربونية."
+          ],
+          "steps_en": [
+            "Grind specialty single origin beans to ultra-fine Turkish texture on chilled burrs to protect delicate aromatics.",
+            "Mix coffee with 60°C filtered water in the copper cezve, placing gently on the sand bed.",
+            "Remove immediately as the first golden crema rises to preserve natural floral and berry notes without bitterness."
+          ],
+          "proTip": "التركي المختص يُفضل تقديمه بدون سكر أو سكر خفيف جداً، لتمكين العميل من الاستمتاع بنقاء سلالة البن وإيحاءاته.",
+          "proTip_en": "Specialty Turkish coffee is best served unsweetened to let the authentic berry and floral notes shine.",
+          "rescue": {
+            "problem": "الحموضة ظهرت حادة جداً أو الطعم غير متوازن",
+            "solution": "ارفع وقت التسوية 20 ثانية إضافية لتعزيز الحلاوة السكرية، وتأكد من جودة مياه التقطير ودرجة الحرارة.",
+            "problem_en": "Acidity feels too sharp or unbalanced.",
+            "solution_en": "Extend sand brew time by 15-20 seconds to extract more natural sugars, and ensure water TDS is between 80-120 ppm."
+          }
         }
       ],
       "name_en": "Turkish Coffee"
@@ -461,100 +501,71 @@
       "items": [
         {
           "id": "arabic-coffee",
-          "name": "القهوة العربية الأصيلة بالزعفران والهيل (Saudi Arabic Coffee)",
-          "coffee": "30g بن شقر عربي محمص خفيف وخشن",
-          "water": "500ml ماء نقي",
-          "spices": "1 ملعقة طعام هيل مطحون طازج + رشة زعفران سوبر نقيل + 2 حبة قرنفل (مسمار)",
-          "cup": "دلة التقديم + فناجين بيالات عربية صغيرة",
+          "name": "القهوة العربية الأصيلة بالزعفران (Saudi Gahwa)",
+          "coffee": "30g بن عربي أشقر محمص خفيف",
+          "water": "500ml ماء مغلي",
+          "spices": "هيل أمريكي مطحون خشن + زعفران سوبر نقيل + مسمار قرنفل",
+          "cup": "دلة تقديم + فنجان بيالة",
           "steps": [
-            "غلي 500 مل ماء في دلة الغليان ثم إضافة البن الأشقر وتهدئة النار تماماً وتركها تغلي بهدوء لمدة 15 دقيقة (طبخ القهوة).",
-            "وضع الهيل المطحون خشن، الزعفران، والمسمار في قاع دلة التقديم الأساسية (الدلة الذهبية).",
-            "سكب القهوة المغلية من خلال مصفاة دقيقة فوق التوابل في دلة التقديم.",
-            "تغطية الدلة وتركها ترتاح 3 دقائق لتركد الثفالة وتتشرب القهوة نكهة الزعفران والهيل الأخضر.",
-            "التقديم مع صحن تمر سكري فاخر وطحينة."
+            "غلي 500 مل ماء في دلة الغليان ثم إضافة البن الأشقر وتهدئة النار وتركها تطبخ بهدوء لمدة 15 دقيقة.",
+            "وضع الهيل المطحون خشناً مع خيوط الزعفران والمسمار في قاع دلة التقديم الذهبية.",
+            "صب القهوة المغلية عبر مصفاة دقيقة فوق التوابل في دلة التقديم لتتشرب النكهة.",
+            "تغطية الدلة وتركها ترتاح 3 دقائق لتركد الثفالة وتصفى تماماً.",
+            "التقديم ساخنة في فناجين البيالة مع صحن تمر سكري فاخر."
           ],
           "rescue": {
-            "problem": "القهوة العربية طلعت مرة ولاذعة أو غامقة زيادة",
-            "solution": "القهوة طُبخت أكثر من اللازم؛ أضف 100 مل ماء مغلي مع رشة زعفران إضافية لتعيد النضارة واللون الذهبي الشفاف المميز.",
-            "problem_en": [
-              "Coffee looks cloudy with floating sediment."
-            ],
-            "solution_en": "Allow dallah to rest off-heat for 3 full minutes so fines sink to the bottom before pouring."
+            "problem": "القهوة العربية طلعت مرة أو غامقة زيادة عن اللزوم",
+            "solution": "القهوة طُبخت أكثر من وقتها؛ خفف بإضافة 100 مل ماء مغلي مع رشة زعفران إضافية لتعيد اللون الذهبي الشفاف.",
+            "problem_en": "Coffee tastes overly bitter or looks too dark.",
+            "solution_en": "The coffee was overboiled; dilute with 100ml hot water and fresh saffron threads to restore its golden clarity."
           },
           "proTip": "الهيل لا يغلي مع البن لفترة طويلة حتى لا يفقد زيوته العطرية ويصبح مراً، بل يوضع في دلة التقديم ويُسكب عليه مغلي القهوة.",
-          "name_en": "Saudi Arabic Coffee (Gahwa)",
-          "notes_en": "Traditional light golden coffee infused with aromatic green cardamom and saffron.",
+          "name_en": "Authentic Saudi Arabic Coffee (Gahwa)",
+          "notes_en": "Royal blond roasted coffee infused with freshly ground green cardamom, saffron, and cloves.",
           "steps_en": [
-            "Bring 1 liter of fresh filtered water to a rolling boil in the Dallah.",
-            "Add 30g coarse light-roast Arabic coffee and simmer gently on low heat for 12-15 minutes.",
-            "Add ground green cardamom (10g) and premium saffron threads (0.5g); simmer for 2 more minutes.",
-            "Turn off heat, let grounds settle for 2 minutes, then strain into serving thermos/dallah.",
-            "Serve piping hot in traditional Finjan cups alongside fresh dates."
+            "Bring 500ml water to a boil in the brewing pot, add blond coffee and simmer gently on low heat for 15 minutes.",
+            "Place freshly ground coarse cardamom, saffron threads, and cloves in the base of the serving Dallah.",
+            "Strain the brewed coffee through a fine sieve directly over the spices into the serving Dallah.",
+            "Cover and let rest for 3 minutes to allow sediment to settle and aromas to infuse.",
+            "Serve piping hot in authentic Finjan cups alongside premium dates."
           ],
-          "proTip_en": "Never boil the cardamom and saffron for too long; adding them in the final 2 minutes preserves vibrant floral aromatics."
+          "proTip_en": "Never boil cardamom for 15 minutes; placing it in the serving dallah preserves delicate floral aromatics.",
+          "time": "15 دقيقة طبخ هادئ",
+          "notes": "قهوة شقراء ملكية خفيفة غنية بالهيل والزعفران النقيل، تقدم ساخنة مع التمر الفاخر."
         },
         {
           "id": "sudanese-jabana",
           "name": "قهوة الجَبَنَة السودانية الفلكلورية (Sudanese Jabana)",
-          "coffee": "25g بن حبوب يُحمص ويُجرش طازجاً مع زنجبيل وهيل ومستكة",
-          "water": "350ml ماء",
-          "spices": "زنجبيل طازج مبشور أو مجفف + 3 حبات هيل مسحوق + عود قرفة صغير",
-          "cup": "فخار الجَبَنَة التقليدي المزخرف + فناجين طين صغيرة + ليفة نخل للتصفية",
+          "coffee": "25g بن حبوب يُحمص ويُجرش طازجاً",
+          "water": "350ml ماء نقي",
+          "spices": "زنجبيل طازج مبشور + 3 حبات هيل مسحوق + عود قرفة",
+          "cup": "جَبَنَة فخار + فنجان طين",
           "steps": [
-            "تحميص وجرش حبوب البن مع الزنجبيل والتوابل.",
-            "وضع البن والتوابل والماء في إبريق الفخار (الجَبَنَة) ووضعه على الفحم الهادئ أو سخان الرمالة.",
-            "مراقبة فوهة الفخار حتى تبدأ القهوة بالفوران وتفوح رائحة الزنجبيل الحارقة العطرة.",
-            "وضع سدادة ليف النخل الطبيعية في الفوهة لتصفية القهوة أثناء السكب.",
-            "الصب بحركة انسيابية مميزة مع إشعال عود بخور صندل بجوار الصينية لإتمام الطقس السوداني الأصيل."
+            "جرش حبوب البن المحمص مع الزنجبيل الطازج والهيل.",
+            "وضع البن والتوابل والماء داخل إبريق الفخار (الجَبَنَة) ووضعه على حرارة الرمالة الهادئة.",
+            "مراقبة فوهة الفخار حتى تبدأ القهوة بالفوران وتفوح رائحة الزنجبيل العطرة.",
+            "وضع ليفة التصفية الطبيعية في فوهة الجَبَنَة لتنقية القهوة أثناء الصب.",
+            "الصب بانسيابية داخل فناجين الطين الفخارية الصغيرة وتقديمها ساخنة."
           ],
           "rescue": {
-            "problem": "الجَبَنَة الفخارية سخنت زيادة وأحرقت البن",
-            "solution": "الفخار يحتفظ بالحرارة لفترة طويلة؛ ارفع الجَبَنَة عن السخان قبل الفوران النهائي بنصف دقيقة ودعها تكمل التسوية بحرارة الطين الذاتية.",
-            "problem_en": [
-              "Sauce settled at the bottom."
-            ],
-            "solution_en": "Stir with long bar spoon from bottom up before serving."
+            "problem": "الجَبَنَة الفخارية سخنت زيادة وأحرقت البن أو فارت للخارج",
+            "solution": "الفخار يحتفظ بالحرارة بشدة؛ ارفع الجَبَنَة عن السخان قبل الفوران النهائي بنصف دقيقة ودعها تكمل التسوية بحرارة الطين.",
+            "problem_en": "Terracotta pot overheated or boiled over.",
+            "solution_en": "Clay holds intense thermal mass; remove pot from heat 30 seconds before peak boil and let it finish off-heat."
           },
-          "proTip": "قهوة الجَبَنَة مشروب علاجي ومزاجي استثنائي غني بالزنجبيل، ينشط الدورة الدموية ومحبوب جداً في ليالي الشتاء.",
-          "name_en": "Sudanese Jabana",
-          "notes_en": "Specialty rich hot beverage crafted with premium dairy and signature artisan sauces.",
+          "proTip": "قهوة الجَبَنَة مشروب مزاجي وعلاجي عريق غني بالزنجبيل، ينشط الدورة الدموية ومثالي للتدفئة الفورية.",
+          "name_en": "Sudanese Folkloric Jabana Coffee",
+          "notes_en": "Authentic folkloric Sudanese coffee brewed inside a traditional terracotta Jabana pot with fresh ginger and cardamom.",
           "steps_en": [
-            "Add signature sauce or powder base into pre-warmed cup.",
-            "Steam fresh whole milk to 65°C creating a silky, velvety microfoam.",
-            "Pour milk gradually while whisking to create a smooth, luxurious texture.",
-            "Garnish with whipped cream and artisan toppings."
+            "Coarsely crush fresh roasted coffee beans with fresh ginger and green cardamom.",
+            "Place coffee, spices, and water into the terracotta Jabana pot and rest over gentle sand heat.",
+            "Monitor the spout as coffee gently simmers and releases fragrant ginger vapors.",
+            "Insert the natural palm-fiber filter into the spout to strain fine grounds.",
+            "Pour smoothly into small earthen clay cups and serve immediately."
           ],
-          "proTip_en": "Whisk sauce with a small splash of hot milk first to prevent clumps and ensure even sweetness."
-        },
-        {
-          "id": "single-origin-turkish",
-          "name": "تركي مختص سنجل أوريجين (Specialty Turkish Single Origin)",
-          "coffee": "9g بن مختص (إثيوبي أو كولومبي معالج مجفف)",
-          "water": "75g ماء مقطر (TDS 80-120)",
-          "temp": "تسوية على 88°C",
-          "cup": "كوب سيراميك رقيق الحافة",
-          "steps": [
-            "طحن البن المختص طحنة تركية فائقة النعومة مع تبريد شفرات المطحنة لمنع التسخين.",
-            "خلط البن بالماء المفلتر بدرجة 60 مئوية للبدء وتسريعه على الرمالة بهدوء.",
-            "الرفع فور انتفاخ الوش الأول للاحتفاظ بإيحاءات الفواكه والزهور دون مرارة كربونية."
-          ],
-          "rescue": {
-            "problem": "الحموضة ظهرت حادة جداً ومنفرة",
-            "solution": "ارفع وقت التسوية 20 ثانية إضافية لاستخلاص الحلاوة السكرية في الحبة، وتأكد من جودة مياه التقطير.",
-            "problem_en": "Coffee boiled over and face/foam was completely lost.",
-            "solution_en": "Do not serve flat coffee. Add 1/2 teaspoon fresh fine coffee powder, place back on low heat for 15 seconds to regenerate microfoam."
-          },
-          "proTip": "التركي المختص لا يُضاف إليه سكر نهائياً، ليتمكن الضيف من تذوق إيحاءات التوت والياسمين الطبيعية في البن.",
-          "name_en": "Turkish Coffee (Dark Roast - Pure Unspiced)",
-          "notes_en": "Traditional slow-brewed Turkish coffee. Dark roast with thick golden-brown foam (face).",
-          "steps_en": [
-            "Add cold filtered water into the copper cezve/ibrik according to single (70ml) or double (140ml).",
-            "Add dark roast finely ground coffee (7g for single, 14g for double) and desired sugar.",
-            "Stir thoroughly off-heat until completely dissolved, then place over low flame or hot sand bed.",
-            "Allow coffee to gently heat without stirring until thick foam rises to the brim.",
-            "Pour the top foam into the serving cup first, return briefly to heat, then pour remaining coffee along the cup wall."
-          ],
-          "proTip_en": "Never let Turkish coffee reach a violent boiling roll; excessive boil breaks the delicate aromatic foam."
+          "proTip_en": "Jabana is a traditional energizing brew rich in ginger; crushing spices fresh is essential for the signature aromatic kick.",
+          "time": "8 - 10 دقائق تسوية بالفخار",
+          "notes": "قهوة فلكلورية سودانية أصيلة، تحمص وتدق طازجة وتسوى داخل إبريق الفخار (الجَبَنَة) على الرمالة مع الزنجبيل الحار."
         }
       ],
       "name_en": "Heritage Brews"

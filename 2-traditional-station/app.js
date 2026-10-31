@@ -415,7 +415,8 @@ class StationApp {
       sizeBadge = `<span class="card-size-tag">${isAr ? 'سنجل / دبل' : 'Single / Double'}</span>`;
     } else if (item.cup) {
       let shortCup = item.cup.split('/')[0].split('(')[0].trim();
-      sizeBadge = `<span class="card-size-tag">${shortCup}</span>`;
+      const displayCup = isAr ? shortCup : this.translateMetricValue(shortCup);
+      sizeBadge = `<span class="card-size-tag">${displayCup}</span>`;
     }
 
     return `
@@ -696,6 +697,18 @@ class StationApp {
     if (!val || typeof val !== 'string') return val;
     let s = val;
     const dict = [
+      [/دلة\s*تقديم\s*\+\s*فنجان\s*بيالة/gi, 'Dallah & Finjan'],
+      [/دلة\s*عربية\s*\+\s*فنجان\s*بيالة/gi, 'Arabic Dallah & Finjan'],
+      [/جَبَنَة\s*فخار\s*\+\s*فنجان\s*طين/gi, 'Clay Jabana & Finjan'],
+      [/فنجان\s*تركي\s*مختص/gi, 'Specialty Turkish Demitasse'],
+      [/فنجان\s*بيالة/gi, 'Finjan Demitasse'],
+      [/دلة\s*تقديم/gi, 'Serving Dallah'],
+      [/دلة\s*عربية/gi, 'Arabic Dallah'],
+      [/فخار\s*الجَبَنَة/gi, 'Terracotta Jabana'],
+      [/فنجان\s*طين/gi, 'Clay Finjan'],
+      [/فنجان\s*فرنساوي/gi, 'French Demitasse'],
+      [/مج\s*سيراميك\s*فاخر/gi, 'Luxury Ceramic Mug'],
+      [/كاس\s*زجاجي\s*تراثي/gi, 'Heritage Glass'],
       [/Cup\s*4\s*oz\s*\/\s*فنجان\s*إسبريسو/gi, '4 oz Cup / Espresso Demitasse'],
       [/Cup\s*4\s*oz\s*\/\s*فنجان\s*تركي\s*سنجل/gi, '4 oz Cup / Single Turkish Cup'],
       [/Cup\s*4\s*oz\s*\/\s*فنجان\s*تركي\s*دبل/gi, '4 oz Cup / Double Turkish Cup'],
