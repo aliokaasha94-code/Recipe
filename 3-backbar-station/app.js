@@ -163,6 +163,130 @@ const I18N = {
   }
 };
 
+
+const CategoryProtocols = {
+  smoothies: {
+    title_ar: "البروتوكول المعملي للسموذي المثلج",
+    title_en: "Laboratory Protocol: Ice-Blended Smoothies",
+    sopTag_ar: "SOP معتمد",
+    sopTag_en: "Standard SOP",
+    ruleSummary_ar: "البلندر عالميزان ➔ المياه المعيارية ➔ الفاكهة والبيوريه ➔ الثلج ➔ خلط سرعة 2 ➔ ليد سيفتي مسطح.",
+    ruleSummary_en: "Pitcher on scale ➔ Water ➔ Puree & Fruit ➔ Solid ice ➔ Blend speed 2 ➔ Flat safety lid.",
+    steps_ar: [
+      "البلندر على الميزان",
+      "المياه المعيارية",
+      "الفاكهة والبيوريه",
+      "مكعبات الثلج الصلبة",
+      "خلط سرعة 2",
+      "ليد سيفتي مسطح"
+    ],
+    steps_en: [
+      "Blender Pitcher on Scale",
+      "Standard Water Dosing",
+      "Fruit Puree & Ingredients",
+      "Solid Ice Cubes",
+      "Speed 2 Blending",
+      "Flat Safety Lid"
+    ]
+  },
+  milkshakes: {
+    title_ar: "البروتوكول المعملي للميلك شيك الكريمي",
+    title_en: "Laboratory Protocol: Creamy Milkshakes",
+    sopTag_ar: "SOP معتمد",
+    sopTag_en: "Standard SOP",
+    ruleSummary_ar: "الآيس كريم أولاً بالميزان ➔ الحليب البارد ➔ الصوص ➔ خلط سرعة 2. البسكوت بآخر 5 ثوانٍ ➔ ليد بومبيه.",
+    ruleSummary_en: "Ice cream on scale first ➔ Milk ➔ Sauce ➔ Blend speed 2. Cookies in last 5s ➔ Dome lid.",
+    steps_ar: [
+      "الآيس كريم بالميزان",
+      "الحليب البارد",
+      "الصوص والنكهة",
+      "خلط سرعة 2 (20 ث)",
+      "البسكوت بآخر 5 ثوانٍ",
+      "كريمة وليد بومبيه"
+    ],
+    steps_en: [
+      "Ice Cream on Scale",
+      "Cold Fresh Milk",
+      "Flavor Sauce Drizzle",
+      "Blend Speed 2 (20s)",
+      "Cookies in Last 5s",
+      "Whipped Cream & Dome Lid"
+    ]
+  },
+  frappes: {
+    title_ar: "البروتوكول المعملي للفرابيه المثلج",
+    title_en: "Laboratory Protocol: Icy Frappes",
+    sopTag_ar: "SOP معتمد",
+    sopTag_en: "Standard SOP",
+    ruleSummary_ar: "الحليب أولاً في البلندر ➔ بودر الفرابيه والصوص ➔ الثلج ➔ خلط سرعة 3 ➔ كريمة خفق وليد بومبيه.",
+    ruleSummary_en: "Milk first ➔ Frappe powder & sauce ➔ Solid ice ➔ Blend speed 3 ➔ Whipped cream & dome lid.",
+    steps_ar: [
+      "الحليب أولاً بالبلندر",
+      "بودر الفرابيه والصوص",
+      "كوب ثلج كامل",
+      "خلط سرعة 3 (25-30 ث)",
+      "كريمة خفق وتوبينج",
+      "ليد بومبيه 16 oz"
+    ],
+    steps_en: [
+      "Cold Milk First",
+      "Frappe Powder & Sauce",
+      "Full Cup Solid Ice",
+      "Blend Speed 3 (25-30s)",
+      "Whipped Cream & Drizzle",
+      "16 oz Dome Lid"
+    ]
+  },
+  'boba-mocktails': {
+    title_ar: "البروتوكول المعملي للموكتيل المنعش والبوبا",
+    title_en: "Laboratory Protocol: Sparkling Mocktails & Boba",
+    sopTag_ar: "SOP معتمد",
+    sopTag_en: "Standard SOP",
+    ruleSummary_ar: "البوبا بالكوب ➔ خفق المكونات بالشيكر بدون صودا ➔ صب فوق الثلج ➔ إضافة الصودا أخيراً.",
+    ruleSummary_en: "Boba in cup ➔ Shake ingredients without soda ➔ Pour over ice ➔ Top with chilled soda.",
+    steps_ar: [
+      "كرات البوبا بالكوب",
+      "المكونات بالشيكر (بدون صودا)",
+      "رج ثلجي مكثف 10 ث",
+      "صب فوق ثلج الكوب",
+      "إضافة الصودا أخيراً",
+      "شريحة ليمون وشاليموه عريض"
+    ],
+    steps_en: [
+      "Boba Pearls in Cup",
+      "Ingredients in Shaker (No Soda)",
+      "Vigorous Iced Shake (10s)",
+      "Pour over Cup Ice",
+      "Top Chilled Soda",
+      "Lemon Wheel & Wide Straw"
+    ]
+  },
+  'bakery-station': {
+    title_ar: "البروتوكول المعملي للوافل والبان كيك",
+    title_en: "Laboratory Protocol: Crispy Waffles & Pancakes",
+    sopTag_ar: "SOP معتمد",
+    sopTag_en: "Standard SOP",
+    ruleSummary_ar: "حرارة ماكينة الوافل (185°C - 190°C) ➔ مسحة زبدة خفيفة ➔ صب 140g ➔ خبز 3.5 دقيقة بالثانية.",
+    ruleSummary_en: "Waffle iron temp (185°C - 190°C) ➔ Light butter brush ➔ Pour 140g ➔ Bake 3.5 mins sharp.",
+    steps_ar: [
+      "حرارة ماكينة (185°C - 190°C)",
+      "مسحة زبدة خفيفة",
+      "صب 140g عجين متجانس",
+      "خبز 3.5 دقيقة بالثانية",
+      "رفع بمساكة سيليكون",
+      "تزيين بالصوصات والفواكه"
+    ],
+    steps_en: [
+      "Waffle Iron (185°C - 190°C)",
+      "Light Butter Brush",
+      "Pour 140g Batter Evenly",
+      "Bake Exactly 3.5 Mins",
+      "Silicone Tongs Removal",
+      "Garnish Sauces & Fruit"
+    ]
+  }
+};
+
 class StationApp {
   constructor(stationDataUrl) {
     this.stationDataUrl = stationDataUrl;
@@ -284,6 +408,47 @@ class StationApp {
     filterContainer.innerHTML = html;
   }
 
+
+  renderCategoryProtocol(catId) {
+    const proto = CategoryProtocols[catId];
+    if (!proto) return '';
+    const isAr = this.currentLang === 'ar';
+    const title = isAr ? proto.title_ar : proto.title_en;
+    const sopTag = isAr ? proto.sopTag_ar : proto.sopTag_en;
+    const ruleSummary = isAr ? proto.ruleSummary_ar : proto.ruleSummary_en;
+    const steps = isAr ? proto.steps_ar : proto.steps_en;
+
+    const stepsHtml = steps.map((s, idx) => `
+      <span class="protocol-step-chip">
+        <span class="protocol-step-num">${idx + 1}</span>
+        <span class="protocol-step-text">${s}</span>
+      </span>
+      ${idx < steps.length - 1 ? '<span class="protocol-arrow">➔</span>' : ''}
+    `).join('');
+
+    return `
+      <div class="category-protocol-banner">
+        <div class="protocol-header">
+          <div class="protocol-header-start">
+            <span class="protocol-badge-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7dd3fc" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+            </span>
+            <span class="protocol-title">${title}</span>
+          </div>
+          <span class="protocol-sop-tag">${sopTag}</span>
+        </div>
+        <div class="protocol-steps-track">
+          ${stepsHtml}
+        </div>
+        <div class="protocol-summary-bar">
+          <strong>${isAr ? 'قاعدة التشغيل السريع:' : 'Quick Barista Rule:'}</strong> ${ruleSummary}
+        </div>
+      </div>
+    `;
+  }
+
   renderContent() {
     const container = document.getElementById('content-area');
     if (!container) return;
@@ -325,6 +490,7 @@ class StationApp {
             </h2>
             <span class="section-items-badge">${filteredItems.length} ${t.sectionItems}</span>
           </div>
+          ${this.renderCategoryProtocol(cat.id)}
           <div class="visual-cards-grid">
             ${filteredItems.map(item => this.renderDrinkCard(item)).join('')}
           </div>
