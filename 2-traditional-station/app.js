@@ -500,12 +500,16 @@ class StationApp {
 
       sizeSwitchHtml = `
         <div class="detail-size-switchers">
-          ${keys.map(k => `
-            <button class="detail-size-btn ${k === activeKey ? 'active' : ''}" 
-                    onclick="window.app.switchDetailSize('${k}')">
-              ${item.sizes[k].sizeLabel || k}
-            </button>
-          `).join('')}
+          ${keys.map(k => {
+            const rawLabel = item.sizes[k].sizeLabel || k;
+            const label = isAr ? rawLabel : this.translateMetricValue(rawLabel);
+            return `
+              <button class="detail-size-btn ${k === activeKey ? 'active' : ''}" 
+                      onclick="window.app.switchDetailSize('${k}')">
+                ${label}
+              </button>
+            `;
+          }).join('')}
         </div>
       `;
     } else if (item.single && item.double) {
@@ -697,6 +701,11 @@ class StationApp {
     if (!val || typeof val !== 'string') return val;
     let s = val;
     const dict = [
+      [/صغير\s*\(\s*8\s*oz\s*\)/gi, 'Small (8 oz)'],
+      [/وسط\s*\(\s*12\s*oz\s*\)/gi, 'Medium (12 oz)'],
+      [/كبير\s*\(\s*16\s*oz\s*\)/gi, 'Large (16 oz)'],
+      [/باتش\s*كامل\s*\(\s*1\s*كجم\s*دقيق\s*\)/gi, 'Full Batch (1 kg Flour)'],
+      [/نصف\s*باتش\s*\(\s*500\s*جم\s*دقيق\s*\)/gi, 'Half Batch (500 g Flour)'],
       [/دلة\s*تقديم\s*\+\s*فنجان\s*بيالة/gi, 'Dallah & Finjan'],
       [/دلة\s*عربية\s*\+\s*فنجان\s*بيالة/gi, 'Arabic Dallah & Finjan'],
       [/جَبَنَة\s*فخار\s*\+\s*فنجان\s*طين/gi, 'Clay Jabana & Finjan'],
