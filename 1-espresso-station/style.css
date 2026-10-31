@@ -999,3 +999,52 @@ html[dir="ltr"] .sop-metric-val {
   object-fit: contain;
   margin-bottom: 8px;
 }
+
+/* ========================================================
+   INTERNATIONALIZATION & LTR STYLING
+   ======================================================== */
+html[dir="ltr"] body {
+  direction: ltr;
+  text-align: left;
+  font-family: var(--font-latin);
+}
+
+html[dir="ltr"] .detail-drink-sub {
+  direction: ltr;
+  text-align: center;
+}
+
+html[dir="ltr"] .sop-step-text {
+  direction: ltr;
+  text-align: left;
+}
+
+html[dir="ltr"] .sop-tip-text {
+  direction: ltr;
+  text-align: left;
+}
+
+html[dir="ltr"] .rescue-card-problem,
+html[dir="ltr"] .rescue-card-solution {
+  direction: ltr;
+  text-align: left;
+}
+
+html[dir="ltr"] .sop-metric-info {
+  flex-direction: row;
+}
+
+html[dir="ltr"] .sop-metric-val {
+  text-align: right;
+  direction: ltr;
+}
+
+html[dir="ltr"] .landscape-drink-name {
+  text-align: left;
+}
+
+html[dir="ltr"] .landscape-top-row {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 8px;
+}

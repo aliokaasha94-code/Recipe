@@ -60,9 +60,21 @@
           ],
           "rescue": {
             "problem": "القهوة فارت فجأة على الرمالة وضاع الوش الكريمي",
-            "solution": "لا تقدم فنجاناً بدون وش لضيف عماد أفندي! انقل القهوة لكنكة أصغر، وأضف نصف ملعقة بن صغيرة جداً على السطح وأعدها لثوانٍ على الرمالة لرفع وش جديد فوري دون تغيير الطعم."
+            "solution": "لا تقدم فنجاناً بدون وش لضيف عماد أفندي! انقل القهوة لكنكة أصغر، وأضف نصف ملعقة بن صغيرة جداً على السطح وأعدها لثوانٍ على الرمالة لرفع وش جديد فوري دون تغيير الطعم.",
+            "problem_en": "Coffee boiled over and face/foam was completely lost.",
+            "solution_en": "Do not serve flat coffee. Add 1/2 teaspoon fresh fine coffee powder, place back on low heat for 15 seconds to regenerate microfoam."
           },
-          "proTip": "البن الفاتح يتميز بنسبة كافيين أعلى ونكهة حمضية فاكهية زكية، والماء البارد في البداية هو كلمة السر لظهور وش سميك."
+          "proTip": "البن الفاتح يتميز بنسبة كافيين أعلى ونكهة حمضية فاكهية زكية، والماء البارد في البداية هو كلمة السر لظهور وش سميك.",
+          "name_en": "Turkish Coffee (Light Roast - Pure Unspiced)",
+          "notes_en": "Traditional slow-brewed Turkish coffee. Light roast with thick golden-brown foam (face).",
+          "steps_en": [
+            "Add cold filtered water into the copper cezve/ibrik according to single (70ml) or double (140ml).",
+            "Add light roast finely ground coffee (7g for single, 14g for double) and desired sugar.",
+            "Stir thoroughly off-heat until completely dissolved, then place over low flame or hot sand bed.",
+            "Allow coffee to gently heat without stirring until thick foam rises to the brim.",
+            "Pour the top foam into the serving cup first, return briefly to heat, then pour remaining coffee along the cup wall."
+          ],
+          "proTip_en": "Never let Turkish coffee reach a violent boiling roll; excessive boil breaks the delicate aromatic foam."
         },
         {
           "id": "turkish-plain-medium",
@@ -87,9 +99,21 @@
           ],
           "rescue": {
             "problem": "البن مترسب في الفم وطلع خفيف القوام (Mawaly)",
-            "solution": "التقليب كان ناقصاً في البداية؛ قلب القهوة وهي باردة لـ 10 ثوانٍ قبل وضعها على الحرارة لتستحلب الزيوت وتذوب ذرات البن الدقيقة."
+            "solution": "التقليب كان ناقصاً في البداية؛ قلب القهوة وهي باردة لـ 10 ثوانٍ قبل وضعها على الحرارة لتستحلب الزيوت وتذوب ذرات البن الدقيقة.",
+            "problem_en": "Coffee boiled over and face/foam was completely lost.",
+            "solution_en": "Do not serve flat coffee. Add 1/2 teaspoon fresh fine coffee powder, place back on low heat for 15 seconds to regenerate microfoam."
           },
-          "proTip": "التحميص الوسط هو الخيار الأكثر شعبية وتوازناً بين المرارة الخفيفة ورائحة الكراميل الغنية."
+          "proTip": "التحميص الوسط هو الخيار الأكثر شعبية وتوازناً بين المرارة الخفيفة ورائحة الكراميل الغنية.",
+          "name_en": "Turkish Coffee (Medium Roast - Pure Unspiced)",
+          "notes_en": "Traditional slow-brewed Turkish coffee. Medium roast with thick golden-brown foam (face).",
+          "steps_en": [
+            "Add cold filtered water into the copper cezve/ibrik according to single (70ml) or double (140ml).",
+            "Add medium roast finely ground coffee (7g for single, 14g for double) and desired sugar.",
+            "Stir thoroughly off-heat until completely dissolved, then place over low flame or hot sand bed.",
+            "Allow coffee to gently heat without stirring until thick foam rises to the brim.",
+            "Pour the top foam into the serving cup first, return briefly to heat, then pour remaining coffee along the cup wall."
+          ],
+          "proTip_en": "Never let Turkish coffee reach a violent boiling roll; excessive boil breaks the delicate aromatic foam."
         },
         {
           "id": "turkish-plain-dark",
@@ -113,9 +137,21 @@
           ],
           "rescue": {
             "problem": "طعم القهوة ظهر محروق ومر بشكل مبالغ فيه",
-            "solution": "الحرارة كانت عالية جداً؛ اغمر قاعدة الكنكة في ماء بارد لثانيتين لفرملة الحرارة، وقدم معها قطعة شوكولاتة صغيرة أو تمرة لموازنة الطعم."
+            "solution": "الحرارة كانت عالية جداً؛ اغمر قاعدة الكنكة في ماء بارد لثانيتين لفرملة الحرارة، وقدم معها قطعة شوكولاتة صغيرة أو تمرة لموازنة الطعم.",
+            "problem_en": "Coffee boiled over and face/foam was completely lost.",
+            "solution_en": "Do not serve flat coffee. Add 1/2 teaspoon fresh fine coffee powder, place back on low heat for 15 seconds to regenerate microfoam."
           },
-          "proTip": "عشاق البن الغامق يطلبون عادة سكر خفيف (حبانوه أو سادة) ليستمتعوا بنكهة التحميص العميقة."
+          "proTip": "عشاق البن الغامق يطلبون عادة سكر خفيف (حبانوه أو سادة) ليستمتعوا بنكهة التحميص العميقة.",
+          "name_en": "Turkish Coffee (Dark Roast - Pure Unspiced)",
+          "notes_en": "Traditional slow-brewed Turkish coffee. Dark roast with thick golden-brown foam (face).",
+          "steps_en": [
+            "Add cold filtered water into the copper cezve/ibrik according to single (70ml) or double (140ml).",
+            "Add dark roast finely ground coffee (7g for single, 14g for double) and desired sugar.",
+            "Stir thoroughly off-heat until completely dissolved, then place over low flame or hot sand bed.",
+            "Allow coffee to gently heat without stirring until thick foam rises to the brim.",
+            "Pour the top foam into the serving cup first, return briefly to heat, then pour remaining coffee along the cup wall."
+          ],
+          "proTip_en": "Never let Turkish coffee reach a violent boiling roll; excessive boil breaks the delicate aromatic foam."
         },
         {
           "id": "turkish-spiced-light",
@@ -139,9 +175,21 @@
           ],
           "rescue": {
             "problem": "الحبهان طافي على الوش ومش مطحون ناعم",
-            "solution": "البن يحتاج إعادة نخل، صب القهوة من خلال مصفاة حريرية دقيقة فوراً فوق الفنجان لإنقاذ المظهر، وافحص نعومة مطحنة التحويج."
+            "solution": "البن يحتاج إعادة نخل، صب القهوة من خلال مصفاة حريرية دقيقة فوراً فوق الفنجان لإنقاذ المظهر، وافحص نعومة مطحنة التحويج.",
+            "problem_en": "Coffee boiled over and face/foam was completely lost.",
+            "solution_en": "Do not serve flat coffee. Add 1/2 teaspoon fresh fine coffee powder, place back on low heat for 15 seconds to regenerate microfoam."
           },
-          "proTip": "تحويجة عماد أفندي هي التوقيع الرسمي للبراند؛ لا تخلط بن قديم مع جديد في علبة البار."
+          "proTip": "تحويجة عماد أفندي هي التوقيع الرسمي للبراند؛ لا تخلط بن قديم مع جديد في علبة البار.",
+          "name_en": "Turkish Coffee (Light Roast - with Cardamom)",
+          "notes_en": "Traditional slow-brewed Turkish coffee. Light roast with thick golden-brown foam (face).",
+          "steps_en": [
+            "Add cold filtered water into the copper cezve/ibrik according to single (70ml) or double (140ml).",
+            "Add light roast finely ground coffee (7g for single, 14g for double) and desired sugar.",
+            "Stir thoroughly off-heat until completely dissolved, then place over low flame or hot sand bed.",
+            "Allow coffee to gently heat without stirring until thick foam rises to the brim.",
+            "Pour the top foam into the serving cup first, return briefly to heat, then pour remaining coffee along the cup wall."
+          ],
+          "proTip_en": "Never let Turkish coffee reach a violent boiling roll; excessive boil breaks the delicate aromatic foam."
         },
         {
           "id": "turkish-spiced-medium",
@@ -164,9 +212,21 @@
           ],
           "rescue": {
             "problem": "الوش انقسم لنصفين وظهرت بقع بيضاء في المنتصف",
-            "solution": "صب قطرة ماء باردة جداً في منتصف الكنكة قبل الصب مباشرة ليتجمع الوش كقطعة واحدة."
+            "solution": "صب قطرة ماء باردة جداً في منتصف الكنكة قبل الصب مباشرة ليتجمع الوش كقطعة واحدة.",
+            "problem_en": "Coffee boiled over and face/foam was completely lost.",
+            "solution_en": "Do not serve flat coffee. Add 1/2 teaspoon fresh fine coffee powder, place back on low heat for 15 seconds to regenerate microfoam."
           },
-          "proTip": "القهوة المحوجة وسط هي الأكثر طلباً في العزومات والجلسات الرسمية."
+          "proTip": "القهوة المحوجة وسط هي الأكثر طلباً في العزومات والجلسات الرسمية.",
+          "name_en": "Turkish Coffee (Medium Roast - with Cardamom)",
+          "notes_en": "Traditional slow-brewed Turkish coffee. Medium roast with thick golden-brown foam (face).",
+          "steps_en": [
+            "Add cold filtered water into the copper cezve/ibrik according to single (70ml) or double (140ml).",
+            "Add medium roast finely ground coffee (7g for single, 14g for double) and desired sugar.",
+            "Stir thoroughly off-heat until completely dissolved, then place over low flame or hot sand bed.",
+            "Allow coffee to gently heat without stirring until thick foam rises to the brim.",
+            "Pour the top foam into the serving cup first, return briefly to heat, then pour remaining coffee along the cup wall."
+          ],
+          "proTip_en": "Never let Turkish coffee reach a violent boiling roll; excessive boil breaks the delicate aromatic foam."
         },
         {
           "id": "turkish-spiced-dark",
@@ -188,9 +248,21 @@
           ],
           "rescue": {
             "problem": "الزبون اشتكى من حدة الطعم الزائدة",
-            "solution": "قدم معه فنجان حليب دافئ صغير جانبي لكسر الحدة دون الحاجة لإعادة عمل الأوردر."
+            "solution": "قدم معه فنجان حليب دافئ صغير جانبي لكسر الحدة دون الحاجة لإعادة عمل الأوردر.",
+            "problem_en": "Coffee boiled over and face/foam was completely lost.",
+            "solution_en": "Do not serve flat coffee. Add 1/2 teaspoon fresh fine coffee powder, place back on low heat for 15 seconds to regenerate microfoam."
           },
-          "proTip": "مشروب ذو طابع قوي جداً يفضله أصحاب المزاج العالي في الشفت المسائي."
+          "proTip": "مشروب ذو طابع قوي جداً يفضله أصحاب المزاج العالي في الشفت المسائي.",
+          "name_en": "Turkish Coffee (Dark Roast - with Cardamom)",
+          "notes_en": "Traditional slow-brewed Turkish coffee. Dark roast with thick golden-brown foam (face).",
+          "steps_en": [
+            "Add cold filtered water into the copper cezve/ibrik according to single (70ml) or double (140ml).",
+            "Add dark roast finely ground coffee (7g for single, 14g for double) and desired sugar.",
+            "Stir thoroughly off-heat until completely dissolved, then place over low flame or hot sand bed.",
+            "Allow coffee to gently heat without stirring until thick foam rises to the brim.",
+            "Pour the top foam into the serving cup first, return briefly to heat, then pour remaining coffee along the cup wall."
+          ],
+          "proTip_en": "Never let Turkish coffee reach a violent boiling roll; excessive boil breaks the delicate aromatic foam."
         }
       ],
       "name_en": "Turkish Coffee"
@@ -220,9 +292,20 @@
           ],
           "rescue": {
             "problem": "الحليب شاط في قاع الكنكة وعمل طعم شياط",
-            "solution": "قلب باستمرار أثناء وجود الكنكة على النار واستخدم كنكة ستانلس ستيل ذات قاعدة سميكة، ولا تتركها أبداً دون متابعة بصرية."
+            "solution": "قلب باستمرار أثناء وجود الكنكة على النار واستخدم كنكة ستانلس ستيل ذات قاعدة سميكة، ولا تتركها أبداً دون متابعة بصرية.",
+            "problem_en": "Milk scalded or stuck to cezve bottom.",
+            "solution_en": "Always stir thoroughly before applying heat and maintain lowest flame."
           },
-          "proTip": "حليب الفرنساوي يجب أن يكون كامل الدسم بدرجة حرارة الغرفة أو بارداً ليعطي قواماً مخملياً دسماً."
+          "proTip": "حليب الفرنساوي يجب أن يكون كامل الدسم بدرجة حرارة الغرفة أو بارداً ليعطي قواماً مخملياً دسماً.",
+          "name_en": "French Coffee (Classic with Milk)",
+          "notes_en": "Creamy velvety French coffee slow-simmered with whole milk and classic notes.",
+          "steps_en": [
+            "Pour cold whole milk (70ml) into the cezve.",
+            "Add 8g French roast coffee blend and sugar to taste.",
+            "Stir cold until fully blended, then place on gentle low heat.",
+            "Simmer slowly until creamy rich foam lifts to the edge, then pour smoothly into cup."
+          ],
+          "proTip_en": "Use whole fresh milk (3.5% fat) to achieve the signature creamy, buttery body of French coffee."
         },
         {
           "id": "french-caramel",
@@ -243,9 +326,20 @@
           ],
           "rescue": {
             "problem": "الرغوة هبطت سريعاً بعد الصب",
-            "solution": "صب القهوة بحركة بطيئة جداً ومستمرة، وتجنب رفع الكنكة عالياً أثناء السكب."
+            "solution": "صب القهوة بحركة بطيئة جداً ومستمرة، وتجنب رفع الكنكة عالياً أثناء السكب.",
+            "problem_en": "Milk scalded or stuck to cezve bottom.",
+            "solution_en": "Always stir thoroughly before applying heat and maintain lowest flame."
           },
-          "proTip": "نكهة الكراميل الغنية تبرز بدون الحاجة لإضافة سكر كثير."
+          "proTip": "نكهة الكراميل الغنية تبرز بدون الحاجة لإضافة سكر كثير.",
+          "name_en": "French Coffee (Caramel with Milk)",
+          "notes_en": "Creamy velvety French coffee slow-simmered with whole milk and caramel notes.",
+          "steps_en": [
+            "Pour cold whole milk (70ml) into the cezve.",
+            "Add 8g French roast coffee blend and sugar to taste.",
+            "Stir cold until fully blended, then place on gentle low heat.",
+            "Simmer slowly until creamy rich foam lifts to the edge, then pour smoothly into cup."
+          ],
+          "proTip_en": "Use whole fresh milk (3.5% fat) to achieve the signature creamy, buttery body of French coffee."
         },
         {
           "id": "french-hazelnut",
@@ -265,9 +359,20 @@
           ],
           "rescue": {
             "problem": "رائحة البندق ضعيفة",
-            "solution": "احفظ علبة بن البندق مغلقة بإحكام بعد كل أوردر لحماية الزيوت العطرية من التطاير."
+            "solution": "احفظ علبة بن البندق مغلقة بإحكام بعد كل أوردر لحماية الزيوت العطرية من التطاير.",
+            "problem_en": "Milk scalded or stuck to cezve bottom.",
+            "solution_en": "Always stir thoroughly before applying heat and maintain lowest flame."
           },
-          "proTip": "يعتبر بن البندق الأكثر طلباً بين المشروبات الشتوية لدى شباب وفتيات الكافيه."
+          "proTip": "يعتبر بن البندق الأكثر طلباً بين المشروبات الشتوية لدى شباب وفتيات الكافيه.",
+          "name_en": "French Coffee (Hazelnut with Milk)",
+          "notes_en": "Creamy velvety French coffee slow-simmered with whole milk and hazelnut notes.",
+          "steps_en": [
+            "Pour cold whole milk (70ml) into the cezve.",
+            "Add 8g French roast coffee blend and sugar to taste.",
+            "Stir cold until fully blended, then place on gentle low heat.",
+            "Simmer slowly until creamy rich foam lifts to the edge, then pour smoothly into cup."
+          ],
+          "proTip_en": "Use whole fresh milk (3.5% fat) to achieve the signature creamy, buttery body of French coffee."
         },
         {
           "id": "french-chocolate",
@@ -287,9 +392,20 @@
           ],
           "rescue": {
             "problem": "وجود كتل كاكاو صغيرة غير ذائبة",
-            "solution": "استخدم مضرب سلك يدوي صغير داخل الكنكة لـ 5 ثوانٍ قبل التسوية."
+            "solution": "استخدم مضرب سلك يدوي صغير داخل الكنكة لـ 5 ثوانٍ قبل التسوية.",
+            "problem_en": "Milk scalded or stuck to cezve bottom.",
+            "solution_en": "Always stir thoroughly before applying heat and maintain lowest flame."
           },
-          "proTip": "مزيج يجمع بين سحر القهوة التركية وغنى الهوت شوكليت."
+          "proTip": "مزيج يجمع بين سحر القهوة التركية وغنى الهوت شوكليت.",
+          "name_en": "French Coffee (Chocolate with Milk)",
+          "notes_en": "Creamy velvety French coffee slow-simmered with whole milk and chocolate notes.",
+          "steps_en": [
+            "Pour cold whole milk (70ml) into the cezve.",
+            "Add 8g French roast coffee blend and sugar to taste.",
+            "Stir cold until fully blended, then place on gentle low heat.",
+            "Simmer slowly until creamy rich foam lifts to the edge, then pour smoothly into cup."
+          ],
+          "proTip_en": "Use whole fresh milk (3.5% fat) to achieve the signature creamy, buttery body of French coffee."
         },
         {
           "id": "french-vanilla",
@@ -309,9 +425,20 @@
           ],
           "rescue": {
             "problem": "الحليب بدأ يفور مبكراً قبل نضج البن",
-            "solution": "ارفع الكنكة فوراً لثانية واحدة وخفض النار أو أبعدها عن مركز الرمالة لتنضج على الهادئ."
+            "solution": "ارفع الكنكة فوراً لثانية واحدة وخفض النار أو أبعدها عن مركز الرمالة لتنضج على الهادئ.",
+            "problem_en": "Milk scalded or stuck to cezve bottom.",
+            "solution_en": "Always stir thoroughly before applying heat and maintain lowest flame."
           },
-          "proTip": "الفانيليا تعطي إيحاء بالحلاوة الطبيعية فتقلل الحاجة للسكر."
+          "proTip": "الفانيليا تعطي إيحاء بالحلاوة الطبيعية فتقلل الحاجة للسكر.",
+          "name_en": "French Coffee (Vanilla with Milk)",
+          "notes_en": "Creamy velvety French coffee slow-simmered with whole milk and vanilla notes.",
+          "steps_en": [
+            "Pour cold whole milk (70ml) into the cezve.",
+            "Add 8g French roast coffee blend and sugar to taste.",
+            "Stir cold until fully blended, then place on gentle low heat.",
+            "Simmer slowly until creamy rich foam lifts to the edge, then pour smoothly into cup."
+          ],
+          "proTip_en": "Use whole fresh milk (3.5% fat) to achieve the signature creamy, buttery body of French coffee."
         }
       ],
       "name_en": "French Coffee"
@@ -336,9 +463,23 @@
           ],
           "rescue": {
             "problem": "القهوة العربية طلعت مرة ولاذعة أو غامقة زيادة",
-            "solution": "القهوة طُبخت أكثر من اللازم؛ أضف 100 مل ماء مغلي مع رشة زعفران إضافية لتعيد النضارة واللون الذهبي الشفاف المميز."
+            "solution": "القهوة طُبخت أكثر من اللازم؛ أضف 100 مل ماء مغلي مع رشة زعفران إضافية لتعيد النضارة واللون الذهبي الشفاف المميز.",
+            "problem_en": [
+              "Coffee looks cloudy with floating sediment."
+            ],
+            "solution_en": "Allow dallah to rest off-heat for 3 full minutes so fines sink to the bottom before pouring."
           },
-          "proTip": "الهيل لا يغلي مع البن لفترة طويلة حتى لا يفقد زيوته العطرية ويصبح مراً، بل يوضع في دلة التقديم ويُسكب عليه مغلي القهوة."
+          "proTip": "الهيل لا يغلي مع البن لفترة طويلة حتى لا يفقد زيوته العطرية ويصبح مراً، بل يوضع في دلة التقديم ويُسكب عليه مغلي القهوة.",
+          "name_en": "Saudi Arabic Coffee (Gahwa)",
+          "notes_en": "Traditional light golden coffee infused with aromatic green cardamom and saffron.",
+          "steps_en": [
+            "Bring 1 liter of fresh filtered water to a rolling boil in the Dallah.",
+            "Add 30g coarse light-roast Arabic coffee and simmer gently on low heat for 12-15 minutes.",
+            "Add ground green cardamom (10g) and premium saffron threads (0.5g); simmer for 2 more minutes.",
+            "Turn off heat, let grounds settle for 2 minutes, then strain into serving thermos/dallah.",
+            "Serve piping hot in traditional Finjan cups alongside fresh dates."
+          ],
+          "proTip_en": "Never boil the cardamom and saffron for too long; adding them in the final 2 minutes preserves vibrant floral aromatics."
         },
         {
           "id": "sudanese-jabana",
@@ -356,9 +497,22 @@
           ],
           "rescue": {
             "problem": "الجَبَنَة الفخارية سخنت زيادة وأحرقت البن",
-            "solution": "الفخار يحتفظ بالحرارة لفترة طويلة؛ ارفع الجَبَنَة عن السخان قبل الفوران النهائي بنصف دقيقة ودعها تكمل التسوية بحرارة الطين الذاتية."
+            "solution": "الفخار يحتفظ بالحرارة لفترة طويلة؛ ارفع الجَبَنَة عن السخان قبل الفوران النهائي بنصف دقيقة ودعها تكمل التسوية بحرارة الطين الذاتية.",
+            "problem_en": [
+              "Sauce settled at the bottom."
+            ],
+            "solution_en": "Stir with long bar spoon from bottom up before serving."
           },
-          "proTip": "قهوة الجَبَنَة مشروب علاجي ومزاجي استثنائي غني بالزنجبيل، ينشط الدورة الدموية ومحبوب جداً في ليالي الشتاء."
+          "proTip": "قهوة الجَبَنَة مشروب علاجي ومزاجي استثنائي غني بالزنجبيل، ينشط الدورة الدموية ومحبوب جداً في ليالي الشتاء.",
+          "name_en": "Sudanese Jabana",
+          "notes_en": "Specialty rich hot beverage crafted with premium dairy and signature artisan sauces.",
+          "steps_en": [
+            "Add signature sauce or powder base into pre-warmed cup.",
+            "Steam fresh whole milk to 65°C creating a silky, velvety microfoam.",
+            "Pour milk gradually while whisking to create a smooth, luxurious texture.",
+            "Garnish with whipped cream and artisan toppings."
+          ],
+          "proTip_en": "Whisk sauce with a small splash of hot milk first to prevent clumps and ensure even sweetness."
         },
         {
           "id": "single-origin-turkish",
@@ -374,9 +528,21 @@
           ],
           "rescue": {
             "problem": "الحموضة ظهرت حادة جداً ومنفرة",
-            "solution": "ارفع وقت التسوية 20 ثانية إضافية لاستخلاص الحلاوة السكرية في الحبة، وتأكد من جودة مياه التقطير."
+            "solution": "ارفع وقت التسوية 20 ثانية إضافية لاستخلاص الحلاوة السكرية في الحبة، وتأكد من جودة مياه التقطير.",
+            "problem_en": "Coffee boiled over and face/foam was completely lost.",
+            "solution_en": "Do not serve flat coffee. Add 1/2 teaspoon fresh fine coffee powder, place back on low heat for 15 seconds to regenerate microfoam."
           },
-          "proTip": "التركي المختص لا يُضاف إليه سكر نهائياً، ليتمكن الضيف من تذوق إيحاءات التوت والياسمين الطبيعية في البن."
+          "proTip": "التركي المختص لا يُضاف إليه سكر نهائياً، ليتمكن الضيف من تذوق إيحاءات التوت والياسمين الطبيعية في البن.",
+          "name_en": "Turkish Coffee (Dark Roast - Pure Unspiced)",
+          "notes_en": "Traditional slow-brewed Turkish coffee. Dark roast with thick golden-brown foam (face).",
+          "steps_en": [
+            "Add cold filtered water into the copper cezve/ibrik according to single (70ml) or double (140ml).",
+            "Add dark roast finely ground coffee (7g for single, 14g for double) and desired sugar.",
+            "Stir thoroughly off-heat until completely dissolved, then place over low flame or hot sand bed.",
+            "Allow coffee to gently heat without stirring until thick foam rises to the brim.",
+            "Pour the top foam into the serving cup first, return briefly to heat, then pour remaining coffee along the cup wall."
+          ],
+          "proTip_en": "Never let Turkish coffee reach a violent boiling roll; excessive boil breaks the delicate aromatic foam."
         }
       ],
       "name_en": "Heritage Brews"
@@ -427,9 +593,22 @@
           ],
           "rescue": {
             "problem": "الشوكليت شيبس لم يذب وظلت حبيبات صلبة في القاع",
-            "solution": "لا تعتمد على تبخير الحليب العادي؛ استخدم مضرب خفق صغير داخل البيتشر أثناء التبخير لضمان وصول الحرارة لذوبان رقائق الشوكولاتة كاملة."
+            "solution": "لا تعتمد على تبخير الحليب العادي؛ استخدم مضرب خفق صغير داخل البيتشر أثناء التبخير لضمان وصول الحرارة لذوبان رقائق الشوكولاتة كاملة.",
+            "problem_en": [
+              "Sauce settled at the bottom."
+            ],
+            "solution_en": "Stir with long bar spoon from bottom up before serving."
           },
-          "proTip": "استخدام شوكليت شيبس حقيقي بجانب البودرة والصوص هو سر كثافة وغنى هوت شوكليت عماد أفندي."
+          "proTip": "استخدام شوكليت شيبس حقيقي بجانب البودرة والصوص هو سر كثافة وغنى هوت شوكليت عماد أفندي.",
+          "name_en": "Luxury Hot Chocolate",
+          "notes_en": "Specialty rich hot beverage crafted with premium dairy and signature artisan sauces.",
+          "steps_en": [
+            "Add signature sauce or powder base into pre-warmed cup.",
+            "Steam fresh whole milk to 65°C creating a silky, velvety microfoam.",
+            "Pour milk gradually while whisking to create a smooth, luxurious texture.",
+            "Garnish with whipped cream and artisan toppings."
+          ],
+          "proTip_en": "Whisk sauce with a small splash of hot milk first to prevent clumps and ensure even sweetness."
         },
         {
           "id": "hot-batata",
@@ -447,9 +626,22 @@
           ],
           "rescue": {
             "problem": "القوام أصبح ثقيلاً جداً ومثل المهلبية",
-            "solution": "أضف 40 مل حليب مغلي فوراً ورج المشروب بلطف لتعديل اللزوجة ليصبح سائلاً دافئاً سلساً في الشرب."
+            "solution": "أضف 40 مل حليب مغلي فوراً ورج المشروب بلطف لتعديل اللزوجة ليصبح سائلاً دافئاً سلساً في الشرب.",
+            "problem_en": [
+              "Sauce settled at the bottom."
+            ],
+            "solution_en": "Stir with long bar spoon from bottom up before serving."
           },
-          "proTip": "أحد أكثر المشروبات الشتوية مبيعاً وتفرداً، نكهة البطاطا المشوية مع الكراميل والحليب تمنح دفئاً فورياً."
+          "proTip": "أحد أكثر المشروبات الشتوية مبيعاً وتفرداً، نكهة البطاطا المشوية مع الكراميل والحليب تمنح دفئاً فورياً.",
+          "name_en": "Sweet Potato Hot Drink",
+          "notes_en": "Specialty rich hot beverage crafted with premium dairy and signature artisan sauces.",
+          "steps_en": [
+            "Add signature sauce or powder base into pre-warmed cup.",
+            "Steam fresh whole milk to 65°C creating a silky, velvety microfoam.",
+            "Pour milk gradually while whisking to create a smooth, luxurious texture.",
+            "Garnish with whipped cream and artisan toppings."
+          ],
+          "proTip_en": "Whisk sauce with a small splash of hot milk first to prevent clumps and ensure even sweetness."
         },
         {
           "id": "hot-lotus",
@@ -469,9 +661,22 @@
           ],
           "rescue": {
             "problem": "النشا تكتل وعمل حبيبات بيضاء صغيرة",
-            "solution": "ذوّب النشا في ملعقة حليب بارد تماماً قبل إضافته للبيتشر الساخن، وإذا تكتل قم بتصفيته بالمصفاة فوراً قبل صبه في الكوب ووضع الكريمة."
+            "solution": "ذوّب النشا في ملعقة حليب بارد تماماً قبل إضافته للبيتشر الساخن، وإذا تكتل قم بتصفيته بالمصفاة فوراً قبل صبه في الكوب ووضع الكريمة.",
+            "problem_en": [
+              "Sauce settled at the bottom."
+            ],
+            "solution_en": "Stir with long bar spoon from bottom up before serving."
           },
-          "proTip": "قطعة بسكوت اللوتس الكاملة على الكريمة ترفع قيمة المشروب وشكله الجمالي للزبائن."
+          "proTip": "قطعة بسكوت اللوتس الكاملة على الكريمة ترفع قيمة المشروب وشكله الجمالي للزبائن.",
+          "name_en": "Royal Hot Lotus",
+          "notes_en": "Specialty rich hot beverage crafted with premium dairy and signature artisan sauces.",
+          "steps_en": [
+            "Add signature sauce or powder base into pre-warmed cup.",
+            "Steam fresh whole milk to 65°C creating a silky, velvety microfoam.",
+            "Pour milk gradually while whisking to create a smooth, luxurious texture.",
+            "Garnish with whipped cream and artisan toppings."
+          ],
+          "proTip_en": "Whisk sauce with a small splash of hot milk first to prevent clumps and ensure even sweetness."
         },
         {
           "id": "hot-pistachio",
@@ -490,9 +695,22 @@
           ],
           "rescue": {
             "problem": "اللون الأخضر باهت أو الطعم ناقص سكر",
-            "solution": "أضف 5 جرام حليب مكثف وصوص بيستاشيو أصلي لتعزيز اللون الطبيعي والحلاوة الفاخرة."
+            "solution": "أضف 5 جرام حليب مكثف وصوص بيستاشيو أصلي لتعزيز اللون الطبيعي والحلاوة الفاخرة.",
+            "problem_en": [
+              "Sauce settled at the bottom."
+            ],
+            "solution_en": "Stir with long bar spoon from bottom up before serving."
           },
-          "proTip": "التناقض بين الكريمة البيضاء والفستق الأخضر والخطوط يعطي مظهراً فندقياً من الطراز الأول."
+          "proTip": "التناقض بين الكريمة البيضاء والفستق الأخضر والخطوط يعطي مظهراً فندقياً من الطراز الأول.",
+          "name_en": "Royal Hot Pistachio",
+          "notes_en": "Specialty rich hot beverage crafted with premium dairy and signature artisan sauces.",
+          "steps_en": [
+            "Add signature sauce or powder base into pre-warmed cup.",
+            "Steam fresh whole milk to 65°C creating a silky, velvety microfoam.",
+            "Pour milk gradually while whisking to create a smooth, luxurious texture.",
+            "Garnish with whipped cream and artisan toppings."
+          ],
+          "proTip_en": "Whisk sauce with a small splash of hot milk first to prevent clumps and ensure even sweetness."
         },
         {
           "id": "chai-karak",
@@ -524,9 +742,22 @@
           ],
           "rescue": {
             "problem": "طعم الكرك خفيف ومائي",
-            "solution": "التزم بوزن بودر الكرك على الميزان؛ لا تعتمد على التقدير العشوائي، واستخدم حليب مبخر كثيف كامل الدسم."
+            "solution": "التزم بوزن بودر الكرك على الميزان؛ لا تعتمد على التقدير العشوائي، واستخدم حليب مبخر كثيف كامل الدسم.",
+            "problem_en": [
+              "Chai tastes watery or weak."
+            ],
+            "solution_en": "Simmer tea leaves for 2 extra minutes and increase evaporated milk ratio."
           },
-          "proTip": "الكرك يحتاج حرارة تبخير عالية (75°C) ليستخرج خلاصة توابل الهيل والزعفران."
+          "proTip": "الكرك يحتاج حرارة تبخير عالية (75°C) ليستخرج خلاصة توابل الهيل والزعفران.",
+          "name_en": "Traditional Spiced Chai",
+          "notes_en": "Slow-simmered rich black tea with evaporated milk and fragrant spices.",
+          "steps_en": [
+            "Boil water with crushed whole spices (cardamom, cinnamon, cloves, ginger).",
+            "Add strong black tea leaves and simmer for 3 minutes to extract deep amber color.",
+            "Pour evaporated milk and sugar; bring to a rolling frothy simmer for 2 minutes.",
+            "Strain through fine mesh into serving teapot or glass cup."
+          ],
+          "proTip_en": "Simmering the spices first extracts their essential oils before adding tea leaves, preventing bitterness."
         },
         {
           "id": "chai-adani",
@@ -557,9 +788,22 @@
           ],
           "rescue": {
             "problem": "ظهور رواسب توابل خشنة في قاع الكوب تزعج الزبون",
-            "solution": "استخدم مصفاة شاي صغيرة أثناء الصب لحجز التوابل الخشنة مع الاحتفاظ بالنكهة القوية."
+            "solution": "استخدم مصفاة شاي صغيرة أثناء الصب لحجز التوابل الخشنة مع الاحتفاظ بالنكهة القوية.",
+            "problem_en": [
+              "Chai tastes watery or weak."
+            ],
+            "solution_en": "Simmer tea leaves for 2 extra minutes and increase evaporated milk ratio."
           },
-          "proTip": "الشاي العدني يختلف عن الكرك بوجود نكهة جوزة الطيب والقرنفل البارزة وقوامه الأكثر حلاوة."
+          "proTip": "الشاي العدني يختلف عن الكرك بوجود نكهة جوزة الطيب والقرنفل البارزة وقوامه الأكثر حلاوة.",
+          "name_en": "Traditional Spiced Chai",
+          "notes_en": "Slow-simmered rich black tea with evaporated milk and fragrant spices.",
+          "steps_en": [
+            "Boil water with crushed whole spices (cardamom, cinnamon, cloves, ginger).",
+            "Add strong black tea leaves and simmer for 3 minutes to extract deep amber color.",
+            "Pour evaporated milk and sugar; bring to a rolling frothy simmer for 2 minutes.",
+            "Strain through fine mesh into serving teapot or glass cup."
+          ],
+          "proTip_en": "Simmering the spices first extracts their essential oils before adding tea leaves, preventing bitterness."
         },
         {
           "id": "chai-masala",
@@ -590,9 +834,22 @@
           ],
           "rescue": {
             "problem": "الزبون وجد نكهة الزنجبيل والفلفل حارة زيادة عن تحمله",
-            "solution": "أضف 30 مل حليب ساخن إضافي مع ملعقة عسل أو سكر لتخفيف حدة حرارة بهارات الماسالا."
+            "solution": "أضف 30 مل حليب ساخن إضافي مع ملعقة عسل أو سكر لتخفيف حدة حرارة بهارات الماسالا.",
+            "problem_en": [
+              "Chai tastes watery or weak."
+            ],
+            "solution_en": "Simmer tea leaves for 2 extra minutes and increase evaporated milk ratio."
           },
-          "proTip": "الماسالا الهندية خيار مثالي لمن يبحث عن تدفئة الحلق وتنشيط الحواس في الطقس البارد."
+          "proTip": "الماسالا الهندية خيار مثالي لمن يبحث عن تدفئة الحلق وتنشيط الحواس في الطقس البارد.",
+          "name_en": "Traditional Spiced Chai",
+          "notes_en": "Slow-simmered rich black tea with evaporated milk and fragrant spices.",
+          "steps_en": [
+            "Boil water with crushed whole spices (cardamom, cinnamon, cloves, ginger).",
+            "Add strong black tea leaves and simmer for 3 minutes to extract deep amber color.",
+            "Pour evaporated milk and sugar; bring to a rolling frothy simmer for 2 minutes.",
+            "Strain through fine mesh into serving teapot or glass cup."
+          ],
+          "proTip_en": "Simmering the spices first extracts their essential oils before adding tea leaves, preventing bitterness."
         }
       ],
       "name_en": "Hot Specials"

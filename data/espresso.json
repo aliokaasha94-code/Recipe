@@ -1,15 +1,16 @@
 {
   "station": {
     "id": "espresso",
-    "name": "محطة مكنة الإسبريسو والفلتر",
-    "englishName": "Espresso Bar & Filter Coffee Station",
+    "name": "محطة الإسبريسو والفلتر",
+    "englishName": "Espresso & Filter Station",
     "tagline": "المعيار الذهبي للاستخلاص والتبخير الحريري ☕",
     "targetStandard": "Dose: 18g | Yield: 36-40ml | Time: 25-30s | Temp: 92-94°C"
   },
   "categories": [
     {
       "id": "hot-espresso",
-      "name": "مشروبات الإسبريسو الساخنة (Hot Drinks)",
+      "name": "المشروبات الساخنة",
+      "name_en": "Hot Drinks",
       "items": [
         {
           "id": "espresso-single",
@@ -30,9 +31,20 @@
           ],
           "rescue": {
             "problem": "الاستخلاص سريع جداً (أقل من 20 ثانية) وطعمه حامض ولاذع (Under-extracted)",
-            "solution": "لا ترمِ الشوت! انقله فوراً ليصبح قاعدة لمشروب فرابيه بارد أو آيس لاتيه مع سيرب حيث تختفي الحموضة، وعدل درجة الطحنة لتكون أنعم بدرجة واحدة للأوردر الحالي."
+            "solution": "لا ترمِ الشوت! انقله فوراً ليصبح قاعدة لمشروب فرابيه بارد أو آيس لاتيه مع سيرب حيث تختفي الحموضة، وعدل درجة الطحنة لتكون أنعم بدرجة واحدة للأوردر الحالي.",
+            "problem_en": "Extraction is too fast (<20s), tasting sour and thin (under-extracted).",
+            "solution_en": "Do not discard! Pour over ice for an iced latte or blended frappe where milk balances acidity. Adjust grinder 1 notch finer for the next order."
           },
-          "proTip": "لا تترك البورتافلتر داخل المجموعة الساخنة بدون بدء الاستخلاص، لأن البن سيحترق فوراً ويفقد زيوته العطرية."
+          "proTip": "لا تترك البورتافلتر داخل المجموعة الساخنة بدون بدء الاستخلاص، لأن البن سيحترق فوراً ويفقد زيوته العطرية.",
+          "name_en": "Espresso (Single & Double)",
+          "notes_en": "Standard extraction: 25 to 30 seconds. Dense hazelnut crema with tiger stripes.",
+          "steps_en": [
+            "Grind 18g fresh specialty coffee into portafilter and distribute evenly using WDT tool.",
+            "Tamp level with 15-20 kg firm pressure ensuring completely flat surface.",
+            "Wipe portafilter rim clean and run a quick 2-second purge flush on the group head.",
+            "Lock portafilter into group head and extract immediately to yield 36-40ml in 25-30 seconds."
+          ],
+          "proTip_en": "Never leave the loaded portafilter inside the hot group head before extracting, as coffee oils will scorch instantly and create harsh bitterness."
         },
         {
           "id": "latte",
@@ -68,9 +80,19 @@
           ],
           "rescue": {
             "problem": "الحليب تبخر زيادة وعمل فوم كثيف سميك زي الكابتشينو",
-            "solution": "صب الحليب السائل المتبخر من تحت الرغوة برفق في الكوب، واستخدم ملعقة لحجز الفوم الكثيف الزائد واستخدامه في كابتشينو أو هوت شوكليت قادم."
+            "solution": "صب الحليب السائل المتبخر من تحت الرغوة برفق في الكوب، واستخدم ملعقة لحجز الفوم الكثيف الزائد واستخدامه في كابتشينو أو هوت شوكليت قادم.",
+            "problem_en": "Milk was over-aerated with large bubbles instead of glossy microfoam.",
+            "solution_en": "Tap the pitcher firmly on the counter and swirl vigorously for 10 seconds to merge bubbles. If too thick, spoon off excess foam before pouring."
           },
-          "proTip": "أوقف التبخير عندما تصبح قاعدة البيتشر ساخنة لدرجة يصعب لمسها لأكثر من ثانية واحدة (حوالي 65 مئوية)."
+          "proTip": "أوقف التبخير عندما تصبح قاعدة البيتشر ساخنة لدرجة يصعب لمسها لأكثر من ثانية واحدة (حوالي 65 مئوية).",
+          "name_en": "Caffè Latte",
+          "notes_en": "Silky steamed milk with a delicate microfoam layer (1 cm). Smooth, creamy profile.",
+          "steps_en": [
+            "Extract a double espresso shot (40ml) directly into the serving cup.",
+            "Steam cold fresh whole milk to 60-65°C creating velvety, glossy microfoam.",
+            "Tap and swirl the pitcher to integrate foam, then pour smoothly over espresso, finishing with latte art."
+          ],
+          "proTip_en": "Groom and swirl the steamed milk pitcher before pouring to keep microfoam glossy and homogenous without separation."
         },
         {
           "id": "flat-white",
@@ -87,9 +109,19 @@
           ],
           "rescue": {
             "problem": "الفوم ظهر عريض وسميك",
-            "solution": "اسحب الفوم السطحي بملعقة نظيفة قبل إكمال الصب لتحافظ على قوام الفلات وايت المسطح الغني."
+            "solution": "اسحب الفوم السطحي بملعقة نظيفة قبل إكمال الصب لتحافظ على قوام الفلات وايت المسطح الغني.",
+            "problem_en": "Milk became too foamy, resembling a cappuccino.",
+            "solution_en": "Rest the pitcher for 5 seconds, gently spoon off the thick top foam layer, swirl remaining liquid milk and pour."
           },
-          "proTip": "طعم القهوة في الفلات وايت يجب أن يكون هو البطل الواضح مقارنة باللاتيه."
+          "proTip": "طعم القهوة في الفلات وايت يجب أن يكون هو البطل الواضح مقارنة باللاتيه.",
+          "name_en": "Flat White",
+          "notes_en": "Double espresso topped with thin velvety microfoam (0.5 cm). Bold coffee-forward flavor.",
+          "steps_en": [
+            "Extract double espresso shot (36-40ml) into a 6.5 oz ceramic cup or glass.",
+            "Steam cold fresh milk with minimal aeration to produce thin, silky microfoam (60°C).",
+            "Pour slowly into the center of the espresso to fold the crema, finishing with a flat, glossy surface."
+          ],
+          "proTip_en": "Aeration time should not exceed 2-3 seconds to prevent excessive cappuccino-like foam; keep the wand submerged."
         },
         {
           "id": "cappuccino",
@@ -106,9 +138,19 @@
           ],
           "rescue": {
             "problem": "الفوم جاف جداً ومحروق",
-            "solution": "لا تصبه في الكوب! استخدم الحليب المتبقي في المشروبات الممزوجة، واعد تبخير بيتشر جديد لـ 20 ثانية فقط."
+            "solution": "لا تصبه في الكوب! استخدم الحليب المتبقي في المشروبات الممزوجة، واعد تبخير بيتشر جديد لـ 20 ثانية فقط.",
+            "problem_en": "Milk did not foam sufficiently (too liquid).",
+            "solution_en": "Convert the order to a Caffè Latte immediately, and steam a new pitcher with proper initial surface aeration."
           },
-          "proTip": "يمكن تزيين السطح برشة خفيفة من بودرة الكاكاو الفاخرة بناءً على طلب الضيف."
+          "proTip": "يمكن تزيين السطح برشة خفيفة من بودرة الكاكاو الفاخرة بناءً على طلب الضيف.",
+          "name_en": "Cappuccino",
+          "notes_en": "Harmonious balance of double espresso, hot milk, and deep rich foam (1.5-2 cm).",
+          "steps_en": [
+            "Extract double espresso shot (40ml) into a 6.5 oz cappuccino cup.",
+            "Aerate milk for 4-5 seconds near the surface, then submerge wand to spin vortex up to 65°C.",
+            "Swirl pitcher and pour steadily into the center, floating a plush, cushiony foam head."
+          ],
+          "proTip_en": "Maintain a shiny, paint-like gloss on the milk surface; avoid dry foam with visible air pockets."
         },
         {
           "id": "cortado",
@@ -125,9 +167,19 @@
           ],
           "rescue": {
             "problem": "الحليب فاض من الكوب الصغير",
-            "solution": "التزم بالمعيار (60 مل حليب فقط في البيتشر الصغير قبل التبخير)."
+            "solution": "التزم بالمعيار (60 مل حليب فقط في البيتشر الصغير قبل التبخير).",
+            "problem_en": "Milk volume exceeded espresso ratio, diluting the coffee strength.",
+            "solution_en": "Discard and re-pour with exact 60ml milk measurement; cortado flavor depends entirely on strict 1:1 ratio."
           },
-          "proTip": "الكورتادو مشروب سريع وحار، يُقدم فوراً للضيف للاستمتاع بحرارة القهوة وقوامها القوي."
+          "proTip": "الكورتادو مشروب سريع وحار، يُقدم فوراً للضيف للاستمتاع بحرارة القهوة وقوامها القوي.",
+          "name_en": "Cortado",
+          "notes_en": "Equal 1:1 balance between double espresso and lightly textured warm milk.",
+          "steps_en": [
+            "Extract 35ml double espresso directly into a 4 oz Gibraltar glass or demitasse.",
+            "Steam a small portion of milk (60ml) gently to 55-60°C with minimal microfoam.",
+            "Pour milk slowly through the crema to cut the acidity while preserving the robust espresso punch."
+          ],
+          "proTip_en": "Serve milk at a comfortable drinking temperature (55-60°C); overheating ruins the delicate 1:1 coffee ratio."
         },
         {
           "id": "piccolo",
@@ -143,9 +195,19 @@
           ],
           "rescue": {
             "problem": "الاستخلاص تخطى 20 مل ونزل خفيف",
-            "solution": "أوقف الاستخلاص مبكراً يدوياً عند وصول الميزان إلى 20 مل."
+            "solution": "أوقف الاستخلاص مبكراً يدوياً عند وصول الميزان إلى 20 مل.",
+            "problem_en": "Ristretto ran long into full espresso (>30ml).",
+            "solution_en": "Stop shot early manually at 20-22 seconds or 20ml to protect the sweet, concentrated flavor profile."
           },
-          "proTip": "الريستريتو يعطي حلاوة مركزة بدون أي مرارة استخلاص زائدة."
+          "proTip": "الريستريتو يعطي حلاوة مركزة بدون أي مرارة استخلاص زائدة.",
+          "name_en": "Piccolo Latte",
+          "notes_en": "Single ristretto shot topped with warm silky microfoam in a 4 oz cup.",
+          "steps_en": [
+            "Extract a short single ristretto (20-25ml) into a 4 oz glass.",
+            "Steam 70ml fresh milk smoothly to 60°C with light microfoam.",
+            "Pour milk gently over ristretto, finishing with a mini latte art heart."
+          ],
+          "proTip_en": "Extracting ristretto (shorter yield) ensures high sweetness without the astringent tail of espresso."
         },
         {
           "id": "spanish-latte",
@@ -183,9 +245,20 @@
           ],
           "rescue": {
             "problem": "الحليب المكثف متكتل في قاع الكوب ولم يمتزج",
-            "solution": "قلّب الإسبريسو الساخن مع الحليب المكثف بالمضرب الصغير أو المعلقة قبل صب الحليب المبخر، لا تعتمد على حرارة الحليب فقط."
+            "solution": "قلّب الإسبريسو الساخن مع الحليب المكثف بالمضرب الصغير أو المعلقة قبل صب الحليب المبخر، لا تعتمد على حرارة الحليب فقط.",
+            "problem_en": "Forgot to stir condensed milk before pouring milk.",
+            "solution_en": "Use a clean long barista bar spoon to gently stir the base without breaking the top latte art."
           },
-          "proTip": "رج زجاجة الحليب المكثف المعياري وتأكد أنها بدرجة حرارة الغرفة لسهولة الصب والدقة."
+          "proTip": "رج زجاجة الحليب المكثف المعياري وتأكد أنها بدرجة حرارة الغرفة لسهولة الصب والدقة.",
+          "name_en": "Hot Spanish Latte",
+          "notes_en": "Sweetened condensed milk base topped with rich double espresso and textured milk.",
+          "steps_en": [
+            "Add 30-40g condensed milk to bottom of 12 oz cup.",
+            "Extract double espresso (40ml) directly over the condensed milk.",
+            "Stir espresso and condensed milk thoroughly until fully dissolved.",
+            "Steam fresh milk to 60-65°C and pour smoothly, creating latte art."
+          ],
+          "proTip_en": "Always stir the condensed milk with hot espresso before adding steamed milk to avoid heavy cold sweetness sitting at the bottom."
         },
         {
           "id": "pistachio-latte",
@@ -223,9 +296,20 @@
           ],
           "rescue": {
             "problem": "الصوص ثقيل جداً وبرّد الشوت",
-            "solution": "سخن الكوب مسبقاً بمياه ساخنة أو ادمج الصوص مع 20 مل حليب ساخن في البداية."
+            "solution": "سخن الكوب مسبقاً بمياه ساخنة أو ادمج الصوص مع 20 مل حليب ساخن في البداية.",
+            "problem_en": "Pistachio sauce is too viscous and clumped at the bottom.",
+            "solution_en": "Add 10ml hot water or hot espresso first and whisk briskly with a mini bar whisk before adding milk."
           },
-          "proTip": "صوص البيستاشيو الفاخر لعماد أفندي يتميز بلونه الأخضر الطبيعي وقوامه الزبدي."
+          "proTip": "صوص البيستاشيو الفاخر لعماد أفندي يتميز بلونه الأخضر الطبيعي وقوامه الزبدي.",
+          "name_en": "Hot Pistachio Latte",
+          "notes_en": "Specialty pistachio paste layered with fresh double espresso and velvety milk.",
+          "steps_en": [
+            "Dispense 30-35g premium pistachio sauce into bottom of the cup.",
+            "Extract double espresso (40ml) over the pistachio sauce and stir thoroughly.",
+            "Steam fresh milk to 60-65°C and pour over the mixture.",
+            "Garnish with a light pinch of crushed raw pistachios on the foam."
+          ],
+          "proTip_en": "Keep pistachio sauce warm near the espresso machine to ensure effortless dissolution with hot espresso."
         },
         {
           "id": "white-mocha",
@@ -263,9 +347,20 @@
           ],
           "rescue": {
             "problem": "الحلاوة زائدة جداً عن رغبة الزبون",
-            "solution": "أضف ربع شوت إسبريسو ساخن لتعديل التوازن بين المرارة والحلاوة بدون إهدار الكوب."
+            "solution": "أضف ربع شوت إسبريسو ساخن لتعديل التوازن بين المرارة والحلاوة بدون إهدار الكوب.",
+            "problem_en": "Sauce not fully dissolved before milk was poured.",
+            "solution_en": "Gently swirl cup in circular motion or stir with a bar spoon from the edge."
           },
-          "proTip": "صوص الشوكولاتة البيضاء يحتاج تقليباً سريعاً لمنع التصاقه بجوانب الكوب."
+          "proTip": "صوص الشوكولاتة البيضاء يحتاج تقليباً سريعاً لمنع التصاقه بجوانب الكوب.",
+          "name_en": "Hot White Mocha",
+          "notes_en": "Rich white chocolate mocha sauce melted with espresso and steamed milk.",
+          "steps_en": [
+            "Pump 30g white chocolate sauce into the serving cup.",
+            "Extract fresh double espresso directly over sauce and mix well.",
+            "Steam fresh milk to 65°C and pour smoothly.",
+            "Optionally top with whipped cream and white chocolate shavings."
+          ],
+          "proTip_en": "White chocolate is rich in cocoa butter; dissolving thoroughly with hot espresso prevents an oily mouthfeel."
         },
         {
           "id": "caramel-macchiato",
@@ -307,9 +402,20 @@
           ],
           "rescue": {
             "problem": "الإسبريسو سقط في القاع وضاعت الطبقات",
-            "solution": "دع الحليب المبخر يهدأ في الكوب 15 ثانية ليتماسك الفوم قبل صب الإسبريسو، واستخدم ملعقة لتهدئة تدفق الشوت."
+            "solution": "دع الحليب المبخر يهدأ في الكوب 15 ثانية ليتماسك الفوم قبل صب الإسبريسو، واستخدم ملعقة لتهدئة تدفق الشوت.",
+            "problem_en": "Espresso sank completely instead of marking the foam.",
+            "solution_en": "Aerate milk slightly more next time; the foam head needs density to suspend the espresso mark."
           },
-          "proTip": "الكراميل ماكياتو لا يُقلب عند التقديم؛ متعة المشروب هي تذوق الإسبريسو المركز متبوعاً بحلاوة الحليب والفانيليا."
+          "proTip": "الكراميل ماكياتو لا يُقلب عند التقديم؛ متعة المشروب هي تذوق الإسبريسو المركز متبوعاً بحلاوة الحليب والفانيليا.",
+          "name_en": "Hot Caramel Macchiato",
+          "notes_en": "Vanilla syrup, silky steamed milk, marked with espresso and caramel grid.",
+          "steps_en": [
+            "Add 20ml vanilla syrup to bottom of 12 oz cup.",
+            "Steam fresh milk with moderate foam (65°C) and fill 3/4 of the cup.",
+            "Pour freshly extracted double espresso slowly into the center to leave a visible dark mark.",
+            "Drizzle caramel sauce in a crosshatch grid pattern over the foam."
+          ],
+          "proTip_en": "Pour espresso gently down the center of the cup to create the classic tiered layer beneath the foam."
         },
         {
           "id": "americano",
@@ -325,9 +431,19 @@
           ],
           "rescue": {
             "problem": "الكريما اختفت تماماً وأصبح السطح أسود باهت",
-            "solution": "الخطأ هو صب الماء المغلي فوق الإسبريسو! الطريقة الصحيحة: الماء أولاً ثم الإسبريسو يعلوه."
+            "solution": "الخطأ هو صب الماء المغلي فوق الإسبريسو! الطريقة الصحيحة: الماء أولاً ثم الإسبريسو يعلوه.",
+            "problem_en": "Barista poured boiling water over espresso, destroying the crema.",
+            "solution_en": "Top with a fresh single shot (15ml) float to restore the golden crema and aroma."
           },
-          "proTip": "استخدم ماء الفلتر بدرجة 88-90 مئوية، لا تستخدم ماء البخار المغلي جداً حتى لا يحرق طعم القهوة."
+          "proTip": "استخدم ماء الفلتر بدرجة 88-90 مئوية، لا تستخدم ماء البخار المغلي جداً حتى لا يحرق طعم القهوة.",
+          "name_en": "Caffè Americano",
+          "notes_en": "Hot filtered water (88-92°C) topped with double espresso preserving golden crema.",
+          "steps_en": [
+            "Fill serving cup with 200-220ml hot filtered water from boiler (88-90°C).",
+            "Extract fresh double espresso shot (40ml) directly on top of the hot water.",
+            "Serve immediately preserving the golden crema intact."
+          ],
+          "proTip_en": "Always add water first, then espresso on top (Long Black style). Pouring hot water over espresso burns the crema."
         },
         {
           "id": "hot-mocha",
@@ -368,9 +484,20 @@
           ],
           "rescue": {
             "problem": "تكتلات بودرة الشيكولاتة لم تذب في القاع",
-            "solution": "اخلط البودرة والصوص مع أول 15 مل من الإسبريسو الساخن بمضرب الكابتشينو الصغير لمدة 5 ثوانٍ قبل صب الحليب."
+            "solution": "اخلط البودرة والصوص مع أول 15 مل من الإسبريسو الساخن بمضرب الكابتشينو الصغير لمدة 5 ثوانٍ قبل صب الحليب.",
+            "problem_en": "Drink tastes too bitter.",
+            "solution_en": "Add 5ml simple vanilla syrup or a dollop of whipped cream to soften dark cocoa edge."
           },
-          "proTip": "بودر الفرابيه المعتمد يمنح الموكا قواماً كريمياً وثراءً لا يضاهيه الصوص منفرداً."
+          "proTip": "بودر الفرابيه المعتمد يمنح الموكا قواماً كريمياً وثراءً لا يضاهيه الصوص منفرداً.",
+          "name_en": "Hot Caffè Mocha",
+          "notes_en": "Dark cocoa sauce combined with rich double espresso and steamed milk.",
+          "steps_en": [
+            "Pump 30g premium dark chocolate sauce into the cup.",
+            "Extract double espresso directly over chocolate and stir with spoon.",
+            "Steam whole milk to 65°C and pour smoothly.",
+            "Finish with whipped cream or a dusting of pure Dutch cocoa powder."
+          ],
+          "proTip_en": "Use dark chocolate with at least 60% cocoa solids to balance milk sweetness with deep coffee notes."
         },
         {
           "id": "espresso-con-panna",
@@ -385,9 +512,19 @@
           ],
           "rescue": {
             "problem": "الكريمة ذابت فوراً وتحولت لسائل أبيض عكر",
-            "solution": "تأكد من خفق الكريمة جيداً وتبريدها (4°C) قبل الاستخدام، وركز وضع الكريمة على السطح بسرعة دون غمرها."
+            "solution": "تأكد من خفق الكريمة جيداً وتبريدها (4°C) قبل الاستخدام، وركز وضع الكريمة على السطح بسرعة دون غمرها.",
+            "problem_en": "Whipped cream melted immediately into warm liquid.",
+            "solution_en": "Keep cream canister chilled in fridge at 4°C; warm canisters produce watery foam."
           },
-          "proTip": "تناقض السخونة مع برودة الكريمة هو سر جمال المشروب."
+          "proTip": "تناقض السخونة مع برودة الكريمة هو سر جمال المشروب.",
+          "name_en": "Espresso Con Panna",
+          "notes_en": "Rich double espresso crowned with a swirl of fresh cold whipped cream.",
+          "steps_en": [
+            "Extract fresh double espresso (40ml) into a pre-warmed demitasse glass.",
+            "Pipe a generous rosette of chilled whipped cream over the hot espresso.",
+            "Serve immediately with a small dessert spoon."
+          ],
+          "proTip_en": "Ensure whipped cream is cold and firm so it floats cleanly on top without melting instantly into liquid."
         },
         {
           "id": "espresso-macchiato",
@@ -403,9 +540,19 @@
           ],
           "rescue": {
             "problem": "نزل حليب سائل كثير وخفف تركيز الإسبريسو",
-            "solution": "استخدم ملعقة البار المسطحة لأخذ رغوة الفوم العلوية فقط وحجز الحليب السائل في البيتشر."
+            "solution": "استخدم ملعقة البار المسطحة لأخذ رغوة الفوم العلوية فقط وحجز الحليب السائل في البيتشر.",
+            "problem_en": "Accidentally poured liquid milk diluting the shot.",
+            "solution_en": "Use only a spoon to scoop foam rather than pouring directly from pitcher."
           },
-          "proTip": "الماكياتو مشروب إسبريسو قوي للزبائن المحترفين، الفوم فقط لكسر حدة الحموضة."
+          "proTip": "الماكياتو مشروب إسبريسو قوي للزبائن المحترفين، الفوم فقط لكسر حدة الحموضة.",
+          "name_en": "Espresso Macchiato",
+          "notes_en": "Double espresso marked with a delicate spoonful of velvety steamed milk foam.",
+          "steps_en": [
+            "Extract double espresso (40ml) into a 4 oz demitasse cup.",
+            "Steam a small amount of milk to produce dense, shiny microfoam.",
+            "Use a barista spoon to float 2 tablespoons of velvety milk foam right in the center."
+          ],
+          "proTip_en": "Macchiato means 'stained' or 'marked'; do not add liquid milk, only dense sweet foam."
         },
         {
           "id": "affogato",
@@ -421,9 +568,19 @@
           ],
           "rescue": {
             "problem": "الآيس كريم ذاب قبل وصوله للعميل",
-            "solution": "احتفظ بكؤوس الأفوجاتو في الفريزر مسبقاً، واجعل صب الإسبريسو آخر حركة قبل خروج الصينية."
+            "solution": "احتفظ بكؤوس الأفوجاتو في الفريزر مسبقاً، واجعل صب الإسبريسو آخر حركة قبل خروج الصينية.",
+            "problem_en": "Gelato melted into soup before reaching the customer.",
+            "solution_en": "Always serve the espresso in a mini side pitcher for table pour."
           },
-          "proTip": "استخدم آيس كريم عماد أفندي الفاخر ذو الكثافة العالية ليصمد أمام حرارة القهوة."
+          "proTip": "استخدم آيس كريم عماد أفندي الفاخر ذو الكثافة العالية ليصمد أمام حرارة القهوة.",
+          "name_en": "Espresso Affogato",
+          "notes_en": "Scoop of artisan vanilla gelato drowned in freshly extracted double espresso.",
+          "steps_en": [
+            "Place 1 round scoop of hard frozen vanilla gelato into a chilled dessert glass.",
+            "Extract fresh double espresso (35-40ml) into a small shot pitcher.",
+            "Pour hot espresso slowly over the gelato scoop right at presentation."
+          ],
+          "proTip_en": "Keep serving glasses pre-chilled in the freezer to slow down ice cream melting."
         },
         {
           "id": "cafe-bombon",
@@ -440,15 +597,26 @@
           ],
           "rescue": {
             "problem": "الطبقات اختلطت ببعضها",
-            "solution": "استخدم ظهر ملعقة الشاي المسطحة واقترب بها من السطح لتهدئة اندفاع القهوة."
+            "solution": "استخدم ظهر ملعقة الشاي المسطحة واقترب بها من السطح لتهدئة اندفاع القهوة.",
+            "problem_en": "Layers mixed during pouring.",
+            "solution_en": "Pour slower over the inverted curve of a bar spoon touching the glass wall."
           },
-          "proTip": "يُقدم مع ملعقة صغيرة ليقوم العميل بدمج الطبقات بنفسه قبل الشرب."
+          "proTip": "يُقدم مع ملعقة صغيرة ليقوم العميل بدمج الطبقات بنفسه قبل الشرب.",
+          "name_en": "Café Bombón",
+          "notes_en": "Classic Spanish two-tier drink: sweetened condensed milk on bottom, dark espresso on top.",
+          "steps_en": [
+            "Add 30ml condensed milk into a clear 4 oz glass.",
+            "Extract double espresso into a mini shot pitcher.",
+            "Pour espresso gently over the back of a bar spoon onto condensed milk to form two distinct layers."
+          ],
+          "proTip_en": "Serve in clear glass without stirring; the visual contrast between white and dark layers is the signature experience."
         }
       ]
     },
     {
       "id": "iced-espresso",
-      "name": "مشروبات الإسبريسو الباردة (Iced Drinks)",
+      "name": "المشروبات الباردة",
+      "name_en": "Iced Drinks",
       "items": [
         {
           "id": "iced-espresso",
@@ -463,9 +631,20 @@
           ],
           "rescue": {
             "problem": "الثلج ذاب تماماً وأصبح طعم القهوة باهتاً ومائياً",
-            "solution": "استخدم مكعبات ثلج صلبة وكاملة من صانعة الثلج وليست مكعبات مجروشة أو ذائبة."
+            "solution": "استخدم مكعبات ثلج صلبة وكاملة من صانعة الثلج وليست مكعبات مجروشة أو ذائبة.",
+            "problem_en": "Shaken too long, melting ice and diluting espresso.",
+            "solution_en": "Cap shaking time at exactly 10 seconds with hard solid ice."
           },
-          "proTip": "التبريد السريع للإسبريسو يحفظ الحلاوة ويمنع أكسدة الطعم."
+          "proTip": "التبريد السريع للإسبريسو يحفظ الحلاوة ويمنع أكسدة الطعم.",
+          "name_en": "Iced Shaken Espresso",
+          "notes_en": "Double espresso shaken vigorously over ice cubes for rapid cooling and aerated crema.",
+          "steps_en": [
+            "Extract fresh double espresso (40ml) directly into a metal shaker.",
+            "Add 4-5 solid ice cubes immediately.",
+            "Shake vigorously for 10-12 seconds until frosty foam develops.",
+            "Strain into a chilled 8 oz glass with fresh ice cubes."
+          ],
+          "proTip_en": "Shaking creates micro-aeration that mellows bitterness and amplifies natural coffee sweetness."
         },
         {
           "id": "iced-americano",
@@ -481,9 +660,19 @@
           ],
           "rescue": {
             "problem": "الشوت نزل حار وذاب الثلج وسخن المشروب",
-            "solution": "زد مكعبي ثلج فوراً ورج المشروب بلطف في الشيكر لتوحيد البرودة."
+            "solution": "زد مكعبي ثلج فوراً ورج المشروب بلطف في الشيكر لتوحيد البرودة.",
+            "problem_en": "Ice melted completely making drink lukewarm.",
+            "solution_en": "Fill cup with dense fresh ice before adding coffee; never use semi-melted wet ice."
           },
-          "proTip": "الماء البارد أولاً مع الثلج ثم الإسبريسو في الأعلى هو المعيار العالمي لمظهر راقٍ وطعم منعش."
+          "proTip": "الماء البارد أولاً مع الثلج ثم الإسبريسو في الأعلى هو المعيار العالمي لمظهر راقٍ وطعم منعش.",
+          "name_en": "Iced Americano",
+          "notes_en": "Cold filtered water and ice cubes topped with fresh double espresso.",
+          "steps_en": [
+            "Fill 16 oz cold cup with solid ice cubes to the rim.",
+            "Pour cold filtered water to 75% cup capacity.",
+            "Extract fresh double espresso (40ml) and pour slowly over the ice."
+          ],
+          "proTip_en": "Pouring espresso over ice rather than into water preserves aromatic crema and distinct layered look."
         },
         {
           "id": "iced-latte",
@@ -500,9 +689,19 @@
           ],
           "rescue": {
             "problem": "القهوة نزلت في القاع مباشرة بدون تدفق رخامي",
-            "solution": "صب الإسبريسو برفق على أحد مكعبات الثلج البارزة بدلاً من صبه مباشرة في الحليب."
+            "solution": "صب الإسبريسو برفق على أحد مكعبات الثلج البارزة بدلاً من صبه مباشرة في الحليب.",
+            "problem_en": "Layers collapsed into uniform beige color.",
+            "solution_en": "Ensure milk is chilled below 4°C and pour espresso slowly across surface ice cubes."
           },
-          "proTip": "الحليب البارد جداً (2-4°C) ذو كثافة أعلى، مما يجعل الإسبريسو يطفو ويثبت كطبقة رائعة."
+          "proTip": "الحليب البارد جداً (2-4°C) ذو كثافة أعلى، مما يجعل الإسبريسو يطفو ويثبت كطبقة رائعة.",
+          "name_en": "Iced Latte",
+          "notes_en": "Cold fresh milk over ice topped with a rich floating layer of double espresso.",
+          "steps_en": [
+            "Fill 16 oz cold cup with fresh solid ice cubes.",
+            "Pour 180ml cold fresh milk over ice leaving 3 cm at top.",
+            "Extract fresh double espresso (40ml) and pour gently over ice for layered separation."
+          ],
+          "proTip_en": "Pour espresso slowly onto an ice cube near the surface to achieve clear dual-tone visual gradient."
         },
         {
           "id": "iced-spanish-latte",
@@ -521,9 +720,20 @@
           ],
           "rescue": {
             "problem": "الحليب المكثف لزق تحت الثلج والزبون مش عارف يشربه بالشفاطة",
-            "solution": "ممنوع وضع الثلج قبل إذابة الحليب المكثف في الإسبريسو الساخن! الترتيب: حليب مكثف + إسبريسو + تقليب -> ثم الثلج -> ثم الحليب."
+            "solution": "ممنوع وضع الثلج قبل إذابة الحليب المكثف في الإسبريسو الساخن! الترتيب: حليب مكثف + إسبريسو + تقليب -> ثم الثلج -> ثم الحليب.",
+            "problem_en": "Customer finds it too sweet.",
+            "solution_en": "Standard recipe uses 35g; offer extra espresso shot float to balance profile."
           },
-          "proTip": "السبانيش لاتيه هو المشروب الأكثر طلباً في عماد أفندي؛ ضبط وزنة الـ 75g حليب مكثف هو سر توازن الحلاوة."
+          "proTip": "السبانيش لاتيه هو المشروب الأكثر طلباً في عماد أفندي؛ ضبط وزنة الـ 75g حليب مكثف هو سر توازن الحلاوة.",
+          "name_en": "Iced Spanish Latte",
+          "notes_en": "Condensed milk base, cold milk, solid ice, and floating rich double espresso.",
+          "steps_en": [
+            "Add 35-40g condensed milk to bottom of 16 oz clear cup.",
+            "Fill cup with solid ice cubes.",
+            "Pour 150ml cold whole milk over ice.",
+            "Pour fresh double espresso (40ml) gently over top to create 3 distinct visual layers."
+          ],
+          "proTip_en": "Serve with a straw; customer stirs before drinking to combine velvety condensed sweetness with dark espresso."
         },
         {
           "id": "iced-pistachio-latte",
@@ -541,9 +751,20 @@
           ],
           "rescue": {
             "problem": "الصوص ثقيل ولم يختلط وظل كتلة صلبة بالأسفل",
-            "solution": "رج الإسبريسو مع صوص البيستاشيو في الشيكر لمدة 5 ثوانٍ قبل وضعه في الكوب لضمان توزيع النكهة."
+            "solution": "رج الإسبريسو مع صوص البيستاشيو في الشيكر لمدة 5 ثوانٍ قبل وضعه في الكوب لضمان توزيع النكهة.",
+            "problem_en": "Pistachio sauce slid completely to the bottom before pouring.",
+            "solution_en": "Chill cup briefly or use room temperature sauce with high viscosity."
           },
-          "proTip": "دهن جدران الكوب الشفاف بالصوص يعطي شكلاً مغرياً جداً للتصوير على السوشيال ميديا."
+          "proTip": "دهن جدران الكوب الشفاف بالصوص يعطي شكلاً مغرياً جداً للتصوير على السوشيال ميديا.",
+          "name_en": "Iced Pistachio Latte",
+          "notes_en": "Rich pistachio sauce lining cup walls, cold fresh milk, ice, and espresso float.",
+          "steps_en": [
+            "Line the inside walls of 16 oz clear cup with 35g pistachio sauce.",
+            "Fill cup with solid ice cubes.",
+            "Pour 160ml cold fresh milk.",
+            "Float freshly pulled double espresso (40ml) on top, garnished with chopped pistachios."
+          ],
+          "proTip_en": "Coating cup walls with sauce provides an irresistible visual appeal on the counter."
         },
         {
           "id": "iced-white-mocha",
@@ -561,9 +782,20 @@
           ],
           "rescue": {
             "problem": "ظهور دهون أو انفصال صوص الشوكولاتة البيضاء عند ملامسة الثلج",
-            "solution": "امزج الصوص مع الإسبريسو و20 مل حليب دافئ قبل الصب على الثلج ليصبح متجانساً ومستحلباً (Emulsified)."
+            "solution": "امزج الصوص مع الإسبريسو و20 مل حليب دافئ قبل الصب على الثلج ليصبح متجانساً ومستحلباً (Emulsified).",
+            "problem_en": "White chocolate hardened into chunks in cold milk.",
+            "solution_en": "Always melt sauce with hot espresso first before introducing ice or cold dairy."
           },
-          "proTip": "الوايت موكا البارد يحتاج شفاطة بوبا عريضة أو تقليب جيد عند التقديم."
+          "proTip": "الوايت موكا البارد يحتاج شفاطة بوبا عريضة أو تقليب جيد عند التقديم.",
+          "name_en": "Iced White Mocha",
+          "notes_en": "White chocolate sauce dissolved in fresh espresso, poured over cold milk and ice.",
+          "steps_en": [
+            "Add 35g white chocolate sauce into shot pitcher.",
+            "Extract double espresso directly onto sauce and stir vigorously until smooth.",
+            "Fill 16 oz cup with ice and 160ml cold milk.",
+            "Pour chocolate-espresso mixture over ice, topping with whipped cream."
+          ],
+          "proTip_en": "Never add cold milk to white chocolate sauce before espresso; cocoa butter will solidify and clump."
         },
         {
           "id": "iced-caramel-macchiato",
@@ -583,9 +815,20 @@
           ],
           "rescue": {
             "problem": "صوص الكراميل غرق في القاع بدلاً من الثبات على الوجه",
-            "solution": "تأكد من أن مستوى الثلج يصل لقمة الكوب تماماً ليعمل كشبكة أمان تسند خطوط الكراميل."
+            "solution": "تأكد من أن مستوى الثلج يصل لقمة الكوب تماماً ليعمل كشبكة أمان تسند خطوط الكراميل.",
+            "problem_en": "Caramel sank to the bottom.",
+            "solution_en": "Drizzle caramel directly onto surface ice cubes so it sits suspended on top."
           },
-          "proTip": "خطوط الكراميل على قطع الثلج تتجمد قليلاً وتمنح العميل قرمشة كراميل لذيذة مع الرشفة الأولى."
+          "proTip": "خطوط الكراميل على قطع الثلج تتجمد قليلاً وتمنح العميل قرمشة كراميل لذيذة مع الرشفة الأولى.",
+          "name_en": "Iced Caramel Macchiato",
+          "notes_en": "Vanilla syrup, cold milk, solid ice, double espresso float, and caramel crosshatch.",
+          "steps_en": [
+            "Add 20ml vanilla syrup to bottom of 16 oz cup.",
+            "Add ice cubes to rim and pour 160ml cold milk.",
+            "Pour fresh double espresso (40ml) over top ice to float.",
+            "Drizzle caramel sauce in a crosshatch pattern over the ice and espresso."
+          ],
+          "proTip_en": "Do not stir before serving; the three layers (white milk, dark espresso, golden caramel) define the presentation."
         },
         {
           "id": "iced-mocha",
@@ -603,15 +846,26 @@
           ],
           "rescue": {
             "problem": "الموكا طعمها خفيف زي الحليب بالشوكولاتة بدون نكهة قهوة واضحة",
-            "solution": "استخدم دبل ريستريتو مركز واضبط وقت الاستخلاص على 25 ثانية لتعزيز نكهة حبوب البن."
+            "solution": "استخدم دبل ريستريتو مركز واضبط وقت الاستخلاص على 25 ثانية لتعزيز نكهة حبوب البن.",
+            "problem_en": "Drink tastes too bitter.",
+            "solution_en": "Add 5ml simple syrup to soften bitter notes."
           },
-          "proTip": "شوكولاتة عماد أفندي البلجيكية الغنية تعطي توازناً مثالياً بين حلاوة الحليب ومرارة البن."
+          "proTip": "شوكولاتة عماد أفندي البلجيكية الغنية تعطي توازناً مثالياً بين حلاوة الحليب ومرارة البن.",
+          "name_en": "Iced Caffè Mocha",
+          "notes_en": "Rich chocolate sauce melted with espresso, poured over cold milk and ice.",
+          "steps_en": [
+            "Mix 30g dark chocolate sauce with hot double espresso (40ml) until uniform.",
+            "Fill 16 oz cup with solid ice cubes and 160ml cold milk.",
+            "Pour chocolate-coffee mixture over ice, finishing with optional whipped cream."
+          ],
+          "proTip_en": "Stirring chocolate with hot espresso prevents grit and guarantees silky mouthfeel."
         }
       ]
     },
     {
       "id": "filter-coffee",
-      "name": "القهوة المقطرة والفلتر (Filter & Manual Brew)",
+      "name": "القهوة المقطرة",
+      "name_en": "Filter Coffee",
       "items": [
         {
           "id": "v60-hot",
@@ -630,9 +884,20 @@
           ],
           "rescue": {
             "problem": "الماء نزل بسرعة فائقة وانتهى في أقل من دقيقة ونصف والقهوة مائية وحامضة جداً",
-            "solution": "الطحنة كانت خشنة جداً؛ صب القهوة في إبريق تسخين مع شريحة ليمون خفيفة أو قدمها كمشروب خفيف، واضبط الطاحونة لتكون أنعم بدرجتين فوراً للأوردر القادم."
+            "solution": "الطحنة كانت خشنة جداً؛ صب القهوة في إبريق تسخين مع شريحة ليمون خفيفة أو قدمها كمشروب خفيف، واضبط الطاحونة لتكون أنعم بدرجتين فوراً للأوردر القادم.",
+            "problem_en": "Brew stalled past 4 minutes (clogged filter, bitter taste).",
+            "solution_en": "Grind 2 notches coarser and avoid agitating fines at the base of the cone."
           },
-          "proTip": "لا تصب الماء مباشرة على حواف الفلتر الورقي حتى لا يتسرب الماء إلى السيرفر دون استخلاص القهوة."
+          "proTip": "لا تصب الماء مباشرة على حواف الفلتر الورقي حتى لا يتسرب الماء إلى السيرفر دون استخلاص القهوة.",
+          "name_en": "V60 Drip Coffee",
+          "notes_en": "Specialty pour-over coffee extracted with spiral pours at 90-93°C.",
+          "steps_en": [
+            "Rinse paper filter with hot water to remove paper taste and pre-warm server.",
+            "Add 18g medium-coarse coffee; bloom with 50ml water (92°C) for 40 seconds.",
+            "Pour water in concentric spirals in 3 pulses up to 300ml total yield.",
+            "Total brew time should finish between 2:45 to 3:15 minutes."
+          ],
+          "proTip_en": "Pour gently onto coffee bed without washing dripper walls to prevent channeling."
         },
         {
           "id": "chemex",
@@ -650,9 +915,20 @@
           ],
           "rescue": {
             "problem": "الفلتر انسد وجريان الماء توقف تماماً عند الدقيقة الثالثة",
-            "solution": "ارفع الفلتر الورقي برفق نصف سنتيمتر للسماح للهواء المحبوس بالخروج واستئناف النزول، واحرص على الطحن الأجش الخشن في المرات القادمة."
+            "solution": "ارفع الفلتر الورقي برفق نصف سنتيمتر للسماح للهواء المحبوس بالخروج واستئناف النزول، واحرص على الطحن الأجش الخشن في المرات القادمة.",
+            "problem_en": "Spout sealed by vacuum suction slowing drawdown.",
+            "solution_en": "Ensure triple-fold filter layer rests against spout groove to allow steam venting."
           },
-          "proTip": "فلاتر الكيمكس السميكة تمتص الزيوت الثقيلة وتعطيك أنقى فنجان قهوة مشرق بنكهات الفواكه والزهور."
+          "proTip": "فلاتر الكيمكس السميكة تمتص الزيوت الثقيلة وتعطيك أنقى فنجان قهوة مشرق بنكهات الفواكه والزهور.",
+          "name_en": "Chemex Clean Brew",
+          "notes_en": "Clean, sediment-free brew using thick Chemex bonded filters highlighting bright floral notes.",
+          "steps_en": [
+            "Place triple-fold filter side facing spout; rinse thoroughly with hot water.",
+            "Add 25g medium-coarse specialty coffee; bloom with 70ml water for 45 seconds.",
+            "Pour in steady spiral pulses maintaining water level 1 inch below rim up to 400ml.",
+            "Discard filter promptly once dripping slows; swirl carafe and serve."
+          ],
+          "proTip_en": "The thick Chemex filter traps cafestol and bitter oils, yielding an exceptionally clean, tea-like clarity."
         },
         {
           "id": "cold-brew",
@@ -670,19 +946,48 @@
           ],
           "rescue": {
             "problem": "المستخلص طلع مر جداً وقوي",
-            "solution": "الكولد برو طلع مركز (Concentrate)! خففه فوراً بنسبة 1:1 بماء بارد مفلتر أو حليب بارد ليكون أروع كولد برو لاتيه بدون أي هدر."
+            "solution": "الكولد برو طلع مركز (Concentrate)! خففه فوراً بنسبة 1:1 بماء بارد مفلتر أو حليب بارد ليكون أروع كولد برو لاتيه بدون أي هدر.",
+            "problem_en": "Batch tastes excessively strong or astringent.",
+            "solution_en": "Dilute with 15-20% cold filtered water to reach target TDS and balanced mouthfeel."
           },
-          "proTip": "لا تعصر كيس الفلتر أبداً عند انتهاء النقع، العصر يخرج المرارة والرواسب الدقيقة ويفقد المشروب نقاوته."
+          "proTip": "لا تعصر كيس الفلتر أبداً عند انتهاء النقع، العصر يخرج المرارة والرواسب الدقيقة ويفقد المشروب نقاوته.",
+          "name_en": "Cold Brew Concentrate",
+          "notes_en": "Steeped 16-18 hours in cold filtered water for ultra-low acidity and chocolate profile.",
+          "steps_en": [
+            "Coarsely grind specialty coffee (1:8 ratio with cold filtered water).",
+            "Steep in cold-brew vessel at room temperature (20°C) or fridge (4°C) for 16-18 hours.",
+            "Double-filter through stainless mesh then paper filter to eliminate sediment.",
+            "Serve 120ml concentrate over solid ice or dilute 1:1 with water/milk."
+          ],
+          "proTip_en": "Never steep past 20 hours to prevent extraction of woody, bitter cellulose compounds."
         }
       ]
     }
   ],
   "cleaningChecklist": [
-    { "task": "تنظيف البورتافلتر والشاور سكرين بفرشاة البار بعد كل استخلاص.", "frequency": "كل أوردر" },
-    { "task": "مسح عصا البخار بالفوطة المبللة المخصصة وعمل Purge بخار لمدة ثانيتين فور الانتهاء.", "frequency": "كل أوردر" },
-    { "task": "عمل Backflush بالماء النقي واستخدام الباسكت الأعمى (Blind Basket).", "frequency": "كل 4 ساعات" },
-    { "task": "تنظيف عميق بالبودرة الكيميائية (Cafiza / Puly Caff) للشاور سكرين والباك فلاش الكامل.", "frequency": "إغلاق الشفت اليومي" },
-    { "task": "نقع عصا البخار والبخاخات في محلول تنظيف الحليب وتفريغ وتنظيف صينية التصريف.", "frequency": "إغلاق الشفت اليومي" },
-    { "task": "تفريغ هوبر البن وتنظيف سكاكين المطحنة من الزيوت المترسبة بفرشاة جافة.", "frequency": "إغلاق الشفت اليومي" }
+    {
+      "task": "تنظيف البورتافلتر والشاور سكرين بفرشاة البار بعد كل استخلاص.",
+      "frequency": "كل أوردر"
+    },
+    {
+      "task": "مسح عصا البخار بالفوطة المبللة المخصصة وعمل Purge بخار لمدة ثانيتين فور الانتهاء.",
+      "frequency": "كل أوردر"
+    },
+    {
+      "task": "عمل Backflush بالماء النقي واستخدام الباسكت الأعمى (Blind Basket).",
+      "frequency": "كل 4 ساعات"
+    },
+    {
+      "task": "تنظيف عميق بالبودرة الكيميائية (Cafiza / Puly Caff) للشاور سكرين والباك فلاش الكامل.",
+      "frequency": "إغلاق الشفت اليومي"
+    },
+    {
+      "task": "نقع عصا البخار والبخاخات في محلول تنظيف الحليب وتفريغ وتنظيف صينية التصريف.",
+      "frequency": "إغلاق الشفت اليومي"
+    },
+    {
+      "task": "تفريغ هوبر البن وتنظيف سكاكين المطحنة من الزيوت المترسبة بفرشاة جافة.",
+      "frequency": "إغلاق الشفت اليومي"
+    }
   ]
 }

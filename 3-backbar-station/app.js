@@ -363,7 +363,7 @@ class StationApp {
     }
 
     const primaryName = isAr ? nameAr : nameEn;
-    const secondaryName = isAr ? nameEn : nameAr;
+    const secondaryName = isAr ? nameEn : (item.category_en || nameEn);
 
     // Clean concise size badge
     let sizeBadge = '';
@@ -568,7 +568,17 @@ class StationApp {
             ${svgIllustration}
           </div>
           <h2 class="detail-drink-name">${modalPrimaryName}</h2>
-          <div class="detail-drink-sub">${modalSecondaryName ? modalSecondaryName + (item.notes ? ' • ' + item.notes : '') : (item.notes || '')}</div>
+          ${(() => {
+            if (isAr) {
+              const notes = item.notes || '';
+              const sub = modalSecondaryName ? (modalSecondaryName + (notes ? ' • ' + notes : '')) : notes;
+              return sub ? `<div class="detail-drink-sub">${sub}</div>` : '';
+            } else {
+              const notesEn = item.notes_en || '';
+              const sub = notesEn || (item.category_en || '');
+              return sub ? `<div class="detail-drink-sub">${sub}</div>` : '';
+            }
+          })()}
         </div>
       </div>
 
@@ -609,6 +619,68 @@ class StationApp {
     document.body.style.overflow = '';
   }
 
+  translateMetricValue(val) {
+    if (!val || typeof val !== 'string') return val;
+    let s = val;
+    const dict = [
+      [/Cup\s*4\s*oz\s*\/\s*فنجان\s*إسبريسو/gi, '4 oz Cup / Espresso Demitasse'],
+      [/Cup\s*4\s*oz\s*\/\s*فنجان\s*تركي\s*سنجل/gi, '4 oz Cup / Single Turkish Cup'],
+      [/Cup\s*4\s*oz\s*\/\s*فنجان\s*تركي\s*دبل/gi, '4 oz Cup / Double Turkish Cup'],
+      [/كوب\s*4\s*oz\s*\/\s*فنجان\s*تركي\s*سنجل/gi, '4 oz Cup / Single Turkish Cup'],
+      [/كوب\s*4\s*oz\s*\/\s*فنجان\s*تركي\s*دبل/gi, '4 oz Cup / Double Turkish Cup'],
+      [/كوب\s*4\s*oz\s*\/\s*فنجان\s*تركي/gi, '4 oz Cup / Turkish Cup'],
+      [/فنجان\s*تركي\s*سنجل/gi, 'Single Turkish Cup'],
+      [/فنجان\s*تركي\s*دبل/gi, 'Double Turkish Cup'],
+      [/كوب\s*زجاجي\s*أو\s*فخار/gi, 'Glass or Ceramic Cup'],
+      [/كوب\s*زجاجي\s*شفاف/gi, 'Clear Glass Cup'],
+      [/كوب\s*16\s*oz\s*بارد\s*\+\s*ليد\s*بومبيه/gi, '16 oz Cold Cup + Dome Lid'],
+      [/كوب\s*16\s*oz\s*بارد\s*\+\s*ليد\s*فلات/gi, '16 oz Cold Cup + Flat Lid'],
+      [/كوب\s*بارد\s*16\s*oz\s*\+\s*ليد\s*بومبيه/gi, '16 oz Cold Cup + Dome Lid'],
+      [/كوب\s*بارد\s*16\s*oz\s*\+\s*ليد\s*فلات/gi, '16 oz Cold Cup + Flat Lid'],
+      [/كوب\s*12\s*oz\s*ساخن\s*\+\s*ليد\s*أسود/gi, '12 oz Hot Cup + Black Lid'],
+      [/كوب\s*16\s*oz\s*ساخن\s*\+\s*ليد\s*أسود/gi, '16 oz Hot Cup + Black Lid'],
+      [/كوب\s*8\s*oz\s*ساخن\s*\+\s*ليد\s*أسود/gi, '8 oz Hot Cup + Black Lid'],
+      [/كوب\s*ساخن\s*12\s*oz\s*\+\s*ليد\s*أسود/gi, '12 oz Hot Cup + Black Lid'],
+      [/كوب\s*ساخن\s*16\s*oz\s*\+\s*ليد\s*أسود/gi, '16 oz Hot Cup + Black Lid'],
+      [/كوب\s*ساخن\s*8\s*oz\s*\+\s*ليد\s*أسود/gi, '8 oz Hot Cup + Black Lid'],
+      [/فنجان\s*إسبريسو/gi, 'Espresso Demitasse'],
+      [/كوب\s*ثلج\s*كامل/gi, 'Full Cup of Ice'],
+      [/ثلج\s*مجروش/gi, 'Crushed Ice'],
+      [/مكعبات\s*ثلج/gi, 'Ice Cubes'],
+      [/ماء\s*بارد\s*مفلتر/gi, 'Cold Filtered Water'],
+      [/ماء\s*ساخن/gi, 'Hot Water'],
+      [/حليب\s*بارد/gi, 'Cold Fresh Milk'],
+      [/حليب\s*مبخر/gi, 'Steamed Milk'],
+      [/حليب\s*مكثف/gi, 'Condensed Milk'],
+      [/كريمة\s*خفق/gi, 'Whipping Cream'],
+      [/آيس\s*كريم\s*فانيليا/gi, 'Vanilla Ice Cream'],
+      [/آيس\s*كريم/gi, 'Ice Cream'],
+      [/صوص\s*كراميل/gi, 'Caramel Sauce'],
+      [/صوص\s*شوكولاتة/gi, 'Chocolate Sauce'],
+      [/صوص\s*شوكولاته/gi, 'Chocolate Sauce'],
+      [/صوص\s*لوتس/gi, 'Lotus Biscoff Sauce'],
+      [/صوص\s*بيستاشيو/gi, 'Pistachio Sauce'],
+      [/صوص\s*بطاطا/gi, 'Sweet Potato Sauce'],
+      [/بيوريه\s*فراولة/gi, 'Strawberry Puree'],
+      [/بيوريه\s*مانجو/gi, 'Mango Puree'],
+      [/بودر\s*فرابيه\s*كوفي/gi, 'Coffee Frappe Powder'],
+      [/بودر\s*فرابيه/gi, 'Frappe Powder'],
+      [/بودرة\s*تانج/gi, 'Tang Powder'],
+      [/شوكليت\s*شيبس/gi, 'Chocolate Chips'],
+      [/بن\s*فاتح\s*بريميوم/gi, 'Premium Light Roast Coffee'],
+      [/بن\s*وسط\s*بريميوم/gi, 'Premium Medium Roast Coffee'],
+      [/بن\s*غامق\s*بريميوم/gi, 'Premium Dark Roast Coffee'],
+      [/بن\s*محوج\s*بالحبهان/gi, 'Cardamom Spiced Coffee'],
+      [/سنجل/gi, 'Single'],
+      [/دبل/gi, 'Double'],
+      [/كوب/gi, 'Cup']
+    ];
+    for (const [re, rep] of dict) {
+      s = s.replace(re, rep);
+    }
+    return s;
+  }
+
   renderMetricsFromObject(obj, isAr) {
     const t = I18N[this.currentLang];
     // Barista sequential preparation workflow order:
@@ -631,7 +703,7 @@ class StationApp {
 
     // Include any extra attributes if present
     const excludedKeys = new Set([
-      'id', 'name', 'name_en', 'category', 'category_en', 'notes',
+      'id', 'name', 'name_en', 'category', 'category_en', 'notes', 'notes_en',
       'steps', 'steps_en', 'proTip', 'proTip_en', 'rescue', 'sizes',
       'single', 'double', 'sizeLabel'
     ]);
@@ -646,7 +718,8 @@ class StationApp {
 
     return presentKeys.map((key, idx) => {
       const label = t.metrics[key] || key;
-      const val = obj[key];
+      const rawVal = obj[key];
+      const val = isAr ? rawVal : this.translateMetricValue(rawVal);
       return `
         <div class="sop-metric-row">
           <div class="sop-metric-info">

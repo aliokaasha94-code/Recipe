@@ -1,8 +1,8 @@
 {
   "station": {
     "id": "backbar",
-    "name": "محطة الباك بار والحلويات (Cold Bar & Bakery)",
-    "englishName": "Cold Drinks, Smoothies, Shakes & Bakery Station",
+    "name": "محطة الباك بار والحلويات",
+    "englishName": "Back Bar & Desserts Station",
     "tagline": "انتعاش الصيف وأشهى حلويات الوافل والبان كيك 🥤🧇👑",
     "goldenRules": {
       "blenderSmoothie": "ضع البلندر على الميزان أولاً، ثم المياه، ثم المكونات، ثم الثلج، ويتم الضرب على السرعة 2 والتقفيل ليد سيفتي.",
@@ -14,7 +14,7 @@
   "categories": [
     {
       "id": "frappes",
-      "name": "الفرابيه الكريمي المثلج (Frappes)",
+      "name": "الفرابيه",
       "items": [
         {
           "id": "frappe-coffee",
@@ -33,9 +33,23 @@
           ],
           "rescue": {
             "problem": "الفرابيه طلع سائل جداً والثلج ذاب",
-            "solution": "أضف نصف كوب ثلج مع ملعقة صغيرة من بودرة الفرابيه (Base) واخلط 10 ثوانٍ ليعود القوام ثلجياً متماسكاً فوراً."
+            "solution": "أضف نصف كوب ثلج مع ملعقة صغيرة من بودرة الفرابيه (Base) واخلط 10 ثوانٍ ليعود القوام ثلجياً متماسكاً فوراً.",
+            "problem_en": [
+              "Frappe texture is watery with loose ice crystals."
+            ],
+            "solution_en": "Add 15g frappe powder or a splash of cream and re-blend for 10 seconds."
           },
-          "proTip": "بودر الفرابيه يحتوي على صمغ الزانثان الطبيعي الذي يمنع انفصال الماء عن الحليب ويثبت القوام المتماسك."
+          "proTip": "بودر الفرابيه يحتوي على صمغ الزانثان الطبيعي الذي يمنع انفصال الماء عن الحليب ويثبت القوام المتماسك.",
+          "name_en": "Coffee Frappe",
+          "notes_en": "Blended icy frappe with rich coffee base, topped with whipped cream.",
+          "steps_en": [
+            "Pour 100ml cold fresh milk into blender pitcher on digital scale.",
+            "Add 45g artisan frappe powder and 20g signature sauce.",
+            "Fill serving cup with solid ice cubes and dump into blender.",
+            "Blend on Speed 3 for 25-30 seconds until velvety and smooth.",
+            "Pour into 16 oz cold cup, top with whipped cream and drizzle."
+          ],
+          "proTip_en": "Always add liquid first, then powders, then ice on top to prevent powder sticking to blender blades."
         },
         {
           "id": "frappe-chocolate",
@@ -54,9 +68,23 @@
           ],
           "rescue": {
             "problem": "صوص الشوكولاتة لزق في جدار البلندر ولم يختلط",
-            "solution": "ضع الحليب أولاً دائماً قبل الصوص، لا تضع الصوص مباشرة على شفرات أو قاع البلندر الجاف."
+            "solution": "ضع الحليب أولاً دائماً قبل الصوص، لا تضع الصوص مباشرة على شفرات أو قاع البلندر الجاف.",
+            "problem_en": [
+              "Frappe texture is watery with loose ice crystals."
+            ],
+            "solution_en": "Add 15g frappe powder or a splash of cream and re-blend for 10 seconds."
           },
-          "proTip": "تزيين جدران الكوب من الداخل بصوص الشوكولاتة قبل الصب يعطي مظهراً فخماً وشهياً."
+          "proTip": "تزيين جدران الكوب من الداخل بصوص الشوكولاتة قبل الصب يعطي مظهراً فخماً وشهياً.",
+          "name_en": "Chocolate Frappe",
+          "notes_en": "Blended icy frappe with rich chocolate base, topped with whipped cream.",
+          "steps_en": [
+            "Pour 100ml cold fresh milk into blender pitcher on digital scale.",
+            "Add 45g artisan frappe powder and 20g signature sauce.",
+            "Fill serving cup with solid ice cubes and dump into blender.",
+            "Blend on Speed 3 for 25-30 seconds until velvety and smooth.",
+            "Pour into 16 oz cold cup, top with whipped cream and drizzle."
+          ],
+          "proTip_en": "Always add liquid first, then powders, then ice on top to prevent powder sticking to blender blades."
         },
         {
           "id": "frappe-vanilla",
@@ -72,9 +100,23 @@
           ],
           "rescue": {
             "problem": "الفرابيه طلع لونه رمادي وباهت",
-            "solution": "استخدم ثلجاً نقياً وبودر فانيليا طازج غير معرض للهواء أو الرطوبة."
+            "solution": "استخدم ثلجاً نقياً وبودر فانيليا طازج غير معرض للهواء أو الرطوبة.",
+            "problem_en": [
+              "Frappe texture is watery with loose ice crystals."
+            ],
+            "solution_en": "Add 15g frappe powder or a splash of cream and re-blend for 10 seconds."
           },
-          "proTip": "يمكن تزيين الفانيليا برشة كرانش بسكوت لتعزيز الملمس المقرمش."
+          "proTip": "يمكن تزيين الفانيليا برشة كرانش بسكوت لتعزيز الملمس المقرمش.",
+          "name_en": "Vanilla Frappe",
+          "notes_en": "Blended icy frappe with rich vanilla base, topped with whipped cream.",
+          "steps_en": [
+            "Pour 100ml cold fresh milk into blender pitcher on digital scale.",
+            "Add 45g artisan frappe powder and 20g signature sauce.",
+            "Fill serving cup with solid ice cubes and dump into blender.",
+            "Blend on Speed 3 for 25-30 seconds until velvety and smooth.",
+            "Pour into 16 oz cold cup, top with whipped cream and drizzle."
+          ],
+          "proTip_en": "Always add liquid first, then powders, then ice on top to prevent powder sticking to blender blades."
         },
         {
           "id": "frappe-mocha",
@@ -92,9 +134,23 @@
           ],
           "rescue": {
             "problem": "نكهة القهوة ضعيفة وغطاها طعم الكاكاو",
-            "solution": "أضف شوت إسبريسو مبرد (Ristretto) واخلطه 5 ثوانٍ لتعزيز الطعم القوي لعشاق الموكا."
+            "solution": "أضف شوت إسبريسو مبرد (Ristretto) واخلطه 5 ثوانٍ لتعزيز الطعم القوي لعشاق الموكا.",
+            "problem_en": [
+              "Frappe texture is watery with loose ice crystals."
+            ],
+            "solution_en": "Add 15g frappe powder or a splash of cream and re-blend for 10 seconds."
           },
-          "proTip": "التوازن بين حلاوة الكاكاو ومرارة القهوة هو ما يبحث عنه عشاق فرابيه الموكا في عماد أفندي."
+          "proTip": "التوازن بين حلاوة الكاكاو ومرارة القهوة هو ما يبحث عنه عشاق فرابيه الموكا في عماد أفندي.",
+          "name_en": "Mocha Frappe",
+          "notes_en": "Blended icy frappe with rich mocha base, topped with whipped cream.",
+          "steps_en": [
+            "Pour 100ml cold fresh milk into blender pitcher on digital scale.",
+            "Add 45g artisan frappe powder and 20g signature sauce.",
+            "Fill serving cup with solid ice cubes and dump into blender.",
+            "Blend on Speed 3 for 25-30 seconds until velvety and smooth.",
+            "Pour into 16 oz cold cup, top with whipped cream and drizzle."
+          ],
+          "proTip_en": "Always add liquid first, then powders, then ice on top to prevent powder sticking to blender blades."
         },
         {
           "id": "frappe-toffee-coffee",
@@ -114,15 +170,30 @@
           ],
           "rescue": {
             "problem": "الكرانش ذاب واختفت قرمشته",
-            "solution": "سيرب التوفي يدخل في الخلط، لكن قطع الكرانش المقرمشة ترش على الكريمة في النهاية ولا تخلط داخل البلندر."
+            "solution": "سيرب التوفي يدخل في الخلط، لكن قطع الكرانش المقرمشة ترش على الكريمة في النهاية ولا تخلط داخل البلندر.",
+            "problem_en": [
+              "Frappe texture is watery with loose ice crystals."
+            ],
+            "solution_en": "Add 15g frappe powder or a splash of cream and re-blend for 10 seconds."
           },
-          "proTip": "المشروب الأكثر تميزاً لمحبي الكراميل المقرمش والقهوة الغنية."
+          "proTip": "المشروب الأكثر تميزاً لمحبي الكراميل المقرمش والقهوة الغنية.",
+          "name_en": "Toffee-coffee Frappe",
+          "notes_en": "Blended icy frappe with rich toffee-coffee base, topped with whipped cream.",
+          "steps_en": [
+            "Pour 100ml cold fresh milk into blender pitcher on digital scale.",
+            "Add 45g artisan frappe powder and 20g signature sauce.",
+            "Fill serving cup with solid ice cubes and dump into blender.",
+            "Blend on Speed 3 for 25-30 seconds until velvety and smooth.",
+            "Pour into 16 oz cold cup, top with whipped cream and drizzle."
+          ],
+          "proTip_en": "Always add liquid first, then powders, then ice on top to prevent powder sticking to blender blades."
         }
-      ]
+      ],
+      "name_en": "Frappes"
     },
     {
       "id": "milkshakes",
-      "name": "الميلك شيك الثقيل والمخفوقات (Milkshakes)",
+      "name": "الميلك شيك",
       "items": [
         {
           "id": "shake-vanilla",
@@ -140,9 +211,22 @@
           ],
           "rescue": {
             "problem": "الخليط طلع خفيف مثل العصير لأن الآيس كريم كان ذائباً",
-            "solution": "أضف بولة آيس كريم مجمدة واخلط 5 ثوانٍ فقط، ولا تطل مدة الخفق لأن الاحتكاك يرفع حرارة الشفرات ويذيب الآيس كريم."
+            "solution": "أضف بولة آيس كريم مجمدة واخلط 5 ثوانٍ فقط، ولا تطل مدة الخفق لأن الاحتكاك يرفع حرارة الشفرات ويذيب الآيس كريم.",
+            "problem_en": [
+              "Shake became too thin and melted."
+            ],
+            "solution_en": "Add 1 hard frozen scoop of ice cream and pulse 3 times to restore thick body."
           },
-          "proTip": "السرعة رقم 2 هي السر في ميلك شيك عماد أفندي، السرعات العالية تفكك دسم الآيس كريم وتحوله لسائل."
+          "proTip": "السرعة رقم 2 هي السر في ميلك شيك عماد أفندي، السرعات العالية تفكك دسم الآيس كريم وتحوله لسائل.",
+          "name_en": "Vanilla Milkshake",
+          "notes_en": "Thick indulgent shake made with artisan ice cream and vanilla infusion.",
+          "steps_en": [
+            "Scale 120-140g premium vanilla ice cream into blender container.",
+            "Add 80-100ml cold whole milk and signature flavorings.",
+            "Blend on Speed 2 for 15-20 seconds maintaining thick, creamy texture.",
+            "Pour into 16 oz cup, garnish with whipped cream and cookies/toppings."
+          ],
+          "proTip_en": "Do not over-blend milkshakes; excessive blending melts the ice cream into runny liquid."
         },
         {
           "id": "shake-chocolate",
@@ -155,7 +239,16 @@
           "cup": "كوب 16 oz",
           "steps": [
             "وضع الآيس كريم ثم الحليب وصوص الشوكولاتة 90g والضرب على سرعة 2 والجرنشة بالصوص."
-          ]
+          ],
+          "name_en": "Chocolate Milkshake",
+          "notes_en": "Thick indulgent shake made with artisan ice cream and chocolate infusion.",
+          "steps_en": [
+            "Scale 120-140g premium vanilla ice cream into blender container.",
+            "Add 80-100ml cold whole milk and signature flavorings.",
+            "Blend on Speed 2 for 15-20 seconds maintaining thick, creamy texture.",
+            "Pour into 16 oz cup, garnish with whipped cream and cookies/toppings."
+          ],
+          "proTip_en": "Do not over-blend milkshakes; excessive blending melts the ice cream into runny liquid."
         },
         {
           "id": "shake-caramel",
@@ -168,7 +261,16 @@
           "cup": "كوب 16 oz",
           "steps": [
             "وضع الآيس كريم ثم الحليب وصوص الكراميل 90g والضرب على سرعة 2."
-          ]
+          ],
+          "name_en": "Caramel Milkshake",
+          "notes_en": "Thick indulgent shake made with artisan ice cream and caramel infusion.",
+          "steps_en": [
+            "Scale 120-140g premium vanilla ice cream into blender container.",
+            "Add 80-100ml cold whole milk and signature flavorings.",
+            "Blend on Speed 2 for 15-20 seconds maintaining thick, creamy texture.",
+            "Pour into 16 oz cup, garnish with whipped cream and cookies/toppings."
+          ],
+          "proTip_en": "Do not over-blend milkshakes; excessive blending melts the ice cream into runny liquid."
         },
         {
           "id": "shake-oreo",
@@ -187,9 +289,22 @@
           ],
           "rescue": {
             "problem": "الأوريو انطحن زيادة وتحول لبودرة رمادية عكرة",
-            "solution": "لا تضع الأوريو من البداية أبداً! الأوريو يضاف في آخر 5 ثوانٍ فقط للمحافظة على القرمشة وشكل الكوكيز الساحر."
+            "solution": "لا تضع الأوريو من البداية أبداً! الأوريو يضاف في آخر 5 ثوانٍ فقط للمحافظة على القرمشة وشكل الكوكيز الساحر.",
+            "problem_en": [
+              "Shake became too thin and melted."
+            ],
+            "solution_en": "Add 1 hard frozen scoop of ice cream and pulse 3 times to restore thick body."
           },
-          "proTip": "استخدم شفاطة عريضة (Boba Straw) تسمح بمرور قطع الأوريو المقرمشة بسهولة."
+          "proTip": "استخدم شفاطة عريضة (Boba Straw) تسمح بمرور قطع الأوريو المقرمشة بسهولة.",
+          "name_en": "Oreo Milkshake",
+          "notes_en": "Thick indulgent shake made with artisan ice cream and oreo infusion.",
+          "steps_en": [
+            "Scale 120-140g premium vanilla ice cream into blender container.",
+            "Add 80-100ml cold whole milk and signature flavorings.",
+            "Blend on Speed 2 for 15-20 seconds maintaining thick, creamy texture.",
+            "Pour into 16 oz cup, garnish with whipped cream and cookies/toppings."
+          ],
+          "proTip_en": "Do not over-blend milkshakes; excessive blending melts the ice cream into runny liquid."
         },
         {
           "id": "shake-lotus",
@@ -205,7 +320,16 @@
             "ضرب الآيس كريم مع الحليب وصوص اللوتس.",
             "إضافة 30 جرام بسكوت لوتس مجروش والضرب لمدة قصيرة جداً (3-5 ثوانٍ).",
             "الصب والتزيين بالكريمة وصوص اللوتس والبسكوت."
-          ]
+          ],
+          "name_en": "Lotus Milkshake",
+          "notes_en": "Thick indulgent shake made with artisan ice cream and lotus infusion.",
+          "steps_en": [
+            "Scale 120-140g premium vanilla ice cream into blender container.",
+            "Add 80-100ml cold whole milk and signature flavorings.",
+            "Blend on Speed 2 for 15-20 seconds maintaining thick, creamy texture.",
+            "Pour into 16 oz cup, garnish with whipped cream and cookies/toppings."
+          ],
+          "proTip_en": "Do not over-blend milkshakes; excessive blending melts the ice cream into runny liquid."
         },
         {
           "id": "shake-kinder",
@@ -218,7 +342,16 @@
           "cup": "كوب 16 oz",
           "steps": [
             "وضع الآيس كريم والحليب وصوص الكيندر والضرب على سرعة 2."
-          ]
+          ],
+          "name_en": "Kinder Milkshake",
+          "notes_en": "Thick indulgent shake made with artisan ice cream and kinder infusion.",
+          "steps_en": [
+            "Scale 120-140g premium vanilla ice cream into blender container.",
+            "Add 80-100ml cold whole milk and signature flavorings.",
+            "Blend on Speed 2 for 15-20 seconds maintaining thick, creamy texture.",
+            "Pour into 16 oz cup, garnish with whipped cream and cookies/toppings."
+          ],
+          "proTip_en": "Do not over-blend milkshakes; excessive blending melts the ice cream into runny liquid."
         },
         {
           "id": "shake-raffaello",
@@ -231,7 +364,16 @@
           "cup": "كوب 16 oz",
           "steps": [
             "خلط المكونات والتزيين بالكريمة وحبة رافايلو أنيقة."
-          ]
+          ],
+          "name_en": "Raffaello Milkshake",
+          "notes_en": "Thick indulgent shake made with artisan ice cream and raffaello infusion.",
+          "steps_en": [
+            "Scale 120-140g premium vanilla ice cream into blender container.",
+            "Add 80-100ml cold whole milk and signature flavorings.",
+            "Blend on Speed 2 for 15-20 seconds maintaining thick, creamy texture.",
+            "Pour into 16 oz cup, garnish with whipped cream and cookies/toppings."
+          ],
+          "proTip_en": "Do not over-blend milkshakes; excessive blending melts the ice cream into runny liquid."
         },
         {
           "id": "shake-nutella",
@@ -244,7 +386,16 @@
           "cup": "كوب 16 oz",
           "steps": [
             "خلط المكونات على سرعة 2 والصب والجرنشة."
-          ]
+          ],
+          "name_en": "Nutella Milkshake",
+          "notes_en": "Thick indulgent shake made with artisan ice cream and nutella infusion.",
+          "steps_en": [
+            "Scale 120-140g premium vanilla ice cream into blender container.",
+            "Add 80-100ml cold whole milk and signature flavorings.",
+            "Blend on Speed 2 for 15-20 seconds maintaining thick, creamy texture.",
+            "Pour into 16 oz cup, garnish with whipped cream and cookies/toppings."
+          ],
+          "proTip_en": "Do not over-blend milkshakes; excessive blending melts the ice cream into runny liquid."
         },
         {
           "id": "shake-ferrero",
@@ -257,7 +408,16 @@
           "cup": "كوب 16 oz",
           "steps": [
             "خلط المكونات والتزيين الملكي بكرة الفيريرو روشيه الذهبية."
-          ]
+          ],
+          "name_en": "Ferrero Milkshake",
+          "notes_en": "Thick indulgent shake made with artisan ice cream and ferrero infusion.",
+          "steps_en": [
+            "Scale 120-140g premium vanilla ice cream into blender container.",
+            "Add 80-100ml cold whole milk and signature flavorings.",
+            "Blend on Speed 2 for 15-20 seconds maintaining thick, creamy texture.",
+            "Pour into 16 oz cup, garnish with whipped cream and cookies/toppings."
+          ],
+          "proTip_en": "Do not over-blend milkshakes; excessive blending melts the ice cream into runny liquid."
         },
         {
           "id": "shake-pistachio",
@@ -270,7 +430,16 @@
           "cup": "كوب 16 oz",
           "steps": [
             "خلط المكونات لـ 20 ثانية على سرعة 2."
-          ]
+          ],
+          "name_en": "Pistachio Milkshake",
+          "notes_en": "Thick indulgent shake made with artisan ice cream and pistachio infusion.",
+          "steps_en": [
+            "Scale 120-140g premium vanilla ice cream into blender container.",
+            "Add 80-100ml cold whole milk and signature flavorings.",
+            "Blend on Speed 2 for 15-20 seconds maintaining thick, creamy texture.",
+            "Pour into 16 oz cup, garnish with whipped cream and cookies/toppings."
+          ],
+          "proTip_en": "Do not over-blend milkshakes; excessive blending melts the ice cream into runny liquid."
         },
         {
           "id": "shake-digestive-berry",
@@ -285,7 +454,16 @@
             "خلط الآيس كريم والحليب وبيوريه الميكس بيري.",
             "إضافة 3 قطع بسكوت دايجستف والضرب لمدة قصيرة للحفاظ على حبيبات البسكوت الممتعة (Cheesecake texture).",
             "الصب والتزيين بالكريمة وصوص التوت."
-          ]
+          ],
+          "name_en": "Digestive-berry Milkshake",
+          "notes_en": "Thick indulgent shake made with artisan ice cream and digestive-berry infusion.",
+          "steps_en": [
+            "Scale 120-140g premium vanilla ice cream into blender container.",
+            "Add 80-100ml cold whole milk and signature flavorings.",
+            "Blend on Speed 2 for 15-20 seconds maintaining thick, creamy texture.",
+            "Pour into 16 oz cup, garnish with whipped cream and cookies/toppings."
+          ],
+          "proTip_en": "Do not over-blend milkshakes; excessive blending melts the ice cream into runny liquid."
         },
         {
           "id": "shake-fruits-family",
@@ -345,13 +523,23 @@
           ],
           "steps": [
             "وضع الآيس كريم والحليب و70g من نكهة الفاكهة المحددة والضرب على سرعة 2 والتزيين بالكريمة."
-          ]
+          ],
+          "name_en": "Fruits-family Milkshake",
+          "notes_en": "Thick indulgent shake made with artisan ice cream and fruits-family infusion.",
+          "steps_en": [
+            "Scale 120-140g premium vanilla ice cream into blender container.",
+            "Add 80-100ml cold whole milk and signature flavorings.",
+            "Blend on Speed 2 for 15-20 seconds maintaining thick, creamy texture.",
+            "Pour into 16 oz cup, garnish with whipped cream and cookies/toppings."
+          ],
+          "proTip_en": "Do not over-blend milkshakes; excessive blending melts the ice cream into runny liquid."
         }
-      ]
+      ],
+      "name_en": "Milkshakes"
     },
     {
       "id": "smoothies",
-      "name": "السموذي المنعش والفواكه المثلجة (Smoothies)",
+      "name": "السموذي",
       "items": [
         {
           "id": "smoothie-mango",
@@ -368,9 +556,22 @@
           ],
           "rescue": {
             "problem": "السموذي طلع خفيف وسائل",
-            "solution": "أضف 50 جرام ثلج مع ملعقة بيوريه مانجو واضرب 10 ثوانٍ ليعود القوام الحريري الثقيل."
+            "solution": "أضف 50 جرام ثلج مع ملعقة بيوريه مانجو واضرب 10 ثوانٍ ليعود القوام الحريري الثقيل.",
+            "problem_en": [
+              "Smoothie separated into water and fruit pulp."
+            ],
+            "solution_en": "Add 10ml frappe base or smoothie binder and pulse for 5 seconds."
           },
-          "proTip": "عصير المانجو الفريش يعطي طعماً استوائياً غنياً لا تنافسه النكهات الصناعية."
+          "proTip": "عصير المانجو الفريش يعطي طعماً استوائياً غنياً لا تنافسه النكهات الصناعية.",
+          "name_en": "Mango Smoothie",
+          "notes_en": "Refreshing blended fruit smoothie with authentic mango notes.",
+          "steps_en": [
+            "Add 80ml water/juice and 60g fruit puree into blender pitcher.",
+            "Add full cup of solid ice cubes.",
+            "Blend on high speed for 30 seconds until completely crushed and thick.",
+            "Pour into 16 oz cup with dome lid and wide boba straw."
+          ],
+          "proTip_en": "Using high-density ice cubes gives smoothies a thick sorbet-like consistency."
         },
         {
           "id": "smoothie-lemon-mint",
@@ -388,9 +589,22 @@
           ],
           "rescue": {
             "problem": "الليمون طعمه مر ولاذع جداً",
-            "solution": "المرارة تأتي من ضرب بذور الليمون أو القشرة البيضاء! قشر الليمون بالكامل وانزع البذور قبل الخفق، ولإنقاذ الكوب الحالي أضف ملعقة سكر وقطرات ماء زهر."
+            "solution": "المرارة تأتي من ضرب بذور الليمون أو القشرة البيضاء! قشر الليمون بالكامل وانزع البذور قبل الخفق، ولإنقاذ الكوب الحالي أضف ملعقة سكر وقطرات ماء زهر.",
+            "problem_en": [
+              "Smoothie separated into water and fruit pulp."
+            ],
+            "solution_en": "Add 10ml frappe base or smoothie binder and pulse for 5 seconds."
           },
-          "proTip": "التصفية قبل إضافة الثلج هي العلامة الفندقية الفاصلة بين ليمون الكافيهات العادية واحترافية عماد أفندي."
+          "proTip": "التصفية قبل إضافة الثلج هي العلامة الفندقية الفاصلة بين ليمون الكافيهات العادية واحترافية عماد أفندي.",
+          "name_en": "Lemon-mint Smoothie",
+          "notes_en": "Refreshing blended fruit smoothie with authentic lemon-mint notes.",
+          "steps_en": [
+            "Add 80ml water/juice and 60g fruit puree into blender pitcher.",
+            "Add full cup of solid ice cubes.",
+            "Blend on high speed for 30 seconds until completely crushed and thick.",
+            "Pour into 16 oz cup with dome lid and wide boba straw."
+          ],
+          "proTip_en": "Using high-density ice cubes gives smoothies a thick sorbet-like consistency."
         },
         {
           "id": "smoothie-guava",
@@ -401,7 +615,16 @@
           "sugar": "2 ملعقة سكر",
           "steps": [
             "ماء (110g) + بودر جوافة (70g) + 2 ملعقة سكر + ثلج (كوب+3 مكعبات) ضرب على سرعة 2."
-          ]
+          ],
+          "name_en": "Guava Smoothie",
+          "notes_en": "Refreshing blended fruit smoothie with authentic guava notes.",
+          "steps_en": [
+            "Add 80ml water/juice and 60g fruit puree into blender pitcher.",
+            "Add full cup of solid ice cubes.",
+            "Blend on high speed for 30 seconds until completely crushed and thick.",
+            "Pour into 16 oz cup with dome lid and wide boba straw."
+          ],
+          "proTip_en": "Using high-density ice cubes gives smoothies a thick sorbet-like consistency."
         },
         {
           "id": "smoothie-green-apple",
@@ -412,7 +635,16 @@
           "sugar": "2 ملعقة سكر",
           "steps": [
             "خلط المكونات على سرعة 2 حتى تمام نعومة الثلج."
-          ]
+          ],
+          "name_en": "Green-apple Smoothie",
+          "notes_en": "Refreshing blended fruit smoothie with authentic green-apple notes.",
+          "steps_en": [
+            "Add 80ml water/juice and 60g fruit puree into blender pitcher.",
+            "Add full cup of solid ice cubes.",
+            "Blend on high speed for 30 seconds until completely crushed and thick.",
+            "Pour into 16 oz cup with dome lid and wide boba straw."
+          ],
+          "proTip_en": "Using high-density ice cubes gives smoothies a thick sorbet-like consistency."
         },
         {
           "id": "smoothie-strawberry",
@@ -424,7 +656,16 @@
           "sugar": "2 ملعقة سكر",
           "steps": [
             "خلط فود كراش مع البيوريه والماء والسكر والثلج على سرعة 2."
-          ]
+          ],
+          "name_en": "Strawberry Smoothie",
+          "notes_en": "Refreshing blended fruit smoothie with authentic strawberry notes.",
+          "steps_en": [
+            "Add 80ml water/juice and 60g fruit puree into blender pitcher.",
+            "Add full cup of solid ice cubes.",
+            "Blend on high speed for 30 seconds until completely crushed and thick.",
+            "Pour into 16 oz cup with dome lid and wide boba straw."
+          ],
+          "proTip_en": "Using high-density ice cubes gives smoothies a thick sorbet-like consistency."
         },
         {
           "id": "smoothie-watermelon",
@@ -436,7 +677,16 @@
           "sugar": "2 ملعقة سكر",
           "steps": [
             "خلط المكونات على سرعة 2 لإنتاج ألذ سموذي بطيخ مثلج."
-          ]
+          ],
+          "name_en": "Watermelon Smoothie",
+          "notes_en": "Refreshing blended fruit smoothie with authentic watermelon notes.",
+          "steps_en": [
+            "Add 80ml water/juice and 60g fruit puree into blender pitcher.",
+            "Add full cup of solid ice cubes.",
+            "Blend on high speed for 30 seconds until completely crushed and thick.",
+            "Pour into 16 oz cup with dome lid and wide boba straw."
+          ],
+          "proTip_en": "Using high-density ice cubes gives smoothies a thick sorbet-like consistency."
         },
         {
           "id": "smoothie-blueberry",
@@ -448,7 +698,16 @@
           "sugar": "2 ملعقة سكر",
           "steps": [
             "خلط المكونات على سرعة 2."
-          ]
+          ],
+          "name_en": "Blueberry Smoothie",
+          "notes_en": "Refreshing blended fruit smoothie with authentic blueberry notes.",
+          "steps_en": [
+            "Add 80ml water/juice and 60g fruit puree into blender pitcher.",
+            "Add full cup of solid ice cubes.",
+            "Blend on high speed for 30 seconds until completely crushed and thick.",
+            "Pour into 16 oz cup with dome lid and wide boba straw."
+          ],
+          "proTip_en": "Using high-density ice cubes gives smoothies a thick sorbet-like consistency."
         },
         {
           "id": "smoothie-mixed-berry",
@@ -460,7 +719,16 @@
           "sugar": "2 ملعقة سكر",
           "steps": [
             "خلط التوت المشكل على سرعة 2."
-          ]
+          ],
+          "name_en": "Mixed-berry Smoothie",
+          "notes_en": "Refreshing blended fruit smoothie with authentic mixed-berry notes.",
+          "steps_en": [
+            "Add 80ml water/juice and 60g fruit puree into blender pitcher.",
+            "Add full cup of solid ice cubes.",
+            "Blend on high speed for 30 seconds until completely crushed and thick.",
+            "Pour into 16 oz cup with dome lid and wide boba straw."
+          ],
+          "proTip_en": "Using high-density ice cubes gives smoothies a thick sorbet-like consistency."
         },
         {
           "id": "smoothie-tropical",
@@ -471,7 +739,16 @@
           "sugar": "2 ملعقة سكر",
           "steps": [
             "خلط المكونات على سرعة 2."
-          ]
+          ],
+          "name_en": "Tropical Smoothie",
+          "notes_en": "Refreshing blended fruit smoothie with authentic tropical notes.",
+          "steps_en": [
+            "Add 80ml water/juice and 60g fruit puree into blender pitcher.",
+            "Add full cup of solid ice cubes.",
+            "Blend on high speed for 30 seconds until completely crushed and thick.",
+            "Pour into 16 oz cup with dome lid and wide boba straw."
+          ],
+          "proTip_en": "Using high-density ice cubes gives smoothies a thick sorbet-like consistency."
         },
         {
           "id": "smoothie-kiwi",
@@ -484,7 +761,16 @@
           "sugar": "2 ملعقة سكر",
           "steps": [
             "خلط المكونات مع إضافة 10g حليب والضرب على سرعة 2."
-          ]
+          ],
+          "name_en": "Kiwi Smoothie",
+          "notes_en": "Refreshing blended fruit smoothie with authentic kiwi notes.",
+          "steps_en": [
+            "Add 80ml water/juice and 60g fruit puree into blender pitcher.",
+            "Add full cup of solid ice cubes.",
+            "Blend on high speed for 30 seconds until completely crushed and thick.",
+            "Pour into 16 oz cup with dome lid and wide boba straw."
+          ],
+          "proTip_en": "Using high-density ice cubes gives smoothies a thick sorbet-like consistency."
         },
         {
           "id": "smoothie-peach",
@@ -496,7 +782,16 @@
           "sugar": "2 ملعقة سكر",
           "steps": [
             "خلط المكونات على سرعة 2."
-          ]
+          ],
+          "name_en": "Peach Smoothie",
+          "notes_en": "Refreshing blended fruit smoothie with authentic peach notes.",
+          "steps_en": [
+            "Add 80ml water/juice and 60g fruit puree into blender pitcher.",
+            "Add full cup of solid ice cubes.",
+            "Blend on high speed for 30 seconds until completely crushed and thick.",
+            "Pour into 16 oz cup with dome lid and wide boba straw."
+          ],
+          "proTip_en": "Using high-density ice cubes gives smoothies a thick sorbet-like consistency."
         },
         {
           "id": "smoothie-cherry",
@@ -507,7 +802,16 @@
           "sugar": "2 ملعقة سكر",
           "steps": [
             "خلط 150g كراش شيري مع الماء والثلج والسكر."
-          ]
+          ],
+          "name_en": "Cherry Smoothie",
+          "notes_en": "Refreshing blended fruit smoothie with authentic cherry notes.",
+          "steps_en": [
+            "Add 80ml water/juice and 60g fruit puree into blender pitcher.",
+            "Add full cup of solid ice cubes.",
+            "Blend on high speed for 30 seconds until completely crushed and thick.",
+            "Pour into 16 oz cup with dome lid and wide boba straw."
+          ],
+          "proTip_en": "Using high-density ice cubes gives smoothies a thick sorbet-like consistency."
         },
         {
           "id": "smoothie-coconut",
@@ -519,7 +823,16 @@
           "sugar": "1 ملعقة سكر",
           "steps": [
             "خلط كراش جوز الهند مع 20g حليب والماء والثلج."
-          ]
+          ],
+          "name_en": "Coconut Smoothie",
+          "notes_en": "Refreshing blended fruit smoothie with authentic coconut notes.",
+          "steps_en": [
+            "Add 80ml water/juice and 60g fruit puree into blender pitcher.",
+            "Add full cup of solid ice cubes.",
+            "Blend on high speed for 30 seconds until completely crushed and thick.",
+            "Pour into 16 oz cup with dome lid and wide boba straw."
+          ],
+          "proTip_en": "Using high-density ice cubes gives smoothies a thick sorbet-like consistency."
         },
         {
           "id": "smoothie-lychee",
@@ -530,7 +843,16 @@
           "sugar": "2 ملعقة سكر",
           "steps": [
             "خلط المكونات على سرعة 2."
-          ]
+          ],
+          "name_en": "Lychee Smoothie",
+          "notes_en": "Refreshing blended fruit smoothie with authentic lychee notes.",
+          "steps_en": [
+            "Add 80ml water/juice and 60g fruit puree into blender pitcher.",
+            "Add full cup of solid ice cubes.",
+            "Blend on high speed for 30 seconds until completely crushed and thick.",
+            "Pour into 16 oz cup with dome lid and wide boba straw."
+          ],
+          "proTip_en": "Using high-density ice cubes gives smoothies a thick sorbet-like consistency."
         },
         {
           "id": "smoothie-karkadeh",
@@ -541,7 +863,16 @@
           "sugar": "3 ملاعق سكر (لمعادلة حموضة الكركديه)",
           "steps": [
             "خلط المكونات على سرعة 2 لإنتاج سموذي أحمر قرمزي منعش ومقاوم للحرارة."
-          ]
+          ],
+          "name_en": "Karkadeh Smoothie",
+          "notes_en": "Refreshing blended fruit smoothie with authentic karkadeh notes.",
+          "steps_en": [
+            "Add 80ml water/juice and 60g fruit puree into blender pitcher.",
+            "Add full cup of solid ice cubes.",
+            "Blend on high speed for 30 seconds until completely crushed and thick.",
+            "Pour into 16 oz cup with dome lid and wide boba straw."
+          ],
+          "proTip_en": "Using high-density ice cubes gives smoothies a thick sorbet-like consistency."
         },
         {
           "id": "smoothie-passion",
@@ -553,7 +884,16 @@
           "sugar": "5g سكر",
           "steps": [
             "خلط المكونات على سرعة 2."
-          ]
+          ],
+          "name_en": "Passion Smoothie",
+          "notes_en": "Refreshing blended fruit smoothie with authentic passion notes.",
+          "steps_en": [
+            "Add 80ml water/juice and 60g fruit puree into blender pitcher.",
+            "Add full cup of solid ice cubes.",
+            "Blend on high speed for 30 seconds until completely crushed and thick.",
+            "Pour into 16 oz cup with dome lid and wide boba straw."
+          ],
+          "proTip_en": "Using high-density ice cubes gives smoothies a thick sorbet-like consistency."
         },
         {
           "id": "smoothie-pineapple",
@@ -564,13 +904,23 @@
           "sugar": "2 ملعقة سكر",
           "steps": [
             "خلط المكونات على سرعة 2."
-          ]
+          ],
+          "name_en": "Pineapple Smoothie",
+          "notes_en": "Refreshing blended fruit smoothie with authentic pineapple notes.",
+          "steps_en": [
+            "Add 80ml water/juice and 60g fruit puree into blender pitcher.",
+            "Add full cup of solid ice cubes.",
+            "Blend on high speed for 30 seconds until completely crushed and thick.",
+            "Pour into 16 oz cup with dome lid and wide boba straw."
+          ],
+          "proTip_en": "Using high-density ice cubes gives smoothies a thick sorbet-like consistency."
         }
-      ]
+      ],
+      "name_en": "Smoothies"
     },
     {
       "id": "boba-mocktails",
-      "name": "البوبا فيز والموكتيل المنعش (Boba Fizz & Mocktails)",
+      "name": "الموكتيل والبوبا",
       "items": [
         {
           "id": "boba-fizz-family",
@@ -618,9 +968,22 @@
           ],
           "rescue": {
             "problem": "البوبا انفجرت في القاع وسدت الشفاطة",
-            "solution": "لا تضغط على البوبا بالمعلقة أو تسكب الثلج بعنف فوقها، ضع الثلج بحذر واستخدم شفاطة البوبا الأصلية المائلة من الأسفل."
+            "solution": "لا تضغط على البوبا بالمعلقة أو تسكب الثلج بعنف فوقها، ضع الثلج بحذر واستخدم شفاطة البوبا الأصلية المائلة من الأسفل.",
+            "problem_en": [
+              "Drink lost its fizz/carbonation."
+            ],
+            "solution_en": "Top with fresh cold soda water before serving."
           },
-          "proTip": "البوبا فيز هو تريند الشباب والتيك توك الأول، شكله وطبقاته مع شرائح الليمون مادة دعائية رائعة."
+          "proTip": "البوبا فيز هو تريند الشباب والتيك توك الأول، شكله وطبقاته مع شرائح الليمون مادة دعائية رائعة.",
+          "name_en": "Boba Fizz Sparkling Family",
+          "notes_en": "Signature refreshing handcrafted cold beverage.",
+          "steps_en": [
+            "Add flavor base and fruit puree into serving cup.",
+            "Fill cup with solid or crushed ice to top.",
+            "Top with chilled soda or sparkling water and fresh mint/citrus garnish.",
+            "Serve with eco straw and custom lid."
+          ],
+          "proTip_en": "Pour sparkling water slowly along the cup wall to preserve effervescent carbonation."
         },
         {
           "id": "mojito-lemon-mint",
@@ -638,9 +1001,22 @@
           ],
           "rescue": {
             "problem": "النعناع صار لونه أسود ومهري",
-            "solution": "لا تفرك النعناع بقوة! الضغط المطلوب هو ضغط خفيف جداً (Gentle Press) فقط لإخراج الرائحة العطرية."
+            "solution": "لا تفرك النعناع بقوة! الضغط المطلوب هو ضغط خفيف جداً (Gentle Press) فقط لإخراج الرائحة العطرية.",
+            "problem_en": [
+              "Drink lost its fizz/carbonation."
+            ],
+            "solution_en": "Top with fresh cold soda water before serving."
           },
-          "proTip": "طرق النعناع بين كفيك مرة واحدة قبل وضعه (Slap) يطلق كل الزيوت العطرية في ثانية واحدة."
+          "proTip": "طرق النعناع بين كفيك مرة واحدة قبل وضعه (Slap) يطلق كل الزيوت العطرية في ثانية واحدة.",
+          "name_en": "Classic Mojito",
+          "notes_en": "Signature refreshing handcrafted cold beverage.",
+          "steps_en": [
+            "Add flavor base and fruit puree into serving cup.",
+            "Fill cup with solid or crushed ice to top.",
+            "Top with chilled soda or sparkling water and fresh mint/citrus garnish.",
+            "Serve with eco straw and custom lid."
+          ],
+          "proTip_en": "Pour sparkling water slowly along the cup wall to preserve effervescent carbonation."
         },
         {
           "id": "mojito-blueberry",
@@ -651,7 +1027,16 @@
           "ice": "كوب إلا ربع ثلج",
           "steps": [
             "وضع السيرب والبيوريه والثلج ثم صب الصودا والتقليب وتزيين السطح بحبات التوت."
-          ]
+          ],
+          "name_en": "Blueberry Mojito",
+          "notes_en": "Signature refreshing handcrafted cold beverage.",
+          "steps_en": [
+            "Add flavor base and fruit puree into serving cup.",
+            "Fill cup with solid or crushed ice to top.",
+            "Top with chilled soda or sparkling water and fresh mint/citrus garnish.",
+            "Serve with eco straw and custom lid."
+          ],
+          "proTip_en": "Pour sparkling water slowly along the cup wall to preserve effervescent carbonation."
         },
         {
           "id": "blue-passion-fruit",
@@ -663,7 +1048,16 @@
           "steps": [
             "وضع المكونات ما عدا الصودا في الشيكر والرج جيداً.",
             "الصب في كوب 16 أونز بارد فوق الثلج ثم استكمال الكوب بالصودا ليعطي تدرج لوني بين الأزرق والأخضر الزمردي."
-          ]
+          ],
+          "name_en": "Blue Passion Sparkler",
+          "notes_en": "Signature refreshing handcrafted cold beverage.",
+          "steps_en": [
+            "Add flavor base and fruit puree into serving cup.",
+            "Fill cup with solid or crushed ice to top.",
+            "Top with chilled soda or sparkling water and fresh mint/citrus garnish.",
+            "Serve with eco straw and custom lid."
+          ],
+          "proTip_en": "Pour sparkling water slowly along the cup wall to preserve effervescent carbonation."
         },
         {
           "id": "cherry-cola",
@@ -673,7 +1067,16 @@
           "ice": "كوب إلا ربع ثلج",
           "steps": [
             "خلط سيرب الشيري مع الثلج ثم صب الكولا ببطء والتزيين بحبة كرز حمراء."
-          ]
+          ],
+          "name_en": "Cherry V-Cola",
+          "notes_en": "Signature refreshing handcrafted cold beverage.",
+          "steps_en": [
+            "Add flavor base and fruit puree into serving cup.",
+            "Fill cup with solid or crushed ice to top.",
+            "Top with chilled soda or sparkling water and fresh mint/citrus garnish.",
+            "Serve with eco straw and custom lid."
+          ],
+          "proTip_en": "Pour sparkling water slowly along the cup wall to preserve effervescent carbonation."
         },
         {
           "id": "iced-tea-family",
@@ -683,13 +1086,23 @@
           "ice": "كوب إلا ربع ثلج",
           "steps": [
             "وضع السيرب في الشيكر مع الثلج والرج جيداً، ثم الصب في كوب 16 أونز واستكمال الصودا."
-          ]
+          ],
+          "name_en": "Iced Tea - Classic / Peach / Raspberry",
+          "notes_en": "Signature refreshing handcrafted cold beverage.",
+          "steps_en": [
+            "Add flavor base and fruit puree into serving cup.",
+            "Fill cup with solid or crushed ice to top.",
+            "Top with chilled soda or sparkling water and fresh mint/citrus garnish.",
+            "Serve with eco straw and custom lid."
+          ],
+          "proTip_en": "Pour sparkling water slowly along the cup wall to preserve effervescent carbonation."
         }
-      ]
+      ],
+      "name_en": "Mocktails & Boba"
     },
     {
       "id": "bakery-station",
-      "name": "محطة الحلويات السريعة (الوافل والبان كيك)",
+      "name": "الحلويات والمخبوزات",
       "items": [
         {
           "id": "waffle-batter-master",
@@ -736,9 +1149,23 @@
           ],
           "rescue": {
             "problem": "العجينة تكتلت أو ظهرت فيها كتل دقيق صغيرة أثناء الخفق السريع",
-            "solution": "لا تقلق! مرر العجين فوراً عبر مصفاة سلك معدنية مع الضغط الخفيف بملعقة سيليكون، أو اضربه لـ 10 ثوانٍ بالهاند بلندر على أقل سرعة لينعم تماماً."
+            "solution": "لا تقلق! مرر العجين فوراً عبر مصفاة سلك معدنية مع الضغط الخفيف بملعقة سيليكون، أو اضربه لـ 10 ثوانٍ بالهاند بلندر على أقل سرعة لينعم تماماً.",
+            "problem_en": [
+              "Waffle feels soft and soggy."
+            ],
+            "solution_en": "Toast on wire rack under salamander/oven for 45 seconds to crisp outer crust."
           },
-          "proTip": "نصف كيس تانج البرتقال هو البصمة السرية لوافل عماد أفندي؛ يمنح العجينة لوناً ذهبياً مكراملاً يفتح الشهية ونكهة حمضية خفيفة تكسر دسم الزبدة."
+          "proTip": "نصف كيس تانج البرتقال هو البصمة السرية لوافل عماد أفندي؛ يمنح العجينة لوناً ذهبياً مكراملاً يفتح الشهية ونكهة حمضية خفيفة تكسر دسم الزبدة.",
+          "name_en": "Belgian Waffle / Pancake",
+          "notes_en": "Golden crispy on the outside, fluffy and tender on the inside.",
+          "steps_en": [
+            "Preheat commercial waffle iron to 185°C - 190°C and spray lightly with release oil.",
+            "Pour 140-160ml prepared waffle batter evenly onto hot plates.",
+            "Close iron and set digital timer for exactly 3 minutes 30 seconds.",
+            "Remove carefully with wooden tongs to cooling rack for 30 seconds to crisp up.",
+            "Plate and decorate with Belgian chocolate, fruit, or ice cream."
+          ],
+          "proTip_en": "Resting the cooked waffle on a wire rack for 30 seconds allows steam to evaporate, creating supreme crunch."
         },
         {
           "id": "waffle-classic",
@@ -759,9 +1186,23 @@
           ],
           "rescue": {
             "problem": "الوافل لزق في القالب واتقطع نصفين عند فتح الماكينة",
-            "solution": "السبب هو استعجال فتح الغطاء قبل الـ 3 دقائق أو نسيان رشة الزيت! الحل الفوري لمنع الهدر: قطع الوافل لمربعات صغيرة وقدمه في كاس زجاجي فاخر كـ (Waffle Bites) مع صوص وشوكة صغيرة، ونظف الماكينة بفرشاة قبل القطعة القادمة."
+            "solution": "السبب هو استعجال فتح الغطاء قبل الـ 3 دقائق أو نسيان رشة الزيت! الحل الفوري لمنع الهدر: قطع الوافل لمربعات صغيرة وقدمه في كاس زجاجي فاخر كـ (Waffle Bites) مع صوص وشوكة صغيرة، ونظف الماكينة بفرشاة قبل القطعة القادمة.",
+            "problem_en": [
+              "Waffle feels soft and soggy."
+            ],
+            "solution_en": "Toast on wire rack under salamander/oven for 45 seconds to crisp outer crust."
           },
-          "proTip": "تهوية الوافل على شبكة سلك لمدة 20 ثانية يطرد البخار المحبوس ويضمن بقاء القشرة الخارجية مقرمشة والقلب الداخلي طرياً كالإسفنج."
+          "proTip": "تهوية الوافل على شبكة سلك لمدة 20 ثانية يطرد البخار المحبوس ويضمن بقاء القشرة الخارجية مقرمشة والقلب الداخلي طرياً كالإسفنج.",
+          "name_en": "Belgian Waffle / Pancake",
+          "notes_en": "Golden crispy on the outside, fluffy and tender on the inside.",
+          "steps_en": [
+            "Preheat commercial waffle iron to 185°C - 190°C and spray lightly with release oil.",
+            "Pour 140-160ml prepared waffle batter evenly onto hot plates.",
+            "Close iron and set digital timer for exactly 3 minutes 30 seconds.",
+            "Remove carefully with wooden tongs to cooling rack for 30 seconds to crisp up.",
+            "Plate and decorate with Belgian chocolate, fruit, or ice cream."
+          ],
+          "proTip_en": "Resting the cooked waffle on a wire rack for 30 seconds allows steam to evaporate, creating supreme crunch."
         },
         {
           "id": "pancake-stack",
@@ -779,11 +1220,26 @@
           ],
           "rescue": {
             "problem": "البان كيك أخذ لون بني داكن محروق سريعاً ومن الداخل عجين ني",
-            "solution": "حرارة الصاج كانت أعلى من 180°C! اخفض الحرارة فوراً إلى 170°C، وانقل القطع لطبق مغطى بغطاء زجاجي لمدة دقيقة لتنضج بالبخار الذاتي دون إهدارها."
+            "solution": "حرارة الصاج كانت أعلى من 180°C! اخفض الحرارة فوراً إلى 170°C، وانقل القطع لطبق مغطى بغطاء زجاجي لمدة دقيقة لتنضج بالبخار الذاتي دون إهدارها.",
+            "problem_en": [
+              "Waffle feels soft and soggy."
+            ],
+            "solution_en": "Toast on wire rack under salamander/oven for 45 seconds to crisp outer crust."
           },
-          "proTip": "ترك العجينة ترتاح 20 دقيقة بالثلاجة يسمح لحبيبات البيكنج بودر بالتفاعل مع الحليب لإنتاج قطع بان كيك إسفنجية ناعمة تذوب في الفم."
+          "proTip": "ترك العجينة ترتاح 20 دقيقة بالثلاجة يسمح لحبيبات البيكنج بودر بالتفاعل مع الحليب لإنتاج قطع بان كيك إسفنجية ناعمة تذوب في الفم.",
+          "name_en": "Belgian Waffle / Pancake",
+          "notes_en": "Golden crispy on the outside, fluffy and tender on the inside.",
+          "steps_en": [
+            "Preheat commercial waffle iron to 185°C - 190°C and spray lightly with release oil.",
+            "Pour 140-160ml prepared waffle batter evenly onto hot plates.",
+            "Close iron and set digital timer for exactly 3 minutes 30 seconds.",
+            "Remove carefully with wooden tongs to cooling rack for 30 seconds to crisp up.",
+            "Plate and decorate with Belgian chocolate, fruit, or ice cream."
+          ],
+          "proTip_en": "Resting the cooked waffle on a wire rack for 30 seconds allows steam to evaporate, creating supreme crunch."
         }
-      ]
+      ],
+      "name_en": "Desserts & Bakery"
     }
   ],
   "cleaningChecklist": [
