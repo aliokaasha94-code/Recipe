@@ -7,27 +7,39 @@
     "sugarScale": [
       {
         "name": "سادة",
-        "desc": "بدون سكر نهائياً (0 جرام)"
+        "desc": "بدون سكر نهائياً (0 جرام)",
+        "name_en": "Plain (Sada)",
+        "desc_en": "Zero sugar (0g)"
       },
       {
-        "name": "حبانوه / على الريحة",
-        "desc": "ربع ملعقة صغيرة (حوالي 2-3 جرام)"
+        "name": "على الريحة",
+        "desc": "ربع ملعقة صغيرة (حوالي 2-3 جرام)",
+        "name_en": "Scant (Aal Riah)",
+        "desc_en": "1/4 teaspoon (approx 2-3g)"
       },
       {
         "name": "مظبوط",
-        "desc": "ملعقة صغيرة واحدة ممسوحة (حوالي 5-6 جرام)"
+        "desc": "ملعقة صغيرة واحدة (حوالي 5-6 جرام)",
+        "name_en": "Balanced (Mazboot)",
+        "desc_en": "1 standard teaspoon (approx 5-6g)"
       },
       {
         "name": "مانو",
-        "desc": "ملعقة ونصف صغيرة (حوالي 8-9 جرام)"
+        "desc": "ملعقة ونصف صغيرة (حوالي 8-9 جرام)",
+        "name_en": "Medium-Sweet (Mano)",
+        "desc_en": "1.5 teaspoons (approx 8-9g)"
       },
       {
         "name": "زيادة",
-        "desc": "ملعقتين صغيرتين ممتلئتين (حوالي 12-14 جرام)"
+        "desc": "ملعقتين صغيرتين (حوالي 12-14 جرام)",
+        "name_en": "Sweet (Ziyada)",
+        "desc_en": "2 full teaspoons (approx 12-14g)"
       },
       {
-        "name": "سرياقوسي",
-        "desc": "ثلاث ملاعق سكر لمحبي الحلاوة العالية جداً"
+        "name": "سرياسي",
+        "desc": "ثلاث ملاعق سكر (حوالي 16-18 جرام)",
+        "name_en": "Extra-Sweet (Seryasi)",
+        "desc_en": "3 full teaspoons (approx 16-18g)"
       }
     ]
   },
@@ -141,7 +153,7 @@
             "problem_en": "Coffee boiled over and face/foam was completely lost.",
             "solution_en": "Do not serve flat coffee. Add 1/2 teaspoon fresh fine coffee powder, place back on low heat for 15 seconds to regenerate microfoam."
           },
-          "proTip": "عشاق البن الغامق يطلبون عادة سكر خفيف (حبانوه أو سادة) ليستمتعوا بنكهة التحميص العميقة.",
+          "proTip": "عشاق البن الغامق يطلبون عادة سكر خفيف (على الريحة أو سادة) ليستمتعوا بنكهة التحميص العميقة.",
           "name_en": "Turkish Coffee (Dark Roast - Pure Unspiced)",
           "notes_en": "Traditional slow-brewed Turkish coffee. Dark roast with thick golden-brown foam (face).",
           "steps_en": [

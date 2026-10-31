@@ -8,45 +8,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>عماد أفندي | محطة التركي والتراثي</title>
   <link rel="icon" type="image/png" href="assets/emad-logo.png">
-  <link rel="stylesheet" href="style.css?v=15.0">
-  <style>
-    .sugar-banner {
-      margin: 10px 16px 4px;
-      background: linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(10, 12, 16, 0.9) 100%);
-      border: 1px solid var(--border-gold);
-      border-radius: var(--radius-md);
-      padding: 10px 12px;
-    }
-    .sugar-title {
-      font-size: 0.80rem;
-      font-weight: 800;
-      color: var(--gold-bright);
-      margin-bottom: 8px;
-    }
-    .sugar-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-      gap: 6px;
-    }
-    .sugar-chip {
-      background: rgba(0, 0, 0, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: var(--radius-sm);
-      padding: 5px 6px;
-      text-align: center;
-    }
-    .sugar-name {
-      font-weight: 800;
-      font-size: 0.74rem;
-      color: #ffffff;
-    }
-    .sugar-desc {
-      font-size: 0.65rem;
-      color: var(--gold-soft);
-      font-family: var(--font-mono);
-      margin-top: 1px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css?v=16.0">
 </head>
 <body>
 
@@ -90,28 +52,44 @@
   <div class="app-main-layout">
 
     <!-- Sugar Scale Cheat Sheet -->
-    <div class="sugar-banner" style="margin: 12px 14px 4px;">
-      <div class="sugar-title">معيار سكر القهوة التركية المعتمد لعماد أفندي:</div>
-      <div class="sugar-grid">
+    <div class="sugar-banner" id="sugarBanner" style="margin: 12px 14px 6px;">
+      <div class="sugar-title">
+        <span class="sugar-title-text" id="sugarTitleText">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+          معيار سكر القهوة التركية المعتمد لعماد أفندي:
+        </span>
+        <span class="sugar-sop-badge" id="sugarSopBadge">SOP معتمد</span>
+      </div>
+      <div class="sugar-grid" id="sugarGrid">
         <div class="sugar-chip">
           <div class="sugar-name">سادة</div>
           <div class="sugar-desc">0g</div>
+          <div class="sugar-spoon">بدون سكر</div>
         </div>
         <div class="sugar-chip">
-          <div class="sugar-name">حبانوه / ريحة</div>
+          <div class="sugar-name">على الريحة</div>
           <div class="sugar-desc">2-3g</div>
+          <div class="sugar-spoon">ربع ملعقة</div>
         </div>
         <div class="sugar-chip">
           <div class="sugar-name">مظبوط</div>
           <div class="sugar-desc">5-6g</div>
+          <div class="sugar-spoon">ملعقة واحدة</div>
         </div>
         <div class="sugar-chip">
           <div class="sugar-name">مانو</div>
           <div class="sugar-desc">8-9g</div>
+          <div class="sugar-spoon">معلقة ونصف</div>
         </div>
         <div class="sugar-chip">
           <div class="sugar-name">زيادة</div>
           <div class="sugar-desc">12-14g</div>
+          <div class="sugar-spoon">معلقتين</div>
+        </div>
+        <div class="sugar-chip">
+          <div class="sugar-name">سرياسي</div>
+          <div class="sugar-desc">16-18g</div>
+          <div class="sugar-spoon">3 ملاعق</div>
         </div>
       </div>
     </div>
@@ -167,8 +145,8 @@
     </div>
   </div>
 
-  <script src="drink-visuals.js?v=13.0"></script>
-  <script src="app.js?v=15.0"></script>
+  <script src="drink-visuals.js?v=16.0"></script>
+  <script src="app.js?v=16.0"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       window.app = new StationApp('recipes.json');

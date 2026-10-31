@@ -1,429 +1,572 @@
-// Emad Afandi Specialty Coffee Lab - Solid Takeaway Cutaway Cup System
-// Clean Solid Vectors with Natural Realistic Liquid Layers (Zero Text Inside Cup)
+// Emad Afandi Specialty Coffee Lab - 3D Architectural Vector Visual System for Traditional & Turkish Coffee
+// Tailored to Emad Afandi's Heritage Presentation:
+// 1. Turkish Coffee: 3D Royal Porcelain Finjan with Saucer & Thick Tiger Crema (وش القهوة المتماسك)
+// 2. French Coffee & Hot Specialties: 3D Matte Black Cup with Cutaway & Frothy Microfoam / Drizzles
+// 3. Arabic & Heritage Brews: 3D Golden Saudi Dallah / Traditional Finjan with Saffron & Cardamom
+// 4. Karak & Spiced Chai: 3D Traditional Glass with Spiced Evaporated Milk Tea & Whole Cardamom Pods
 
-function getDrinkSvg(item) {
-  const id = (item.id || '').toLowerCase();
-  const uid = 'cup_' + id.replace(/[^a-z0-9]/g, '_');
+let _svgUidCounter = 0;
+function getNextSvgId(prefix) {
+  _svgUidCounter++;
+  return `${prefix}_${_svgUidCounter}_${Math.random().toString(36).substring(2, 7)}`;
+}
 
-  // 1. BAKERY: WAFFLE & PANCAKE (Clean Solid Plate Vectors)
-  if (id.includes('waffle') || id.includes('وافل')) {
-    return `
-      <svg class="drink-art-svg" viewBox="0 0 100 130" fill="none">
-        <!-- Slate Plate -->
-        <ellipse cx="50" cy="85" rx="46" ry="18" fill="#15171c" stroke="#d4af37" stroke-width="1.2"/>
-        <ellipse cx="50" cy="84" rx="36" ry="13" fill="#0b0c0f"/>
-        <!-- Golden Belgian Waffle Body -->
-        <rect x="24" y="52" width="52" height="40" rx="6" transform="rotate(-5 50 72)" fill="#c97716" stroke="#874705" stroke-width="1.2"/>
-        <!-- Grid Indentations -->
-        <rect x="30" y="57" width="8" height="8" rx="1.5" transform="rotate(-5 30 57)" fill="#613003"/>
-        <rect x="42" y="56" width="8" height="8" rx="1.5" transform="rotate(-5 42 56)" fill="#613003"/>
-        <rect x="54" y="54" width="8" height="8" rx="1.5" transform="rotate(-5 54 54)" fill="#613003"/>
-        <rect x="66" y="53" width="8" height="8" rx="1.5" transform="rotate(-5 66 53)" fill="#613003"/>
-        <rect x="31" y="70" width="8" height="8" rx="1.5" transform="rotate(-5 31 70)" fill="#613003"/>
-        <rect x="43" y="68" width="8" height="8" rx="1.5" transform="rotate(-5 43 68)" fill="#613003"/>
-        <rect x="55" y="67" width="8" height="8" rx="1.5" transform="rotate(-5 55 67)" fill="#613003"/>
-        <rect x="67" y="65" width="8" height="8" rx="1.5" transform="rotate(-5 67 65)" fill="#613003"/>
-        <!-- Chocolate Sauce Drizzle -->
-        <path d="M 26 62 Q 50 74 76 60" stroke="#251006" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M 30 76 Q 55 86 74 72" stroke="#251006" stroke-width="2.5" stroke-linecap="round"/>
-        <!-- Butter Cube -->
-        <rect x="45" y="62" width="10" height="8" rx="1.5" fill="#fef08a" stroke="#ca8a04" stroke-width="1"/>
-      </svg>
+// ========================================================
+// 1. 3D ROYAL PORCELAIN TURKISH FINJAN & SAUCER (Turkish Coffee)
+// ========================================================
+function render3DTurkishFinjan(options) {
+  const id = getNextSvgId('finjan');
+  const roast = options.roast || 'medium'; // 'light', 'medium', 'dark'
+  const isSpiced = options.isSpiced || false;
+
+  let brewColDark = '#200d04';
+  let brewCol = '#3d1d07';
+  let brewColLight = '#592d0e';
+  let cremaCol = '#a16215';
+  let cremaColLight = '#d98e32';
+  let cremaColDark = '#78350f';
+
+  if (roast === 'light') {
+    brewColDark = '#3d1d07';
+    brewCol = '#592d0e';
+    brewColLight = '#78350f';
+    cremaCol = '#c68428';
+    cremaColLight = '#f59e0b';
+    cremaColDark = '#92400e';
+  } else if (roast === 'dark') {
+    brewColDark = '#100602';
+    brewCol = '#1f0d04';
+    brewColLight = '#2d1407';
+    cremaCol = '#78350f';
+    cremaColLight = '#92400e';
+    cremaColDark = '#451a03';
+  }
+
+  let spiceSpecks = '';
+  if (isSpiced) {
+    spiceSpecks = `
+      <!-- Green Cardamom Pod & Ground Cardamom Flecks -->
+      <g opacity="0.9">
+        <circle cx="52" cy="74" r="1.1" fill="#4d7c0f"/>
+        <circle cx="68" cy="76" r="1.2" fill="#365314"/>
+        <circle cx="58" cy="78" r="0.9" fill="#4d7c0f"/>
+        <circle cx="64" cy="73" r="1.0" fill="#365314"/>
+        <!-- Whole Cardamom Pod floating on Crema -->
+        <ellipse cx="61" cy="75" rx="3.5" ry="1.8" transform="rotate(-15 61 75)" fill="#4d7c0f" stroke="#365314" stroke-width="0.7"/>
+        <line x1="58" y1="76" x2="64" y2="74" stroke="#65a30d" stroke-width="0.6"/>
+      </g>
     `;
   }
-
-  if (id.includes('pancake') || id.includes('بان كيك')) {
-    return `
-      <svg class="drink-art-svg" viewBox="0 0 100 130" fill="none">
-        <ellipse cx="50" cy="90" rx="46" ry="16" fill="#15171c" stroke="#d4af37" stroke-width="1.2"/>
-        <ellipse cx="50" cy="80" rx="34" ry="10" fill="#c97716" stroke="#874705" stroke-width="1"/>
-        <ellipse cx="50" cy="78" rx="32" ry="9" fill="#e08a1e"/>
-        <ellipse cx="50" cy="70" rx="30" ry="9" fill="#c97716" stroke="#874705" stroke-width="1"/>
-        <ellipse cx="50" cy="68" rx="28" ry="8" fill="#f0a535"/>
-        <ellipse cx="50" cy="60" rx="26" ry="8" fill="#c97716" stroke="#874705" stroke-width="1"/>
-        <ellipse cx="50" cy="58" rx="24" ry="7" fill="#f5b942"/>
-        <rect x="45" y="49" width="10" height="8" rx="1.5" fill="#fef08a" stroke="#ca8a04" stroke-width="1"/>
-        <path d="M 47 58 Q 45 74 44 80" stroke="#ad5d11" stroke-width="2.2" stroke-linecap="round"/>
-      </svg>
-    `;
-  }
-
-  // 2. NATURAL LIQUID LAYER CONFIGURATIONS (Solid, Realistic, Zero Noise)
-  // Layers from BOTTOM to TOP. Sum of percent = 100
-  let layers = [];
-  let isCold = id.includes('iced') || id.includes('ايس') || id.includes('cold') || 
-              id.includes('smoothie') || id.includes('سموذي') || id.includes('shake') || 
-              id.includes('شيك') || id.includes('frappe') || id.includes('فرابيه') || 
-              id.includes('boba') || id.includes('بوبا') || id.includes('mojito');
-
-  // --- ESPRESSO & MILK DRINKS ---
-  if (id === 'espresso-single' || id === 'espresso-ristretto') {
-    layers = [
-      { percent: 35, color: '#251206' }, // Dark espresso
-      { percent: 20, color: '#ba782b' }, // Hazelnut crema
-      { percent: 45, color: '#090a0d' }  // Empty upper cup
-    ];
-  }
-  else if (id === 'espresso-doppio' || (id.includes('espresso') && id.includes('double'))) {
-    layers = [
-      { percent: 65, color: '#200f04' },
-      { percent: 20, color: '#b37025' },
-      { percent: 15, color: '#090a0d' }
-    ];
-  }
-  else if (id.includes('americano')) {
-    if (isCold) {
-      layers = [
-        { percent: 30, color: '#251206' }, // Espresso
-        { percent: 40, color: '#2c3e50' }, // Cold Water
-        { percent: 30, color: '#4a6984' }  // Ice
-      ];
-    } else {
-      layers = [
-        { percent: 30, color: '#251206' }, // Espresso
-        { percent: 70, color: '#203244' }  // Clean Hot Water
-      ];
-    }
-  }
-  else if (id.includes('latte') && !id.includes('spanish') && !id.includes('pistachio') && !id.includes('piccolo')) {
-    if (isCold) {
-      layers = [
-        { percent: 25, color: '#251206' }, // Espresso
-        { percent: 45, color: '#f5efe6' }, // Cold Milk
-        { percent: 30, color: '#4a6984' }  // Ice Cubes
-      ];
-    } else {
-      layers = [
-        { percent: 25, color: '#251206' }, // Espresso
-        { percent: 60, color: '#f5efe6' }, // Steamed Milk
-        { percent: 15, color: '#ffffff' }  // Microfoam
-      ];
-    }
-  }
-  else if (id.includes('cappuccino')) {
-    layers = [
-      { percent: 33, color: '#251206' }, // Espresso
-      { percent: 33, color: '#f5efe6' }, // Steamed Milk
-      { percent: 34, color: '#ffffff' }  // Dense Foam Cap
-    ];
-  }
-  else if (id.includes('flat-white')) {
-    layers = [
-      { percent: 45, color: '#200f04' }, // Double Ristretto
-      { percent: 55, color: '#f7f1e7' }  // Micro-textured Milk
-    ];
-  }
-  else if (id.includes('cortado')) {
-    layers = [
-      { percent: 50, color: '#251206' }, // 50% Espresso
-      { percent: 50, color: '#f5efe6' }  // 50% Steamed Milk
-    ];
-  }
-  else if (id.includes('piccolo')) {
-    layers = [
-      { percent: 40, color: '#200f04' }, // Ristretto
-      { percent: 60, color: '#f5efe6' }  // Steamed Milk
-    ];
-  }
-  else if (id.includes('spanish')) {
-    if (isCold) {
-      layers = [
-        { percent: 20, color: '#eed89b' }, // Condensed Milk
-        { percent: 28, color: '#251206' }, // Espresso
-        { percent: 30, color: '#f5efe6' }, // Cold Milk
-        { percent: 22, color: '#4a6984' }  // Ice
-      ];
-    } else {
-      layers = [
-        { percent: 20, color: '#eed89b' }, // Condensed Milk
-        { percent: 28, color: '#251206' }, // Espresso
-        { percent: 52, color: '#f5efe6' }  // Steamed Milk
-      ];
-    }
-  }
-  else if (id.includes('pistachio') || id.includes('بيستاشيو') || id.includes('بستاش')) {
-    if (isCold) {
-      layers = [
-        { percent: 25, color: '#4a6828' }, // Natural Pistachio Paste
-        { percent: 25, color: '#251206' }, // Espresso
-        { percent: 28, color: '#f5efe6' }, // Cold Milk
-        { percent: 22, color: '#4a6984' }  // Ice
-      ];
-    } else {
-      layers = [
-        { percent: 25, color: '#4a6828' }, // Natural Pistachio Paste
-        { percent: 25, color: '#251206' }, // Espresso
-        { percent: 45, color: '#f5efe6' }, // Steamed Milk
-        { percent: 5, color: '#324719' }   // Crushed Pistachio
-      ];
-    }
-  }
-  else if (id.includes('white-mocha')) {
-    layers = [
-      { percent: 25, color: '#f4eee1' }, // White Chocolate
-      { percent: 25, color: '#251206' }, // Espresso
-      { percent: 50, color: '#f5efe6' }  // Steamed Milk
-    ];
-  }
-  else if (id.includes('caramel') || id.includes('كراميل')) {
-    layers = [
-      { percent: 20, color: '#ad5d11' }, // Caramel Syrup
-      { percent: 50, color: '#f8f3eb' }, // Vanilla Steamed Milk
-      { percent: 20, color: '#251206' }, // Espresso Mark
-      { percent: 10, color: '#8f4a0a' }  // Caramel Drizzle
-    ];
-  }
-  else if (id.includes('mocha') || id.includes('موكا')) {
-    layers = [
-      { percent: 25, color: '#33160a' }, // Dark Cocoa
-      { percent: 25, color: '#251206' }, // Espresso
-      { percent: 50, color: '#f5efe6' }  // Steamed Milk
-    ];
-  }
-  else if (id.includes('con-panna')) {
-    layers = [
-      { percent: 45, color: '#251206' }, // Espresso
-      { percent: 55, color: '#fffdfa' }  // Whipped Cream
-    ];
-  }
-  else if (id.includes('affogato')) {
-    layers = [
-      { percent: 40, color: '#251206' }, // Hot Espresso
-      { percent: 60, color: '#f9f6e8' }  // Vanilla Gelato
-    ];
-  }
-  else if (id.includes('bombon')) {
-    layers = [
-      { percent: 50, color: '#eed89b' }, // Condensed Milk
-      { percent: 50, color: '#200f04' }  // Black Espresso
-    ];
-  }
-  else if (id.includes('macchiato')) {
-    layers = [
-      { percent: 75, color: '#251206' },
-      { percent: 25, color: '#ffffff' }
-    ];
-  }
-  else if (id.includes('v60') || id.includes('chemex') || id.includes('cold-brew') || id.includes('filter')) {
-    layers = [
-      { percent: 85, color: '#47230b' },
-      { percent: 15, color: '#a66324' }
-    ];
-  }
-
-  // --- TRADITIONAL COFFEE & TEAS ---
-  else if (id.includes('turkish') || id.includes('تركي')) {
-    const isDark = id.includes('dark') || id.includes('غامق');
-    const isLight = id.includes('light') || id.includes('فاتح');
-
-    let brewCol = isDark ? '#200d03' : (isLight ? '#592d0e' : '#3d1d07');
-    let cremaCol = isDark ? '#47220a' : (isLight ? '#a86927' : '#8a4d1d');
-
-    layers = [
-      { percent: 65, color: brewCol },
-      { percent: 35, color: cremaCol }
-    ];
-  }
-  else if (id.includes('french') || id.includes('فرنسا')) {
-    layers = [
-      { percent: 50, color: '#452410' },
-      { percent: 50, color: '#d6c1a0' }
-    ];
-  }
-  else if (id.includes('arabic') || id.includes('عربي')) {
-    layers = [
-      { percent: 75, color: '#9e6e18' },
-      { percent: 25, color: '#c4891b' }
-    ];
-  }
-  else if (id.includes('jabana') || id.includes('جبنة') || id.includes('origin')) {
-    layers = [
-      { percent: 75, color: '#200d04' },
-      { percent: 25, color: '#70350d' }
-    ];
-  }
-  else if (id.includes('karak') || id.includes('adani') || id.includes('masala')) {
-    layers = [
-      { percent: 50, color: '#8f4d1e' },
-      { percent: 50, color: '#ebcc9e' }
-    ];
-  }
-  else if (id.includes('hot-batata')) {
-    layers = [
-      { percent: 30, color: '#b84e10' },
-      { percent: 50, color: '#f5efe6' },
-      { percent: 20, color: '#ad5d11' }
-    ];
-  }
-  else if (id.includes('hot-lotus')) {
-    layers = [
-      { percent: 30, color: '#99490b' },
-      { percent: 50, color: '#f5efe6' },
-      { percent: 20, color: '#7a3806' }
-    ];
-  }
-  else if (id.includes('hot-chocolate') || (id.includes('hot') && id.includes('chocolate'))) {
-    layers = [
-      { percent: 35, color: '#251006' },
-      { percent: 45, color: '#f5efe6' },
-      { percent: 20, color: '#ffffff' }
-    ];
-  }
-
-  // --- BACKBAR COLD BAR (Smoothies, Shakes, Frappes, Boba) ---
-  else if (id.includes('smoothie') || id.includes('سموذي') || id.includes('سموزي')) {
-    let fruitColor = '#d97814';
-    if (id.includes('straw') || id.includes('فراول')) fruitColor = '#ad1726';
-    else if (id.includes('lemon') || id.includes('ليمون')) fruitColor = '#267341';
-    else if (id.includes('blue') || id.includes('berry') || id.includes('توت')) fruitColor = '#5c278a';
-    else if (id.includes('water') || id.includes('بطيخ')) fruitColor = '#b82e44';
-    else if (id.includes('passion') || id.includes('باشن')) fruitColor = '#c44a0e';
-    else if (id.includes('kiwi') || id.includes('كيوي')) fruitColor = '#557a2b';
-
-    layers = [
-      { percent: 65, color: fruitColor },
-      { percent: 35, color: '#2d4a60' }
-    ];
-  }
-  else if (id.includes('shake') || id.includes('شيك') || id.includes('frappe') || id.includes('فرابيه')) {
-    let shakeColor = '#d6c5aa';
-    if (id.includes('oreo') || id.includes('اوريو')) shakeColor = '#211f1e';
-    else if (id.includes('lotus') || id.includes('لوتس')) shakeColor = '#99490b';
-    else if (id.includes('choc') || id.includes('شيكول')) shakeColor = '#33160a';
-    else if (id.includes('pistachio') || id.includes('بستاش')) shakeColor = '#4a6828';
-
-    layers = [
-      { percent: 60, color: shakeColor },
-      { percent: 20, color: '#f5efe6' },
-      { percent: 20, color: '#ffffff' }
-    ];
-  }
-  else if (id.includes('boba') || id.includes('بوبا') || id.includes('mojito') || id.includes('موخيتو')) {
-    const isBlue = id.includes('blue') || id.includes('بلو');
-    layers = [
-      { percent: 25, color: isBlue ? '#0369a1' : '#047857' },
-      { percent: 50, color: isBlue ? '#0284c7' : '#059669' },
-      { percent: 25, color: '#38bdf8' }
-    ];
-  }
-  else {
-    layers = [
-      { percent: 40, color: '#251206' },
-      { percent: 40, color: '#f5efe6' },
-      { percent: 20, color: '#ffffff' }
-    ];
-  }
-
-  // 3. RENDER CLEAN SOLID TAKEAWAY CUTAWAY CUP (NO TEXT INSIDE CUP)
-  // Cavity Y: 23 down to 122 (Total 99px)
-  let currentY = 122;
-  let layersSvg = '';
-
-  layers.forEach((l, index) => {
-    const layerH = (l.percent / 100) * 99;
-    const yTop = currentY - layerH;
-
-    layersSvg += `
-      <rect x="15" y="${yTop - 0.5}" width="70" height="${layerH + 1}" fill="${l.color}"/>
-    `;
-
-    if (index > 0) {
-      layersSvg += `
-        <line x1="18" y1="${currentY}" x2="82" y2="${currentY}" stroke="rgba(255,255,255,0.22)" stroke-width="0.8"/>
-      `;
-    }
-
-    currentY = yTop;
-  });
 
   return `
-    <svg class="drink-art-svg" viewBox="0 0 100 130" fill="none">
+    <svg viewBox="0 0 120 160" fill="none" class="drink-art-svg" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <clipPath id="${uid}_clip">
-          <path d="M 20 23 L 28 122 Q 29 124 32 124 L 68 124 Q 71 124 72 122 L 80 23 Z"/>
+        <filter id="${id}_blur" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="3.5"/>
+        </filter>
+
+        <!-- Royal Porcelain Finjan Gradients -->
+        <linearGradient id="${id}_porcelain" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#14161c"/>
+          <stop offset="25%" stop-color="#2a2e39"/>
+          <stop offset="50%" stop-color="#3d4352"/>
+          <stop offset="78%" stop-color="#22252e"/>
+          <stop offset="100%" stop-color="#111317"/>
+        </linearGradient>
+
+        <linearGradient id="${id}_gold_rim" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#b45309"/>
+          <stop offset="35%" stop-color="#fde047"/>
+          <stop offset="65%" stop-color="#d97706"/>
+          <stop offset="100%" stop-color="#78350f"/>
+        </linearGradient>
+
+        <linearGradient id="${id}_brew" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="${brewColDark}"/>
+          <stop offset="30%" stop-color="${brewColLight}"/>
+          <stop offset="70%" stop-color="${brewCol}"/>
+          <stop offset="100%" stop-color="${brewColDark}"/>
+        </linearGradient>
+
+        <linearGradient id="${id}_crema" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="${cremaColDark}"/>
+          <stop offset="30%" stop-color="${cremaColLight}"/>
+          <stop offset="70%" stop-color="${cremaCol}"/>
+          <stop offset="100%" stop-color="${cremaColDark}"/>
+        </linearGradient>
+
+        <clipPath id="${id}_cup_clip">
+          <path d="M 30 72 C 30 120 40 134 60 134 C 80 134 90 120 90 72 Z"/>
         </clipPath>
       </defs>
 
-      <!-- Drop Shadow -->
-      <ellipse cx="50" cy="126" rx="26" ry="3" fill="rgba(0,0,0,0.85)"/>
+      <!-- 1. Ground Drop Shadow -->
+      <ellipse cx="60" cy="146" rx="46" ry="7" fill="rgba(0,0,0,0.85)" filter="url(#${id}_blur)"/>
 
-      <!-- Stacked Solid Color Bands (No Text Inside) -->
-      <g clip-path="url(#${uid}_clip)">
-        ${layersSvg}
+      <!-- 2. Porcelain Saucer with Gold Edge -->
+      <ellipse cx="60" cy="138" rx="48" ry="11" fill="url(#${id}_porcelain)" stroke="url(#${id}_gold_rim)" stroke-width="1.3"/>
+      <ellipse cx="60" cy="136" rx="38" ry="7.5" fill="#0c0d10" stroke="rgba(212,175,55,0.4)" stroke-width="0.8"/>
+
+      <!-- 3. Cup Handle (Curved Ergonomic Brass Handle) -->
+      <path d="M 88 82 C 104 82 104 116 86 118" stroke="url(#${id}_gold_rim)" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+      <path d="M 88 84 C 101 84 101 114 86 116" stroke="rgba(255,255,255,0.4)" stroke-width="1" stroke-linecap="round" fill="none"/>
+
+      <!-- 4. Porcelain Finjan Body -->
+      <path d="M 28 72 C 28 122 38 136 60 136 C 82 136 92 122 92 72 Z" fill="url(#${id}_porcelain)" stroke="rgba(212,175,55,0.8)" stroke-width="1.2"/>
+
+      <!-- 5. Liquid Fill with Cutaway Depth -->
+      <g clip-path="url(#${id}_cup_clip)">
+        <!-- Rich Turkish Brew Base -->
+        <rect x="25" y="70" width="70" height="70" fill="url(#${id}_brew)"/>
+        <!-- Settled Coffee Grounds Layer at Bottom -->
+        <path d="M 38 126 C 45 130 75 130 82 126 L 82 136 L 38 136 Z" fill="#140602"/>
       </g>
 
-      <!-- Solid Cup Shell -->
-      <path d="M 20 23 L 28 122 Q 29 124 32 124 L 68 124 Q 71 124 72 122 L 80 23 Z" fill="none" stroke="#d4af37" stroke-width="1.2"/>
+      <!-- 6. Golden Royal Arabesque Pattern on Cup Front -->
+      <path d="M 44 95 Q 60 105 76 95" stroke="rgba(212,175,55,0.75)" stroke-width="1.2" fill="none"/>
+      <circle cx="60" cy="100" r="2.2" fill="#d4af37"/>
+      <circle cx="50" cy="98" r="1.3" fill="#d4af37"/>
+      <circle cx="70" cy="98" r="1.3" fill="#d4af37"/>
+      <path d="M 48 110 Q 60 118 72 110" stroke="rgba(212,175,55,0.5)" stroke-width="1" fill="none"/>
 
-      <!-- Paper Collar -->
-      <rect x="18" y="19" width="64" height="4.5" rx="1.5" fill="#eae4dc" stroke="#d4af37" stroke-width="0.8"/>
+      <!-- 7. Thick Tiger Crema Surface (وش القهوة السميك المتماسك) -->
+      <ellipse cx="60" cy="74" rx="30" ry="8" fill="url(#${id}_crema)" stroke="url(#${id}_gold_rim)" stroke-width="1.2"/>
+      <!-- Inner Tiger Streaks -->
+      <ellipse cx="60" cy="74" rx="24" ry="5.5" fill="${cremaColLight}" opacity="0.8"/>
+      <path d="M 42 74 Q 52 71 62 75 Q 70 72 78 74" stroke="${cremaColDark}" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      <circle cx="48" cy="73" r="1.4" fill="#fef08a"/>
+      <circle cx="71" cy="74" r="1.2" fill="#fef08a"/>
 
-      <!-- Takeaway Mocha Lid -->
-      <rect x="14" y="11" width="72" height="9" rx="3" fill="#2b1408" stroke="#d4af37" stroke-width="1"/>
-      <rect x="32" y="6" width="36" height="6" rx="2" fill="#2b1408" stroke="rgba(212,175,55,0.6)" stroke-width="0.8"/>
-      <rect x="42" y="5" width="16" height="2.5" rx="1" fill="#120803"/>
+      <!-- Cardamom Specks / Pod -->
+      ${spiceSpecks}
+
+      <!-- Cup Rim Specular Highlight -->
+      <ellipse cx="60" cy="72" rx="31" ry="8" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" fill="none"/>
     </svg>
   `;
 }
 
-// Helper: Returns chronological 3-step sequence teaser for the landscape card
+// ========================================================
+// 2. 3D MATTE BLACK HOT TAKEAWAY CUP (French Coffee & Hot Specialties)
+// ========================================================
+function render3DHotCup(options) {
+  const id = getNextSvgId('hot_cup_black');
+  const layers = options.layers || [
+    { pct: 40, col: '#3d1d07', colLight: '#592d0e', colDark: '#200d04' },
+    { pct: 45, col: '#f5efe6', colLight: '#ffffff', colDark: '#e8dcce' },
+    { pct: 15, col: '#ffffff', colLight: '#ffffff', colDark: '#f4ede4' }
+  ];
+  const topStyle = options.topStyle || 'foam'; // 'foam', 'cocoa', 'caramel', 'lotus', 'pistachio'
+
+  const winTop = 38;
+  const winBottom = 140;
+  const totalH = winBottom - winTop;
+
+  let currentBottom = winBottom;
+  let layersHtml = '';
+
+  layers.forEach((l, idx) => {
+    const h = (l.pct / 100) * totalH;
+    const currentTop = currentBottom - h;
+    const gradId = `${id}_lay_${idx}`;
+
+    layersHtml += `
+      <linearGradient id="${gradId}" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="${l.colDark || l.col}" stop-opacity="0.95"/>
+        <stop offset="25%" stop-color="${l.colLight || l.col}" stop-opacity="1"/>
+        <stop offset="70%" stop-color="${l.col || l.colLight}" stop-opacity="0.98"/>
+        <stop offset="100%" stop-color="${l.colDark || l.col}" stop-opacity="0.90"/>
+      </linearGradient>
+
+      <path d="M 28 ${currentTop} Q 60 ${currentTop + 3.8} 92 ${currentTop} L 92 ${currentBottom} Q 60 ${currentBottom + 3.8} 28 ${currentBottom} Z" fill="url(#${gradId})"/>
+      <path d="M 28 ${currentTop} Q 60 ${currentTop + 3.8} 92 ${currentTop}" stroke="rgba(255,255,255,0.4)" stroke-width="0.8" fill="none"/>
+    `;
+    currentBottom = currentTop;
+  });
+
+  let decorHtml = '';
+  if (topStyle === 'cocoa') {
+    decorHtml = `
+      <ellipse cx="60" cy="${currentBottom + 2}" rx="26" ry="3.5" fill="#2d1307" opacity="0.85"/>
+      <circle cx="50" cy="${currentBottom + 2}" r="1.1" fill="#170903"/>
+      <circle cx="63" cy="${currentBottom + 1.6}" r="1.3" fill="#170903"/>
+      <circle cx="71" cy="${currentBottom + 2.5}" r="1.0" fill="#170903"/>
+      <circle cx="57" cy="${currentBottom + 2.7}" r="0.9" fill="#170903"/>
+    `;
+  } else if (topStyle === 'caramel') {
+    decorHtml = `
+      <path d="M 38 ${currentBottom + 2} Q 60 ${currentBottom - 1} 82 ${currentBottom + 2}" stroke="#d97706" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+      <path d="M 44 ${currentBottom + 4} Q 60 ${currentBottom + 1} 76 ${currentBottom + 4}" stroke="#b45309" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+      <path d="M 48 ${currentBottom} L 54 ${currentBottom + 5}" stroke="#d97706" stroke-width="2" stroke-linecap="round"/>
+      <path d="M 62 ${currentBottom} L 68 ${currentBottom + 5}" stroke="#d97706" stroke-width="2" stroke-linecap="round"/>
+    `;
+  } else if (topStyle === 'lotus') {
+    decorHtml = `
+      <circle cx="48" cy="${currentBottom + 2}" r="1.5" fill="#c2781b"/>
+      <circle cx="60" cy="${currentBottom + 1.6}" r="1.6" fill="#b45309"/>
+      <circle cx="70" cy="${currentBottom + 2.4}" r="1.4" fill="#d97706"/>
+      <path d="M 40 ${currentBottom + 2} Q 60 ${currentBottom - 1} 80 ${currentBottom + 2}" stroke="#b45309" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+    `;
+  } else if (topStyle === 'pistachio') {
+    decorHtml = `
+      <ellipse cx="60" cy="${currentBottom + 2}" rx="26" ry="3.5" fill="#4d7c0f" opacity="0.8"/>
+      <circle cx="48" cy="${currentBottom + 2}" r="1.2" fill="#365314"/>
+      <circle cx="62" cy="${currentBottom + 1.6}" r="1.4" fill="#365314"/>
+      <circle cx="70" cy="${currentBottom + 2.3}" r="1.0" fill="#65a30d"/>
+    `;
+  }
+
+  return `
+    <svg viewBox="0 0 120 160" fill="none" class="drink-art-svg" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="${id}_blur" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="3"/>
+        </filter>
+
+        <linearGradient id="${id}_black_cup" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#111215"/>
+          <stop offset="14%" stop-color="#1f2229"/>
+          <stop offset="32%" stop-color="#2d323d"/>
+          <stop offset="68%" stop-color="#21242c"/>
+          <stop offset="86%" stop-color="#18191f"/>
+          <stop offset="100%" stop-color="#0c0d10"/>
+        </linearGradient>
+
+        <linearGradient id="${id}_lid_cap" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#17181c"/>
+          <stop offset="22%" stop-color="#2c303a"/>
+          <stop offset="50%" stop-color="#3a404d"/>
+          <stop offset="80%" stop-color="#242730"/>
+          <stop offset="100%" stop-color="#121316"/>
+        </linearGradient>
+
+        <linearGradient id="${id}_lid_rim" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#131417"/>
+          <stop offset="25%" stop-color="#262932"/>
+          <stop offset="50%" stop-color="#343945"/>
+          <stop offset="80%" stop-color="#20222a"/>
+          <stop offset="100%" stop-color="#0e0f12"/>
+        </linearGradient>
+
+        <linearGradient id="${id}_cyl" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="rgba(0,0,0,0.58)"/>
+          <stop offset="16%" stop-color="rgba(255,255,255,0.0)"/>
+          <stop offset="30%" stop-color="rgba(255,255,255,0.22)"/>
+          <stop offset="68%" stop-color="rgba(0,0,0,0.0)"/>
+          <stop offset="88%" stop-color="rgba(0,0,0,0.32)"/>
+          <stop offset="100%" stop-color="rgba(0,0,0,0.65)"/>
+        </linearGradient>
+
+        <clipPath id="${id}_cutaway">
+          <path d="M 28 37 Q 60 41 92 37 L 83 140 Q 60 144 37 140 Z"/>
+        </clipPath>
+      </defs>
+
+      <!-- 1. Drop Shadow -->
+      <ellipse cx="60" cy="154" rx="36" ry="5.5" fill="rgba(0,0,0,0.9)" filter="url(#${id}_blur)"/>
+
+      <!-- 2. Matte Black Body -->
+      <path d="M 18 32 L 31 146 Q 32 149 36 149 L 84 149 Q 88 149 89 146 L 102 32 Z" fill="url(#${id}_black_cup)"/>
+      <path d="M 30 145 Q 60 149 90 145 L 89 149 Q 60 153 31 149 Z" fill="#e2e8f0"/>
+
+      <!-- 3. Cutaway Window -->
+      <g clip-path="url(#${id}_cutaway)">
+        <rect x="20" y="32" width="80" height="118" fill="#0d0b09"/>
+        ${layersHtml}
+        ${decorHtml}
+        <rect x="20" y="32" width="80" height="118" fill="url(#${id}_cyl)"/>
+      </g>
+
+      <!-- 4. Luxury Gold Border -->
+      <path d="M 28 37 Q 60 41 92 37 L 83 140 Q 60 144 37 140 Z" stroke="rgba(212,175,55,0.85)" stroke-width="1.2" fill="none"/>
+
+      <!-- 5. 3D Matte Black Lid -->
+      <path d="M 13 28 L 16 33 Q 60 37 104 33 L 107 28 Q 60 32 13 28 Z" fill="url(#${id}_lid_rim)"/>
+      <ellipse cx="60" cy="28" rx="47" ry="4.5" fill="url(#${id}_lid_cap)"/>
+      <ellipse cx="60" cy="21" rx="37" ry="3.5" fill="url(#${id}_lid_cap)"/>
+      <ellipse cx="60" cy="15" rx="29" ry="3.2" fill="url(#${id}_lid_cap)"/>
+      <ellipse cx="38" cy="15" rx="5.4" ry="1.9" fill="#090a0d" stroke="#3d4352" stroke-width="0.8"/>
+    </svg>
+  `;
+}
+
+// ========================================================
+// 3. 3D GOLDEN SAUDI DALLAH & FINJAN (Arabic Coffee & Jabana)
+// ========================================================
+function render3DArabicDallah(options) {
+  const id = getNextSvgId('dallah');
+  const isJabana = options.isJabana || false;
+
+  if (isJabana) {
+    // Sudanese Jabana: Terracotta Clay Pot with neck and woven stand
+    return `
+      <svg viewBox="0 0 120 160" fill="none" class="drink-art-svg" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="${id}_blur" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="3.5"/>
+          </filter>
+          <linearGradient id="${id}_clay" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#431407"/>
+            <stop offset="35%" stop-color="#9a3412"/>
+            <stop offset="70%" stop-color="#7c2d12"/>
+            <stop offset="100%" stop-color="#361005"/>
+          </linearGradient>
+        </defs>
+
+        <ellipse cx="60" cy="148" rx="36" ry="6" fill="rgba(0,0,0,0.85)" filter="url(#${id}_blur)"/>
+        
+        <!-- Woven Straw Ring Stand -->
+        <ellipse cx="60" cy="140" rx="28" ry="6.5" fill="#ca8a04" stroke="#a16207" stroke-width="1.2"/>
+
+        <!-- Spherical Clay Body -->
+        <circle cx="60" cy="106" r="32" fill="url(#${id}_clay)" stroke="rgba(212,175,55,0.7)" stroke-width="1.2"/>
+        
+        <!-- Long Slender Neck -->
+        <path d="M 52 74 L 52 38 L 68 38 L 68 74 Z" fill="url(#${id}_clay)" stroke="rgba(212,175,55,0.7)" stroke-width="1.2"/>
+        <ellipse cx="60" cy="38" rx="8" ry="2.5" fill="#7c2d12" stroke="#ea580c" stroke-width="0.8"/>
+
+        <!-- Curled Clay Handle -->
+        <path d="M 52 50 C 32 50 32 95 44 105" stroke="#7c2d12" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <path d="M 52 50 C 32 50 32 95 44 105" stroke="rgba(212,175,55,0.6)" stroke-width="1" stroke-linecap="round" fill="none"/>
+
+        <!-- Spout -->
+        <path d="M 68 56 L 86 44 L 84 40 L 68 48 Z" fill="#7c2d12" stroke="rgba(212,175,55,0.7)" stroke-width="1"/>
+      </svg>
+    `;
+  }
+
+  // Golden Saudi Dallah with Saffron Glow & Finjan
+  return `
+    <svg viewBox="0 0 120 160" fill="none" class="drink-art-svg" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="${id}_blur" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="3.5"/>
+        </filter>
+        <linearGradient id="${id}_brass" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#78350f"/>
+          <stop offset="25%" stop-color="#d97706"/>
+          <stop offset="50%" stop-color="#fef08a"/>
+          <stop offset="75%" stop-color="#b45309"/>
+          <stop offset="100%" stop-color="#451a03"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Drop Shadow -->
+      <ellipse cx="60" cy="150" rx="42" ry="6.5" fill="rgba(0,0,0,0.85)" filter="url(#${id}_blur)"/>
+
+      <!-- Dallah Flared Base -->
+      <path d="M 38 144 L 44 122 L 76 122 L 82 144 Z" fill="url(#${id}_brass)" stroke="#ca8a04" stroke-width="1"/>
+      <ellipse cx="60" cy="144" rx="22" ry="3.5" fill="#78350f"/>
+
+      <!-- Lower Belly Bulb -->
+      <path d="M 44 122 C 38 98 82 98 76 122 Z" fill="url(#${id}_brass)" stroke="#ca8a04" stroke-width="1"/>
+
+      <!-- Slender Waisted Neck -->
+      <path d="M 52 98 C 50 68 54 50 50 42 L 70 42 C 66 50 70 68 68 98 Z" fill="url(#${id}_brass)" stroke="#ca8a04" stroke-width="1"/>
+
+      <!-- Crown & Crescent Finial Peak -->
+      <path d="M 46 42 L 60 16 L 74 42 Z" fill="url(#${id}_brass)" stroke="#ca8a04" stroke-width="1"/>
+      <circle cx="60" cy="14" r="2.5" fill="#fef08a" stroke="#b45309" stroke-width="0.8"/>
+
+      <!-- Iconic Long Arched Spout (Beak) -->
+      <path d="M 48 94 C 20 84 14 44 32 32 C 28 42 34 76 52 86 Z" fill="url(#${id}_brass)" stroke="#ca8a04" stroke-width="1"/>
+
+      <!-- Sweeping Dallah Handle -->
+      <path d="M 68 52 C 94 48 98 114 74 122" stroke="url(#${id}_brass)" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <path d="M 68 52 C 94 48 98 114 74 122" stroke="#fef08a" stroke-width="1" stroke-linecap="round" fill="none"/>
+
+      <!-- Golden Finjan beside Dallah -->
+      <g transform="translate(68, 126)">
+        <ellipse cx="20" cy="16" rx="14" ry="4.5" fill="rgba(0,0,0,0.6)"/>
+        <path d="M 8 6 C 8 20 12 24 20 24 C 28 24 32 20 32 6 Z" fill="#14161c" stroke="#d4af37" stroke-width="1"/>
+        <!-- Golden Saffron Coffee inside Finjan -->
+        <ellipse cx="20" cy="6" rx="12" ry="3.5" fill="#ca8a04" stroke="#fef08a" stroke-width="0.8"/>
+        <circle cx="18" cy="6" r="0.8" fill="#e11d48"/>
+      </g>
+    </svg>
+  `;
+}
+
+// ========================================================
+// 4. 3D TRADITIONAL CHAI GLASS (Chai Karak, Adani & Masala)
+// ========================================================
+function render3DHeritageChaiGlass(options) {
+  const id = getNextSvgId('chai');
+  return `
+    <svg viewBox="0 0 120 160" fill="none" class="drink-art-svg" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="${id}_blur" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="3.5"/>
+        </filter>
+
+        <linearGradient id="${id}_karak_amber" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#78350f"/>
+          <stop offset="25%" stop-color="#b45309"/>
+          <stop offset="60%" stop-color="#d97706"/>
+          <stop offset="85%" stop-color="#92400e"/>
+          <stop offset="100%" stop-color="#451a03"/>
+        </linearGradient>
+
+        <clipPath id="${id}_glass_clip">
+          <path d="M 32 38 L 38 126 C 39 138 46 142 60 142 C 74 142 81 138 82 126 L 88 38 Z"/>
+        </clipPath>
+      </defs>
+
+      <!-- Drop Shadow -->
+      <ellipse cx="60" cy="148" rx="34" ry="5.5" fill="rgba(0,0,0,0.85)" filter="url(#${id}_blur)"/>
+
+      <!-- Liquid fill inside glass -->
+      <g clip-path="url(#${id}_glass_clip)">
+        <rect x="25" y="36" width="70" height="110" fill="url(#${id}_karak_amber)"/>
+        
+        <!-- Creamy Steamed Cardamom Milk Cap -->
+        <ellipse cx="60" cy="42" rx="28" ry="5.5" fill="#fef3c7" opacity="0.95"/>
+        <ellipse cx="60" cy="42" rx="22" ry="3.5" fill="#fde68a" opacity="0.8"/>
+        
+        <!-- Whole Cardamom Pods & Cinnamon Stick -->
+        <line x1="52" y1="20" x2="68" y2="70" stroke="#451a03" stroke-width="4.5" stroke-linecap="round"/>
+        <line x1="52" y1="20" x2="68" y2="70" stroke="#78350f" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="48" cy="42" r="1.6" fill="#365314"/>
+        <circle cx="72" cy="43" r="1.4" fill="#365314"/>
+
+        <!-- Glass Vertical Reflection Ribs -->
+        <line x1="42" y1="42" x2="44" y2="135" stroke="rgba(255,255,255,0.4)" stroke-width="1.4"/>
+        <line x1="78" y1="42" x2="76" y2="135" stroke="rgba(255,255,255,0.4)" stroke-width="1.4"/>
+      </g>
+
+      <!-- Glass Shell with Gold Rim -->
+      <path d="M 32 38 L 38 126 C 39 138 46 142 60 142 C 74 142 81 138 82 126 L 88 38 Z" stroke="rgba(212,175,55,0.85)" stroke-width="1.3" fill="none"/>
+      <ellipse cx="60" cy="38" rx="28" ry="4.5" stroke="rgba(255,255,255,0.85)" stroke-width="1.2" fill="none"/>
+    </svg>
+  `;
+}
+
+// ========================================================
+// MAIN DISPATCHER: getDrinkSvg(item)
+// ========================================================
+function getDrinkSvg(item) {
+  const id = (item.id || '').toLowerCase();
+  const name = (item.name || '').toLowerCase();
+
+  // 1. TURKISH COFFEE (Single & Double, Plain / Spiced, Light / Med / Dark)
+  if (id.includes('turkish') || name.includes('تركي')) {
+    const isDark = id.includes('dark') || name.includes('غامق');
+    const isLight = id.includes('light') || name.includes('فاتح');
+    const isSpiced = id.includes('spiced') || name.includes('محوج');
+
+    let roast = 'medium';
+    if (isLight) roast = 'light';
+    else if (isDark) roast = 'dark';
+
+    return render3DTurkishFinjan({ roast, isSpiced });
+  }
+
+  // 2. HERITAGE BREWS (Arabic Coffee, Sudanese Jabana)
+  if (id.includes('arabic') || name.includes('عربي')) {
+    return render3DArabicDallah({ isJabana: false });
+  }
+  if (id.includes('jabana') || name.includes('جبنة')) {
+    return render3DArabicDallah({ isJabana: true });
+  }
+
+  // 3. SPICED CHAI (Karak, Adani, Masala)
+  if (id.includes('karak') || id.includes('adani') || id.includes('masala') || name.includes('كرك') || name.includes('عدني') || name.includes('ماسالا')) {
+    return render3DHeritageChaiGlass({});
+  }
+
+  // 4. FRENCH COFFEE (بن فرنساي بالحليب)
+  if (id.includes('french') || name.includes('فرنسا')) {
+    if (id.includes('caramel') || name.includes('كراميل')) {
+      return render3DHotCup({
+        layers: [
+          { pct: 40, col: '#3d1d07', colLight: '#592d0e', colDark: '#200d04' },
+          { pct: 45, col: '#f8f3eb', colLight: '#ffffff', colDark: '#ede5d8' },
+          { pct: 15, col: '#d97706', colLight: '#f59e0b', colDark: '#b45309' }
+        ],
+        topStyle: 'caramel'
+      });
+    }
+    if (id.includes('chocolate') || name.includes('شيكولاتة') || name.includes('شوكولاتة')) {
+      return render3DHotCup({
+        layers: [
+          { pct: 45, col: '#261005', colLight: '#441d0b', colDark: '#170802' },
+          { pct: 40, col: '#f5efe6', colLight: '#ffffff', colDark: '#e8dcce' },
+          { pct: 15, col: '#ffffff', colLight: '#ffffff', colDark: '#f4ede4' }
+        ],
+        topStyle: 'cocoa'
+      });
+    }
+    // Default Classic French Coffee
+    return render3DHotCup({
+      layers: [
+        { pct: 45, col: '#381c0e', colLight: '#542c16', colDark: '#200e06' },
+        { pct: 40, col: '#f7f1e7', colLight: '#ffffff', colDark: '#ebe0d1' },
+        { pct: 15, col: '#ffffff', colLight: '#ffffff', colDark: '#f5ede4' }
+      ],
+      topStyle: 'foam'
+    });
+  }
+
+  // 5. HOT SPECIALTIES (Hot Chocolate, Hot Batata, Hot Lotus, Hot Pistachio)
+  if (id.includes('hot-batata') || name.includes('بطاطا')) {
+    return render3DHotCup({
+      layers: [
+        { pct: 35, col: '#b45309', colLight: '#d97706', colDark: '#78350f' },
+        { pct: 50, col: '#fef3c7', colLight: '#fffbeb', colDark: '#fde68a' },
+        { pct: 15, col: '#d97706', colLight: '#f59e0b', colDark: '#92400e' }
+      ],
+      topStyle: 'caramel'
+    });
+  }
+  if (id.includes('hot-lotus') || name.includes('لوتس')) {
+    return render3DHotCup({
+      layers: [
+        { pct: 35, col: '#92400e', colLight: '#b45309', colDark: '#78350f' },
+        { pct: 50, col: '#f5efe6', colLight: '#ffffff', colDark: '#e8dcce' },
+        { pct: 15, col: '#b45309', colLight: '#d97706', colDark: '#78350f' }
+      ],
+      topStyle: 'lotus'
+    });
+  }
+  if (id.includes('hot-pistachio') || name.includes('بيستاشيو') || name.includes('بستاش')) {
+    return render3DHotCup({
+      layers: [
+        { pct: 35, col: '#4d7c0f', colLight: '#65a30d', colDark: '#365314' },
+        { pct: 50, col: '#f5efe6', colLight: '#ffffff', colDark: '#e8dcce' },
+        { pct: 15, col: '#65a30d', colLight: '#84cc16', colDark: '#4d7c0f' }
+      ],
+      topStyle: 'pistachio'
+    });
+  }
+  if (id.includes('hot-chocolate') || name.includes('شوكليت') || name.includes('شوكولاتة')) {
+    return render3DHotCup({
+      layers: [
+        { pct: 40, col: '#220e06', colLight: '#3d1c0e', colDark: '#140602' },
+        { pct: 45, col: '#451f10', colLight: '#612f1a', colDark: '#301308' },
+        { pct: 15, col: '#ffffff', colLight: '#ffffff', colDark: '#f4ede4' }
+      ],
+      topStyle: 'cocoa'
+    });
+  }
+
+  // Default Traditional Finjan
+  return render3DTurkishFinjan({ roast: 'medium', isSpiced: false });
+}
+
+// 3-Step Operation Sequence Teaser
 function getDrinkSequence(item) {
   const id = (item.id || '').toLowerCase();
-
-  if (id.includes('latte') && !id.includes('spanish') && !id.includes('pistachio')) {
-    return ['1. استخلاص إسبريسو', '2. تبخير حليب 65°C', '3. صب مع فوم ناعم'];
-  }
-  if (id.includes('spanish')) {
-    return ['1. حليب مكثف بالقاع', '2. دبل إسبريسو', '3. حليب مبخر ناعم'];
-  }
-  if (id.includes('pistachio')) {
-    return ['1. صوص بيستاشيو بالكوب', '2. دبل إسبريسو', '3. حليب مبخر + فستق'];
-  }
-  if (id.includes('cappuccino')) {
-    return ['1. إسبريسو سنجل', '2. حليب مبخر', '3. فوم كثيف + كاكاو'];
-  }
-  if (id.includes('flat-white')) {
-    return ['1. دبل ريستريتو', '2. حليب ميكروتيكستشر', '3. صب فلات متجانس'];
-  }
-  if (id.includes('cortado')) {
-    return ['1. إسبريسو 50%', '2. حليب دافئ 50%', '3. صب هادئ'];
-  }
-  if (id.includes('americano')) {
-    return ['1. ماء ساخن 92°C', '2. دبل إسبريسو فوق الماء', '3. تقفيل الليد'];
-  }
-  if (id.includes('caramel')) {
-    return ['1. حليب فانيليا مبخر', '2. إسبريسو مارك', '3. شبكة كراميل'];
-  }
-  if (id.includes('mocha')) {
-    return ['1. صوص شوكولاتة بالقاع', '2. إسبريسو ساخن ودمج', '3. حليب مبخر'];
-  }
-  if (id === 'espresso-single' || id === 'espresso-doppio') {
-    return ['1. وزن البن وطحنه', '2. كبس متزن 15kg', '3. استخلاص 25-30 ثانية'];
-  }
   if (id.includes('turkish') || id.includes('تركي')) {
-    return ['1. معيار البن والماء بالكنكة', '2. تسوية هادئة عالرمالة', '3. صب الوش أولاً'];
+    return ['1. معيار البن والماء بالكنكة', '2. تسوية هادئة عالرمالة', '3. صب الوش أولاً بالفنجان'];
   }
   if (id.includes('french') || id.includes('فرنسا')) {
     return ['1. بن فرنساي وحليب طازج', '2. تقليب عالرمالة للتماسك', '3. صب الفوم الكريمي'];
   }
   if (id.includes('arabic') || id.includes('عربي')) {
-    return ['1. غلي القهوة الشقراء بالدلة', '2. إضافة الهيل والزعفران', '3. ركود دقيقة ثم صب'];
+    return ['1. غلي القهوة الشقراء بالدلة', '2. إضافة الهيل والزعفران', '3. ركود دقيقة ثم صب الفنجان'];
   }
-  if (id.includes('waffle') || id.includes('وافل')) {
-    return ['1. تسخين ماكينة 185°C', '2. صب 140g عجين 3.5 دقيقة', '3. تزيين بالصوصات'];
+  if (id.includes('karak') || id.includes('adani') || id.includes('masala')) {
+    return ['1. غلي الشاي والبهارات الصحيحة', '2. إضافة الحليب المبخر', '3. فورة هادئة وصب مصفى'];
   }
-  if (id.includes('pancake') || id.includes('بان كيك')) {
-    return ['1. تسخين صاج 170°C', '2. تسوية 90 ثانية وقلب', '3. زبدة وعسل نقي'];
-  }
-  if (id.includes('smoothie') || id.includes('سموذي')) {
-    return ['1. بيوريه الفاكهة بالميزان', '2. إضافة الثلج والسيرب', '3. خلط سرعة 2 ليد أمان'];
-  }
-  if (id.includes('shake') || id.includes('شيك') || id.includes('frappe') || id.includes('فرابيه')) {
-    return ['1. آيس كريم وحليب بالميزان', '2. خلط متجانس 25 ثانية', '3. كريمة خفق وتوبينج'];
-  }
-  if (id.includes('boba') || id.includes('بوبا') || id.includes('mojito') || id.includes('موخيتو')) {
-    return ['1. كرات بوبا وسيرب بالكوب', '2. مكعبات ثلج وسفن أب', '3. شريحة ليمون وشاليموه'];
-  }
-
-  return ['1. تجهيز المعايير والمقادير', '2. الاستخلاص أو الخفق الفوري', '3. التقديم السريع'];
+  return ['1. تجهيز المعايير والمقادير', '2. الخفق أو التسوية المتقنة', '3. التقديم الساخن المباشر'];
 }

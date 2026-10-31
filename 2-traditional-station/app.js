@@ -189,6 +189,8 @@ class StationApp {
       }
 
       this.renderHeader();
+      this.renderSugarBanner();
+      this.renderSugarBanner();
       this.renderCategories();
       this.renderContent();
       this.initEvents();
@@ -237,6 +239,7 @@ class StationApp {
 
     if (this.data) {
       this.renderHeader();
+      this.renderSugarBanner();
       this.renderCategories();
       this.renderContent();
       this.initChecklist();
@@ -244,6 +247,45 @@ class StationApp {
         this.renderDetailModalContent();
       }
     }
+  }
+
+
+  renderSugarBanner() {
+    const bannerEl = document.getElementById('sugarBanner');
+    if (!bannerEl) return;
+    const isAr = this.currentLang === 'ar';
+    const items = [
+      { name_ar: "سادة", name_en: "Plain", gram: "0g", spoon_ar: "بدون سكر", spoon_en: "Zero Sugar" },
+      { name_ar: "على الريحة", name_en: "Scant", gram: "2-3g", spoon_ar: "ربع ملعقة", spoon_en: "1/4 Spoon" },
+      { name_ar: "مظبوط", name_en: "Balanced", gram: "5-6g", spoon_ar: "ملعقة واحدة", spoon_en: "1 Spoon" },
+      { name_ar: "مانو", name_en: "Medium-Sweet", gram: "8-9g", spoon_ar: "معلقة ونصف", spoon_en: "1.5 Spoons" },
+      { name_ar: "زيادة", name_en: "Sweet", gram: "12-14g", spoon_ar: "معلقتين", spoon_en: "2 Spoons" },
+      { name_ar: "سرياسي", name_en: "Extra-Sweet", gram: "16-18g", spoon_ar: "3 ملاعق", spoon_en: "3 Spoons" }
+    ];
+
+    const titleText = isAr 
+      ? 'معيار سكر القهوة التركية المعتمد لعماد أفندي:' 
+      : 'Approved Turkish Coffee Sugar Scale (Emad Afandi):';
+    const sopBadge = isAr ? 'SOP معتمد' : 'Standard SOP';
+
+    bannerEl.innerHTML = `
+      <div class="sugar-title">
+        <span class="sugar-title-text">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+          ${titleText}
+        </span>
+        <span class="sugar-sop-badge">${sopBadge}</span>
+      </div>
+      <div class="sugar-grid">
+        ${items.map(it => `
+          <div class="sugar-chip">
+            <div class="sugar-name">${isAr ? it.name_ar : it.name_en}</div>
+            <div class="sugar-desc">${it.gram}</div>
+            <div class="sugar-spoon">${isAr ? it.spoon_ar : it.spoon_en}</div>
+          </div>
+        `).join('')}
+      </div>
+    `;
   }
 
   renderHeader() {

@@ -1150,3 +1150,122 @@ html[dir="ltr"] .sop-metric-val {
 html[dir="ltr"] .landscape-drink-name {
   text-align: left;
 }
+
+/* ========================================================
+   TURKISH COFFEE SUGAR SCALE BANNER (معيار سكر القهوة التركية)
+   ======================================================== */
+.sugar-banner {
+  margin: 12px 14px 6px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(15, 17, 21, 0.95) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.65);
+  position: relative;
+  overflow: hidden;
+}
+
+.sugar-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 140px;
+  height: 100%;
+  background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.14), transparent 70%);
+  pointer-events: none;
+}
+
+.sugar-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: clamp(0.80rem, 2.2vw, 0.90rem);
+  font-weight: 800;
+  color: var(--gold-bright);
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.sugar-title-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sugar-sop-badge {
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: rgba(212, 175, 55, 0.18);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  color: #fef08a;
+  white-space: nowrap;
+}
+
+.sugar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+@media (min-width: 640px) {
+  .sugar-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.sugar-chip {
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-sm);
+  padding: 8px 6px;
+  text-align: center;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+}
+
+.sugar-chip:hover {
+  border-color: rgba(212, 175, 55, 0.5);
+  background: rgba(212, 175, 55, 0.08);
+  transform: translateY(-1px);
+}
+
+.sugar-name {
+  font-weight: 800;
+  font-size: clamp(0.72rem, 1.9vw, 0.80rem);
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.sugar-desc {
+  font-size: clamp(0.70rem, 1.8vw, 0.78rem);
+  color: var(--gold-bright);
+  font-family: var(--font-latin);
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+.sugar-spoon {
+  font-size: clamp(0.62rem, 1.6vw, 0.68rem);
+  color: #94a3b8;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+html[dir="ltr"] .sugar-banner::before {
+  right: auto;
+  left: 0;
+  background: radial-gradient(circle at top left, rgba(212, 175, 55, 0.14), transparent 70%);
+}
+
+html[dir="ltr"] .sugar-title {
+  text-align: left;
+}
