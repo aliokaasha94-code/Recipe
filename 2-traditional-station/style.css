@@ -99,14 +99,14 @@ body {
 .brand-header {
   position: sticky;
   top: 0;
-  z-index: 200;
-  background: rgba(8, 9, 13, 0.98);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1.5px solid var(--border-gold);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.88);
+  z-index: 500;
+  background: #06080d !important;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 2px solid var(--gold-primary);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.96);
   width: 100%;
-  padding-top: max(6px, var(--sat));
+  padding-top: max(8px, var(--sat));
   padding-right: max(0px, var(--sar));
   padding-left: max(0px, var(--sal));
 }
@@ -258,10 +258,10 @@ html[dir="ltr"] .search-icon-pos {
    ======================================================== */
 .filter-tabs {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 6px 16px 12px;
+  padding: 8px 16px 14px;
   scrollbar-width: none;
   -ms-overflow-style: none;
   -webkit-overflow-scrolling: touch;
@@ -276,23 +276,23 @@ html[dir="ltr"] .search-icon-pos {
 .menu-cat-pill {
   scroll-snap-align: start;
   white-space: nowrap;
-  background: #11141c;
-  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  background: #0f121a;
+  border: 2px solid rgba(212, 175, 55, 0.38);
   color: #ffffff;
-  padding: 8px 16px;
-  min-height: 40px;
+  padding: 10px 22px;
+  min-height: 46px;
   border-radius: var(--radius-full);
   font-family: var(--font-arabic);
-  font-size: clamp(0.80rem, 2vw, 0.88rem);
+  font-size: clamp(0.88rem, 2.2vw, 0.98rem);
   font-weight: 800;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.7);
 }
 
 .menu-cat-pill:hover {
@@ -352,6 +352,7 @@ html[dir="ltr"] .search-icon-pos {
 
 .menu-section {
   margin-bottom: 24px;
+  scroll-margin-top: 190px;
 }
 
 .menu-section-header {
