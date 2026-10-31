@@ -9,8 +9,8 @@
   "categories": [
     {
       "id": "hot-espresso",
-      "name": "المشروبات الساخنة",
-      "name_en": "Hot Drinks",
+      "name": "هوت إسبريسو",
+      "name_en": "Hot Espresso",
       "items": [
         {
           "id": "espresso-single",
@@ -615,8 +615,8 @@
     },
     {
       "id": "iced-espresso",
-      "name": "المشروبات الباردة",
-      "name_en": "Iced Drinks",
+      "name": "آيس إسبريسو",
+      "name_en": "Iced Espresso",
       "items": [
         {
           "id": "iced-espresso",
