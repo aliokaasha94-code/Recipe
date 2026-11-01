@@ -1363,3 +1363,94 @@ html[dir="ltr"] .protocol-summary-bar {
   box-shadow: 0 3px 14px rgba(212, 175, 55, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.7);
   transform: translateY(-1px);
 }
+
+
+/* ========================================================
+   SOP VARIANTS & FLAVOR FAMILY CARD
+   ======================================================== */
+.sop-variants-card {
+  margin-top: 10px;
+  background: #11141c;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 10px;
+  padding: 12px 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.sop-variants-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+}
+
+.sop-variants-badge {
+  color: var(--gold-bright);
+  font-size: 0.95rem;
+}
+
+.sop-variants-title {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--gold-bright);
+  letter-spacing: 0.3px;
+}
+
+.sop-variants-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sop-variant-row {
+  background: #0b0d13;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  transition: all 0.2s ease;
+}
+
+.sop-variant-row:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+  background: #131722;
+}
+
+.sop-variant-name-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.sop-variant-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold-primary);
+  flex-shrink: 0;
+}
+
+.sop-variant-name {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.sop-variant-detail {
+  font-size: 0.78rem;
+  color: var(--gold-bright);
+  font-weight: 600;
+  text-align: left;
+}
+
+[dir="rtl"] .sop-variant-detail {
+  text-align: left;
+}

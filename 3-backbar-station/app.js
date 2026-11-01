@@ -56,6 +56,8 @@ const I18N = {
       freshJuice: "عصير فريش",
       fresh: "فواكه فريش",
       freshIngredients: "المكونات الطازجة",
+      boba: "كرات البوبا",
+      flavor: "فليفر النكهة",
       commonIngredients: "مكونات مشتركة",
       soda: "صودا غازية",
       blueCuracao: "بلو كوراساو",
@@ -131,6 +133,8 @@ const I18N = {
       freshJuice: "Fresh Juice",
       fresh: "Fresh Fruit",
       freshIngredients: "Fresh Ingredients",
+      boba: "Popping Boba",
+      flavor: "Flavor Base",
       commonIngredients: "Common Ingredients",
       soda: "Soda",
       blueCuracao: "Blue Curacao",
@@ -659,6 +663,40 @@ class StationApp {
     // 1. SECTION [١]: Standard Recipe & Dosing
     const metricsHtml = this.renderMetricsFromObject(currentData, isAr);
 
+    // Variants List (if drink has flavor variations like Boba Fizz or Fruit Milkshake)
+    let variantsHtml = '';
+    const variantsList = item.variants || currentData.variants;
+    if (variantsList && Array.isArray(variantsList) && variantsList.length > 0) {
+      const vTitle = isAr ? 'نكهات وأصناف العائلة المعتمدة' : 'Approved Flavor Variations';
+      variantsHtml = `
+        <div class="sop-variants-card">
+          <div class="sop-variants-header">
+            <span class="sop-variants-badge">✨</span>
+            <h5 class="sop-variants-title">${vTitle}</h5>
+          </div>
+          <div class="sop-variants-grid">
+            ${variantsList.map((v, idx) => {
+              const vName = v.name || v.name_ar || (isAr ? `نكهة ${idx + 1}` : `Flavor ${idx + 1}`);
+              const details = [];
+              if (v.flavor) details.push(v.flavor);
+              if (v.sauce) details.push(v.sauce);
+              if (v.bobaType) details.push(v.bobaType);
+              const detailStr = isAr ? details.join(' • ') : details.map(d => this.translateMetricValue(d)).join(' • ');
+              return `
+                <div class="sop-variant-row">
+                  <div class="sop-variant-name-wrap">
+                    <span class="sop-variant-dot"></span>
+                    <span class="sop-variant-name">${vName}</span>
+                  </div>
+                  <span class="sop-variant-detail">${detailStr || (isAr ? 'نكهة طبيعية مركزة' : 'Signature Flavor')}</span>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      `;
+    }
+
     // 2. SECTION [٢]: Step-by-Step SOP
     let stepsHtml = '';
     const stepsList = isAr ? (item.steps || []) : (item.steps_en || item.steps || []);
@@ -769,6 +807,7 @@ class StationApp {
           </div>
           <div class="sop-metrics-stack">
             ${metricsHtml}
+            ${variantsHtml || ''}
           </div>
         </div>
 
@@ -890,6 +929,7 @@ class StationApp {
   }
 
   renderMetricsFromObject(obj, isAr) {
+    if (!obj || typeof obj !== 'object') return '';
     const t = I18N[this.currentLang];
     // Barista sequential preparation workflow order:
     const orderedKeys = [
@@ -899,7 +939,7 @@ class StationApp {
       'extractionMl', 'ratio', 'time', 'timer', 'steepTime', 'temp',
       // 3. Dairy, Sauces, Syrups & Additions
       'water', 'milk', 'condensedMilk', 'cream', 'iceCream', 'sauce', 'sauceBatata', 'sauceCaramel',
-      'syrup', 'powder', 'puree', 'freshJuice', 'fresh', 'freshIngredients', 'commonIngredients',
+      'flavor', 'syrup', 'powder', 'puree', 'freshJuice', 'fresh', 'freshIngredients', 'boba',
       'soda', 'blueCuracao', 'tang', 'ice', 'crush', 'chips',
       // 4. Garnishes & Finishing
       'toppings', 'garnish', 'biscuitGarnish', 'specialAdd',
@@ -907,17 +947,17 @@ class StationApp {
       'cup', 'yieldCount', 'batterDose', 'miniPortion'
     ];
 
-    const presentKeys = orderedKeys.filter(key => obj[key] && obj[key] !== '-');
+    const presentKeys = orderedKeys.filter(key => obj[key] && obj[key] !== '-' && typeof obj[key] !== 'object');
 
-    // Include any extra attributes if present
+    // Include any extra attributes if present (Strictly exclude objects and arrays)
     const excludedKeys = new Set([
       'id', 'name', 'name_en', 'category', 'category_en', 'notes', 'notes_en',
       'steps', 'steps_en', 'proTip', 'proTip_en', 'rescue', 'sizes',
-      'single', 'double', 'sizeLabel'
+      'single', 'double', 'sizeLabel', 'variants', 'commonIngredients'
     ]);
 
     Object.keys(obj).forEach(k => {
-      if (!orderedKeys.includes(k) && !excludedKeys.has(k) && obj[k] && obj[k] !== '-' && !presentKeys.includes(k)) {
+      if (!orderedKeys.includes(k) && !excludedKeys.has(k) && obj[k] && obj[k] !== '-' && typeof obj[k] !== 'object' && !presentKeys.includes(k)) {
         presentKeys.push(k);
       }
     });
@@ -925,8 +965,9 @@ class StationApp {
     if (presentKeys.length === 0) return '';
 
     return presentKeys.map((key, idx) => {
-      const label = t.metrics[key] || key;
+      const label = (t.metrics && t.metrics[key]) || key;
       const rawVal = obj[key];
+      if (typeof rawVal === 'object') return '';
       const val = isAr ? rawVal : this.translateMetricValue(rawVal);
       return `
         <div class="sop-metric-row">

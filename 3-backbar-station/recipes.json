@@ -468,9 +468,9 @@
         {
           "id": "shake-fruits-family",
           "name": "ميلك شيك فواكه (Fruit Milkshake)",
-          "iceCream": "200g آيس كريم",
-          "milk": "100ml حليب",
-          "cream": "45g كريمة خفق",
+          "iceCream": "200g آيس كريم فانيليا",
+          "milk": "100ml حليب كامل الدسم بارد",
+          "cream": "45g كريمة خفق غنية",
           "variants": [
             {
               "name": "فراولة",
@@ -532,7 +532,9 @@
             "Blend on Speed 2 for 15-20 seconds maintaining thick, creamy texture.",
             "Pour into 16 oz cup, garnish with whipped cream and cookies/toppings."
           ],
-          "proTip_en": "Do not over-blend milkshakes; excessive blending melts the ice cream into runny liquid."
+          "proTip_en": "Do not over-blend milkshakes; excessive blending melts the ice cream into runny liquid.",
+          "puree": "70g بيوريه أو فود كراش (حسب اختيار النكهة)",
+          "cup": "كوب 16 oz بارد + ليد بومبيه + شفاطة عريضة"
         }
       ],
       "name_en": "Milkshakes"
@@ -925,13 +927,6 @@
         {
           "id": "boba-fizz-family",
           "name": "بوبا فيز (Boba Fizz)",
-          "commonIngredients": {
-            "flavor": "15ml فليفر موهيتو منعش",
-            "boba": "60g كرات بوبا متفجرة (Popping Boba)",
-            "ice": "150g ثلج نقي مكعبات",
-            "lemon": "3 شرائح ليمون طازجة",
-            "soda": "200ml صودا فوارة (سفن أب / سبرايت)"
-          },
           "variants": [
             {
               "name": "بلوبيري بوبا فيز",
@@ -983,7 +978,14 @@
             "Top with chilled soda or sparkling water and fresh mint/citrus garnish.",
             "Serve with eco straw and custom lid."
           ],
-          "proTip_en": "Pour sparkling water slowly along the cup wall to preserve effervescent carbonation."
+          "proTip_en": "Pour sparkling water slowly along the cup wall to preserve effervescent carbonation.",
+          "boba": "60g كرات بوبا متفجرة (Popping Boba)",
+          "flavor": "15ml فليفر موهيتو منعش",
+          "sauce": "20ml صوص فاكهة مركز (حسب اختيار النكهة)",
+          "ice": "150g ثلج نقي مكعبات",
+          "fresh": "3 شرائح ليمون طازجة + أوراق نعناع",
+          "soda": "200ml صودا فوارة (سفن أب / سبرايت)",
+          "cup": "كوب 16 oz بارد + ليد فلات + شفاطة بوبا عريضة"
         },
         {
           "id": "mojito-lemon-mint",

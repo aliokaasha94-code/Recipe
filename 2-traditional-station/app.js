@@ -783,17 +783,17 @@ class StationApp {
       'cup', 'yieldCount', 'batterDose', 'miniPortion'
     ];
 
-    const presentKeys = orderedKeys.filter(key => obj[key] && obj[key] !== '-');
+    const presentKeys = orderedKeys.filter(key => obj[key] && obj[key] !== '-' && typeof obj[key] !== 'object');
 
     // Include any extra attributes if present
     const excludedKeys = new Set([
       'id', 'name', 'name_en', 'category', 'category_en', 'notes', 'notes_en',
       'steps', 'steps_en', 'proTip', 'proTip_en', 'rescue', 'sizes',
-      'single', 'double', 'sizeLabel'
+      'single', 'double', 'sizeLabel', 'variants', 'commonIngredients'
     ]);
 
     Object.keys(obj).forEach(k => {
-      if (!orderedKeys.includes(k) && !excludedKeys.has(k) && obj[k] && obj[k] !== '-' && !presentKeys.includes(k)) {
+      if (!orderedKeys.includes(k) && !excludedKeys.has(k) && obj[k] && obj[k] !== '-' && typeof obj[k] !== 'object' && !presentKeys.includes(k)) {
         presentKeys.push(k);
       }
     });
@@ -803,6 +803,7 @@ class StationApp {
     return presentKeys.map((key, idx) => {
       const label = t.metrics[key] || key;
       const rawVal = obj[key];
+      if (typeof rawVal === 'object') return '';
       const val = isAr ? rawVal : this.translateMetricValue(rawVal);
       return `
         <div class="sop-metric-row">
