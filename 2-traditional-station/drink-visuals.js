@@ -460,112 +460,241 @@ function render3DHotCeramicMug(options) {
 // 4. 3D GOLDEN SAUDI DALLAH & FINJAN (Arabic Coffee & Jabana)
 // ========================================================
 function render3DArabicDallah(options) {
-  const id = getNextSvgId('dallah');
-  const isJabana = options.isJabana || false;
-
-  if (isJabana) {
-    // Sudanese Jabana: Terracotta Clay Pot with neck and woven stand
-    return `
-      <svg viewBox="0 0 120 160" fill="none" class="drink-art-svg" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="${id}_blur" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="3.5"/>
-          </filter>
-          <linearGradient id="${id}_clay" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#431407"/>
-            <stop offset="35%" stop-color="#9a3412"/>
-            <stop offset="70%" stop-color="#c2410c"/>
-            <stop offset="100%" stop-color="#2d0c04"/>
-          </linearGradient>
-        </defs>
-
-        <!-- Drop Shadow -->
-        <ellipse cx="60" cy="150" rx="40" ry="6" fill="rgba(0,0,0,0.85)" filter="url(#${id}_blur)"/>
-
-        <!-- Woven Ring Stand (عِمامة الجَبَنَة) -->
-        <ellipse cx="60" cy="144" rx="28" ry="8" fill="#78350f" stroke="#d97706" stroke-width="1.5" stroke-dasharray="4,2"/>
-
-        <!-- Spherical Clay Body -->
-        <circle cx="60" cy="108" r="28" fill="url(#${id}_clay)" stroke="#ea580c" stroke-width="1"/>
-
-        <!-- Narrow Clay Neck -->
-        <path d="M 54 82 L 53 48 L 67 48 L 66 82 Z" fill="url(#${id}_clay)" stroke="#c2410c" stroke-width="0.8"/>
-
-        <!-- Flared Rim & Pouring Lip -->
-        <ellipse cx="60" cy="48" rx="10" ry="3.5" fill="#7c2d12" stroke="#ea580c" stroke-width="1"/>
-
-        <!-- Ergonomic Clay Handle -->
-        <path d="M 64 54 C 84 56 86 102 68 112" stroke="url(#${id}_clay)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
-
-        <!-- Slender Spout -->
-        <path d="M 52 90 C 38 86 36 62 46 54" stroke="url(#${id}_clay)" stroke-width="3" stroke-linecap="round" fill="none"/>
-
-        <!-- Folkloric Earthen Finjan Beside Jabana -->
-        <g transform="translate(68, 126)">
-          <ellipse cx="20" cy="16" rx="14" ry="4.5" fill="rgba(0,0,0,0.6)"/>
-          <path d="M 8 6 C 8 20 12 24 20 24 C 28 24 32 20 32 6 Z" fill="url(#${id}_clay)" stroke="#ea580c" stroke-width="1"/>
-          <!-- Coffee Inside Finjan -->
-          <ellipse cx="20" cy="6" rx="12" ry="3.5" fill="#1c0c05"/>
-        </g>
-      </svg>
-    `;
+  if (options && options.isJabana) {
+    return render3DSudaneseJabana();
   }
+  const id = getNextSvgId('dallah');
 
-  // Classic Saudi Golden Dallah with Saffron Demitasse
   return `
     <svg viewBox="0 0 120 160" fill="none" class="drink-art-svg" xmlns="http://www.w3.org/2000/svg">
       <defs>
+        <!-- Ground Shadow Blur -->
         <filter id="${id}_blur" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="3.5"/>
+          <feGaussianBlur stdDeviation="3"/>
         </filter>
+
+        <!-- Polished Royal Brass Gradient (High-end metallic reflection) -->
         <linearGradient id="${id}_brass" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#854d0e"/>
-          <stop offset="25%" stop-color="#eab308"/>
-          <stop offset="50%" stop-color="#fef08a"/>
-          <stop offset="75%" stop-color="#ca8a04"/>
-          <stop offset="100%" stop-color="#713f12"/>
+          <stop offset="0%" stop-color="#78350f"/>
+          <stop offset="18%" stop-color="#ca8a04"/>
+          <stop offset="38%" stop-color="#fef08a"/>
+          <stop offset="65%" stop-color="#eab308"/>
+          <stop offset="85%" stop-color="#a16207"/>
+          <stop offset="100%" stop-color="#582404"/>
+        </linearGradient>
+
+        <!-- Brass Highlight -->
+        <linearGradient id="${id}_spec" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#ca8a04"/>
+          <stop offset="50%" stop-color="#ffffff" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#eab308"/>
+        </linearGradient>
+
+        <!-- Golden Saffron Gahwa Gradient -->
+        <linearGradient id="${id}_gahwa_gold" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#78350f"/>
+          <stop offset="30%" stop-color="#b45309"/>
+          <stop offset="70%" stop-color="#eab308"/>
+          <stop offset="100%" stop-color="#ca8a04"/>
+        </linearGradient>
+
+        <!-- Finjan Porcelain -->
+        <linearGradient id="${id}_porcelain" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#cbd5e1"/>
+          <stop offset="35%" stop-color="#ffffff"/>
+          <stop offset="75%" stop-color="#f8fafc"/>
+          <stop offset="100%" stop-color="#94a3b8"/>
         </linearGradient>
       </defs>
 
-      <!-- Drop Shadow -->
-      <ellipse cx="60" cy="150" rx="42" ry="6.5" fill="rgba(0,0,0,0.85)" filter="url(#${id}_blur)"/>
+      <!-- 1. Soft Floor Shadow -->
+      <ellipse cx="56" cy="153" rx="42" ry="5.5" fill="rgba(0,0,0,0.92)" filter="url(#${id}_blur)"/>
 
-      <!-- Dallah Flared Base -->
-      <path d="M 38 144 L 44 122 L 76 122 L 82 144 Z" fill="url(#${id}_brass)" stroke="#ca8a04" stroke-width="1"/>
-      <ellipse cx="60" cy="144" rx="22" ry="3.5" fill="#78350f"/>
+      <!-- 2. Authentic Saudi Dallah Body -->
+      <!-- Flared Stepped Circular Pedestal Base -->
+      <path d="M 33 148 L 38 135 L 68 135 L 73 148 Z" fill="url(#${id}_brass)" stroke="#ca8a04" stroke-width="0.8"/>
+      <ellipse cx="53" cy="148" rx="20" ry="3" fill="#582404" stroke="#ca8a04" stroke-width="0.8"/>
+      <ellipse cx="53" cy="135" rx="15" ry="2.2" fill="#854d0e" stroke="#fef08a" stroke-width="0.6"/>
 
-      <!-- Lower Belly Bulb -->
-      <path d="M 44 122 C 38 98 82 98 76 122 Z" fill="url(#${id}_brass)" stroke="#ca8a04" stroke-width="1"/>
+      <!-- Bell-shaped Lower Belly -->
+      <path d="M 38 135 C 32 120 34 104 46 96 L 60 96 C 72 104 74 120 68 135 Z" fill="url(#${id}_brass)" stroke="#ca8a04" stroke-width="0.8"/>
 
-      <!-- Slender Waisted Neck -->
-      <path d="M 52 98 C 50 68 54 50 50 42 L 70 42 C 66 50 70 68 68 98 Z" fill="url(#${id}_brass)" stroke="#ca8a04" stroke-width="1"/>
+      <!-- Slender Pinched Waist & Flared Neck -->
+      <path d="M 46 96 C 47 80 44 65 43 50 L 63 50 C 62 65 59 80 60 96 Z" fill="url(#${id}_brass)" stroke="#ca8a04" stroke-width="0.8"/>
 
-      <!-- Crown & Crescent Finial Peak -->
-      <path d="M 46 42 L 60 16 L 74 42 Z" fill="url(#${id}_brass)" stroke="#ca8a04" stroke-width="1"/>
-      <circle cx="60" cy="14" r="2.5" fill="#fef08a" stroke="#b45309" stroke-width="0.8"/>
+      <!-- Neck Collar Rings (Decorative Engraved Rings) -->
+      <ellipse cx="53" cy="96" rx="7.2" ry="1.6" fill="#ca8a04" stroke="#fef08a" stroke-width="0.8"/>
+      <ellipse cx="53" cy="74" rx="6.5" ry="1.5" fill="#ca8a04" stroke="#fef08a" stroke-width="0.8"/>
+      <ellipse cx="53" cy="50" rx="10" ry="2.2" fill="#b45309" stroke="#fef08a" stroke-width="0.9"/>
 
-      <!-- Iconic Long Arched Spout (Beak) -->
-      <path d="M 48 94 C 20 84 14 44 32 32 C 28 42 34 76 52 86 Z" fill="url(#${id}_brass)" stroke="#ca8a04" stroke-width="1"/>
+      <!-- 3. Majestic Stepped Lid & Tall Finial Spire -->
+      <!-- Lower Stepped Lid Dome -->
+      <path d="M 43 50 C 44 42 62 42 63 50 Z" fill="url(#${id}_brass)" stroke="#ca8a04" stroke-width="0.8"/>
+      <ellipse cx="53" cy="45" rx="7.5" ry="1.8" fill="#ca8a04" stroke="#fef08a" stroke-width="0.7"/>
 
-      <!-- Sweeping Dallah Handle -->
-      <path d="M 68 52 C 94 48 98 114 74 122" stroke="url(#${id}_brass)" stroke-width="4" stroke-linecap="round" fill="none"/>
-      <path d="M 68 52 C 94 48 98 114 74 122" stroke="#fef08a" stroke-width="1" stroke-linecap="round" fill="none"/>
+      <!-- Upper Stepped Cone -->
+      <path d="M 46 45 L 50 30 L 56 30 L 60 45 Z" fill="url(#${id}_brass)" stroke="#ca8a04" stroke-width="0.8"/>
+      <ellipse cx="53" cy="30" rx="3.5" ry="1.2" fill="#fef08a"/>
 
-      <!-- Golden Finjan beside Dallah -->
-      <g transform="translate(68, 126)">
-        <ellipse cx="20" cy="16" rx="14" ry="4.5" fill="rgba(0,0,0,0.6)"/>
-        <path d="M 8 6 C 8 20 12 24 20 24 C 28 24 32 20 32 6 Z" fill="#14161c" stroke="#d4af37" stroke-width="1"/>
-        <!-- Golden Saffron Coffee inside Finjan -->
-        <ellipse cx="20" cy="6" rx="12" ry="3.5" fill="#ca8a04" stroke="#fef08a" stroke-width="0.8"/>
-        <circle cx="18" cy="6" r="0.8" fill="#e11d48"/>
+      <!-- Tall Sharp Brass Finial Spire (تاج الدلة التراثي) -->
+      <path d="M 52 30 L 53 10 L 54 30 Z" fill="url(#${id}_spec)" stroke="#b45309" stroke-width="0.6"/>
+      <circle cx="53" cy="9" r="1.8" fill="#fef08a" stroke="#ca8a04" stroke-width="0.6"/>
+
+      <!-- 4. The Authentic Gracefully Arched Spout (منقار الدلة المقوس للأعلى) -->
+      <path d="M 37 114 C 20 108 14 78 20 52 C 22 44 26 38 31 32 C 29 40 26 48 24 56 C 21 76 27 96 41 106 Z" 
+            fill="url(#${id}_brass)" stroke="#ca8a04" stroke-width="0.9"/>
+      <!-- Beak Pouring Mouth Flap -->
+      <ellipse cx="30" cy="33" rx="2.4" ry="4.5" transform="rotate(-30 30 33)" fill="#78350f" stroke="#fef08a" stroke-width="0.8"/>
+      <path d="M 28 30 Q 32 26 34 32" stroke="#fef08a" stroke-width="0.8" fill="none"/>
+
+      <!-- 5. Sweeping Arched Brass Handle with Rivets -->
+      <path d="M 62 54 C 84 52 86 112 66 126" stroke="#451a03" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+      <path d="M 62 54 C 84 52 86 112 66 126" stroke="url(#${id}_brass)" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <path d="M 62 54 C 84 52 86 112 66 126" stroke="rgba(255,255,255,0.7)" stroke-width="0.8" stroke-linecap="round" fill="none"/>
+      <circle cx="62" cy="55" r="1.8" fill="#78350f" stroke="#fef08a" stroke-width="0.6"/>
+      <circle cx="66" cy="125" r="1.8" fill="#78350f" stroke="#fef08a" stroke-width="0.6"/>
+
+      <!-- 6. Metallic Specular Light Reflections down Dallah Body -->
+      <path d="M 50 51 C 49 65 48 80 49 95" stroke="rgba(255,255,255,0.65)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+      <path d="M 45 98 C 39 108 38 122 43 133" stroke="rgba(255,255,255,0.6)" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+      <path d="M 23 58 C 21 75 25 90 35 102" stroke="rgba(255,255,255,0.4)" stroke-width="1.0" fill="none"/>
+
+      <!-- 7. Authentic Saudi Arabian Finjan (فنجان بيالة أبيض وزخارف ذهبية) -->
+      <g transform="translate(68, 116)">
+        <ellipse cx="20" cy="35" rx="14" ry="3.5" fill="rgba(0,0,0,0.6)" filter="url(#${id}_blur)"/>
+
+        <!-- Porcelain Body -->
+        <path d="M 8 14 C 8 28 12 34 20 34 C 28 34 32 28 32 14 Z" fill="url(#${id}_porcelain)" stroke="#ca8a04" stroke-width="0.9"/>
+        <!-- Gold Rim -->
+        <ellipse cx="20" cy="14" rx="12" ry="3" fill="#f8fafc" stroke="#eab308" stroke-width="1.2"/>
+        
+        <!-- Golden Gahwa inside Finjan -->
+        <ellipse cx="20" cy="15" rx="10.5" ry="2.4" fill="url(#${id}_gahwa_gold)"/>
+        <ellipse cx="20" cy="15" rx="7" ry="1.4" fill="#fef08a" opacity="0.6"/>
+        <line x1="18" y1="15" x2="22" y2="14.8" stroke="#dc2626" stroke-width="0.8"/>
+        <line x1="19" y1="15.5" x2="21" y2="16" stroke="#ea580c" stroke-width="0.7"/>
+
+        <!-- Traditional Gold Filigree Band -->
+        <path d="M 9 22 Q 20 25 31 22" stroke="#d97706" stroke-width="1.2" fill="none"/>
+        <circle cx="20" cy="23.5" r="1.1" fill="#ca8a04"/>
+        <circle cx="15" cy="23" r="0.8" fill="#ca8a04"/>
+        <circle cx="25" cy="23" r="0.8" fill="#ca8a04"/>
       </g>
     </svg>
   `;
 }
 
-// ========================================================
-// 5. 3D TRADITIONAL CHAI GLASS (Chai Karak, Adani & Masala)
-// ========================================================
+function render3DSudaneseJabana() {
+  const id = getNextSvgId('jabana');
+
+  return `
+    <svg viewBox="0 0 120 160" fill="none" class="drink-art-svg" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Ground Shadow Blur -->
+        <filter id="${id}_blur" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="3.2"/>
+        </filter>
+
+        <!-- Handcrafted Earthen Terracotta Clay Gradient -->
+        <linearGradient id="${id}_clay" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#2d0d04"/>
+          <stop offset="22%" stop-color="#5a1e0a"/>
+          <stop offset="50%" stop-color="#9a3412"/>
+          <stop offset="78%" stop-color="#c2410c"/>
+          <stop offset="92%" stop-color="#7c2d12"/>
+          <stop offset="100%" stop-color="#220a03"/>
+        </linearGradient>
+
+        <!-- Burnished Clay Surface Highlight -->
+        <linearGradient id="${id}_clay_spec" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#9a3412"/>
+          <stop offset="50%" stop-color="#fdba74" stop-opacity="0.85"/>
+          <stop offset="100%" stop-color="#c2410c"/>
+        </linearGradient>
+
+        <!-- Traditional Woven Palm Stand (الوقاية) Gradient -->
+        <linearGradient id="${id}_stand" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#451a03"/>
+          <stop offset="25%" stop-color="#b45309"/>
+          <stop offset="50%" stop-color="#d97706"/>
+          <stop offset="75%" stop-color="#92400e"/>
+          <stop offset="100%" stop-color="#3b1502"/>
+        </linearGradient>
+
+        <!-- Palm Fiber Filter (الـلـيـفـة) -->
+        <linearGradient id="${id}_fiber" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#fef3c7"/>
+          <stop offset="50%" stop-color="#d97706"/>
+          <stop offset="100%" stop-color="#78350f"/>
+        </linearGradient>
+      </defs>
+
+      <!-- 1. Soft Floor Shadow -->
+      <ellipse cx="56" cy="153" rx="42" ry="5.5" fill="rgba(0,0,0,0.92)" filter="url(#${id}_blur)"/>
+
+      <!-- 2. Traditional Coiled Palm Fiber Stand (الوقاية - قاعدة الجبنة المضفورة) -->
+      <ellipse cx="54" cy="146" rx="26" ry="7" fill="url(#${id}_stand)" stroke="#78350f" stroke-width="1"/>
+      <ellipse cx="54" cy="146" rx="22" ry="5.5" stroke="#fde68a" stroke-width="1.2" stroke-dasharray="3.5 2.5" fill="none"/>
+      <ellipse cx="54" cy="143" rx="18" ry="4.5" fill="#451a03" stroke="#b45309" stroke-width="0.8"/>
+
+      <!-- 3. Authentic Round Spherical Terracotta Clay Belly (بطن الجبنة الكروية) -->
+      <circle cx="54" cy="112" r="26" fill="url(#${id}_clay)" stroke="#451a03" stroke-width="1"/>
+
+      <!-- Authentic Folkloric Engraved Tribal Markings (نقوش فلكلورية بيضاء محفورة) -->
+      <path d="M 33 112 Q 54 116 75 112" stroke="rgba(255,255,255,0.7)" stroke-width="1.2" stroke-dasharray="4 2" fill="none"/>
+      <path d="M 36 104 Q 54 108 72 104" stroke="rgba(255,255,255,0.55)" stroke-width="1" stroke-dasharray="3 3" fill="none"/>
+      <path d="M 36 120 Q 54 124 72 120" stroke="rgba(255,255,255,0.55)" stroke-width="1" stroke-dasharray="3 3" fill="none"/>
+      
+      <!-- Tribal Triangular Chevrons on Clay -->
+      <path d="M 46 112 L 49 107 L 52 112 L 55 107 L 58 112 L 61 107 L 64 112" stroke="rgba(255,255,255,0.8)" stroke-width="1.1" fill="none"/>
+
+      <!-- 4. Slender Cylindrical Clay Neck -->
+      <path d="M 48 88 L 47 48 L 61 48 L 60 88 Z" fill="url(#${id}_clay)" stroke="#451a03" stroke-width="0.8"/>
+
+      <!-- Flared Clay Mouth (فوهة الجبنة الواسعة) -->
+      <ellipse cx="54" cy="48" rx="9" ry="3" fill="#3b1407" stroke="#ea580c" stroke-width="0.9"/>
+      <ellipse cx="54" cy="47.5" rx="8" ry="2.2" fill="#1c0702"/>
+
+      <!-- Natural Palm Fiber Strainer Peeking from Mouth (ليفة التصفية النخلية) -->
+      <ellipse cx="54" cy="46" rx="6" ry="3.2" fill="url(#${id}_fiber)" stroke="#b45309" stroke-width="0.8"/>
+      <path d="M 51 46 C 50 42 53 38 54 36" stroke="#d97706" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M 54 46 C 55 41 57 37 58 35" stroke="#fde68a" stroke-width="1.1" stroke-linecap="round"/>
+      <path d="M 52 46 C 53 43 55 40 56 37" stroke="#b45309" stroke-width="1" stroke-linecap="round"/>
+
+      <!-- 5. Gracefully Curved Clay Handle (مقبض الجبنة الفخاري) -->
+      <path d="M 60 56 C 82 58 84 104 68 114" stroke="#260b03" stroke-width="5" stroke-linecap="round" fill="none"/>
+      <path d="M 60 56 C 82 58 84 104 68 114" stroke="url(#${id}_clay)" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+      <path d="M 60 56 C 82 58 84 104 68 114" stroke="rgba(255,255,255,0.3)" stroke-width="0.8" stroke-linecap="round" fill="none"/>
+
+      <!-- Slender Arched Clay Spout (مصب الجبنة النحيل) -->
+      <path d="M 47 98 C 34 94 30 72 38 60 C 37 66 38 78 48 88 Z" fill="url(#${id}_clay)" stroke="#451a03" stroke-width="0.9"/>
+      <ellipse cx="38" cy="60" rx="1.8" ry="2.8" transform="rotate(-25 38 60)" fill="#1c0802" stroke="#ea580c" stroke-width="0.6"/>
+
+      <!-- 6. 3D Burnished Surface Highlights on Earthenware -->
+      <path d="M 46 95 C 38 104 38 120 46 128" stroke="rgba(255,255,255,0.45)" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+      <path d="M 51 52 L 50 84" stroke="rgba(255,255,255,0.5)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+      <ellipse cx="50" cy="110" rx="4" ry="7" fill="rgba(255,255,255,0.18)" transform="rotate(-15 50 110)"/>
+
+      <!-- 7. Matching Artisanal Earthen Finjan (فنجان طيني سوداني أصيل) -->
+      <g transform="translate(70, 118)">
+        <ellipse cx="18" cy="33" rx="13" ry="3.5" fill="rgba(0,0,0,0.6)" filter="url(#${id}_blur)"/>
+
+        <!-- Terracotta Cup -->
+        <path d="M 7 14 C 7 27 10 32 18 32 C 26 32 29 27 29 14 Z" fill="url(#${id}_clay)" stroke="#451a03" stroke-width="0.9"/>
+        <ellipse cx="18" cy="14" rx="11" ry="3" fill="#3b1407" stroke="#ea580c" stroke-width="0.9"/>
+        
+        <!-- Deep Spiced Sudanese Coffee with Cardamom Crema -->
+        <ellipse cx="18" cy="14.8" rx="9.5" ry="2.2" fill="#180702"/>
+        <ellipse cx="18" cy="14.8" rx="6" ry="1.2" fill="#78350f" opacity="0.7"/>
+
+        <!-- Tribal Chevron Carving on Finjan -->
+        <path d="M 9 20 Q 18 23 27 20" stroke="rgba(255,255,255,0.7)" stroke-width="0.9" fill="none"/>
+        <circle cx="18" cy="21.5" r="0.9" fill="#fdba74"/>
+      </g>
+    </svg>
+  `;
+}
+
 function render3DHeritageChaiGlass(options) {
   const id = getNextSvgId('chai');
   return `
@@ -833,7 +962,7 @@ function getDrinkSvg(item) {
     return render3DArabicDallah({ isJabana: false });
   }
   if (id.includes('jabana') || name.includes('جبنة') || name.includes('جبّنة')) {
-    return render3DArabicDallah({ isJabana: true });
+    return render3DSudaneseJabana();
   }
 
   // 3. FRENCH COFFEE (All variants served in Royal French Finjans & Saucers)
