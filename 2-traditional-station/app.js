@@ -472,6 +472,7 @@ class StationApp {
 
     this.renderDetailModalContent();
     modal.classList.add('open');
+    document.body.classList.add('modal-open');
     document.body.style.overflow = 'hidden';
 
     // Push history state so Android hardware/system back button & swipe back gesture closes modal
@@ -689,6 +690,7 @@ class StationApp {
       modal.classList.remove('open');
       modal.style.background = '';
     }
+    document.body.classList.remove('modal-open');
     document.body.style.overflow = '';
     this.activeDetailItem = null;
 
@@ -1032,6 +1034,7 @@ function openChecklistModal() {
   const modal = document.getElementById('checklist-modal');
   if (modal) {
     modal.classList.add('open');
+    document.body.classList.add('modal-open');
     document.body.style.overflow = 'hidden';
     if (!history.state || !history.state.sopModalOpen) {
       history.pushState({ sopModalOpen: true, modalType: 'checklist' }, '');
@@ -1043,6 +1046,7 @@ function closeChecklistModal(popHistory = true) {
   const modal = document.getElementById('checklist-modal');
   if (modal) {
     modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
     document.body.style.overflow = '';
   }
   if (popHistory && history.state && history.state.sopModalOpen) {
