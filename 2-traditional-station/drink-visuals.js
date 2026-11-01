@@ -43,18 +43,75 @@ function render3DTurkishFinjan(options) {
     cremaColDark = '#451a03';
   }
 
-  let spiceSpecks = '';
+  let saucerCardamom = '';
+  let cremaCardamom = '';
+  let plainCremaStreaks = `
+    <!-- Inner Tiger Streaks for Plain Unspiced Coffee -->
+    <path d="M 42 74 Q 52 71 62 75 Q 70 72 78 74" stroke="${cremaColDark}" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+    <circle cx="48" cy="73" r="1.4" fill="#fef08a"/>
+    <circle cx="71" cy="74" r="1.2" fill="#fef08a"/>
+  `;
+
   if (isSpiced) {
-    spiceSpecks = `
-      <!-- Green Cardamom Pod & Ground Cardamom Flecks -->
-      <g opacity="0.9">
-        <circle cx="52" cy="74" r="1.1" fill="#4d7c0f"/>
-        <circle cx="68" cy="76" r="1.2" fill="#365314"/>
-        <circle cx="58" cy="78" r="0.9" fill="#4d7c0f"/>
-        <circle cx="64" cy="73" r="1.0" fill="#365314"/>
-        <!-- Whole Cardamom Pod floating on Crema -->
-        <ellipse cx="61" cy="75" rx="3.5" ry="1.8" transform="rotate(-15 61 75)" fill="#4d7c0f" stroke="#365314" stroke-width="0.7"/>
-        <line x1="58" y1="76" x2="64" y2="74" stroke="#65a30d" stroke-width="0.6"/>
+    plainCremaStreaks = '';
+    saucerCardamom = `
+      <!-- Prominent Whole Green Cardamom Pod & Fragrant Seeds on Saucer -->
+      <g id="${id}_saucer_cardamom" transform="translate(27, 134) rotate(-22)">
+        <!-- Soft Drop Shadow on Porcelain Saucer -->
+        <ellipse cx="1" cy="4" rx="12" ry="4" fill="rgba(0,0,0,0.85)" filter="url(#${id}_blur)"/>
+
+        <!-- Cardamom Pod Capsule Body (Multi-Stop Green) -->
+        <path d="M -11 0 C -9.5 -5.2 -3 -6.8 3.5 -5.5 C 9 -4.2 12.5 -1.5 14 0 C 12.5 1.5 9 4.2 3.5 5.5 C -3 6.8 -9.5 5.2 -11 0 Z" 
+              fill="url(#${id}_cardamom)" stroke="#14532d" stroke-width="0.85"/>
+
+        <!-- 3-Chamber Longitudinal Ridge Lines -->
+        <!-- Center Ridge Crest (Golden Lime Sunlight Highlight) -->
+        <path d="M -10 0 C -2 -1 4 -1 13 0" stroke="#facc15" stroke-width="0.9" stroke-linecap="round" fill="none"/>
+        <path d="M -10 0.6 C -2 -0.2 4 -0.2 13 0.6" stroke="#14532d" stroke-width="0.7" stroke-linecap="round" fill="none"/>
+        
+        <!-- Top Rib Segment -->
+        <path d="M -9 -2.8 C -2 -4.6 3.5 -4 11.5 -1" stroke="#d9f99d" stroke-width="0.75" stroke-linecap="round" fill="none"/>
+        <!-- Bottom Rib Segment -->
+        <path d="M -9 2.8 C -2 4.6 3.5 4 11.5 1" stroke="#166534" stroke-width="0.85" stroke-linecap="round" fill="none"/>
+
+        <!-- Dried Floral Beak / Calyx Tip at Apex -->
+        <path d="M 13.5 -0.6 L 17 -1.2 L 15.2 0.4 L 17.5 0 L 13.5 -0.6" fill="#4d7c0f" stroke="#14532d" stroke-width="0.5"/>
+        <!-- Pedicel Stem Base -->
+        <circle cx="-11" cy="0" r="1.1" fill="#14532d"/>
+
+        <!-- Aromatic Dark Cardamom Seeds Beside Pod -->
+        <ellipse cx="-1" cy="6.5" rx="2" ry="1.3" fill="#1c1917" stroke="#44403c" stroke-width="0.5"/>
+        <circle cx="-0.8" cy="6.2" r="0.4" fill="#a8a29e"/>
+        <ellipse cx="5" cy="7" rx="1.6" ry="1.1" fill="#292524" stroke="#57534e" stroke-width="0.4"/>
+      </g>
+    `;
+
+    cremaCardamom = `
+      <!-- Floating Green Cardamom Pod & Ground Spice Specks on Crema Foam -->
+      <g id="${id}_crema_cardamom" transform="translate(60, 73) rotate(-14)">
+        <!-- Cast Shadow on Crema -->
+        <ellipse cx="0" cy="2.8" rx="12" ry="4" fill="rgba(15,7,3,0.75)" filter="url(#${id}_blur)"/>
+        
+        <!-- Pod Capsule Shell -->
+        <path d="M -11 0 C -9.5 -4.8 -3 -6.2 3 -5 C 8.5 -3.8 11.5 -1.5 13 0 C 11.5 1.5 8.5 3.8 3 5 C -3 6.2 -9.5 4.8 -11 0 Z" 
+              fill="url(#${id}_cardamom)" stroke="#14532d" stroke-width="0.8"/>
+
+        <!-- 3 Characteristic Longitudinal Ribs -->
+        <path d="M -10 0 C -2 -1 3.5 -1 12 0" stroke="#fef08a" stroke-width="0.95" stroke-linecap="round" fill="none"/>
+        <path d="M -10 0.6 C -2 -0.2 3.5 -0.2 12 0.6" stroke="#14532d" stroke-width="0.65" stroke-linecap="round" fill="none"/>
+        <path d="M -9 -2.5 C -2 -4 3 -3.5 11 -0.8" stroke="#d9f99d" stroke-width="0.75" stroke-linecap="round" fill="none"/>
+        <path d="M -9 2.5 C -2 4 3 3.5 11 0.8" stroke="#1e3a1f" stroke-width="0.8" stroke-linecap="round" fill="none"/>
+
+        <!-- Floral Calyx Crown -->
+        <path d="M 12.5 0 L 15.5 -0.9 L 14 0.4 L 16 0 L 12.5 0" fill="#3f6212" stroke="#14532d" stroke-width="0.4"/>
+        <circle cx="-11" cy="0" r="1.0" fill="#14532d"/>
+
+        <!-- Aromatic Fresh Ground Cardamom Specks on Crema -->
+        <circle cx="-6" cy="-5" r="0.9" fill="#84cc16"/>
+        <circle cx="7" cy="5.2" r="1.0" fill="#4d7c0f"/>
+        <circle cx="-8" cy="4.5" r="0.7" fill="#166534"/>
+        <circle cx="2" cy="-5.5" r="0.7" fill="#facc15"/>
+        <circle cx="9" cy="-3.5" r="0.8" fill="#3f6212"/>
       </g>
     `;
   }
@@ -63,7 +120,7 @@ function render3DTurkishFinjan(options) {
     <svg viewBox="0 0 120 160" fill="none" class="drink-art-svg" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <filter id="${id}_blur" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="3.5"/>
+          <feGaussianBlur stdDeviation="3"/>
         </filter>
 
         <!-- Royal Porcelain Finjan Gradients -->
@@ -94,6 +151,14 @@ function render3DTurkishFinjan(options) {
           <stop offset="30%" stop-color="${cremaColLight}"/>
           <stop offset="70%" stop-color="${cremaCol}"/>
           <stop offset="100%" stop-color="${cremaColDark}"/>
+        </linearGradient>
+
+        <!-- Fresh Green Cardamom Multi-Stop Realistic Gradient -->
+        <linearGradient id="${id}_cardamom" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#bef264"/>
+          <stop offset="25%" stop-color="#84cc16"/>
+          <stop offset="60%" stop-color="#4d7c0f"/>
+          <stop offset="100%" stop-color="#1e3a1f"/>
         </linearGradient>
 
         <clipPath id="${id}_cup_clip">
@@ -130,22 +195,26 @@ function render3DTurkishFinjan(options) {
       <circle cx="70" cy="98" r="1.3" fill="#d4af37"/>
       <path d="M 48 110 Q 60 118 72 110" stroke="rgba(212,175,55,0.5)" stroke-width="1" fill="none"/>
 
+      <!-- Saucer Cardamom Pod & Fragrant Seeds (if spiced) -->
+      ${saucerCardamom}
+
       <!-- 7. Thick Tiger Crema Surface (وش القهوة السميك المتماسك) -->
       <ellipse cx="60" cy="74" rx="30" ry="8" fill="url(#${id}_crema)" stroke="url(#${id}_gold_rim)" stroke-width="1.2"/>
       <!-- Inner Tiger Streaks -->
       <ellipse cx="60" cy="74" rx="24" ry="5.5" fill="${cremaColLight}" opacity="0.8"/>
-      <path d="M 42 74 Q 52 71 62 75 Q 70 72 78 74" stroke="${cremaColDark}" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-      <circle cx="48" cy="73" r="1.4" fill="#fef08a"/>
-      <circle cx="71" cy="74" r="1.2" fill="#fef08a"/>
+      
+      <!-- Crema Streaks for Plain -->
+      ${plainCremaStreaks}
 
-      <!-- Cardamom Specks / Pod -->
-      ${spiceSpecks}
+      <!-- Floating Cardamom Pod & Ground Cardamom Flecks (if spiced) -->
+      ${cremaCardamom}
 
       <!-- Cup Rim Specular Highlight -->
       <ellipse cx="60" cy="72" rx="31" ry="8" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" fill="none"/>
     </svg>
   `;
 }
+
 
 // ========================================================
 // 2. 3D ROYAL PORCELAIN FRENCH COFFEE FINJAN & SAUCER (French Coffee)
