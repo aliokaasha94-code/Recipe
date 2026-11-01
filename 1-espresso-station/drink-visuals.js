@@ -507,128 +507,166 @@ function render3DChemex() {
   return `
     <svg viewBox="0 0 120 160" fill="none" class="drink-art-svg" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <!-- Floor Shadow Filter -->
+        <!-- Soft Ground Drop Shadow -->
         <filter id="${id}_blur" x="-20%" y="-20%" width="140%" height="140%">
           <feGaussianBlur stdDeviation="3.5"/>
         </filter>
+        <filter id="${id}_soft_glow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="1.5"/>
+        </filter>
 
-        <!-- Glass Refraction Gradient -->
-        <linearGradient id="${id}_glass_refract" x1="0%" y1="0%" x2="100%" y2="0%">
+        <!-- Glass Luminous Transparency Gradient -->
+        <linearGradient id="${id}_glass_body" x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stop-color="rgba(255,255,255,0.35)"/>
-          <stop offset="15%" stop-color="rgba(255,255,255,0.08)"/>
-          <stop offset="50%" stop-color="rgba(255,255,255,0.02)"/>
-          <stop offset="85%" stop-color="rgba(255,255,255,0.1)"/>
-          <stop offset="100%" stop-color="rgba(255,255,255,0.3)"/>
+          <stop offset="14%" stop-color="rgba(255,255,255,0.06)"/>
+          <stop offset="50%" stop-color="rgba(255,255,255,0.01)"/>
+          <stop offset="86%" stop-color="rgba(255,255,255,0.08)"/>
+          <stop offset="100%" stop-color="rgba(255,255,255,0.30)"/>
         </linearGradient>
 
-        <!-- Amber Specialty Coffee Gradient -->
-        <linearGradient id="${id}_coffee_liquid" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#240c03" stop-opacity="0.95"/>
-          <stop offset="25%" stop-color="#4a1a06" stop-opacity="0.98"/>
-          <stop offset="55%" stop-color="#853a08" stop-opacity="0.92"/>
-          <stop offset="85%" stop-color="#542007" stop-opacity="0.95"/>
-          <stop offset="100%" stop-color="#220b02" stop-opacity="0.98"/>
+        <!-- Specialty Filter Coffee Luminous Amber Gradient -->
+        <linearGradient id="${id}_coffee_glow" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#1c0701" stop-opacity="0.96"/>
+          <stop offset="22%" stop-color="#4e1d06" stop-opacity="0.95"/>
+          <stop offset="50%" stop-color="#9a4309" stop-opacity="0.92"/>
+          <stop offset="78%" stop-color="#5a2007" stop-opacity="0.95"/>
+          <stop offset="100%" stop-color="#180501" stop-opacity="0.97"/>
         </linearGradient>
 
-        <!-- Natural Wood Collar Gradient -->
-        <linearGradient id="${id}_wood_collar" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#78350f"/>
-          <stop offset="25%" stop-color="#b45309"/>
-          <stop offset="50%" stop-color="#d97706"/>
-          <stop offset="75%" stop-color="#92400e"/>
-          <stop offset="100%" stop-color="#5c2406"/>
+        <!-- Natural Birch/Teak Wood Collar Gradient -->
+        <linearGradient id="${id}_wood" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#5a2408"/>
+          <stop offset="18%" stop-color="#944510"/>
+          <stop offset="50%" stop-color="#c97124"/>
+          <stop offset="82%" stop-color="#8a3e0d"/>
+          <stop offset="100%" stop-color="#4a1c04"/>
         </linearGradient>
 
-        <!-- White Paper Filter Cone Gradient -->
-        <linearGradient id="${id}_filter_paper" x1="0%" y1="0%" x2="100%" y2="100%">
+        <!-- Rawhide Leather Cord Gradient -->
+        <linearGradient id="${id}_leather" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#eab308"/>
+          <stop offset="35%" stop-color="#b45309"/>
+          <stop offset="100%" stop-color="#78350f"/>
+        </linearGradient>
+
+        <!-- White Bonded Chemex Filter Paper Gradient -->
+        <linearGradient id="${id}_paper" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stop-color="#ffffff"/>
-          <stop offset="60%" stop-color="#f8fafc"/>
-          <stop offset="100%" stop-color="#e2e8f0"/>
+          <stop offset="40%" stop-color="#f8fafc"/>
+          <stop offset="80%" stop-color="#e2e8f0"/>
+          <stop offset="100%" stop-color="#cbd5e1"/>
         </linearGradient>
 
-        <!-- Wet Blooming Coffee Bed -->
-        <linearGradient id="${id}_coffee_bed" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#1c0b03"/>
-          <stop offset="50%" stop-color="#3d1808"/>
-          <stop offset="100%" stop-color="#170802"/>
-        </linearGradient>
+        <!-- Blooming Fresh Coffee Grounds Bed -->
+        <radialGradient id="${id}_bloom" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#542308"/>
+          <stop offset="55%" stop-color="#2c1104"/>
+          <stop offset="100%" stop-color="#140602"/>
+        </radialGradient>
 
-        <!-- Clip Path for Lower Chemex Flask Liquid -->
-        <clipPath id="${id}_lower_flask_clip">
-          <path d="M 52 75 L 26 138 C 24 144 28 150 36 150 L 84 150 C 92 150 96 144 94 138 L 68 75 Z"/>
+        <!-- Lower Flask Liquid Clip Path -->
+        <clipPath id="${id}_lower_clip">
+          <path d="M 52 74 L 26 138 C 24 144 28 150 36 150 L 84 150 C 92 150 96 144 94 138 L 68 74 Z"/>
         </clipPath>
       </defs>
 
-      <!-- 1. Floor Drop Shadow -->
+      <!-- 1. Soft Floor Shadow -->
       <ellipse cx="60" cy="154" rx="36" ry="5.5" fill="rgba(0,0,0,0.92)" filter="url(#${id}_blur)"/>
 
-      <!-- 2. Lower Flask Glass Backfill -->
-      <path d="M 52 75 L 26 138 C 24 144 28 150 36 150 L 84 150 C 92 150 96 144 94 138 L 68 75 Z" fill="#0c0d12"/>
+      <!-- 2. Dark Cavity Glass Backing -->
+      <path d="M 52 74 L 26 138 C 24 144 28 150 36 150 L 84 150 C 92 150 96 144 94 138 L 68 74 Z" fill="#0b0c10"/>
 
-      <!-- 3. Amber Brewed Specialty Coffee in Lower Carafe -->
-      <g clip-path="url(#${id}_lower_flask_clip)">
-        <!-- Liquid Body from y=96 to 150 -->
-        <path d="M 22 96 L 22 152 L 98 152 L 98 96 Z" fill="url(#${id}_coffee_liquid)"/>
-        
-        <!-- Liquid Surface Meniscus -->
-        <ellipse cx="60" cy="96" rx="27" ry="3.8" fill="#a1490d"/>
-        <ellipse cx="60" cy="96" rx="27" ry="3.8" stroke="#d97706" stroke-width="1.2" fill="none"/>
-        <ellipse cx="60" cy="96" rx="21" ry="2.6" fill="#ca8a04" opacity="0.6"/>
+      <!-- 3. Brewed Specialty Amber Coffee in Lower Carafe -->
+      <g clip-path="url(#${id}_lower_clip)">
+        <!-- Coffee Liquid Body -->
+        <rect x="20" y="97" width="80" height="55" fill="url(#${id}_coffee_glow)"/>
 
-        <!-- Depth Refraction in Liquid -->
-        <path d="M 32 104 C 30 135 34 146 44 148" stroke="rgba(255,255,255,0.22)" stroke-width="2" stroke-linecap="round" fill="none"/>
-        <path d="M 88 104 C 90 135 86 146 76 148" stroke="rgba(0,0,0,0.5)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <!-- Ambient Golden Honey Core Glow -->
+        <ellipse cx="60" cy="126" rx="22" ry="16" fill="#f59e0b" opacity="0.22" filter="url(#${id}_soft_glow)"/>
+
+        <!-- Coffee Surface Meniscus -->
+        <ellipse cx="60" cy="97" rx="27" ry="3.8" fill="#853a08"/>
+        <ellipse cx="60" cy="97" rx="27" ry="3.8" stroke="#ca8a04" stroke-width="1.0" fill="none"/>
+        <ellipse cx="60" cy="97" rx="20" ry="2.5" fill="#eab308" opacity="0.45"/>
+
+        <!-- Concentric Extraction Ripples -->
+        <ellipse cx="60" cy="97" rx="7" ry="1.2" stroke="rgba(254,240,138,0.75)" stroke-width="0.8" fill="none"/>
+        <ellipse cx="60" cy="97" rx="14" ry="1.9" stroke="rgba(254,240,138,0.35)" stroke-width="0.6" fill="none"/>
+
+        <!-- Glass Depth Reflections inside Liquid -->
+        <path d="M 32 105 C 29 130 33 144 42 147" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <path d="M 88 105 C 91 130 87 144 78 147" stroke="rgba(0,0,0,0.4)" stroke-width="2" stroke-linecap="round" fill="none"/>
       </g>
 
-      <!-- 4. Fresh Dripping Coffee Stream from Filter Tip -->
-      <line x1="60" y1="74" x2="60" y2="92" stroke="#d97706" stroke-width="1.6" stroke-dasharray="3 2" stroke-linecap="round"/>
-      <ellipse cx="60" cy="94" rx="1.8" ry="2.2" fill="#d97706"/>
+      <!-- 4. Embossed Glass Belly Button (علامة القياس الأصلية المنتفخة) -->
+      <g opacity="0.9">
+        <circle cx="60" cy="122" r="2.5" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.5)" stroke-width="0.8"/>
+        <circle cx="59.2" cy="121.2" r="0.9" fill="rgba(255,255,255,0.85)"/>
+        <path d="M 58.5 123.5 Q 60 124.5 61.5 123.5" stroke="rgba(0,0,0,0.4)" stroke-width="0.6" fill="none"/>
+      </g>
 
-      <!-- 5. Iconic Chemex Glass Silhouette Outline -->
-      <path d="M 33 16 L 53 74 L 26 138 C 24 144 28 150 36 150 L 84 150 C 92 150 96 144 94 138 L 67 74 L 87 16" 
-            stroke="rgba(212,175,55,0.85)" stroke-width="1.5" stroke-linecap="round" fill="url(#${id}_glass_refract)"/>
+      <!-- 5. Fresh Extraction Stream & Glowing Falling Droplet -->
+      <path d="M 60 74 Q 60.4 83 60 95" stroke="#f59e0b" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M 60 75 Q 60.2 83 60 94" stroke="#fef08a" stroke-width="0.7" stroke-linecap="round"/>
+      <ellipse cx="60" cy="87" rx="1.2" ry="1.7" fill="#fef08a"/>
 
-      <!-- Top Glass Flared Rim with Spout Channel -->
-      <ellipse cx="60" cy="16" rx="27" ry="4" stroke="rgba(255,255,255,0.7)" stroke-width="1.2" fill="rgba(255,255,255,0.06)"/>
-      <path d="M 31 16 Q 28 14 30 18" stroke="rgba(255,255,255,0.9)" stroke-width="1.4" fill="none"/>
+      <!-- 6. Hourglass Borosilicate Glass Silhouette -->
+      <path d="M 33 15 L 53 74 L 26 138 C 24 144 28 150 36 150 L 84 150 C 92 150 96 144 94 138 L 67 74 L 87 15" 
+            stroke="rgba(212,175,55,0.75)" stroke-width="1.4" stroke-linecap="round" fill="url(#${id}_glass_body)"/>
 
-      <!-- 6. White Chemex Conical Paper Filter inside Upper Funnel -->
-      <path d="M 38 18 L 60 74 L 82 18 Z" fill="url(#${id}_filter_paper)" stroke="rgba(203,213,225,0.9)" stroke-width="1.1"/>
-      <path d="M 45 18 L 60 73" stroke="rgba(148,163,184,0.4)" stroke-width="0.9"/>
-      <path d="M 75 18 L 60 73" stroke="rgba(148,163,184,0.4)" stroke-width="0.9"/>
+      <!-- Flared Top Glass Rim with Distinct Spout Channel on Left -->
+      <ellipse cx="60" cy="15" rx="27" ry="3.8" stroke="rgba(255,255,255,0.8)" stroke-width="1.2" fill="rgba(255,255,255,0.04)"/>
+      <!-- Spout Channel Flute on Left Rim -->
+      <path d="M 34 15.2 C 30 13.5 28 16.5 32 18" stroke="rgba(255,255,255,0.95)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+      <path d="M 32 18 L 36 30" stroke="rgba(255,255,255,0.4)" stroke-width="0.8" stroke-linecap="round" fill="none"/>
 
-      <!-- Wet Coffee Grounds Blooming in Filter -->
-      <ellipse cx="60" cy="30" rx="19" ry="3.8" fill="url(#${id}_coffee_bed)"/>
-      <ellipse cx="60" cy="30" rx="14" ry="2.5" fill="#451a03"/>
-      <circle cx="56" cy="30" r="1.3" fill="#d97706"/>
-      <circle cx="64" cy="29.5" r="1.1" fill="#b45309"/>
+      <!-- 7. Chemex Bonded Paper Filter Cone inside Upper Funnel -->
+      <path d="M 37 17 L 60 74 L 83 17 Z" fill="url(#${id}_paper)" stroke="rgba(203,213,225,0.75)" stroke-width="0.9"/>
+      <!-- Triple-fold Paper Ridge on Spout Side -->
+      <path d="M 37 17 L 48 42 L 53 74" stroke="rgba(148,163,184,0.55)" stroke-width="0.85" fill="none"/>
+      <!-- Filter Top Rim -->
+      <ellipse cx="60" cy="17" rx="23" ry="3.2" fill="#f1f5f9" stroke="rgba(203,213,225,0.8)" stroke-width="0.8"/>
 
-      <!-- 7. Iconic Wood Collar & Tie around Waist -->
-      <rect x="49" y="66" width="22" height="15" rx="3" fill="url(#${id}_wood_collar)" stroke="#451a03" stroke-width="1"/>
-      <line x1="60" y1="66" x2="60" y2="81" stroke="#451a03" stroke-width="0.8"/>
+      <!-- Blooming Fresh Dark Coffee Bed inside Filter -->
+      <ellipse cx="60" cy="27" rx="16" ry="3.2" fill="url(#${id}_bloom)"/>
+      <ellipse cx="60" cy="27" rx="11" ry="2.0" fill="#451a03"/>
+      <!-- Bloom bubbles & golden crema highlights -->
+      <circle cx="56" cy="27" r="1.1" fill="#d97706"/>
+      <circle cx="64" cy="26.5" r="1.0" fill="#b45309"/>
+      <circle cx="60.5" cy="27.8" r="0.8" fill="#ca8a04"/>
+      <circle cx="52" cy="27.2" r="0.6" fill="#f59e0b"/>
 
-      <path d="M 50 68 Q 60 67 70 68" stroke="rgba(255,255,255,0.35)" stroke-width="1" fill="none"/>
-      <path d="M 50 80 Q 60 79 70 80" stroke="rgba(0,0,0,0.5)" stroke-width="1" fill="none"/>
+      <!-- 8. Natural Polished Birch Wood Collar (Two contoured halves around waist) -->
+      <path d="M 46 66 C 46 66 53 74 53 77 C 53 80 47 84 47 84 L 73 84 C 73 84 67 80 67 77 C 67 74 74 66 74 66 Z" 
+            fill="url(#${id}_wood)" stroke="rgba(212,175,55,0.85)" stroke-width="0.9"/>
+      
+      <!-- Center Seam dividing the two wood collar halves -->
+      <line x1="60" y1="67" x2="60" y2="83" stroke="#381404" stroke-width="1.1" stroke-linecap="round"/>
 
-      <!-- Leather Cord Wrapped in Collar Groove -->
-      <path d="M 49 73.5 Q 60 75 71 73.5" stroke="#78350f" stroke-width="2.6" fill="none"/>
-      <path d="M 49 73.5 Q 60 75 71 73.5" stroke="#ca8a04" stroke-width="1.2" fill="none"/>
+      <!-- Wood Grain Highlight Curves -->
+      <path d="M 49 68 C 53 74 53 77 49 82" stroke="rgba(253,224,71,0.3)" stroke-width="0.8" fill="none"/>
+      <path d="M 71 68 C 67 74 67 77 71 82" stroke="rgba(253,224,71,0.3)" stroke-width="0.8" fill="none"/>
 
-      <!-- Wooden Bead on Cord -->
-      <circle cx="60" cy="74" r="3.2" fill="#d97706" stroke="#451a03" stroke-width="0.8"/>
-      <circle cx="59.2" cy="73.2" r="1.1" fill="rgba(255,255,255,0.7)"/>
+      <!-- 9. Rawhide Leather Cord & Wooden Bead (Iconic Chemex Tie) -->
+      <ellipse cx="60" cy="76" rx="11.5" ry="2.2" stroke="url(#${id}_leather)" stroke-width="2.2" fill="none"/>
+      <ellipse cx="60" cy="76" rx="11.5" ry="2.2" stroke="#451a03" stroke-width="0.6" fill="none"/>
 
-      <!-- Hanging Leather Laces -->
-      <path d="M 59 77 C 58 84 56 89 55 94" stroke="#ca8a04" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-      <path d="M 61 77 C 62 83 63 88 64 92" stroke="#b45309" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+      <!-- Wooden Spherical Bead -->
+      <circle cx="60" cy="77" r="2.8" fill="url(#${id}_wood)" stroke="#542106" stroke-width="0.7"/>
+      <circle cx="59.2" cy="76.2" r="0.9" fill="#fde047" opacity="0.7"/>
 
-      <!-- 8. Embossed Glass Belly Button (Chemex Measurement Mark) -->
-      <circle cx="60" cy="120" r="2.2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+      <!-- Dangling Leather Cord Tassels with Knotted Tips -->
+      <path d="M 59 79 Q 55 88 54 98" stroke="url(#${id}_leather)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      <circle cx="54" cy="98.5" r="1.1" fill="#78350f"/>
 
-      <!-- 9. Specular Curving Glass Gloss Highlights -->
-      <path d="M 31 100 C 28 126 34 142 42 147" stroke="rgba(255,255,255,0.65)" stroke-width="2" stroke-linecap="round" fill="none"/>
-      <path d="M 37 24 L 51 68" stroke="rgba(255,255,255,0.4)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
-      <path d="M 83 24 L 69 68" stroke="rgba(255,255,255,0.2)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+      <path d="M 61 79 Q 64 88 65 96" stroke="url(#${id}_leather)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      <circle cx="65" cy="96.5" r="1.1" fill="#78350f"/>
+
+      <!-- 10. Master Glass Reflections & Specular Highlights -->
+      <path d="M 37 19 L 51 64" stroke="rgba(255,255,255,0.7)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+      <path d="M 83 19 L 69 64" stroke="rgba(255,255,255,0.3)" stroke-width="0.8" stroke-linecap="round" fill="none"/>
+      <path d="M 29 136 C 27 142 30 148 37 148" stroke="rgba(255,255,255,0.75)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      <line x1="38" y1="149" x2="82" y2="149" stroke="rgba(255,255,255,0.4)" stroke-width="1.0" stroke-linecap="round"/>
     </svg>
   `;
 }
@@ -638,134 +676,172 @@ function render3DV60() {
   return `
     <svg viewBox="0 0 120 160" fill="none" class="drink-art-svg" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <!-- Floor Shadow Filter -->
+        <!-- Soft Ground Drop Shadow -->
         <filter id="${id}_blur" x="-20%" y="-20%" width="140%" height="140%">
           <feGaussianBlur stdDeviation="3.5"/>
         </filter>
+        <filter id="${id}_soft_glow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="1.5"/>
+        </filter>
 
         <!-- Glass Refraction Gradient -->
-        <linearGradient id="${id}_glass_refract" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="rgba(255,255,255,0.3)"/>
-          <stop offset="20%" stop-color="rgba(255,255,255,0.06)"/>
-          <stop offset="50%" stop-color="rgba(255,255,255,0.02)"/>
-          <stop offset="80%" stop-color="rgba(255,255,255,0.08)"/>
-          <stop offset="100%" stop-color="rgba(255,255,255,0.25)"/>
+        <linearGradient id="${id}_glass_body" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="rgba(255,255,255,0.32)"/>
+          <stop offset="14%" stop-color="rgba(255,255,255,0.06)"/>
+          <stop offset="50%" stop-color="rgba(255,255,255,0.01)"/>
+          <stop offset="86%" stop-color="rgba(255,255,255,0.08)"/>
+          <stop offset="100%" stop-color="rgba(255,255,255,0.28)"/>
         </linearGradient>
 
-        <!-- Rich Amber Filter Coffee Gradient -->
-        <linearGradient id="${id}_coffee_liquid" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#240c03" stop-opacity="0.95"/>
-          <stop offset="22%" stop-color="#4a1a06" stop-opacity="0.98"/>
-          <stop offset="55%" stop-color="#853a08" stop-opacity="0.92"/>
-          <stop offset="82%" stop-color="#542007" stop-opacity="0.95"/>
-          <stop offset="100%" stop-color="#1e0a02" stop-opacity="0.98"/>
+        <!-- Amber Filter Coffee Gradient -->
+        <linearGradient id="${id}_coffee_glow" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#1c0701" stop-opacity="0.96"/>
+          <stop offset="22%" stop-color="#4e1d06" stop-opacity="0.95"/>
+          <stop offset="50%" stop-color="#9a4309" stop-opacity="0.92"/>
+          <stop offset="78%" stop-color="#5a2007" stop-opacity="0.95"/>
+          <stop offset="100%" stop-color="#180501" stop-opacity="0.97"/>
         </linearGradient>
 
-        <!-- Hario V60 Ceramic Dripper Shell Gradient -->
-        <linearGradient id="${id}_ceramic" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#cbd5e1"/>
-          <stop offset="20%" stop-color="#f8fafc"/>
-          <stop offset="50%" stop-color="#ffffff"/>
-          <stop offset="80%" stop-color="#f1f5f9"/>
+        <!-- Premium White Ceramic Dripper Gradient -->
+        <linearGradient id="${id}_ceramic" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="35%" stop-color="#f8fafc"/>
+          <stop offset="70%" stop-color="#e2e8f0"/>
           <stop offset="100%" stop-color="#94a3b8"/>
         </linearGradient>
 
         <!-- Paper Cone Gradient -->
-        <linearGradient id="${id}_paper" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#e2e8f0"/>
-          <stop offset="35%" stop-color="#ffffff"/>
-          <stop offset="70%" stop-color="#f8fafc"/>
-          <stop offset="100%" stop-color="#cbd5e1"/>
+        <linearGradient id="${id}_paper" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="50%" stop-color="#f8fafc"/>
+          <stop offset="100%" stop-color="#e2e8f0"/>
         </linearGradient>
 
-        <!-- Coffee Bed Blooming -->
-        <linearGradient id="${id}_bloom" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#1c0b03"/>
-          <stop offset="50%" stop-color="#3d1808"/>
-          <stop offset="100%" stop-color="#170802"/>
-        </linearGradient>
+        <!-- Blooming Coffee Bed Radial -->
+        <radialGradient id="${id}_bloom" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#542308"/>
+          <stop offset="55%" stop-color="#2c1104"/>
+          <stop offset="100%" stop-color="#140602"/>
+        </radialGradient>
 
-        <!-- Server Carafe Clip Path -->
+        <!-- Hario Beehive Range Server Carafe Clip Path -->
         <clipPath id="${id}_server_clip">
-          <path d="M 38 74 C 36 74 34 76 34 80 L 32 94 C 28 98 28 106 32 110 L 30 126 C 26 132 28 148 38 148 L 78 148 C 88 148 90 132 86 126 L 84 110 C 88 106 88 98 84 94 L 82 80 C 82 76 80 74 78 74 Z"/>
+          <path d="M 40 76 C 37 76 35 79 35 84 
+                   C 31 89 30 96 34 102 
+                   C 29 108 28 116 33 122 
+                   C 28 130 29 148 40 148 L 76 148 
+                   C 87 148 88 130 83 122 
+                   C 88 116 87 108 82 102 
+                   C 86 96 85 89 81 84 
+                   C 81 79 79 76 76 76 Z"/>
         </clipPath>
       </defs>
 
-      <!-- 1. Ground Drop Shadow -->
-      <ellipse cx="58" cy="154" rx="36" ry="5.5" fill="rgba(0,0,0,0.92)" filter="url(#${id}_blur)"/>
+      <!-- 1. Soft Floor Shadow -->
+      <ellipse cx="58" cy="153" rx="35" ry="5.5" fill="rgba(0,0,0,0.9)" filter="url(#{id}_blur)"/>
 
-      <!-- 2. Hario Server Carafe Body Backfill -->
-      <path d="M 38 74 C 36 74 34 76 34 80 L 32 94 C 28 98 28 106 32 110 L 30 126 C 26 132 28 148 38 148 L 78 148 C 88 148 90 132 86 126 L 84 110 C 88 106 88 98 84 94 L 82 80 C 82 76 80 74 78 74 Z" fill="#0d0e14"/>
+      <!-- 2. Dark Cavity Server Glass Backing -->
+      <path d="M 40 76 C 37 76 35 79 35 84 C 31 89 30 96 34 102 C 29 108 28 116 33 122 C 28 130 29 148 40 148 L 76 148 C 87 148 88 130 83 122 C 88 116 87 108 82 102 C 86 96 85 89 81 84 C 81 79 79 76 76 76 Z" fill="#0b0c10"/>
 
-      <!-- 3. Brewed Amber Coffee in Server -->
-      <g clip-path="url(#${id}_server_clip)">
-        <rect x="20" y="98" width="80" height="55" fill="url(#${id}_coffee_liquid)"/>
-        
-        <!-- Surface Meniscus -->
-        <ellipse cx="58" cy="98" rx="27" ry="3.6" fill="#a1490d"/>
-        <ellipse cx="58" cy="98" rx="27" ry="3.6" stroke="#d97706" stroke-width="1.2" fill="none"/>
-        <ellipse cx="58" cy="98" rx="20" ry="2.4" fill="#ca8a04" opacity="0.6"/>
+      <!-- 3. Brewed Amber Coffee in Server Carafe -->
+      <g clip-path="url(#{id}_server_clip)">
+        <!-- Liquid Body filling up to middle tier -->
+        <rect x="20" y="102" width="80" height="50" fill="url(#{id}_coffee_glow)"/>
 
-        <!-- Light refractions inside coffee -->
-        <path d="M 33 104 C 31 126 34 142 42 146" stroke="rgba(255,255,255,0.22)" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-        <path d="M 83 104 C 85 126 82 142 74 146" stroke="rgba(0,0,0,0.5)" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+        <!-- Core Amber Light Glow -->
+        <ellipse cx="58" cy="128" rx="20" ry="14" fill="#f59e0b" opacity="0.22" filter="url(#{id}_soft_glow)"/>
+
+        <!-- Coffee Surface Meniscus -->
+        <ellipse cx="58" cy="102" rx="25" ry="3.5" fill="#853a08"/>
+        <ellipse cx="58" cy="102" rx="25" ry="3.5" stroke="#ca8a04" stroke-width="1.0" fill="none"/>
+        <ellipse cx="58" cy="102" rx="18" ry="2.2" fill="#eab308" opacity="0.45"/>
+
+        <!-- Concentric Surface Ripples from Coffee Drops -->
+        <ellipse cx="58" cy="102" rx="6" ry="1.1" stroke="rgba(254,240,138,0.75)" stroke-width="0.8" fill="none"/>
+        <ellipse cx="58" cy="102" rx="13" ry="1.7" stroke="rgba(254,240,138,0.35)" stroke-width="0.6" fill="none"/>
+
+        <!-- Glass Depth Reflections inside Coffee -->
+        <path d="M 32 110 C 30 128 34 142 42 145" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <path d="M 84 110 C 86 128 82 142 74 145" stroke="rgba(0,0,0,0.4)" stroke-width="2" stroke-linecap="round" fill="none"/>
       </g>
 
-      <!-- 4. Fresh Dripping Extraction Stream -->
-      <line x1="58" y1="68" x2="58" y2="94" stroke="#d97706" stroke-width="1.5" stroke-dasharray="3 2" stroke-linecap="round"/>
-      <ellipse cx="58" cy="96" rx="1.8" ry="2.2" fill="#d97706"/>
+      <!-- 4. Fresh Extraction Stream & Falling Droplet -->
+      <path d="M 58 72 Q 58.4 84 58 100" stroke="#f59e0b" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M 58 73 Q 58.2 84 58 99" stroke="#fef08a" stroke-width="0.7" stroke-linecap="round"/>
+      <ellipse cx="58" cy="91" rx="1.1" ry="1.6" fill="#fef08a"/>
 
-      <!-- 5. Glass Server Outer Silhouette with Beehive Flutes -->
-      <path d="M 38 74 C 36 74 34 76 34 80 L 32 94 C 28 98 28 106 32 110 L 30 126 C 26 132 28 148 38 148 L 78 148 C 88 148 90 132 86 126 L 84 110 C 88 106 88 98 84 94 L 82 80 C 82 76 80 74 78 74 Z" 
-            stroke="rgba(212,175,55,0.85)" stroke-width="1.4" fill="url(#${id}_glass_refract)"/>
+      <!-- 5. Hario Beehive Server Body with 3 Distinct Wavy Tiers -->
+      <path d="M 40 76 C 37 76 35 79 35 84 
+               C 31 89 30 96 34 102 
+               C 29 108 28 116 33 122 
+               C 28 130 29 148 40 148 L 76 148 
+               C 87 148 88 130 83 122 
+               C 88 116 87 108 82 102 
+               C 86 96 85 89 81 84 
+               C 81 79 79 76 76 76 Z" 
+            stroke="rgba(212,175,55,0.75)" stroke-width="1.3" fill="url(#{id}_glass_body)"/>
 
-      <!-- Server Mouth Rim -->
-      <ellipse cx="58" cy="74" rx="21" ry="3" stroke="rgba(255,255,255,0.8)" stroke-width="1.2" fill="none"/>
+      <!-- Carafe Top Rim & Delicate Spout on Left -->
+      <ellipse cx="58" cy="76" rx="20" ry="3.2" stroke="rgba(255,255,255,0.8)" stroke-width="1.1" fill="none"/>
+      <!-- Pronounced Spout Lip -->
+      <path d="M 39 76 C 35 73.5 33 77.5 37 78.5" stroke="rgba(255,255,255,0.95)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
 
-      <!-- Measurement Tick Marks on Server Glass (01, 02 Cup marks) -->
-      <line x1="33" y1="112" x2="38" y2="112" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/>
-      <circle cx="41" cy="112" r="0.8" fill="rgba(255,255,255,0.6)"/>
-      <line x1="32" y1="128" x2="37" y2="128" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/>
-      <circle cx="40" cy="128" r="0.8" fill="rgba(255,255,255,0.6)"/>
+      <!-- Horizontal Glass Ridge Lines defining Beehive Tiers -->
+      <path d="M 34 102 Q 58 105 82 102" stroke="rgba(255,255,255,0.3)" stroke-width="0.9" fill="none"/>
+      <path d="M 33 122 Q 58 125 83 122" stroke="rgba(255,255,255,0.3)" stroke-width="0.9" fill="none"/>
 
-      <!-- Ergonomic Curved Glass Server Handle -->
-      <path d="M 85 84 C 104 84 104 132 85 136" stroke="rgba(0,0,0,0.6)" stroke-width="5" stroke-linecap="round" fill="none"/>
-      <path d="M 85 84 C 104 84 104 132 85 136" stroke="url(#${id}_ceramic)" stroke-width="3" stroke-linecap="round" fill="none"/>
-      <path d="M 85 84 C 104 84 104 132 85 136" stroke="rgba(212,175,55,0.8)" stroke-width="1" stroke-linecap="round" fill="none"/>
+      <!-- Elegant Measurement Markings on Server Glass (01 / 02 Cup marks) -->
+      <line x1="36" y1="114" x2="41" y2="114" stroke="rgba(255,255,255,0.65)" stroke-width="1.1"/>
+      <circle cx="44" cy="114" r="0.8" fill="rgba(255,255,255,0.75)"/>
+      <line x1="35" y1="130" x2="40" y2="130" stroke="rgba(255,255,255,0.65)" stroke-width="1.1"/>
+      <circle cx="43" cy="130" r="0.8" fill="rgba(255,255,255,0.75)"/>
 
-      <!-- 6. HARIO V60 CERAMIC DRIPPER ON TOP (Exact 60° Cone Geometry) -->
-      <!-- Dripper Collar Ring resting on Server -->
-      <ellipse cx="58" cy="72" rx="28" ry="3.8" fill="#e2e8f0" stroke="rgba(212,175,55,0.85)" stroke-width="1.2"/>
+      <!-- Hollow Ergonomic Glass Server Handle -->
+      <path d="M 81 88 C 102 88 102 134 79 138" stroke="rgba(0,0,0,0.5)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+      <path d="M 81 88 C 102 88 102 134 79 138" stroke="rgba(255,255,255,0.65)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M 81 88 C 102 88 102 134 79 138" stroke="rgba(212,175,55,0.75)" stroke-width="0.9" stroke-linecap="round" fill="none"/>
 
-      <!-- 60° Ceramic Cone Body -->
-      <path d="M 26 22 L 50 69 Q 58 72 66 69 L 90 22 Z" fill="url(#${id}_ceramic)" stroke="rgba(212,175,55,0.85)" stroke-width="1.3"/>
-      <ellipse cx="58" cy="22" rx="32" ry="4.5" fill="#f8fafc" stroke="rgba(212,175,55,0.85)" stroke-width="1.2"/>
+      <!-- 6. HARIO V60 60° CERAMIC DRIPPER WITH AUTHENTIC SPIRAL RIBS -->
+      <!-- Base Plate Collar resting on Server Mouth -->
+      <ellipse cx="58" cy="74" rx="27" ry="3.6" fill="#f1f5f9" stroke="rgba(212,175,55,0.85)" stroke-width="1.1"/>
+      <ellipse cx="58" cy="74" rx="24" ry="2.6" fill="#e2e8f0" stroke="rgba(203,213,225,0.8)" stroke-width="0.7"/>
 
-      <!-- Dripper Side Loop Handle -->
-      <path d="M 89 26 C 98 26 98 44 81 48" stroke="url(#${id}_ceramic)" stroke-width="2.6" fill="none"/>
-      <path d="M 89 26 C 98 26 98 44 81 48" stroke="rgba(212,175,55,0.8)" stroke-width="0.8" fill="none"/>
+      <!-- 60-Degree Conical Dripper Shell -->
+      <path d="M 27 24 L 49 71 Q 58 74 67 71 L 89 24 Z" 
+            fill="url(#{id}_ceramic)" stroke="rgba(212,175,55,0.85)" stroke-width="1.2"/>
 
-      <!-- 7. White Fluted V60 Paper Filter inside Dripper -->
-      <path d="M 32 23 L 53 66 Q 58 68 63 66 L 84 23 Z" fill="url(#${id}_paper)" stroke="rgba(203,213,225,0.8)" stroke-width="1"/>
+      <!-- Dripper Top Rim with Royal Bevel -->
+      <ellipse cx="58" cy="24" rx="31" ry="4.2" fill="#ffffff" stroke="rgba(212,175,55,0.9)" stroke-width="1.2"/>
+      <ellipse cx="58" cy="24" rx="28" ry="3.4" fill="#f8fafc" stroke="rgba(203,213,225,0.6)" stroke-width="0.8"/>
 
-      <!-- Hario Patented Curved Spiral Ribs inside V60 -->
-      <path d="M 36 24 C 42 36 48 52 56 65" stroke="rgba(148,163,184,0.5)" stroke-width="1.1" fill="none"/>
-      <path d="M 47 24 C 51 36 54 50 58 65" stroke="rgba(148,163,184,0.4)" stroke-width="1.0" fill="none"/>
-      <path d="M 69 24 C 65 36 62 50 58 65" stroke="rgba(148,163,184,0.4)" stroke-width="1.0" fill="none"/>
-      <path d="M 80 24 C 74 36 68 52 60 65" stroke="rgba(148,163,184,0.5)" stroke-width="1.1" fill="none"/>
+      <!-- Delicate Ceramic Ear Loop Handle on Dripper -->
+      <path d="M 88 28 C 97 28 97 44 82 48" stroke="rgba(0,0,0,0.3)" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+      <path d="M 88 28 C 97 28 97 44 82 48" stroke="url(#{id}_ceramic)" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+      <path d="M 88 28 C 97 28 97 44 82 48" stroke="rgba(212,175,55,0.8)" stroke-width="0.8" stroke-linecap="round" fill="none"/>
 
-      <!-- Blooming Coffee Grounds Bed -->
-      <ellipse cx="58" cy="34" rx="18" ry="3.5" fill="url(#${id}_bloom)"/>
-      <ellipse cx="58" cy="34" rx="13" ry="2.2" fill="#451a03"/>
-      <circle cx="54" cy="34" r="1.2" fill="#d97706"/>
-      <circle cx="62" cy="33.5" r="1.1" fill="#b45309"/>
-      <circle cx="58" cy="34.8" r="0.9" fill="#ca8a04"/>
+      <!-- 7. White Conical V60 Filter Paper -->
+      <path d="M 33 25 L 52 68 Q 58 70 64 68 L 83 25 Z" fill="url(#{id}_paper)" stroke="rgba(203,213,225,0.7)" stroke-width="0.8"/>
 
-      <!-- 8. Glass Specular Highlights -->
-      <path d="M 32 82 C 30 96 30 115 32 128" stroke="rgba(255,255,255,0.6)" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-      <path d="M 33 130 C 31 138 34 144 42 147" stroke="rgba(255,255,255,0.6)" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-      <!-- Dripper Ceramic Gloss -->
-      <path d="M 31 26 L 46 62" stroke="rgba(255,255,255,0.7)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+      <!-- AUTHENTIC HARIO SPIRAL RIBS (Graceful curved swirling ribs inside cone) -->
+      <path d="M 36 26 Q 44 42 54 67" stroke="rgba(148,163,184,0.65)" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+      <path d="M 46 26 Q 52 42 57 67" stroke="rgba(148,163,184,0.55)" stroke-width="1.0" stroke-linecap="round" fill="none"/>
+      <path d="M 58 26 Q 60 42 59 67" stroke="rgba(148,163,184,0.55)" stroke-width="1.0" stroke-linecap="round" fill="none"/>
+      <path d="M 70 26 Q 66 42 61 67" stroke="rgba(148,163,184,0.55)" stroke-width="1.0" stroke-linecap="round" fill="none"/>
+      <path d="M 80 26 Q 72 42 63 67" stroke="rgba(148,163,184,0.65)" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+
+      <!-- Blooming Fresh Coffee Bed with Crema Foam -->
+      <ellipse cx="58" cy="35" rx="17" ry="3.4" fill="url(#{id}_bloom)"/>
+      <ellipse cx="58" cy="35" rx="12" ry="2.2" fill="#451a03"/>
+      <!-- Golden bloom bubbles -->
+      <circle cx="54" cy="35" r="1.1" fill="#d97706"/>
+      <circle cx="62" cy="34.5" r="1.0" fill="#b45309"/>
+      <circle cx="58.5" cy="35.8" r="0.8" fill="#ca8a04"/>
+      <circle cx="50" cy="35.2" r="0.6" fill="#f59e0b"/>
+
+      <!-- 8. Master Glass Highlights & Ceramic Sheen -->
+      <path d="M 33 86 C 30 94 30 114 32 124" stroke="rgba(255,255,255,0.7)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+      <path d="M 33 126 C 31 134 34 144 42 147" stroke="rgba(255,255,255,0.75)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      <path d="M 32 28 L 46 64" stroke="rgba(255,255,255,0.8)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
     </svg>
   `;
 }
