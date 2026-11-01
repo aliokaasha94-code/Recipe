@@ -620,11 +620,202 @@ function render3DHeritageChaiGlass(options) {
 // ========================================================
 // MAIN DISPATCHER: getDrinkSvg(item)
 // ========================================================
+function render3DHotCup(options) {
+  const id = getNextSvgId('hot_cup_black');
+  const layers = options.layers || [
+    { pct: 35, col: '#2a1206', colLight: '#46200c', colDark: '#1a0902' },
+    { pct: 50, col: '#faf5ee', colLight: '#ffffff', colDark: '#ebe2d5' },
+    { pct: 15, col: '#ffffff', colLight: '#ffffff', colDark: '#f4ede4' }
+  ];
+  const topStyle = options.topStyle || 'foam'; // 'foam', 'cocoa', 'caramel', 'crema', 'flat', 'pistachio'
+  const isAmericano = options.isAmericano || false;
+
+  // Cutaway window coordinates (leaving deep black paper borders on sides)
+  const winTop = 38;
+  const winBottom = 140;
+  const totalH = winBottom - winTop;
+
+  let currentBottom = winBottom;
+  let layersHtml = '';
+
+  layers.forEach((l, idx) => {
+    const h = (l.pct / 100) * totalH;
+    const currentTop = currentBottom - h;
+    const gradId = `${id}_lay_${idx}`;
+
+    layersHtml += `
+      <linearGradient id="${gradId}" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="${l.colDark || l.col}" stop-opacity="0.95"/>
+        <stop offset="25%" stop-color="${l.colLight || l.col}" stop-opacity="1"/>
+        <stop offset="70%" stop-color="${l.col || l.colLight}" stop-opacity="0.98"/>
+        <stop offset="100%" stop-color="${l.colDark || l.col}" stop-opacity="0.90"/>
+      </linearGradient>
+
+      <!-- 3D Liquid Layer with Meniscus Arc -->
+      <path d="M 28 ${currentTop} Q 60 ${currentTop + 3.8} 92 ${currentTop} L 92 ${currentBottom} Q 60 ${currentBottom + 3.8} 28 ${currentBottom} Z" fill="url(#${gradId})"/>
+      <path d="M 28 ${currentTop} Q 60 ${currentTop + 3.8} 92 ${currentTop}" stroke="rgba(255,255,255,0.4)" stroke-width="0.8" fill="none"/>
+    `;
+    currentBottom = currentTop;
+  });
+
+  // Top surface decorations
+  let decorHtml = '';
+  if (topStyle === 'cocoa') {
+    decorHtml = `
+      <!-- Roasted Dark Cocoa Powder Dusting -->
+      <ellipse cx="60" cy="${currentBottom + 2}" rx="26" ry="3.5" fill="#2d1307" opacity="0.85"/>
+      <circle cx="50" cy="${currentBottom + 2}" r="1.1" fill="#170903"/>
+      <circle cx="63" cy="${currentBottom + 1.6}" r="1.3" fill="#170903"/>
+      <circle cx="71" cy="${currentBottom + 2.5}" r="1.0" fill="#170903"/>
+      <circle cx="44" cy="${currentBottom + 2.4}" r="0.8" fill="#170903"/>
+      <circle cx="57" cy="${currentBottom + 2.7}" r="0.9" fill="#170903"/>
+      <circle cx="67" cy="${currentBottom + 1.8}" r="0.7" fill="#170903"/>
+    `;
+  } else if (topStyle === 'caramel') {
+    decorHtml = `
+      <!-- Golden Caramel Grid Lattice -->
+      <path d="M 38 ${currentBottom + 2} Q 60 ${currentBottom - 1} 82 ${currentBottom + 2}" stroke="#d97706" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+      <path d="M 44 ${currentBottom + 4} Q 60 ${currentBottom + 1} 76 ${currentBottom + 4}" stroke="#b45309" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+      <path d="M 46 ${currentBottom} L 52 ${currentBottom + 5}" stroke="#d97706" stroke-width="2" stroke-linecap="round"/>
+      <path d="M 60 ${currentBottom} L 66 ${currentBottom + 5}" stroke="#d97706" stroke-width="2" stroke-linecap="round"/>
+      <path d="M 72 ${currentBottom} L 76 ${currentBottom + 4.5}" stroke="#b45309" stroke-width="1.8" stroke-linecap="round"/>
+    `;
+  } else if (topStyle === 'crema') {
+    decorHtml = `
+      <!-- Thick Golden-Hazelnut Crema Surface -->
+      <ellipse cx="60" cy="${currentBottom + 1.5}" rx="28" ry="3.8" fill="#c68428" opacity="0.95"/>
+      <ellipse cx="60" cy="${currentBottom + 1.5}" rx="22" ry="2.8" fill="#a16215" opacity="0.7"/>
+      <circle cx="52" cy="${currentBottom + 1.5}" r="1.2" fill="#f59e0b"/>
+      <circle cx="67" cy="${currentBottom + 2}" r="1.0" fill="#f59e0b"/>
+    `;
+  } else if (topStyle === 'pistachio') {
+    decorHtml = `
+      <!-- Crushed Pistachio Nut Sprinkles -->
+      <ellipse cx="60" cy="${currentBottom + 2}" rx="26" ry="3.5" fill="#4d7c0f" opacity="0.8"/>
+      <circle cx="48" cy="${currentBottom + 2}" r="1.2" fill="#365314"/>
+      <circle cx="62" cy="${currentBottom + 1.6}" r="1.4" fill="#365314"/>
+      <circle cx="70" cy="${currentBottom + 2.3}" r="1.0" fill="#365314"/>
+      <circle cx="56" cy="${currentBottom + 2.5}" r="0.9" fill="#84cc16"/>
+    `;
+  }
+
+  return `
+    <svg viewBox="0 0 120 160" fill="none" class="drink-art-svg" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Soft Ground Contact Shadow -->
+        <filter id="${id}_blur" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="3"/>
+        </filter>
+
+        <!-- 3D Matte Deep-Black Paper Cup Shell Gradient (Matching Emad Afandi Cup) -->
+        <linearGradient id="${id}_black_cup" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#111215"/>
+          <stop offset="14%" stop-color="#1f2229"/>
+          <stop offset="32%" stop-color="#2d323d"/>
+          <stop offset="68%" stop-color="#21242c"/>
+          <stop offset="86%" stop-color="#18191f"/>
+          <stop offset="100%" stop-color="#0c0d10"/>
+        </linearGradient>
+
+        <!-- 3D Matte Black Takeaway Lid Gradients -->
+        <linearGradient id="${id}_lid_cap" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#17181c"/>
+          <stop offset="22%" stop-color="#2c303a"/>
+          <stop offset="50%" stop-color="#3a404d"/>
+          <stop offset="80%" stop-color="#242730"/>
+          <stop offset="100%" stop-color="#121316"/>
+        </linearGradient>
+
+        <linearGradient id="${id}_lid_rim" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#131417"/>
+          <stop offset="25%" stop-color="#262932"/>
+          <stop offset="50%" stop-color="#343945"/>
+          <stop offset="80%" stop-color="#20222a"/>
+          <stop offset="100%" stop-color="#0e0f12"/>
+        </linearGradient>
+
+        <!-- 3D Cylindrical Volumetric Light & Shadow Overlay for Liquid -->
+        <linearGradient id="${id}_cyl" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="rgba(0,0,0,0.58)"/>
+          <stop offset="16%" stop-color="rgba(255,255,255,0.0)"/>
+          <stop offset="30%" stop-color="rgba(255,255,255,0.22)"/>
+          <stop offset="68%" stop-color="rgba(0,0,0,0.0)"/>
+          <stop offset="88%" stop-color="rgba(0,0,0,0.32)"/>
+          <stop offset="100%" stop-color="rgba(0,0,0,0.65)"/>
+        </linearGradient>
+
+        <!-- Cutaway Window ClipPath (Leaving crisp black paper margins) -->
+        <clipPath id="${id}_cutaway">
+          <path d="M 28 37 Q 60 41 92 37 L 83 140 Q 60 144 37 140 Z"/>
+        </clipPath>
+      </defs>
+
+      <!-- 1. Floor Drop Shadow -->
+      <ellipse cx="60" cy="154" rx="36" ry="5.5" fill="rgba(0,0,0,0.9)" filter="url(#${id}_blur)"/>
+
+      <!-- 2. Outer 3D Matte Black Paper Cup Body -->
+      <path d="M 18 32 L 31 146 Q 32 149 36 149 L 84 149 Q 88 149 89 146 L 102 32 Z" fill="url(#${id}_black_cup)"/>
+      
+      <!-- White Rolled Paper Base Rim (As shown in Image 1) -->
+      <path d="M 30 145 Q 60 149 90 145 L 89 149 Q 60 153 31 149 Z" fill="#e2e8f0"/>
+      <path d="M 31 146 Q 60 150 89 146" stroke="#94a3b8" stroke-width="0.8" fill="none"/>
+
+      <!-- 3. Cutaway Window: Liquids & 3D Shading -->
+      <g clip-path="url(#${id}_cutaway)">
+        <!-- Deep dark cavity background -->
+        <rect x="20" y="32" width="80" height="118" fill="#0d0b09"/>
+
+        <!-- Colored Liquid Strata -->
+        ${layersHtml}
+        ${decorHtml}
+
+        <!-- 3D Cylindrical Light & Shadow Overlay -->
+        <rect x="20" y="32" width="80" height="118" fill="url(#${id}_cyl)"/>
+
+        <!-- Inner Bevel Shadows framing the cutaway -->
+        <path d="M 28 37 L 37 140" stroke="rgba(0,0,0,0.55)" stroke-width="2"/>
+        <path d="M 92 37 L 83 140" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+        <path d="M 28 37 Q 60 41 92 37" stroke="rgba(0,0,0,0.6)" stroke-width="2.2"/>
+      </g>
+
+      <!-- 4. Emad Afandi Luxury Gold Accent Border framing Cutaway -->
+      <path d="M 28 37 Q 60 41 92 37 L 83 140 Q 60 144 37 140 Z" stroke="rgba(212,175,55,0.85)" stroke-width="1.2" fill="none"/>
+
+      <!-- 5. 3D Takeaway Lid Drop Shadow onto Black Cup Body -->
+      <path d="M 16 33 Q 60 38 104 33 L 103 39 Q 60 44 17 39 Z" fill="rgba(0,0,0,0.7)"/>
+
+      <!-- 6. 3D Matte Black Takeaway Lid (Exact Geometry of Image 1) -->
+      <!-- Bottom Rim Flange that clips on cup -->
+      <path d="M 13 28 L 16 33 Q 60 37 104 33 L 107 28 Q 60 32 13 28 Z" fill="url(#${id}_lid_rim)"/>
+      <ellipse cx="60" cy="28" rx="47" ry="4.5" fill="url(#${id}_lid_cap)"/>
+      <ellipse cx="60" cy="27.5" rx="46.5" ry="4" stroke="rgba(255,255,255,0.25)" stroke-width="0.8" fill="none"/>
+
+      <!-- Lid Stepped Middle Neck -->
+      <path d="M 23 21 L 25 27 Q 60 30 95 27 L 97 21 Q 60 24 23 21 Z" fill="url(#${id}_lid_rim)"/>
+      <ellipse cx="60" cy="21" rx="37" ry="3.5" fill="url(#${id}_lid_cap)"/>
+
+      <!-- Lid Raised Crown with Spout & Wedge -->
+      <ellipse cx="60" cy="15" rx="29" ry="3.2" fill="url(#${id}_lid_cap)"/>
+      <ellipse cx="60" cy="14.5" rx="28.5" ry="2.8" stroke="rgba(255,255,255,0.3)" stroke-width="0.8" fill="none"/>
+
+      <!-- Rear Raised Wedge (Image 1 feature) -->
+      <path d="M 46 14.5 L 74 14.5 L 72 12 L 48 12 Z" fill="#2d323e" opacity="0.8"/>
+
+      <!-- Oval Drinking Spout Hole with Recessed Lip -->
+      <ellipse cx="38" cy="15" rx="5.4" ry="1.9" fill="#090a0d" stroke="#3d4352" stroke-width="0.8"/>
+    </svg>
+  `;
+}
+
+// ========================================================
+// 2. 3D CLEAR CONTOURED ICED CUP WITH ASYMMETRICAL SIP LID (Matching Image 2)
+// ========================================================
+
 function getDrinkSvg(item) {
   const id = (item.id || '').toLowerCase();
   const name = (item.name || '').toLowerCase();
 
-  // 1. TURKISH COFFEE (Single & Double, Plain / Spiced, Light / Med / Dark)
+  // 1. TURKISH COFFEE (Single & Double, Plain / Spiced, Light / Med / Dark, Specialty)
   if (id.includes('turkish') || name.includes('تركي')) {
     const isDark = id.includes('dark') || name.includes('غامق');
     const isLight = id.includes('light') || name.includes('فاتح');
@@ -641,16 +832,11 @@ function getDrinkSvg(item) {
   if (id.includes('arabic') || name.includes('عربي')) {
     return render3DArabicDallah({ isJabana: false });
   }
-  if (id.includes('jabana') || name.includes('جبنة')) {
+  if (id.includes('jabana') || name.includes('جبنة') || name.includes('جبّنة')) {
     return render3DArabicDallah({ isJabana: true });
   }
 
-  // 3. SPICED CHAI (Karak, Adani, Masala)
-  if (id.includes('karak') || id.includes('adani') || id.includes('masala') || name.includes('كرك') || name.includes('عدني') || name.includes('ماسالا')) {
-    return render3DHeritageChaiGlass({});
-  }
-
-  // 4. FRENCH COFFEE (All variants served in Royal French Finjans & Saucers)
+  // 3. FRENCH COFFEE (All variants served in Royal French Finjans & Saucers)
   if (id.includes('french') || name.includes('فرنسا')) {
     if (id.includes('caramel') || name.includes('كراميل')) {
       return render3DFrenchFinjan({ flavor: 'caramel' });
@@ -664,29 +850,105 @@ function getDrinkSvg(item) {
     if (id.includes('vanilla') || name.includes('فانيليا')) {
       return render3DFrenchFinjan({ flavor: 'vanilla' });
     }
-    // Default Classic French Finjan
     return render3DFrenchFinjan({ flavor: 'classic' });
   }
 
-  // 5. HOT SPECIALTIES (All served in 3D Royal Ceramic Mugs & Saucers)
-  if (id.includes('hot-batata') || name.includes('بطاطا')) {
-    return render3DHotCeramicMug({ type: 'batata' });
-  }
-  if (id.includes('hot-lotus') || name.includes('لوتس')) {
-    return render3DHotCeramicMug({ type: 'lotus' });
-  }
-  if (id.includes('hot-pistachio') || name.includes('بيستاشيو') || name.includes('بستاش')) {
-    return render3DHotCeramicMug({ type: 'pistachio' });
-  }
+  // 4. HOT DRINKS (Matching Station 1 Sleek Black-Lid To-Go Cups with Layers & Toppings)
+  // [A] Hot Chocolate
   if (id.includes('hot-chocolate') || name.includes('شوكليت') || name.includes('شوكولاتة')) {
-    return render3DHotCeramicMug({ type: 'chocolate' });
+    return render3DHotCup({
+      layers: [
+        { pct: 40, col: '#220f06', colLight: '#3a1b0b', colDark: '#120702' },
+        { pct: 45, col: '#4a2410', colLight: '#603017', colDark: '#36180a' },
+        { pct: 15, col: '#ffffff', colLight: '#ffffff', colDark: '#f5ece1' }
+      ],
+      topStyle: 'cocoa'
+    });
   }
 
-  // Default Traditional Finjan
-  return render3DTurkishFinjan({ roast: 'medium', isSpiced: false });
+  // [B] Hot Sweet Potato Caramel (هوت بطاطا دافئ بالكراميل)
+  if (id.includes('hot-batata') || name.includes('بطاطا')) {
+    return render3DHotCup({
+      layers: [
+        { pct: 35, col: '#b45309', colLight: '#d97706', colDark: '#853a05' },
+        { pct: 50, col: '#fffbeb', colLight: '#ffffff', colDark: '#fef3c7' },
+        { pct: 15, col: '#ffffff', colLight: '#ffffff', colDark: '#f4ede4' }
+      ],
+      topStyle: 'caramel'
+    });
+  }
+
+  // [C] Royal Hot Lotus (هوت لوتس ملكي)
+  if (id.includes('hot-lotus') || name.includes('لوتس')) {
+    return render3DHotCup({
+      layers: [
+        { pct: 35, col: '#92400e', colLight: '#b45309', colDark: '#78350f' },
+        { pct: 50, col: '#faf5ee', colLight: '#ffffff', colDark: '#ede2d3' },
+        { pct: 15, col: '#ffffff', colLight: '#ffffff', colDark: '#f4ede4' }
+      ],
+      topStyle: 'caramel'
+    });
+  }
+
+  // [D] Royal Hot Pistachio (هوت بيستاشيو فاخر)
+  if (id.includes('hot-pistachio') || name.includes('بيستاشيو') || name.includes('بستاش')) {
+    return render3DHotCup({
+      layers: [
+        { pct: 32, col: '#3f6212', colLight: '#65a30d', colDark: '#2e490d' },
+        { pct: 53, col: '#f7fee7', colLight: '#ffffff', colDark: '#ecfccb' },
+        { pct: 15, col: '#ffffff', colLight: '#ffffff', colDark: '#f4ede4' }
+      ],
+      topStyle: 'pistachio'
+    });
+  }
+
+  // [E] Authentic Karak Chai (شاي كرك أصيل)
+  if (id.includes('karak') || name.includes('كرك')) {
+    return render3DHotCup({
+      layers: [
+        { pct: 75, col: '#9a3412', colLight: '#b45309', colDark: '#7c2d12' },
+        { pct: 15, col: '#fef3c7', colLight: '#ffffff', colDark: '#fde68a' },
+        { pct: 10, col: '#fffbeb', colLight: '#ffffff', colDark: '#fef08a' }
+      ],
+      topStyle: 'crema'
+    });
+  }
+
+  // [F] Adeni Spiced Tea (شاي عدني يمني فاخر)
+  if (id.includes('adani') || id.includes('adeni') || name.includes('عدني')) {
+    return render3DHotCup({
+      layers: [
+        { pct: 75, col: '#7c2d12', colLight: '#9a3412', colDark: '#541c09' },
+        { pct: 15, col: '#fef3c7', colLight: '#ffffff', colDark: '#fde68a' },
+        { pct: 10, col: '#fffbeb', colLight: '#ffffff', colDark: '#fef3c7' }
+      ],
+      topStyle: 'cocoa'
+    });
+  }
+
+  // [G] Indian Masala Chai (شاي ماسالا هندي حار)
+  if (id.includes('masala') || name.includes('ماسالا')) {
+    return render3DHotCup({
+      layers: [
+        { pct: 75, col: '#78350f', colLight: '#92400e', colDark: '#451a03' },
+        { pct: 15, col: '#fde68a', colLight: '#fef3c7', colDark: '#fcd34d' },
+        { pct: 10, col: '#fffbeb', colLight: '#ffffff', colDark: '#fef3c7' }
+      ],
+      topStyle: 'crema'
+    });
+  }
+
+  // Fallback default hot cup
+  return render3DHotCup({
+    layers: [
+      { pct: 40, col: '#2a1206', colLight: '#46200c', colDark: '#1a0902' },
+      { pct: 45, col: '#faf5ee', colLight: '#ffffff', colDark: '#ebe2d5' },
+      { pct: 15, col: '#ffffff', colLight: '#ffffff', colDark: '#f4ede4' }
+    ],
+    topStyle: 'foam'
+  });
 }
 
-// 3-Step Operation Sequence Teaser
 function getDrinkSequence(item) {
   const id = (item.id || '').toLowerCase();
   if (id.includes('turkish') || id.includes('تركي')) {

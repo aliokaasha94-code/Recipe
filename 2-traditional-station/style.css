@@ -491,11 +491,9 @@ html[dir="ltr"] .search-icon-pos {
 }
 
 .landscape-top-row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 3px;
+  display: block;
+  width: 100%;
+  margin-bottom: 4px;
 }
 
 .landscape-drink-name {

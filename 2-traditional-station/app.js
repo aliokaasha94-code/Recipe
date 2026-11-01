@@ -80,7 +80,7 @@ const I18N = {
       timer: "المؤقت",
       steepTime: "وقت النقع",
       ratio: "الريشيو",
-      cup: "الكوب المعتمد",
+      cup: "أداة التقديم والكوب المعتمد",
       yieldCount: "الإنتاج المتوقع",
       batterDose: "صب العجين",
       miniPortion: "حجم الحصة"
@@ -407,18 +407,6 @@ class StationApp {
     const primaryName = isAr ? nameAr : nameEn;
     const secondaryName = isAr ? nameEn : (item.category_en || nameEn);
 
-    // Clean concise size badge
-    let sizeBadge = '';
-    if (item.sizes) {
-      sizeBadge = `<span class="card-size-tag">8 / 12 / 16 oz</span>`;
-    } else if (item.single && item.double) {
-      sizeBadge = `<span class="card-size-tag">${isAr ? 'سنجل / دبل' : 'Single / Double'}</span>`;
-    } else if (item.cup) {
-      let shortCup = item.cup.split('/')[0].split('(')[0].trim();
-      const displayCup = isAr ? shortCup : this.translateMetricValue(shortCup);
-      sizeBadge = `<span class="card-size-tag">${displayCup}</span>`;
-    }
-
     return `
       <div class="drink-landscape-card" onclick="window.app.openRecipeDetail('${item.id}')">
         <div class="landscape-art-wrap">
@@ -427,7 +415,6 @@ class StationApp {
         <div class="landscape-info-wrap">
           <div class="landscape-top-row">
             <h3 class="landscape-drink-name">${primaryName}</h3>
-            ${sizeBadge ? `<span class="landscape-size-badge">${sizeBadge}</span>` : ''}
           </div>
           <div class="landscape-drink-en">${secondaryName}</div>
           <div class="landscape-action-row">

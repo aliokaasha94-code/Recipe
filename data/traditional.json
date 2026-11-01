@@ -282,7 +282,7 @@
           "name_en": "Specialty Single Origin Turkish Coffee",
           "category": "turkish-classics",
           "category_en": "Specialty Turkish Coffee",
-          "cup": "فنجان تركي مختص 70 / 140 ml",
+          "cup": "فنجان سيراميك تركي رقيق الحافة (70ml سنجل / 140ml دبل)",
           "notes": "محصول بن مختص إثيوبي أو كولومبي معالج مجفف، يُسوى بهدوء على حرارة 88-92 مئوية لإبراز إيحاءات الفاكهة والزهور الطبيعية.",
           "notes_en": "Specialty single origin Ethiopian or Colombian beans gently brewed at 88-92°C to showcase delicate florals and fruity notes.",
           "single": {
@@ -505,7 +505,7 @@
           "coffee": "30g بن عربي أشقر محمص خفيف",
           "water": "500ml ماء مغلي",
           "spices": "هيل أمريكي مطحون خشن + زعفران سوبر نقيل + مسمار قرنفل",
-          "cup": "دلة تقديم + فنجان بيالة",
+          "cup": "دلة تقديم نحاسية + فناجين بيالات عربية صغيرة",
           "steps": [
             "غلي 500 مل ماء في دلة الغليان ثم إضافة البن الأشقر وتهدئة النار وتركها تطبخ بهدوء لمدة 15 دقيقة.",
             "وضع الهيل المطحون خشناً مع خيوط الزعفران والمسمار في قاع دلة التقديم الذهبية.",
@@ -539,7 +539,7 @@
           "coffee": "25g بن حبوب يُحمص ويُجرش طازجاً",
           "water": "350ml ماء نقي",
           "spices": "زنجبيل طازج مبشور + 3 حبات هيل مسحوق + عود قرفة",
-          "cup": "جَبَنَة فخار + فنجان طين",
+          "cup": "فخار الجَبَنَة التقليدي المزخرف + فناجين طين صغيرة + ليفة تصفية طبيعية",
           "steps": [
             "جرش حبوب البن المحمص مع الزنجبيل الطازج والهيل.",
             "وضع البن والتوابل والماء داخل إبريق الفخار (الجَبَنَة) ووضعه على حرارة الرمالة الهادئة.",
@@ -631,12 +631,13 @@
             "Pour milk gradually while whisking to create a smooth, luxurious texture.",
             "Garnish with whipped cream and artisan toppings."
           ],
-          "proTip_en": "Whisk sauce with a small splash of hot milk first to prevent clumps and ensure even sweetness."
+          "proTip_en": "Whisk sauce with a small splash of hot milk first to prevent clumps and ensure even sweetness.",
+          "cup": "كوب ورقي حراري ساخن + غطاء تيك أواي أسود (12 / 16 oz)"
         },
         {
           "id": "hot-batata",
           "name": "هوت بطاطا دافئ بالكراميل (Sweet Potato Hot Drink)",
-          "cup": "كوب 12 oz",
+          "cup": "كوب ورقي حراري ساخن + غطاء تيك أواي أسود (12 oz)",
           "milk": "220g حليب كامل الدسم",
           "powder": "35g بودر بطاطا فاخر",
           "sauceBatata": "60g صوص بطاطا حلوة",
@@ -669,7 +670,7 @@
         {
           "id": "hot-lotus",
           "name": "هوت لوتس ملكي (Royal Hot Lotus)",
-          "cup": "كوب 12 oz",
+          "cup": "كوب ورقي حراري ساخن + غطاء تيك أواي أسود (12 oz)",
           "milk": "220g حليب",
           "sauce": "45g صوص لوتس أصلي (40g داخل الأوردر + 5g جرنشة ع الكريمة)",
           "condensedMilk": "10g حليب مكثف محلى",
@@ -704,7 +705,7 @@
         {
           "id": "hot-pistachio",
           "name": "هوت بيستاشيو فاخر (Royal Hot Pistachio)",
-          "cup": "كوب 12 oz",
+          "cup": "كوب ورقي حراري ساخن + غطاء تيك أواي أسود (12 oz)",
           "milk": "220g حليب",
           "sauce": "45g صوص بيستاشيو (40g داخل الأوردر + 5g جرنشة ع الكريمة)",
           "starch": "10g نشا",
