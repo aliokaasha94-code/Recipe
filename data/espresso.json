@@ -48,7 +48,7 @@
         },
         {
           "id": "latte",
-          "name": "كافيه لاتيه (Caffè Latte)",
+          "name": "لاتيه (Caffè Latte)",
           "sizes": {
             "small": {
               "sizeLabel": "صغير (8 oz)",
@@ -183,7 +183,7 @@
         },
         {
           "id": "piccolo",
-          "name": "بيكلو لاتيه (Piccolo Latte)",
+          "name": "بيكلو (Piccolo)",
           "coffeeGram": "18g",
           "extractionMl": "20ml (ريستريتو مركز)",
           "milk": "90ml",
@@ -200,7 +200,7 @@
             "solution_en": "Stop shot early manually at 20-22 seconds or 20ml to protect the sweet, concentrated flavor profile."
           },
           "proTip": "الريستريتو يعطي حلاوة مركزة بدون أي مرارة استخلاص زائدة.",
-          "name_en": "Piccolo Latte",
+          "name_en": "Piccolo",
           "notes_en": "Single ristretto shot topped with warm silky microfoam in a 4 oz cup.",
           "steps_en": [
             "Extract a short single ristretto (20-25ml) into a 4 oz glass.",
@@ -211,7 +211,7 @@
         },
         {
           "id": "spanish-latte",
-          "name": "سبانيش لاتيه ساخن (Hot Spanish Latte)",
+          "name": "سبانيش لاتيه (Spanish Latte)",
           "sizes": {
             "small": {
               "sizeLabel": "صغير (8 oz)",
@@ -250,7 +250,7 @@
             "solution_en": "Use a clean long barista bar spoon to gently stir the base without breaking the top latte art."
           },
           "proTip": "رج زجاجة الحليب المكثف المعياري وتأكد أنها بدرجة حرارة الغرفة لسهولة الصب والدقة.",
-          "name_en": "Hot Spanish Latte",
+          "name_en": "Spanish Latte",
           "notes_en": "Sweetened condensed milk base topped with rich double espresso and textured milk.",
           "steps_en": [
             "Add 30-40g condensed milk to bottom of 12 oz cup.",
@@ -262,7 +262,7 @@
         },
         {
           "id": "pistachio-latte",
-          "name": "بيستاشيو لاتيه ساخن (Hot Pistachio Latte)",
+          "name": "بيستاشيو لاتيه (Pistachio Latte)",
           "sizes": {
             "small": {
               "sizeLabel": "صغير (8 oz)",
@@ -301,7 +301,7 @@
             "solution_en": "Add 10ml hot water or hot espresso first and whisk briskly with a mini bar whisk before adding milk."
           },
           "proTip": "صوص البيستاشيو الفاخر لعماد أفندي يتميز بلونه الأخضر الطبيعي وقوامه الزبدي.",
-          "name_en": "Hot Pistachio Latte",
+          "name_en": "Pistachio Latte",
           "notes_en": "Specialty pistachio paste layered with fresh double espresso and velvety milk.",
           "steps_en": [
             "Dispense 30-35g premium pistachio sauce into bottom of the cup.",
@@ -313,7 +313,7 @@
         },
         {
           "id": "white-mocha",
-          "name": "وايت موكا ساخن (Hot White Mocha)",
+          "name": "وايت موكا (White Mocha)",
           "sizes": {
             "small": {
               "sizeLabel": "صغير (8 oz)",
@@ -352,7 +352,7 @@
             "solution_en": "Gently swirl cup in circular motion or stir with a bar spoon from the edge."
           },
           "proTip": "صوص الشوكولاتة البيضاء يحتاج تقليباً سريعاً لمنع التصاقه بجوانب الكوب.",
-          "name_en": "Hot White Mocha",
+          "name_en": "White Mocha",
           "notes_en": "Rich white chocolate mocha sauce melted with espresso and steamed milk.",
           "steps_en": [
             "Pump 30g white chocolate sauce into the serving cup.",
@@ -364,7 +364,7 @@
         },
         {
           "id": "caramel-macchiato",
-          "name": "كراميل ماكياتو ساخن (Hot Caramel Macchiato)",
+          "name": "كراميل ماكياتو (Caramel Macchiato)",
           "sizes": {
             "small": {
               "sizeLabel": "صغير (8 oz)",
@@ -407,7 +407,7 @@
             "solution_en": "Aerate milk slightly more next time; the foam head needs density to suspend the espresso mark."
           },
           "proTip": "الكراميل ماكياتو لا يُقلب عند التقديم؛ متعة المشروب هي تذوق الإسبريسو المركز متبوعاً بحلاوة الحليب والفانيليا.",
-          "name_en": "Hot Caramel Macchiato",
+          "name_en": "Caramel Macchiato",
           "notes_en": "Vanilla syrup, silky steamed milk, marked with espresso and caramel grid.",
           "steps_en": [
             "Add 20ml vanilla syrup to bottom of 12 oz cup.",
@@ -447,7 +447,7 @@
         },
         {
           "id": "hot-mocha",
-          "name": "موكا ساخنة (Hot Caffè Mocha)",
+          "name": "موكا (Caffè Mocha)",
           "sizes": {
             "small": {
               "sizeLabel": "صغير (8 oz)",
@@ -489,7 +489,7 @@
             "solution_en": "Add 5ml simple vanilla syrup or a dollop of whipped cream to soften dark cocoa edge."
           },
           "proTip": "بودر الفرابيه المعتمد يمنح الموكا قواماً كريمياً وثراءً لا يضاهيه الصوص منفرداً.",
-          "name_en": "Hot Caffè Mocha",
+          "name_en": "Caffè Mocha",
           "notes_en": "Dark cocoa sauce combined with rich double espresso and steamed milk.",
           "steps_en": [
             "Pump 30g premium dark chocolate sauce into the cup.",
@@ -501,7 +501,7 @@
         },
         {
           "id": "espresso-con-panna",
-          "name": "إسبريسو كون بانا (Espresso Con Panna)",
+          "name": "كون بانا (Con Panna)",
           "coffeeGram": "18g",
           "cup": "Cup 4 oz",
           "cream": "20g كريمة خفق طازجة",
@@ -517,7 +517,7 @@
             "solution_en": "Keep cream canister chilled in fridge at 4°C; warm canisters produce watery foam."
           },
           "proTip": "تناقض السخونة مع برودة الكريمة هو سر جمال المشروب.",
-          "name_en": "Espresso Con Panna",
+          "name_en": "Con Panna",
           "notes_en": "Rich double espresso crowned with a swirl of fresh cold whipped cream.",
           "steps_en": [
             "Extract fresh double espresso (40ml) into a pre-warmed demitasse glass.",
@@ -528,7 +528,7 @@
         },
         {
           "id": "espresso-macchiato",
-          "name": "إسبريسو ماكياتو (Espresso Macchiato)",
+          "name": "ماكياتو (Macchiato)",
           "coffeeGram": "18g",
           "extractionMl": "35ml",
           "milk": "100ml (استخدام ملعقتين كبيرتين فوم فقط)",
@@ -545,7 +545,7 @@
             "solution_en": "Use only a spoon to scoop foam rather than pouring directly from pitcher."
           },
           "proTip": "الماكياتو مشروب إسبريسو قوي للزبائن المحترفين، الفوم فقط لكسر حدة الحموضة.",
-          "name_en": "Espresso Macchiato",
+          "name_en": "Macchiato",
           "notes_en": "Double espresso marked with a delicate spoonful of velvety steamed milk foam.",
           "steps_en": [
             "Extract double espresso (40ml) into a 4 oz demitasse cup.",
@@ -556,7 +556,7 @@
         },
         {
           "id": "affogato",
-          "name": "إسبريسو أفوجاتو (Espresso Affogato)",
+          "name": "أفوجاتو (Affogato)",
           "coffeeGram": "18g",
           "extractionMl": "35ml",
           "cup": "Cup 8 oz / كأس زجاجي",
@@ -573,7 +573,7 @@
             "solution_en": "Always serve the espresso in a mini side pitcher for table pour."
           },
           "proTip": "استخدم آيس كريم عماد أفندي الفاخر ذو الكثافة العالية ليصمد أمام حرارة القهوة.",
-          "name_en": "Espresso Affogato",
+          "name_en": "Affogato",
           "notes_en": "Scoop of artisan vanilla gelato drowned in freshly extracted double espresso.",
           "steps_en": [
             "Place 1 round scoop of hard frozen vanilla gelato into a chilled dessert glass.",
@@ -584,7 +584,7 @@
         },
         {
           "id": "cafe-bombon",
-          "name": "كافيه بونبون (Café Bombón)",
+          "name": "بونبون (Café Bombón)",
           "coffeeGram": "18g",
           "extractionMl": "35ml",
           "milk": "160ml",
@@ -620,7 +620,7 @@
       "items": [
         {
           "id": "iced-espresso",
-          "name": "إسبريسو آيس (Iced Espresso)",
+          "name": "آيس إسبريسو (Iced Espresso)",
           "coffeeGram": "18g",
           "extractionMl": "40ml",
           "cup": "Cup 4 oz",
@@ -636,7 +636,7 @@
             "solution_en": "Cap shaking time at exactly 10 seconds with hard solid ice."
           },
           "proTip": "التبريد السريع للإسبريسو يحفظ الحلاوة ويمنع أكسدة الطعم.",
-          "name_en": "Iced Shaken Espresso",
+          "name_en": "Iced Espresso",
           "notes_en": "Double espresso shaken vigorously over ice cubes for rapid cooling and aerated crema.",
           "steps_en": [
             "Extract fresh double espresso (40ml) directly into a metal shaker.",
@@ -705,7 +705,7 @@
         },
         {
           "id": "iced-spanish-latte",
-          "name": "آيس سبانيش لاتيه (Iced Spanish Latte)",
+          "name": "آيس سبانيش (Iced Spanish Latte)",
           "coffeeGram": "18g",
           "extractionMl": "40ml",
           "milk": "150ml حليب بارد",
@@ -737,7 +737,7 @@
         },
         {
           "id": "iced-pistachio-latte",
-          "name": "آيس بيستاشيو لاتيه (Iced Pistachio Latte)",
+          "name": "آيس بيستاشيو (Iced Pistachio Latte)",
           "coffeeGram": "18g",
           "extractionMl": "40ml",
           "milk": "150ml حليب بارد",
@@ -869,7 +869,7 @@
       "items": [
         {
           "id": "v60-hot",
-          "name": "قهوة مختصة V60 ساخنة (V60 Drip Coffee)",
+          "name": "V60 (V60 Drip Coffee)",
           "coffeeGram": "18g إلى 20g (طحنة وسط مائلة للخشونة)",
           "ratio": "1:15 (20g بن : 300g ماء)",
           "temp": "90°C - 93°C",
@@ -901,7 +901,7 @@
         },
         {
           "id": "chemex",
-          "name": "كيمكس (Chemex Clean Brew)",
+          "name": "كيمكس (Chemex)",
           "coffeeGram": "25g إلى 30g (طحنة خشنة)",
           "ratio": "1:16 (25g بن : 400g ماء)",
           "temp": "92°C - 94°C",
@@ -920,7 +920,7 @@
             "solution_en": "Ensure triple-fold filter layer rests against spout groove to allow steam venting."
           },
           "proTip": "فلاتر الكيمكس السميكة تمتص الزيوت الثقيلة وتعطيك أنقى فنجان قهوة مشرق بنكهات الفواكه والزهور.",
-          "name_en": "Chemex Clean Brew",
+          "name_en": "Chemex",
           "notes_en": "Clean, sediment-free brew using thick Chemex bonded filters highlighting bright floral notes.",
           "steps_en": [
             "Place triple-fold filter side facing spout; rinse thoroughly with hot water.",
@@ -932,7 +932,7 @@
         },
         {
           "id": "cold-brew",
-          "name": "كولد برو منقوع (Cold Brew)",
+          "name": "كولد برو (Cold Brew)",
           "coffeeGram": "100g بن خشن لكل 800ml ماء نقي بارد",
           "ratio": "1:8 (مركز) أو 1:12 (جاهز للشرب)",
           "steepTime": "16 إلى 20 ساعة في الثلاجة (4°C)",
@@ -951,7 +951,7 @@
             "solution_en": "Dilute with 15-20% cold filtered water to reach target TDS and balanced mouthfeel."
           },
           "proTip": "لا تعصر كيس الفلتر أبداً عند انتهاء النقع، العصر يخرج المرارة والرواسب الدقيقة ويفقد المشروب نقاوته.",
-          "name_en": "Cold Brew Concentrate",
+          "name_en": "Cold Brew",
           "notes_en": "Steeped 16-18 hours in cold filtered water for ultra-low acidity and chocolate profile.",
           "steps_en": [
             "Coarsely grind specialty coffee (1:8 ratio with cold filtered water).",

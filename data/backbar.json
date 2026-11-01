@@ -355,7 +355,7 @@
         },
         {
           "id": "shake-raffaello",
-          "name": "ميلك شيك رافايلو وجوز هند (Raffaello Shake)",
+          "name": "ميلك شيك رافايلو (Raffaello Shake)",
           "iceCream": "200g آيس كريم",
           "milk": "100ml حليب",
           "cream": "45g كريمة خفق",
@@ -365,7 +365,7 @@
           "steps": [
             "خلط المكونات والتزيين بالكريمة وحبة رافايلو أنيقة."
           ],
-          "name_en": "Raffaello Milkshake",
+          "name_en": "Raffaello Shake",
           "notes_en": "Thick indulgent shake made with artisan ice cream and raffaello infusion.",
           "steps_en": [
             "Scale 120-140g premium vanilla ice cream into blender container.",
@@ -443,7 +443,7 @@
         },
         {
           "id": "shake-digestive-berry",
-          "name": "ميلك شيك ميكس بيري دايجستف (Mixed Berry Digestive Shake)",
+          "name": "ميلك شيك دايجستف (Digestive Berry Shake)",
           "iceCream": "200g آيس كريم",
           "milk": "100ml حليب",
           "puree": "70g بيوريه ميكس بيري توت بري",
@@ -455,7 +455,7 @@
             "إضافة 3 قطع بسكوت دايجستف والضرب لمدة قصيرة للحفاظ على حبيبات البسكوت الممتعة (Cheesecake texture).",
             "الصب والتزيين بالكريمة وصوص التوت."
           ],
-          "name_en": "Digestive-berry Milkshake",
+          "name_en": "Digestive Berry Shake",
           "notes_en": "Thick indulgent shake made with artisan ice cream and digestive-berry infusion.",
           "steps_en": [
             "Scale 120-140g premium vanilla ice cream into blender container.",
@@ -467,7 +467,7 @@
         },
         {
           "id": "shake-fruits-family",
-          "name": "عائلة ميلك شيك الفواكه الطبيعية (Fruit Milkshakes)",
+          "name": "ميلك شيك فواكه (Fruit Milkshake)",
           "iceCream": "200g آيس كريم",
           "milk": "100ml حليب",
           "cream": "45g كريمة خفق",
@@ -524,7 +524,7 @@
           "steps": [
             "وضع الآيس كريم والحليب و70g من نكهة الفاكهة المحددة والضرب على سرعة 2 والتزيين بالكريمة."
           ],
-          "name_en": "Fruits-family Milkshake",
+          "name_en": "Fruit Milkshake",
           "notes_en": "Thick indulgent shake made with artisan ice cream and fruits-family infusion.",
           "steps_en": [
             "Scale 120-140g premium vanilla ice cream into blender container.",
@@ -543,7 +543,7 @@
       "items": [
         {
           "id": "smoothie-mango",
-          "name": "سموذي مانجو طبيعي (Fresh Mango Smoothie)",
+          "name": "سموذي مانجو (Mango Smoothie)",
           "freshJuice": "250ml عصير مانجا فريش طبيعي مركز",
           "ice": "180g ثلج نقي",
           "sugar": "20g سكر",
@@ -575,7 +575,7 @@
         },
         {
           "id": "smoothie-lemon-mint",
-          "name": "سموذي ليمون نعناع منعش (Fresh Lemon Mint Smoothie)",
+          "name": "سموذي ليمون نعناع (Lemon Mint Smoothie)",
           "water": "100ml ماء نقي",
           "freshIngredients": "2 حبة ليمون كبير مقشر ومعصور + 10 ورقات نعناع بلدي طازج",
           "sugar": "60g سكر",
@@ -596,7 +596,7 @@
             "solution_en": "Add 10ml frappe base or smoothie binder and pulse for 5 seconds."
           },
           "proTip": "التصفية قبل إضافة الثلج هي العلامة الفندقية الفاصلة بين ليمون الكافيهات العادية واحترافية عماد أفندي.",
-          "name_en": "Lemon-mint Smoothie",
+          "name_en": "Lemon Mint Smoothie",
           "notes_en": "Refreshing blended fruit smoothie with authentic lemon-mint notes.",
           "steps_en": [
             "Add 80ml water/juice and 60g fruit puree into blender pitcher.",
@@ -795,7 +795,7 @@
         },
         {
           "id": "smoothie-cherry",
-          "name": "سموذي شيري كرز (Cherry Smoothie)",
+          "name": "سموذي شيري (Cherry Smoothie)",
           "water": "80g ماء",
           "ice": "كوب + 3 مكعبات ثلج",
           "crush": "150g فود كراش كرز",
@@ -815,7 +815,7 @@
         },
         {
           "id": "smoothie-coconut",
-          "name": "سموذي جوز هند كريمي (Coconut Smoothie)",
+          "name": "سموذي جوز هند (Coconut Smoothie)",
           "water": "80g ماء",
           "ice": "كوب + 3 مكعبات ثلج",
           "crush": "150g فود كراش جوز هند",
@@ -856,7 +856,7 @@
         },
         {
           "id": "smoothie-karkadeh",
-          "name": "سموذي كركديه مثلج (Iced Karkadeh Smoothie)",
+          "name": "سموذي كركديه (Karkadeh Smoothie)",
           "water": "80g ماء",
           "ice": "كوب + 3 مكعبات ثلج",
           "puree": "70g بيوريه كركديه مركز",
@@ -924,7 +924,7 @@
       "items": [
         {
           "id": "boba-fizz-family",
-          "name": "عائلة بوبا فيز الفوارة (Boba Fizz Sparkling Family)",
+          "name": "بوبا فيز (Boba Fizz)",
           "commonIngredients": {
             "flavor": "15ml فليفر موهيتو منعش",
             "boba": "60g كرات بوبا متفجرة (Popping Boba)",
@@ -975,7 +975,7 @@
             "solution_en": "Top with fresh cold soda water before serving."
           },
           "proTip": "البوبا فيز هو تريند الشباب والتيك توك الأول، شكله وطبقاته مع شرائح الليمون مادة دعائية رائعة.",
-          "name_en": "Boba Fizz Sparkling Family",
+          "name_en": "Boba Fizz",
           "notes_en": "Signature refreshing handcrafted cold beverage.",
           "steps_en": [
             "Add flavor base and fruit puree into serving cup.",
@@ -987,7 +987,7 @@
         },
         {
           "id": "mojito-lemon-mint",
-          "name": "موخيتو ليمون نعناع (Classic Mojito)",
+          "name": "موهيتو نعناع (Classic Mojito)",
           "soda": "1 عبوة صودا سبرايت كاملة",
           "syrup": "10ml سيرب موخيتو + 5ml سيرب نعناع أخضر",
           "fresh": "2 حبة ليمون مقطعة أرباع + 8 ورقات نعناع طازجة",
@@ -1020,7 +1020,7 @@
         },
         {
           "id": "mojito-blueberry",
-          "name": "موخيتو بلوبيري (Blueberry Mojito)",
+          "name": "موهيتو بلوبيري (Blueberry Mojito)",
           "soda": "1 صودا سبرايت",
           "syrup": "20ml سيرب موهيتو",
           "puree": "40ml بيوريه بلوبيري غني",
@@ -1040,7 +1040,7 @@
         },
         {
           "id": "blue-passion-fruit",
-          "name": "بلو باشن فروت فوار (Blue Passion Sparkler)",
+          "name": "بلو باشن (Blue Passion)",
           "soda": "1 صودا سبرايت",
           "blueCuracao": "40ml سيرب بلو كرواسو أزرق نقي",
           "syrup": "20ml سيرب باشن فروت أصفر استوائي",
@@ -1049,7 +1049,7 @@
             "وضع المكونات ما عدا الصودا في الشيكر والرج جيداً.",
             "الصب في كوب 16 أونز بارد فوق الثلج ثم استكمال الكوب بالصودا ليعطي تدرج لوني بين الأزرق والأخضر الزمردي."
           ],
-          "name_en": "Blue Passion Sparkler",
+          "name_en": "Blue Passion",
           "notes_en": "Signature refreshing handcrafted cold beverage.",
           "steps_en": [
             "Add flavor base and fruit puree into serving cup.",
@@ -1080,14 +1080,14 @@
         },
         {
           "id": "iced-tea-family",
-          "name": "آيس تي منعش (Iced Tea - Classic / Peach / Raspberry)",
+          "name": "آيس تي (Iced Tea)",
           "soda": "1 صودا سبرايت أو ماء صودا نقي",
           "syrup": "60ml سيرب شاي مثلج (خوخ أو راسبيري أو كلاسيك)",
           "ice": "كوب إلا ربع ثلج",
           "steps": [
             "وضع السيرب في الشيكر مع الثلج والرج جيداً، ثم الصب في كوب 16 أونز واستكمال الصودا."
           ],
-          "name_en": "Iced Tea - Classic / Peach / Raspberry",
+          "name_en": "Iced Tea",
           "notes_en": "Signature refreshing handcrafted cold beverage.",
           "steps_en": [
             "Add flavor base and fruit puree into serving cup.",
@@ -1106,7 +1106,7 @@
       "items": [
         {
           "id": "waffle-batter-master",
-          "name": "عجينة الوافل المعملية الأصلية (Master Waffle Batter)",
+          "name": "عجينة الوافل (Master Waffle Batter)",
           "category": "عجينة التحضير المسبق (Prep Batch)",
           "sizes": {
             "full-batch": {
@@ -1156,7 +1156,7 @@
             "solution_en": "Toast on wire rack under salamander/oven for 45 seconds to crisp outer crust."
           },
           "proTip": "نصف كيس تانج البرتقال هو البصمة السرية لوافل عماد أفندي؛ يمنح العجينة لوناً ذهبياً مكراملاً يفتح الشهية ونكهة حمضية خفيفة تكسر دسم الزبدة.",
-          "name_en": "Belgian Waffle / Pancake",
+          "name_en": "Master Waffle Batter",
           "notes_en": "Golden crispy on the outside, fluffy and tender on the inside.",
           "steps_en": [
             "Preheat commercial waffle iron to 185°C - 190°C and spray lightly with release oil.",
@@ -1169,7 +1169,7 @@
         },
         {
           "id": "waffle-classic",
-          "name": "تسوية وتقديم الوافل المقرمش (Crispy Belgian Waffle)",
+          "name": "وافل بلجيكي (Belgian Waffle)",
           "batterDose": "120ml (مغرفة معيارية ممتلئة في المنتصف)",
           "temp": "185°C - 190°C (اللمبة الخضراء تضيء)",
           "timer": "3 دقائق و30 ثانية بالثانية",
@@ -1193,7 +1193,7 @@
             "solution_en": "Toast on wire rack under salamander/oven for 45 seconds to crisp outer crust."
           },
           "proTip": "تهوية الوافل على شبكة سلك لمدة 20 ثانية يطرد البخار المحبوس ويضمن بقاء القشرة الخارجية مقرمشة والقلب الداخلي طرياً كالإسفنج.",
-          "name_en": "Belgian Waffle / Pancake",
+          "name_en": "Belgian Waffle",
           "notes_en": "Golden crispy on the outside, fluffy and tender on the inside.",
           "steps_en": [
             "Preheat commercial waffle iron to 185°C - 190°C and spray lightly with release oil.",
@@ -1206,7 +1206,7 @@
         },
         {
           "id": "pancake-stack",
-          "name": "بان كيك وميني بان كيك إسفنجي (Fluffy Mini & Classic Pancakes)",
+          "name": "بان كيك (Fluffy Pancakes)",
           "miniPortion": "10-12 قطعة ميني (حوالي 15ml لكل قطعة) أو 3 قطع كلاسيك كبيرة (60ml للقطعة)",
           "temp": "170°C - 175°C (حرارة متوسطة هادئة)",
           "timer": "1.5 دقيقة للوجه الأول + 1 دقيقة للوجه الثاني",
@@ -1227,7 +1227,7 @@
             "solution_en": "Toast on wire rack under salamander/oven for 45 seconds to crisp outer crust."
           },
           "proTip": "ترك العجينة ترتاح 20 دقيقة بالثلاجة يسمح لحبيبات البيكنج بودر بالتفاعل مع الحليب لإنتاج قطع بان كيك إسفنجية ناعمة تذوب في الفم.",
-          "name_en": "Belgian Waffle / Pancake",
+          "name_en": "Fluffy Pancakes",
           "notes_en": "Golden crispy on the outside, fluffy and tender on the inside.",
           "steps_en": [
             "Preheat commercial waffle iron to 185°C - 190°C and spray lightly with release oil.",
