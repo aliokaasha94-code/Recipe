@@ -972,7 +972,7 @@ class StationApp {
       return `
         <div class="sop-metric-row">
           <div class="sop-metric-info">
-            <span class="sop-metric-order-num">${idx + 1}</span>
+            <span class="sop-metric-order-num">${String(idx + 1).padStart(2, '0')}</span>
             <span class="sop-metric-label">${label}</span>
           </div>
           <strong class="sop-metric-val">${val}</strong>

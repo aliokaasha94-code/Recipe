@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700&display=swap');
 
 :root {
   /* Emad Afandi Royal Gold Palette */
@@ -772,16 +772,17 @@ html[dir="ltr"] .search-icon-pos {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 22px;
-  height: 22px;
-  border-radius: 6px;
-  background: rgba(212, 175, 55, 0.18);
-  border: 1px solid var(--gold-primary);
-  color: var(--gold-bright);
+  min-width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(160, 115, 8, 0.1) 100%);
+  border: 1.5px solid var(--gold-primary);
+  color: #ffd700;
   font-family: var(--font-latin);
-  font-size: 0.76rem;
+  font-size: 0.85rem;
   font-weight: 900;
   flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 235, 170, 0.4);
 }
 
 .sop-section-title {
@@ -825,16 +826,18 @@ html[dir="ltr"] .search-icon-pos {
 }
 
 .sop-metric-order-num {
-  width: 22px;
-  height: 22px;
-  border-radius: 6px;
-  background: rgba(212, 175, 55, 0.12);
-  border: 1px solid var(--gold-primary);
-  color: var(--gold-bright);
-  font-family: var(--font-latin);
-  font-size: 0.74rem;
-  font-weight: 900;
-  display: flex;
+  padding: 2px 6px;
+  min-width: 22px;
+  height: 18px;
+  border-radius: 5px;
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  color: #e2e8f0;
+  font-family: 'JetBrains Mono', var(--font-latin), monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
@@ -883,20 +886,20 @@ html[dir="ltr"] .search-icon-pos {
 }
 
 .sop-step-badge, .sop-step-number {
-  background: var(--gold-primary);
-  color: #000000;
+  background: linear-gradient(135deg, #fce59c 0%, #d4af37 55%, #9e7b16 100%);
+  color: #0d0f17;
   font-family: var(--font-latin);
   font-weight: 900;
-  font-size: 0.82rem;
-  width: 26px;
-  height: 26px;
+  font-size: 0.86rem;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   margin-top: 2px;
-  box-shadow: 0 0 10px var(--gold-glow);
+  box-shadow: 0 3px 10px rgba(212, 175, 55, 0.35), inset 0 1px 1px #ffffff;
 }
 
 .sop-step-text {
