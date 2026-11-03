@@ -8,6 +8,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>عماد أفندي | محطة الإسبريسو والفلتر</title>
   <link rel="icon" type="image/png" href="assets/emad-logo.png">
+  <link rel="stylesheet" href="../shared/css/security.css?v=1.0">
   <link rel="stylesheet" href="style.css?v=15.0">
 </head>
 <body>
@@ -53,6 +54,7 @@
       <p style="margin-top:4px; font-size:0.72rem; color:var(--gold-soft);">
         نظام التشغيل القياسي (SOP) • إشراف الإدارة ومجموعة العطيان
       </p>
+      <div style="text-align:center; margin-top:8px;"><span class="manager-lock-trigger" onclick="window.EmadSecurity && window.EmadSecurity.openManagerModal()" title="إعدادات الأمان والمدير">🔒 حماية النظام</span></div>
     </footer>
 
   </div> <!-- /app-main-layout -->
@@ -79,12 +81,16 @@
         الالتزام بهذه المعايير يضمن حماية ماكينات الإسبريسو والمطاحن وثبات النكهة بنسبة 100%.
       </p>
       <div id="checklist-items"></div>
-      <div style="margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
+      <div style="margin-top:14px;">
+        <label style="font-size:0.78rem; color:#cbd5e1; font-weight:700; display:block; margin-bottom:4px;">اسم الباريستا المسؤول عن الفحص:</label>
+        <input type="text" id="checklist-inspector-name" placeholder="اكتب اسمك هنا..." class="checklist-inspector-input">
+      </div>
+      <div style="margin-top:10px; display:flex; justify-content:space-between; align-items:center;">
         <button onclick="resetChecklist()" style="background:transparent; border:1px solid var(--border-gold); color:var(--gold-bright); padding:8px 16px; border-radius:var(--radius-sm); font-family:var(--font-arabic); font-size:0.78rem; font-weight:700; cursor:pointer;">
           إعادة تعيين اليوم
         </button>
-        <button onclick="closeChecklistModal()" style="background:var(--gold-primary); border:none; color:#000; font-weight:800; padding:8px 22px; border-radius:var(--radius-sm); font-family:var(--font-arabic); font-size:0.84rem; cursor:pointer;">
-          اعتماد الفحص
+        <button onclick="confirmAndSyncChecklist()" style="background:var(--gold-primary); border:none; color:#000; font-weight:800; padding:8px 22px; border-radius:var(--radius-sm); font-family:var(--font-arabic); font-size:0.84rem; cursor:pointer;">
+          اعتماد الفحص ومزامنته ✓
         </button>
       </div>
     </div>
@@ -97,5 +103,6 @@
       window.app = new StationApp('recipes.json');
     });
   </script>
+  <script src="../shared/js/security-manager.js?v=1.0"></script>
 </body>
 </html>

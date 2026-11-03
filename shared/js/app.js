@@ -968,6 +968,10 @@ class StationApp {
 function openChecklistModal() {
   const modal = document.getElementById('checklist-modal');
   if (modal) {
+    const inspectorInput = document.getElementById('checklist-inspector-name');
+    if (inspectorInput && !inspectorInput.value) {
+      inspectorInput.value = localStorage.getItem('emad_last_inspector') || '';
+    }
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
     if (!history.state || !history.state.sopModalOpen) {
@@ -992,4 +996,43 @@ function resetChecklist() {
   const stationId = window.app.data.station.id;
   localStorage.removeItem(`emad_checklist_${stationId}`);
   window.app.initChecklist();
+}
+
+function confirmAndSyncChecklist() {
+  const inspectorInput = document.getElementById('checklist-inspector-name');
+  const inspector = (inspectorInput && inspectorInput.value.trim()) || 'باريستا الشفت';
+  if (inspectorInput && inspectorInput.value.trim()) {
+    localStorage.setItem('emad_last_inspector', inspectorInput.value.trim());
+  }
+
+  const stationName = (window.app && window.app.data && window.app.data.station && window.app.data.station.name) || document.title;
+  const checkboxes = document.querySelectorAll('#checklist-items input[type="checkbox"]');
+  let checkedCount = 0;
+  const checkedTitles = [];
+  checkboxes.forEach(cb => {
+    if (cb.checked) {
+      checkedCount++;
+      const textEl = cb.closest('label')?.querySelector('.checklist-title');
+      if (textEl) checkedTitles.push(textEl.innerText.trim());
+    }
+  });
+
+  const totalCount = checkboxes.length;
+  const percentage = totalCount > 0 ? Math.round((checkedCount / totalCount) * 100) + '%' : '100%';
+
+  const payload = {
+    stationName: stationName,
+    inspector: inspector,
+    timestamp: new Date().toLocaleString('ar-EG'),
+    checkedCount: checkedCount,
+    totalCount: totalCount,
+    percentage: percentage,
+    details: checkedTitles.join(' • ')
+  };
+
+  if (window.EmadSecurity && typeof window.EmadSecurity.submitChecklistToGoogleSheets === 'function') {
+    window.EmadSecurity.submitChecklistToGoogleSheets(payload);
+  }
+
+  closeChecklistModal();
 }

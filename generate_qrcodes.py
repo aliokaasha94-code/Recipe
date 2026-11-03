@@ -29,21 +29,21 @@ STATIONS = [
         "id": "espresso",
         "name": "محطة مكنة الإسبريسو والفلتر",
         "name_en": "Espresso Bar & Filter Coffee Station",
-        "rel_path": "1-espresso-station/index.html",
+        "rel_path": "1-espresso-station/index.html?qr=espresso",
         "items": "لاتيه • فلات وايت • سبانيش • بيستاشيو • V60 • كولد برو"
     },
     {
         "id": "traditional",
         "name": "محطة التركي والتراثي والمشروبات الدافئة",
         "name_en": "Turkish & Traditional Brews Station",
-        "rel_path": "2-traditional-station/index.html",
+        "rel_path": "2-traditional-station/index.html?qr=traditional",
         "items": "تركي فاتح/وسط/غامق • فرنساوي بالحليب • عربي • جبنة سوداني • هوت شوكليت"
     },
     {
         "id": "backbar",
         "name": "محطة الباك بار والحلويات",
         "name_en": "Cold Bar & Bakery Station",
-        "rel_path": "3-backbar-station/index.html",
+        "rel_path": "3-backbar-station/index.html?qr=backbar",
         "items": "عجينة الوافل الأصلية • سموذي • ميلك شيك • فرابيه • بوبا فيز • بان كيك"
     }
 ]
