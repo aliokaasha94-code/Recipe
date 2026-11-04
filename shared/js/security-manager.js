@@ -342,7 +342,7 @@
       const stampText = `عماد أفندي • ${this.getStationTitle()} • ${this.deviceId} • ${timeStr}`;
 
       let html = '';
-      for (let i = 0; i < 24; i++) {
+      for (let i = 0; i < 14; i++) {
         html += `<div class="watermark-stamp">${stampText}</div>`;
       }
       overlay.innerHTML = html;
