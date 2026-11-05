@@ -1,79 +1,92 @@
 /**
  * =========================================================================
- * كود Google Apps Script لربط واعتماد فحص نظافة ومعايرة كافيه ومحمصة عماد أفندي
+ * كود Google Apps Script المطور (V2) - كافيه ومحمصة عماد أفندي
+ * 1. تقسيم اليوم، التاريخ، الوقت، والشفت تلقائياً (صباحي / مسائي / إغلاق).
+ * 2. تنسيق أنيق بأعمدة واضحة ومقروءة بنظرة واحدة دون نصوص متكدسة بالعرض.
+ * 3. واجهة API (doGet) لتغذية لوحة تحكم المدير (Manager Dashboard) بالبيانات الحية.
  * =========================================================================
- * 
- * طريقة التركيب في 30 ثانية:
- * 1. افتح شيت جوجل جديد (Google Sheet) وسمه مثلاً: "سجل نظافة ومعايرة محطات عماد أفندي".
- * 2. من القائمة العلوية اضغط على: Extensions (الإضافات) -> Apps Script.
- * 3. امسح أي كود موجود والصق هذا الكود كاملاً مكانه.
- * 4. اضغط على Deploy (نشر) -> New deployment (نشر جديد).
- * 5. اختر نوع النشر: Web app (تطبيق ويب).
- * 6. في خانة "Who has access" (من يمكنه الوصول): اختر "Anyone" (أي مستخدم) حتى يتمكن الموقع من إرسال البيانات.
- * 7. اضغط Deploy وانسخ الرابط (Web App URL).
- * 8. الصق الرابط في إعدادات الموقع أو في ملف security-config.js.
  */
 
 function doPost(e) {
   try {
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    
-    // إعداد الترويسة الأنيقة إذا كان الشيت جديداً وفارغاً
-    if (sheet.getLastRow() === 0) {
-      sheet.appendRow([
-        "التاريخ والوقت",
-        "المحطة",
-        "المسؤول / الباريستا",
-        "نسبة الإنجاز",
-        "البنود المكتملة",
-        "إجمالي البنود",
-        "تفاصيل الفحص",
-        "حالة الاعتماد"
-      ]);
-      
-      // تنسيق الترويسة باللون الذهبي والأسود لعماد أفندي
-      var headerRange = sheet.getRange(1, 1, 1, 8);
-      headerRange.setBackground("#11141c");
-      headerRange.setFontColor("#ffd700");
-      headerRange.setFontWeight("bold");
-      headerRange.setHorizontalAlignment("center");
-      headerRange.setFontSize(11);
-      sheet.setFrozenRows(1);
-    }
+    setupSheetHeader(sheet);
     
     var data = JSON.parse(e.postData.contents);
+    var now = new Date();
     
-    var timestamp = data.timestamp || Utilities.formatDate(new Date(), "GMT+2", "yyyy-MM-dd HH:mm:ss");
+    // 1. حساب اليوم، التاريخ، الوقت، والشفت بتوقيت مصر (GMT+2)
+    var daysAr = ["الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
+    var dayName = data.dayName || daysAr[now.getDay()];
+    var dateStr = data.dateStr || Utilities.formatDate(now, "GMT+2", "yyyy-MM-dd");
+    var timeStr = data.timeStr || Utilities.formatDate(now, "GMT+2", "hh:mm a");
+    
+    // تحديد الشفت بناءً على الساعة بتوقيت مصر
+    var hour = parseInt(Utilities.formatDate(now, "GMT+2", "HH"), 10);
+    var shiftName = data.shiftName;
+    if (!shiftName) {
+      if (hour >= 7 && hour < 16) {
+        shiftName = "شفت صباحي ☀️";
+      } else if (hour >= 16 && hour < 24) {
+        shiftName = "شفت مسائي 🌙";
+      } else {
+        shiftName = "شفت إغلاق / سهرة 🔒";
+      }
+    }
+    
     var stationName = data.stationName || "محطة غير محددة";
     var inspector = data.inspector || "باريستا الشفت";
-    var percentage = data.percentage || "100%";
-    var checkedCount = data.checkedCount || 0;
-    var totalCount = data.totalCount || 0;
-    var details = data.details || "";
-    var status = "معتمد ✓";
+    var percentage = data.percentage || "100% ✓";
+    var status = "معتمد بالكامل ✓";
     
-    // إضافة صف السجل الجديد
+    // تنسيق البنود رأسياً بأرقام واضحة بدلاً من النص المتكدس بالعرض
+    var summaryFormatted = "";
+    if (data.items && Array.isArray(data.items) && data.items.length > 0) {
+      summaryFormatted = data.items.map(function(item, idx) {
+        return (idx + 1) + ". " + item;
+      }).join("\n");
+    } else if (data.details) {
+      summaryFormatted = data.details.split(" • ").join("\n");
+    } else {
+      summaryFormatted = "تم فحص واعتماد كافة البنود 100%";
+    }
+    
+    // إضافة السجل الجديد في الشيت
     sheet.appendRow([
-      timestamp,
+      dayName,
+      dateStr,
+      timeStr,
+      shiftName,
       stationName,
       inspector,
       percentage,
-      checkedCount,
-      totalCount,
-      details,
-      status
+      status,
+      summaryFormatted
     ]);
     
-    // تنسيق الصف الأخير
     var lastRow = sheet.getLastRow();
-    var rowRange = sheet.getRange(lastRow, 1, 1, 8);
-    rowRange.setHorizontalAlignment("center");
-    sheet.getRange(lastRow, 7).setHorizontalAlignment("right"); // التفاصيل بمحاذاة اليمين
+    
+    // تنسيق الصف الجديد
+    var rowRange = sheet.getRange(lastRow, 1, 1, 9);
+    rowRange.setVerticalAlignment("middle");
+    rowRange.setFontFamily("Cairo");
+    rowRange.setFontSize(10);
+    
+    // محاذاة الأعمدة (توسيط لكل الأعمدة عدا ملخص البنود جهة اليمين)
+    sheet.getRange(lastRow, 1, 1, 8).setHorizontalAlignment("center");
+    var summaryCell = sheet.getRange(lastRow, 9);
+    summaryCell.setHorizontalAlignment("right");
+    summaryCell.setWrapStrategy(SpreadsheetApp.WrapStrategy.WRAP);
+    
+    // تمييز حالة الشفت والاعتماد باللون الأخضر الأنيق
+    sheet.getRange(lastRow, 7).setFontColor("#22c55e").setFontWeight("bold"); // 100% أخضر
+    sheet.getRange(lastRow, 8).setFontColor("#d4af37").setFontWeight("bold"); // معتمد ذهبي
     
     return ContentService.createTextOutput(JSON.stringify({
       status: "success",
-      message: "تم اعتماد الفحص وتسجيله بنجاح في شيت عماد أفندي",
-      row: lastRow
+      message: "تم تسجيل الفحص بنجاح في شيت عماد أفندي",
+      row: lastRow,
+      shift: shiftName
     })).setMimeType(ContentService.MimeType.JSON);
     
   } catch (err) {
@@ -84,6 +97,98 @@ function doPost(e) {
   }
 }
 
+/**
+ * دالة قراءة السجلات الحية للداش بورد (API Endpoint)
+ */
 function doGet(e) {
-  return ContentService.createTextOutput("نظام مزامنة شيت جوجل لمحطات عماد أفندي يعمل بنجاح بنسبة 100%.");
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var lastRow = sheet.getLastRow();
+    
+    if (lastRow <= 1) {
+      return ContentService.createTextOutput(JSON.stringify({
+        status: "success",
+        total: 0,
+        records: []
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+    
+    var startRow = Math.max(2, lastRow - 99); // آخر 100 سجل
+    var numRows = lastRow - startRow + 1;
+    var data = sheet.getRange(startRow, 1, numRows, 9).getValues();
+    
+    var records = [];
+    for (var i = data.length - 1; i >= 0; i--) { // الأحدث أولاً
+      var row = data[i];
+      if (!row[1] && !row[4]) continue; // تخطي الصفوف الفارغة
+      records.push({
+        day: row[0],
+        date: row[1] instanceof Date ? Utilities.formatDate(row[1], "GMT+2", "yyyy-MM-dd") : row[1],
+        time: row[2] instanceof Date ? Utilities.formatDate(row[2], "GMT+2", "hh:mm a") : row[2],
+        shift: row[3],
+        station: row[4],
+        inspector: row[5],
+        percentage: row[6],
+        status: row[7],
+        summary: row[8]
+      });
+    }
+    
+    return ContentService.createTextOutput(JSON.stringify({
+      status: "success",
+      total: records.length,
+      records: records
+    })).setMimeType(ContentService.MimeType.JSON);
+    
+  } catch (err) {
+    return ContentService.createTextOutput(JSON.stringify({
+      status: "error",
+      message: err.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+/**
+ * تهيئة وتنسيق ترويسة الشيت الفاخرة لعماد أفندي
+ */
+function setupSheetHeader(sheet) {
+  var headers = [
+    "اليوم",
+    "التاريخ",
+    "الوقت",
+    "الشفت",
+    "المحطة",
+    "المسؤول / الباريستا",
+    "نسبة الإنجاز",
+    "حالة الاعتماد",
+    "ملخص البنود المعتمدة"
+  ];
+  
+  var currentFirstCell = sheet.getRange(1, 1).getValue();
+  if (currentFirstCell !== "اليوم") {
+    sheet.getRange(1, 1, 1, 9).setValues([headers]);
+    
+    var headerRange = sheet.getRange(1, 1, 1, 9);
+    headerRange.setBackground("#0d1117");
+    headerRange.setFontColor("#ffd700");
+    headerRange.setFontWeight("bold");
+    headerRange.setFontFamily("Cairo");
+    headerRange.setFontSize(11);
+    headerRange.setHorizontalAlignment("center");
+    headerRange.setVerticalAlignment("middle");
+    headerRange.setWrapStrategy(SpreadsheetApp.WrapStrategy.WRAP);
+    sheet.setRowHeight(1, 40);
+    sheet.setFrozenRows(1);
+    
+    // ضبط عروض الأعمدة لسهولة القراءة بنظرة واحدة
+    sheet.setColumnWidth(1, 85);  // اليوم
+    sheet.setColumnWidth(2, 105); // التاريخ
+    sheet.setColumnWidth(3, 95);  // الوقت
+    sheet.setColumnWidth(4, 130); // الشفت
+    sheet.setColumnWidth(5, 180); // المحطة
+    sheet.setColumnWidth(6, 150); // الباريستا
+    sheet.setColumnWidth(7, 105); // نسبة الإنجاز
+    sheet.setColumnWidth(8, 115); // حالة الاعتماد
+    sheet.setColumnWidth(9, 360); // ملخص البنود
+  }
 }

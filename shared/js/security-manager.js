@@ -268,6 +268,10 @@
                 <button class="btn-security-action" onclick="window.EmadSecurity.saveManagerSettings()">
                   💾 حفظ وتطبيق إعدادات الحماية
                 </button>
+
+                <a href="../manager-dashboard/" class="btn-security-action" style="text-decoration:none; background:linear-gradient(135deg, #d4af37 0%, #b89628 100%); color:#000; font-weight:800; font-size:0.86rem; margin-top:6px;">
+                  📊 فتح لوحة تحكم ومتابعة العمليات (Manager Dashboard)
+                </a>
               </div>
             </div>
           </div>

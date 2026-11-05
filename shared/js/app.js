@@ -1061,18 +1061,37 @@ function confirmAndSyncChecklist() {
     return; // Strict rejection
   }
 
-  // 3. 100% Success - Proceed to sync and submit
+  // 3. 100% Success - Enrich payload with Day, Date, Time, Shift & Items Array
   localStorage.setItem('emad_last_inspector', inspectorVal);
   const stationName = (window.app && window.app.data && window.app.data.station && window.app.data.station.name) || document.title;
   const percentage = '100%';
 
+  const now = new Date();
+  const daysAr = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
+  const dayName = daysAr[now.getDay()];
+  const dateStr = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+  const timeStr = now.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit', hour12: true });
+
+  const hour = now.getHours();
+  let shiftName = 'شفت صباحي ☀️';
+  if (hour >= 16 && hour < 24) {
+    shiftName = 'شفت مسائي 🌙';
+  } else if (hour >= 0 && hour < 7) {
+    shiftName = 'شفت إغلاق / سهرة 🔒';
+  }
+
   const payload = {
     stationName: stationName,
     inspector: inspectorVal,
-    timestamp: new Date().toLocaleString('ar-EG'),
+    dayName: dayName,
+    dateStr: dateStr,
+    timeStr: timeStr,
+    shiftName: shiftName,
+    timestamp: `${dayName} ${dateStr} ${timeStr}`,
     checkedCount: checkedCount,
     totalCount: totalCount,
     percentage: percentage,
+    items: checkedTitles,
     details: checkedTitles.join(' • ')
   };
 
