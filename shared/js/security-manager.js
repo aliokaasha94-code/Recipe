@@ -22,9 +22,9 @@
     },
     gps: {
       enabled: true,
-      lat: 0, // 0 means uncalibrated; manager can calibrate with 1 tap
-      lng: 0,
-      radiusMeters: 150 // 150m radius around café
+      lat: 31.10927, // إحداثيات فرع عماد أفندي المعتمد
+      lng: 30.94269,
+      radiusMeters: 250 // نطاق 250 متر حول الفرع
     },
     qrRequired: true,
     inactivityMinutes: 5,
@@ -62,7 +62,15 @@
       try {
         const stored = localStorage.getItem('emad_security_config');
         if (stored) {
-          return Object.assign({}, DEFAULT_CONFIG, JSON.parse(stored));
+          const parsed = JSON.parse(stored);
+          const merged = Object.assign({}, DEFAULT_CONFIG, parsed);
+          // If stored GPS was 0 or uncalibrated, auto-upgrade to official branch coordinates
+          if (!merged.gps || merged.gps.lat === 0 || merged.gps.lat === undefined) {
+            merged.gps = Object.assign({}, DEFAULT_CONFIG.gps, merged.gps || {});
+            merged.gps.lat = DEFAULT_CONFIG.gps.lat;
+            merged.gps.lng = DEFAULT_CONFIG.gps.lng;
+          }
+          return merged;
         }
       } catch (e) {
         console.warn('Failed to parse security config, using defaults');
@@ -143,6 +151,9 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
                 <span>مسح كود QR المحطة</span>
               </button>
+              <button class="btn-security-action" style="margin-top:10px; background:transparent; border:1px solid rgba(212,175,55,0.4); color:var(--gold-bright); font-size:0.78rem;" onclick="window.EmadSecurity.showOverlay('pin-lock-overlay')">
+                <span>🔑 دخول الإدارة برمز الماستر (Master PIN)</span>
+              </button>
             </div>
           </div>
 
@@ -160,6 +171,9 @@
               <button class="btn-security-action" onclick="window.EmadSecurity.retryGpsCheck()">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
                 <span>إعادة فحص الموقع الجغرافي</span>
+              </button>
+              <button class="btn-security-action" style="margin-top:10px; background:transparent; border:1px solid rgba(212,175,55,0.4); color:var(--gold-bright); font-size:0.78rem;" onclick="window.EmadSecurity.showOverlay('pin-lock-overlay')">
+                <span>🔑 دخول الإدارة برمز الماستر (Master PIN)</span>
               </button>
             </div>
           </div>
@@ -350,6 +364,12 @@
 
     // --- 3. Verification Pipeline: QR -> GPS -> PIN ---
     runVerificationPipeline() {
+      // 0. If Master access granted for this session, bypass QR & GPS
+      if (sessionStorage.getItem('emad_master_authorized') === 'true') {
+        this.hideAllOverlays();
+        return;
+      }
+
       // 1. Check QR Access
       if (this.config.qrRequired && !this.checkQrSession()) {
         this.showOverlay('qr-lock-overlay');
@@ -505,6 +525,10 @@
     onPinSuccess(isMaster) {
       const sessionKey = `emad_pin_auth_${this.stationId}`;
       sessionStorage.setItem(sessionKey, 'true');
+      if (isMaster) {
+        sessionStorage.setItem('emad_master_authorized', 'true');
+        sessionStorage.setItem('emad_qr_authorized', 'true');
+      }
       this.hideAllOverlays();
       this.currentPinInput = '';
       this.updatePinDots();

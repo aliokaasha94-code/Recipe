@@ -1013,29 +1013,75 @@ function resetChecklist() {
 
 function confirmAndSyncChecklist() {
   const inspectorInput = document.getElementById('checklist-inspector-name');
-  const inspector = (inspectorInput && inspectorInput.value.trim()) || 'باريستا الشفت';
-  if (inspectorInput && inspectorInput.value.trim()) {
-    localStorage.setItem('emad_last_inspector', inspectorInput.value.trim());
+  const inspectorVal = inspectorInput ? inspectorInput.value.trim() : '';
+
+  // 1. Validate Barista Name
+  if (!inspectorVal) {
+    if (inspectorInput) {
+      inspectorInput.classList.add('input-error');
+      inspectorInput.focus();
+      inspectorInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => inspectorInput.classList.remove('input-error'), 2500);
+    }
+    const nameErrMsg = '⚠️ يرجى كتابة اسم الباريستا المسؤول عن الفحص أولاً';
+    if (window.EmadSecurity && typeof window.EmadSecurity.showToast === 'function') {
+      window.EmadSecurity.showToast(nameErrMsg);
+    } else {
+      alert(nameErrMsg);
+    }
+    return;
   }
 
-  const stationName = (window.app && window.app.data && window.app.data.station && window.app.data.station.name) || document.title;
+  // 2. Validate All Checkbox Items (100% Mandatory)
   const checkboxes = document.querySelectorAll('#checklist-items input[type="checkbox"]');
   let checkedCount = 0;
   const checkedTitles = [];
+  const uncheckedLabels = [];
+
   checkboxes.forEach(cb => {
+    const parentLabel = cb.closest('label');
     if (cb.checked) {
       checkedCount++;
-      const textEl = cb.closest('label')?.querySelector('.checklist-title');
+      const textEl = parentLabel?.querySelector('.checklist-text');
       if (textEl) checkedTitles.push(textEl.innerText.trim());
+      if (parentLabel) parentLabel.classList.remove('item-missing');
+    } else {
+      if (parentLabel) uncheckedLabels.push(parentLabel);
     }
   });
 
   const totalCount = checkboxes.length;
-  const percentage = totalCount > 0 ? Math.round((checkedCount / totalCount) * 100) + '%' : '100%';
+
+  if (checkedCount < totalCount) {
+    const remaining = totalCount - checkedCount;
+    // Highlight unchecked items with visual alert
+    uncheckedLabels.forEach(label => {
+      label.classList.add('item-missing');
+      setTimeout(() => label.classList.remove('item-missing'), 3500);
+    });
+
+    // Auto-scroll to the first missing item
+    if (uncheckedLabels[0]) {
+      uncheckedLabels[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    const alertMsg = `⚠️ لا يمكن اعتماد الفحص إلا بعد فحص كافة البنود 100% (متبقي ${remaining} بند لم يتم إنجازهم)`;
+    if (window.EmadSecurity && typeof window.EmadSecurity.showToast === 'function') {
+      window.EmadSecurity.showToast(alertMsg);
+    } else {
+      alert(alertMsg);
+    }
+    return; // Strict rejection
+  }
+
+  // 3. 100% Success - Proceed to sync and submit
+  localStorage.setItem('emad_last_inspector', inspectorVal);
+  const stationName = (window.app && window.app.data && window.app.data.station && window.app.data.station.name) || document.title;
+  const percentage = '100%';
 
   const payload = {
     stationName: stationName,
-    inspector: inspector,
+    inspector: inspectorVal,
     timestamp: new Date().toLocaleString('ar-EG'),
     checkedCount: checkedCount,
     totalCount: totalCount,
