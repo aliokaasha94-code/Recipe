@@ -1,6 +1,6 @@
 /**
  * =========================================================================
- * EMAD AFANDI EXECUTIVE MANAGER DASHBOARD ENGINE (V2)
+ * EMAD AFANDI EXECUTIVE MANAGER DASHBOARD ENGINE (V3)
  * 24-Hour 3-Shift Intelligence • Real-time Google Sheets Sync • Multi-Station Audit
  * =========================================================================
  */
@@ -17,7 +17,14 @@
       this.records = [];
       this.filteredRecords = [];
       this.sheetUrl = null;
+      this.dateFilter = 'all'; // 'all' | 'today' | 'yesterday' | 'custom'
+      this.customDate = null;
       this.init();
+    }
+
+    toEnglishDigits(str) {
+      if (str === null || str === undefined) return '';
+      return String(str).replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
     }
 
     init() {
@@ -99,8 +106,12 @@
     startClock() {
       const update = () => {
         const now = new Date();
-        const timeStr = now.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
-        const dateStr = now.toLocaleDateString('ar-EG', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        const timeStr = this.toEnglishDigits(
+          now.toLocaleTimeString('ar-EG-u-nu-latn', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true })
+        );
+        const dateStr = this.toEnglishDigits(
+          now.toLocaleDateString('ar-EG-u-nu-latn', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+        );
 
         const clockEl = document.getElementById('dash-live-clock');
         const dateEl = document.getElementById('dash-live-date');
@@ -152,7 +163,49 @@
       }
     }
 
-    // --- 3. Data Loading & Dual Source (Google Sheets + Local Audit Trail) ---
+    // --- 3. Date Filters Handling ---
+    setDateFilter(type, btnEl) {
+      this.dateFilter = type;
+      this.customDate = null;
+
+      const customInput = document.getElementById('filter-custom-date');
+      if (customInput) customInput.value = '';
+
+      document.querySelectorAll('.date-tab-btn').forEach(btn => btn.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+
+      this.renderFeed();
+    }
+
+    onCustomDateChange(dateVal) {
+      if (!dateVal) {
+        const allBtn = document.querySelector('.date-tab-btn');
+        this.setDateFilter('all', allBtn);
+        return;
+      }
+      this.dateFilter = 'custom';
+      this.customDate = dateVal; // Format: YYYY-MM-DD
+
+      document.querySelectorAll('.date-tab-btn').forEach(btn => btn.classList.remove('active'));
+      this.renderFeed();
+    }
+
+    toggleCardDetails(idx) {
+      const summaryEl = document.getElementById(`log-summary-${idx}`);
+      const btnEl = document.getElementById(`log-btn-${idx}`);
+      if (!summaryEl || !btnEl) return;
+
+      const isCollapsed = summaryEl.classList.contains('collapsed');
+      if (isCollapsed) {
+        summaryEl.classList.remove('collapsed');
+        btnEl.innerText = 'إخفاء بنود الفحص ▲';
+      } else {
+        summaryEl.classList.add('collapsed');
+        btnEl.innerText = 'إظهار بنود الفحص ▼';
+      }
+    }
+
+    // --- 4. Data Loading & Dual Source (Google Sheets + Local Audit Trail) ---
     async loadDashboardData() {
       const container = document.getElementById('dash-feed-container');
       if (container) {
@@ -189,7 +242,7 @@
               if (link) link.href = this.sheetUrl;
             }
           } catch (e) {
-            // Not json
+            // Non-JSON response
           }
         }
       } catch (err) {
@@ -216,12 +269,12 @@
       } else if (formattedLocal.length > 0) {
         this.records = formattedLocal;
       } else {
-        // Fallback realistic record
+        // Fallback realistic baseline record
         this.records = [
           {
             day: 'الخميس',
             date: new Date().toLocaleDateString('en-CA'),
-            time: new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' }),
+            time: this.toEnglishDigits(new Date().toLocaleTimeString('ar-EG-u-nu-latn', { hour: '2-digit', minute: '2-digit' })),
             shift: 'الشيفت الثاني: مسائي 🌙 (4م - 1ص)',
             station: 'محطة الإسبريسو والفلتر',
             inspector: localStorage.getItem('emad_last_inspector') || 'أحمد الباريستا',
@@ -245,7 +298,7 @@
       });
     }
 
-    // --- 4. Update Shift Matrix Row ---
+    // --- 5. Update Shift Matrix Row ---
     updateShiftMatrix() {
       const shiftMap = {
         1: { count: 0, latest: null },
@@ -255,13 +308,13 @@
 
       this.records.forEach(r => {
         const text = (r.shift || '').toLowerCase();
-        if (text.includes('صباح') || text.includes('أول') || text.includes('8ص')) {
+        if (text.includes('صباح') || text.includes('أول') || text.includes('8ص') || text.includes('8')) {
           shiftMap[1].count++;
           if (!shiftMap[1].latest) shiftMap[1].latest = r;
-        } else if (text.includes('مساء') || text.includes('ثاني') || text.includes('4م')) {
+        } else if (text.includes('مساء') || text.includes('ثاني') || text.includes('4م') || text.includes('4')) {
           shiftMap[2].count++;
           if (!shiftMap[2].latest) shiftMap[2].latest = r;
-        } else if (text.includes('ليل') || text.includes('سهر') || text.includes('ثالث') || text.includes('12ص')) {
+        } else if (text.includes('ليل') || text.includes('سهر') || text.includes('ثالث') || text.includes('12ص') || text.includes('12')) {
           shiftMap[3].count++;
           if (!shiftMap[3].latest) shiftMap[3].latest = r;
         }
@@ -276,7 +329,8 @@
             statusEl.innerHTML = '<span style="color:#22c55e;">معتمد 100% ✓</span>';
           }
           if (baristaEl) {
-            baristaEl.innerText = `${entry.inspector} (${entry.time})`;
+            const timeClean = this.toEnglishDigits(entry.time);
+            baristaEl.innerText = `${entry.inspector} (${timeClean})`;
           }
         } else {
           if (statusEl) statusEl.innerText = 'بانتظار الفحص';
@@ -285,7 +339,7 @@
       }
     }
 
-    // --- 5. Update KPI Station Cards ---
+    // --- 6. Update KPI Station Cards ---
     updateStationKpis() {
       const stations = {
         espresso: { count: 0, latest: null },
@@ -323,9 +377,13 @@
           badge.className = 'station-live-badge approved';
           badge.innerText = 'معتمد 100% ✓';
         }
-        if (timeEl) timeEl.innerText = `${record.day || ''} • ${record.time || ''}`;
+        if (timeEl) {
+          const dayClean = this.toEnglishDigits(record.day || '');
+          const timeClean = this.toEnglishDigits(record.time || '');
+          timeEl.innerText = `${dayClean} • ${timeClean}`;
+        }
         if (inspEl) inspEl.innerText = record.inspector || 'باريستا الشفت';
-        if (shiftEl) shiftEl.innerText = record.shift || 'شفت معتمد';
+        if (shiftEl) shiftEl.innerText = this.toEnglishDigits(record.shift || 'شفت معتمد');
       } else {
         if (badge) {
           badge.className = 'station-live-badge pending';
@@ -337,7 +395,7 @@
       }
     }
 
-    // --- 6. Render Audit Feed Cards ---
+    // --- 7. Render Audit Feed Cards ---
     renderFeed() {
       const container = document.getElementById('dash-feed-container');
       const countEl = document.getElementById('dash-feed-count');
@@ -347,7 +405,24 @@
       const shiftFilter = (document.getElementById('filter-shift')?.value || 'all').toLowerCase();
       const searchQuery = (document.getElementById('filter-search')?.value || '').trim().toLowerCase();
 
+      // Current Dates for filtering
+      const now = new Date();
+      const todayEnCa = now.toLocaleDateString('en-CA'); // YYYY-MM-DD
+      const yesterdayDate = new Date(now);
+      yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+      const yesterdayEnCa = yesterdayDate.toLocaleDateString('en-CA');
+
       this.filteredRecords = this.records.filter(r => {
+        // Date filter
+        const rDateClean = this.toEnglishDigits(r.date || '');
+        if (this.dateFilter === 'today') {
+          if (rDateClean && !rDateClean.includes(todayEnCa)) return false;
+        } else if (this.dateFilter === 'yesterday') {
+          if (rDateClean && !rDateClean.includes(yesterdayEnCa)) return false;
+        } else if (this.dateFilter === 'custom' && this.customDate) {
+          if (rDateClean && !rDateClean.includes(this.customDate)) return false;
+        }
+
         // Station filter
         if (stationFilter !== 'all') {
           const st = (r.station || '').toLowerCase();
@@ -359,9 +434,9 @@
         // Shift filter
         if (shiftFilter !== 'all') {
           const sh = (r.shift || '').toLowerCase();
-          if (shiftFilter === 'shift1' && !sh.includes('صباح') && !sh.includes('أول') && !sh.includes('8ص')) return false;
-          if (shiftFilter === 'shift2' && !sh.includes('مساء') && !sh.includes('ثاني') && !sh.includes('4م')) return false;
-          if (shiftFilter === 'shift3' && !sh.includes('ليل') && !sh.includes('سهر') && !sh.includes('ثالث') && !sh.includes('12ص')) return false;
+          if (shiftFilter === 'shift1' && !sh.includes('صباح') && !sh.includes('أول') && !sh.includes('8ص') && !sh.includes('8')) return false;
+          if (shiftFilter === 'shift2' && !sh.includes('مساء') && !sh.includes('ثاني') && !sh.includes('4م') && !sh.includes('4')) return false;
+          if (shiftFilter === 'shift3' && !sh.includes('ليل') && !sh.includes('سهر') && !sh.includes('ثالث') && !sh.includes('12ص') && !sh.includes('12')) return false;
         }
 
         // Search query
@@ -375,34 +450,47 @@
         return true;
       });
 
-      if (countEl) countEl.innerText = `${this.filteredRecords.length} عمليات`;
+      const countNum = this.toEnglishDigits(this.filteredRecords.length);
+      if (countEl) countEl.innerText = `${countNum} عمليات`;
 
       if (this.filteredRecords.length === 0) {
         container.innerHTML = `
           <div style="text-align:center; padding:36px 20px; color:var(--text-muted);">
             <div style="font-size:2rem; margin-bottom:8px;">🔍</div>
-            <p style="font-size:0.9rem; font-weight:700;">لا توجد سجلات مطابقة للشروط المحددة</p>
+            <p style="font-size:0.9rem; font-weight:700;">لا توجد سجلات مطابقة للشروط أو التاريخ المحدد</p>
           </div>
         `;
         return;
       }
 
       container.innerHTML = this.filteredRecords.map((r, idx) => {
-        const summaryText = r.summary || 'تم فحص واعتماد كافة بنود النظافة والمعايرة بنسبة 100%.';
+        const rawSummary = r.summary || 'تم فحص واعتماد كافة بنود النظافة والمعايرة بنسبة 100%.';
+        const summaryText = this.toEnglishDigits(rawSummary);
+        const dayClean = this.toEnglishDigits(r.day || '');
+        const dateClean = this.toEnglishDigits(r.date || '');
+        const timeClean = this.toEnglishDigits(r.time || '');
+        const stationClean = this.toEnglishDigits(r.station);
+        const shiftClean = this.toEnglishDigits(r.shift || 'شفت معتمد');
+
         return `
           <div class="dash-log-card">
             <div class="log-card-top">
               <div class="log-meta-left">
-                <span class="log-station-name">${r.station}</span>
-                <span class="log-shift-badge">${r.shift || 'شفت معتمد'}</span>
+                <span class="log-station-name">${stationClean}</span>
+                <span class="log-shift-badge">${shiftClean}</span>
               </div>
               <div class="log-meta-right">
-                <span>🗓️ ${r.day || ''} ${r.date || ''} • ⏰ ${r.time || ''}</span>
+                <span class="log-time-pill"><bdi>🗓️ ${dayClean}</bdi> <span class="en-num">${dateClean}</span> • <span class="en-num">${timeClean}</span></span>
                 <span class="log-inspector-pill">👤 ${r.inspector}</span>
                 <span class="log-status-badge">100% معتمد ✓</span>
               </div>
             </div>
-            <div class="log-card-summary">
+            <div class="log-card-middle">
+              <button id="log-btn-${idx}" class="log-toggle-btn" onclick="window.dashApp.toggleCardDetails(${idx})">
+                إظهار بنود الفحص ▼
+              </button>
+            </div>
+            <div id="log-summary-${idx}" class="log-card-summary collapsed">
               <strong>📋 بنود الفحص المعتمدة:</strong><br>
               ${summaryText}
             </div>

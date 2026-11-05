@@ -360,7 +360,7 @@
       if (!overlay) return;
 
       const now = new Date();
-      const timeStr = now.toLocaleDateString('ar-EG') + ' ' + now.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
+      const timeStr = now.toLocaleDateString('ar-EG-u-nu-latn') + ' ' + now.toLocaleTimeString('ar-EG-u-nu-latn', { hour: '2-digit', minute: '2-digit' });
       const stampText = `عماد أفندي • ${this.getStationTitle()} • ${this.deviceId} • ${timeStr}`;
 
       let html = '';
