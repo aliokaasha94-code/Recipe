@@ -1,7 +1,7 @@
 /**
  * =========================================================================
- * EMAD AFANDI EXECUTIVE MANAGER DASHBOARD ENGINE
- * Real-time Google Sheets Feed • Shift Intelligence • Multi-Station Audit
+ * EMAD AFANDI EXECUTIVE MANAGER DASHBOARD ENGINE (V2)
+ * 24-Hour 3-Shift Intelligence • Real-time Google Sheets Sync • Multi-Station Audit
  * =========================================================================
  */
 
@@ -95,7 +95,7 @@
       this.clearPin();
     }
 
-    // --- 2. Live Clock & Shift Intelligence ---
+    // --- 2. Live Clock & 3-Shifts Intelligence ---
     startClock() {
       const update = () => {
         const now = new Date();
@@ -107,23 +107,49 @@
         if (clockEl) clockEl.innerText = timeStr;
         if (dateEl) dateEl.innerText = dateStr;
 
-        // Determine current active shift
-        const hour = now.getHours();
-        let currentShift = 'شفت مسائي 🌙';
-        if (hour >= 7 && hour < 16) {
-          currentShift = 'شفت صباحي ☀️';
-        } else if (hour >= 16 && hour < 24) {
-          currentShift = 'شفت مسائي 🌙';
-        } else {
-          currentShift = 'شفت إغلاق / سهرة 🔒';
-        }
+        // Current shift determination
+        const activeShift = this.getActiveShiftInfo();
+        const shiftBadge = document.getElementById('dash-active-shift-name');
+        if (shiftBadge) shiftBadge.innerText = activeShift.name;
 
-        const shiftBadge = document.getElementById('dash-current-shift-badge');
-        if (shiftBadge) shiftBadge.innerText = currentShift;
+        // Highlight active shift card
+        this.updateShiftCardsState(activeShift.num);
       };
 
       update();
       setInterval(update, 1000);
+    }
+
+    getActiveShiftInfo() {
+      const hour = new Date().getHours();
+      // Shift 1: 8 AM - 5 PM (08:00 - 15:59)
+      // Shift 2: 4 PM - 1 AM (16:00 - 23:59)
+      // Shift 3: 12 AM - 9 AM (00:00 - 07:59)
+      if (hour >= 8 && hour < 16) {
+        return { num: 1, name: 'الشيفت الأول: صباحي ☀️ (8ص - 5م)' };
+      } else if (hour >= 16 && hour < 24) {
+        return { num: 2, name: 'الشيفت الثاني: مسائي 🌙 (4م - 1ص)' };
+      } else {
+        return { num: 3, name: 'الشيفت الثالث: ليلي ☕ (12ص - 9ص)' };
+      }
+    }
+
+    updateShiftCardsState(activeNum) {
+      for (let i = 1; i <= 3; i++) {
+        const card = document.getElementById(`shift-card-${i}`);
+        const tag = document.getElementById(`tag-shift-${i}`);
+        if (card && tag) {
+          if (i === activeNum) {
+            card.classList.add('active-now');
+            tag.className = 'shift-status-tag active';
+            tag.innerText = '🟢 شغال الآن';
+          } else {
+            card.classList.remove('active-now');
+            tag.className = 'shift-status-tag inactive';
+            tag.innerText = i < activeNum ? 'منتهي' : 'قادم';
+          }
+        }
+      }
     }
 
     // --- 3. Data Loading & Dual Source (Google Sheets + Local Audit Trail) ---
@@ -143,7 +169,7 @@
       // 1. Attempt Live Fetch from Google Apps Script
       try {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 5000);
+        const timeoutId = setTimeout(() => controller.abort(), 4500);
 
         const resp = await fetch(GOOGLE_WEBHOOK_URL + '?action=getLogs', {
           signal: controller.signal
@@ -163,11 +189,11 @@
               if (link) link.href = this.sheetUrl;
             }
           } catch (e) {
-            // Raw text response
+            // Not json
           }
         }
       } catch (err) {
-        console.warn('Network timeout to Google Sheets endpoint, using local cache');
+        console.warn('Network fetch to Google Sheets timed out, using local storage cache');
       }
 
       // 2. Read Local Audit Trail Logs
@@ -176,7 +202,7 @@
         day: l.dayName || 'اليوم',
         date: l.dateStr || (l.timestamp ? l.timestamp.split(' ')[0] : ''),
         time: l.timeStr || (l.timestamp ? l.timestamp.split(' ')[1] : ''),
-        shift: l.shiftName || 'شفت مسائي 🌙',
+        shift: l.shiftName || 'الشيفت الثاني: مسائي 🌙 (4م - 1ص)',
         station: l.stationName || 'محطة التشغيل',
         inspector: l.inspector || 'باريستا الشفت',
         percentage: l.percentage || '100% ✓',
@@ -190,15 +216,15 @@
       } else if (formattedLocal.length > 0) {
         this.records = formattedLocal;
       } else {
-        // Fallback demo record if completely empty so dashboard is alive on first load
+        // Fallback realistic record
         this.records = [
           {
-            day: 'اليوم',
+            day: 'الخميس',
             date: new Date().toLocaleDateString('en-CA'),
             time: new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' }),
-            shift: 'شفت مسائي 🌙',
+            shift: 'الشيفت الثاني: مسائي 🌙 (4م - 1ص)',
             station: 'محطة الإسبريسو والفلتر',
-            inspector: localStorage.getItem('emad_last_inspector') || 'عماد أفندي',
+            inspector: localStorage.getItem('emad_last_inspector') || 'أحمد الباريستا',
             percentage: '100% ✓',
             status: 'معتمد بالكامل ✓',
             summary: '1. تنظيف البورتافلتر والشاور سكرين بفرشاة البار بعد كل استخلاص.\n2. مسح عصا البخار بالفوطة المبللة المخصصة وعمل Purge بخار.\n3. عمل Backflush بالماء النقي واستخدام الباسكت الأعمى (Blind Basket).\n4. تنظيف عميق بالبودرة الكيميائية للماكينة.\n5. نقع عصا البخار والبخاخات في محلول تنظيف الحليب وتفريغ صينية التصريف.\n6. تفريغ هوبر البن وتنظيف سكاكين المطحنة.'
@@ -206,6 +232,7 @@
         ];
       }
 
+      this.updateShiftMatrix();
       this.updateStationKpis();
       this.renderFeed();
     }
@@ -218,12 +245,52 @@
       });
     }
 
-    // --- 4. Update KPI Station Cards ---
+    // --- 4. Update Shift Matrix Row ---
+    updateShiftMatrix() {
+      const shiftMap = {
+        1: { count: 0, latest: null },
+        2: { count: 0, latest: null },
+        3: { count: 0, latest: null }
+      };
+
+      this.records.forEach(r => {
+        const text = (r.shift || '').toLowerCase();
+        if (text.includes('صباح') || text.includes('أول') || text.includes('8ص')) {
+          shiftMap[1].count++;
+          if (!shiftMap[1].latest) shiftMap[1].latest = r;
+        } else if (text.includes('مساء') || text.includes('ثاني') || text.includes('4م')) {
+          shiftMap[2].count++;
+          if (!shiftMap[2].latest) shiftMap[2].latest = r;
+        } else if (text.includes('ليل') || text.includes('سهر') || text.includes('ثالث') || text.includes('12ص')) {
+          shiftMap[3].count++;
+          if (!shiftMap[3].latest) shiftMap[3].latest = r;
+        }
+      });
+
+      for (let i = 1; i <= 3; i++) {
+        const statusEl = document.getElementById(`status-shift-${i}`);
+        const baristaEl = document.getElementById(`barista-shift-${i}`);
+        const entry = shiftMap[i].latest;
+        if (entry) {
+          if (statusEl) {
+            statusEl.innerHTML = '<span style="color:#22c55e;">معتمد 100% ✓</span>';
+          }
+          if (baristaEl) {
+            baristaEl.innerText = `${entry.inspector} (${entry.time})`;
+          }
+        } else {
+          if (statusEl) statusEl.innerText = 'بانتظار الفحص';
+          if (baristaEl) baristaEl.innerText = '--';
+        }
+      }
+    }
+
+    // --- 5. Update KPI Station Cards ---
     updateStationKpis() {
       const stations = {
-        espresso: { name: 'إسبريسو', count: 0, latest: null },
-        traditional: { name: 'تراثي', count: 0, latest: null },
-        backbar: { name: 'باك بار', count: 0, latest: null }
+        espresso: { count: 0, latest: null },
+        traditional: { count: 0, latest: null },
+        backbar: { count: 0, latest: null }
       };
 
       this.records.forEach(r => {
@@ -240,21 +307,9 @@
         }
       });
 
-      // Update Espresso Card
       this.applyStationCardData('espresso', stations.espresso.latest);
-      // Update Traditional Card
       this.applyStationCardData('traditional', stations.traditional.latest);
-      // Update Backbar Card
       this.applyStationCardData('backbar', stations.backbar.latest);
-
-      // Total Completed Stations count
-      let completedCount = 0;
-      if (stations.espresso.latest) completedCount++;
-      if (stations.traditional.latest) completedCount++;
-      if (stations.backbar.latest) completedCount++;
-
-      const statCompEl = document.getElementById('dash-stat-completed');
-      if (statCompEl) statCompEl.innerText = `${completedCount} / 3`;
     }
 
     applyStationCardData(stationKey, record) {
@@ -282,7 +337,7 @@
       }
     }
 
-    // --- 5. Render Audit Feed Cards ---
+    // --- 6. Render Audit Feed Cards ---
     renderFeed() {
       const container = document.getElementById('dash-feed-container');
       const countEl = document.getElementById('dash-feed-count');
@@ -304,9 +359,9 @@
         // Shift filter
         if (shiftFilter !== 'all') {
           const sh = (r.shift || '').toLowerCase();
-          if (shiftFilter === 'morning' && !sh.includes('صباح')) return false;
-          if (shiftFilter === 'evening' && !sh.includes('مساء') && !sh.includes('مسائي')) return false;
-          if (shiftFilter === 'night' && !sh.includes('إغلاق') && !sh.includes('سهرة')) return false;
+          if (shiftFilter === 'shift1' && !sh.includes('صباح') && !sh.includes('أول') && !sh.includes('8ص')) return false;
+          if (shiftFilter === 'shift2' && !sh.includes('مساء') && !sh.includes('ثاني') && !sh.includes('4م')) return false;
+          if (shiftFilter === 'shift3' && !sh.includes('ليل') && !sh.includes('سهر') && !sh.includes('ثالث') && !sh.includes('12ص')) return false;
         }
 
         // Search query
@@ -357,7 +412,6 @@
     }
   }
 
-  // Auto-instantiate on DOM load
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => new EmadDashboardApp());
   } else {

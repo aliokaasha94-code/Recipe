@@ -81,9 +81,19 @@
         الالتزام بهذه المعايير يضمن حماية ماكينات الإسبريسو والمطاحن وثبات النكهة بنسبة 100%.
       </p>
       <div id="checklist-items"></div>
-      <div style="margin-top:14px;">
-        <label style="font-size:0.78rem; color:#cbd5e1; font-weight:700; display:block; margin-bottom:4px;">اسم الباريستا المسؤول عن الفحص:</label>
-        <input type="text" id="checklist-inspector-name" placeholder="اكتب اسمك هنا..." class="checklist-inspector-input">
+      <div style="margin-top:14px; display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+        <div>
+          <label style="font-size:0.78rem; color:#cbd5e1; font-weight:700; display:block; margin-bottom:4px;">اسم الباريستا المسؤول:</label>
+          <input type="text" id="checklist-inspector-name" placeholder="اكتب اسمك هنا..." class="checklist-inspector-input" style="margin-bottom:0;">
+        </div>
+        <div>
+          <label style="font-size:0.78rem; color:#cbd5e1; font-weight:700; display:block; margin-bottom:4px;">الشيفت (24 ساعة):</label>
+          <select id="checklist-shift-select" class="checklist-inspector-input" style="margin-bottom:0; cursor:pointer; background:#080a0f;">
+            <option value="الشيفت الأول: صباحي ☀️ (8ص - 5م)">الشيفت الأول: صباحي ☀️ (8ص - 5م)</option>
+            <option value="الشيفت الثاني: مسائي 🌙 (4م - 1ص)">الشيفت الثاني: مسائي 🌙 (4م - 1ص)</option>
+            <option value="الشيفت الثالث: ليلي ☕ (12ص - 9ص)">الشيفت الثالث: ليلي ☕ (12ص - 9ص)</option>
+          </select>
+        </div>
       </div>
       <div style="margin-top:10px; display:flex; justify-content:space-between; align-items:center;">
         <button onclick="resetChecklist()" style="background:transparent; border:1px solid var(--border-gold); color:var(--gold-bright); padding:8px 16px; border-radius:var(--radius-sm); font-family:var(--font-arabic); font-size:0.78rem; font-weight:700; cursor:pointer;">

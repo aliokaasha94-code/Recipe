@@ -21,16 +21,16 @@ function doPost(e) {
     var dateStr = data.dateStr || Utilities.formatDate(now, "GMT+2", "yyyy-MM-dd");
     var timeStr = data.timeStr || Utilities.formatDate(now, "GMT+2", "hh:mm a");
     
-    // تحديد الشفت بناءً على الساعة بتوقيت مصر
+    // تحديد الشفت بناءً على توقيت مصر (نظام الـ 24 ساعة - 3 شيفتات)
     var hour = parseInt(Utilities.formatDate(now, "GMT+2", "HH"), 10);
     var shiftName = data.shiftName;
     if (!shiftName) {
-      if (hour >= 7 && hour < 16) {
-        shiftName = "شفت صباحي ☀️";
+      if (hour >= 8 && hour < 16) {
+        shiftName = "الشيفت الأول: صباحي ☀️ (8ص - 5م)";
       } else if (hour >= 16 && hour < 24) {
-        shiftName = "شفت مسائي 🌙";
+        shiftName = "الشيفت الثاني: مسائي 🌙 (4م - 1ص)";
       } else {
-        shiftName = "شفت إغلاق / سهرة 🔒";
+        shiftName = "الشيفت الثالث: ليلي ☕ (12ص - 9ص)";
       }
     }
     

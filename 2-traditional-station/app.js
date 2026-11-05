@@ -1127,12 +1127,17 @@ function confirmAndSyncChecklist() {
   const dateStr = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
   const timeStr = now.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit', hour12: true });
 
-  const hour = now.getHours();
-  let shiftName = 'شفت صباحي ☀️';
-  if (hour >= 16 && hour < 24) {
-    shiftName = 'شفت مسائي 🌙';
-  } else if (hour >= 0 && hour < 7) {
-    shiftName = 'شفت إغلاق / سهرة 🔒';
+  const shiftSelect = document.getElementById('checklist-shift-select');
+  let shiftName = shiftSelect ? shiftSelect.value : '';
+  if (!shiftName) {
+    const hour = now.getHours();
+    if (hour >= 8 && hour < 16) {
+      shiftName = 'الشيفت الأول: صباحي ☀️ (8ص - 5م)';
+    } else if (hour >= 16 && hour < 24) {
+      shiftName = 'الشيفت الثاني: مسائي 🌙 (4م - 1ص)';
+    } else {
+      shiftName = 'الشيفت الثالث: ليلي ☕ (12ص - 9ص)';
+    }
   }
 
   const payload = {
