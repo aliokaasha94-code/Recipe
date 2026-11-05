@@ -28,7 +28,7 @@
     },
     qrRequired: true,
     inactivityMinutes: 5,
-    sheetsWebhook: ''
+    sheetsWebhook: 'https://script.google.com/macros/s/AKfycbz4dgFH2gq687-E69yI3wqDOlfrKFVtx939qmW0S9XCfz14h_qF9zuEqEIcVl4NOYs-cA/exec'
   };
 
   class EmadSecurityManager {
@@ -69,6 +69,10 @@
             merged.gps = Object.assign({}, DEFAULT_CONFIG.gps, merged.gps || {});
             merged.gps.lat = DEFAULT_CONFIG.gps.lat;
             merged.gps.lng = DEFAULT_CONFIG.gps.lng;
+          }
+          // Ensure official Google Sheets webhook is active
+          if (!merged.sheetsWebhook || merged.sheetsWebhook === '') {
+            merged.sheetsWebhook = DEFAULT_CONFIG.sheetsWebhook;
           }
           return merged;
         }
