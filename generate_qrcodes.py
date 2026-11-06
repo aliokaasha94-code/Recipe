@@ -54,7 +54,7 @@ def get_font(name="tahoma.ttf", size=24):
         return ImageFont.truetype(font_path, size)
     return ImageFont.load_default()
 
-def generate_badges(base_url="https://emadafandi.github.io/Recipe/"):
+def generate_badges(base_url="https://emad-afandi-recipe.pages.dev/"):
     root_dir = os.path.dirname(__file__)
     output_dir = os.path.join(root_dir, "qr-codes")
     os.makedirs(output_dir, exist_ok=True)
@@ -135,7 +135,7 @@ def generate_badges(base_url="https://emadafandi.github.io/Recipe/"):
 
         # Footer Signature
         draw.line([(100, 1000), (700, 1000)], fill=(50, 55, 62), width=1)
-        draw.text((400, 1045), ar("قهوتك على مزاجك ☕👑 | إشراف مجموعة العطيان"), fill=TEXT_GOLD, anchor="mm", font=font_station)
+        draw.text((400, 1045), ar("قهوتك على مزاجك • إشراف مجموعة العطيان"), fill=TEXT_GOLD, anchor="mm", font=font_station)
         draw.text((400, 1090), ar("كفر الشيخ، جمهورية مصر العربية"), fill=TEXT_MUTED, anchor="mm", font=font_small)
 
         # Save final badge
@@ -146,5 +146,5 @@ def generate_badges(base_url="https://emadafandi.github.io/Recipe/"):
     print("\nAll 3 Station QR Badges generated successfully with official logo!")
 
 if __name__ == "__main__":
-    base = sys.argv[1] if len(sys.argv) > 1 else "https://emadafandi.github.io/Recipe/"
+    base = sys.argv[1] if len(sys.argv) > 1 else "https://emad-afandi-recipe.pages.dev/"
     generate_badges(base)
