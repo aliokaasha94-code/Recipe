@@ -494,26 +494,12 @@
 
       titleEl.textContent = title;
       descEl.textContent = `مسح الكود يفتح شاشة ${title} مباشرة`;
-      holder.innerHTML = '';
+      
+      const qrImgPath = `qr-codes/qr_raw_${stationId}.png?v=3.2`;
+      holder.innerHTML = `<img src="${qrImgPath}" alt="${title}" style="width:200px; height:200px; object-fit:contain; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.5);">`;
 
-      const targetUrl = getStationFullUrl(path);
-
-      new QRCode(holder, {
-        text: targetUrl,
-        width: 190,
-        height: 190,
-        colorDark: '#07080a',
-        colorLight: '#ffffff',
-        correctLevel: QRCode.CorrectLevel.H
-      });
-
-      setTimeout(() => {
-        const img = holder.querySelector('img') || holder.querySelector('canvas');
-        if (img) {
-          dlBtn.href = img.src || img.toDataURL();
-          dlBtn.download = `emad-afandi-${stationId}-qr.png`;
-        }
-      }, 300);
+      dlBtn.href = `qr-codes/station_label_${stationId}.png`;
+      dlBtn.download = `station_label_${stationId}.png`;
 
       modal.classList.add('open');
     }
@@ -528,9 +514,6 @@
       grid.innerHTML = '';
 
       STATIONS.forEach(st => {
-        const fullUrl = getStationFullUrl(st.path);
-        const cardId = `qr-print-${st.id}`;
-
         const card = document.createElement('div');
         card.style.cssText = 'background:#ffffff; color:#000000; padding:18px 14px; border-radius:14px; border:2.5px solid #d4af37; box-shadow:0 4px 18px rgba(0,0,0,0.3);';
         card.innerHTML = `
@@ -538,22 +521,13 @@
             <img src="assets/emad-logo.png" style="width:48px; height:auto;" alt="عماد أفندي">
           </div>
           <div style="font-weight:900; font-size:0.92rem; color:#96741b; margin-bottom:2px;">كافيه ومحمصة عماد أفندي</div>
-          <div style="font-weight:800; font-size:0.84rem; color:#000; margin-bottom:10px;">${st.title}</div>
-          <div id="${cardId}" style="display:flex; justify-content:center; margin-bottom:10px;"></div>
+          <div style="font-weight:800; font-size:0.84rem; color:#000; margin-bottom:8px;">${st.title}</div>
+          <div style="display:flex; justify-content:center; margin-bottom:10px;">
+            <img src="qr-codes/qr_raw_${st.id}.png?v=3.2" alt="${st.title}" style="width:160px; height:160px; object-fit:contain;">
+          </div>
           <div style="font-size:0.72rem; color:#555; font-weight:700;">امسح الكود لفتح كتيب التشغيل المعملي • SOP</div>
         `;
         grid.appendChild(card);
-
-        setTimeout(() => {
-          new QRCode(document.getElementById(cardId), {
-            text: fullUrl,
-            width: 150,
-            height: 150,
-            colorDark: '#000000',
-            colorLight: '#ffffff',
-            correctLevel: QRCode.CorrectLevel.H
-          });
-        }, 100);
       });
 
       modal.classList.add('open');
