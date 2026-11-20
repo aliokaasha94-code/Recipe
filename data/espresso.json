@@ -587,13 +587,13 @@
           "name": "بونبون (Café Bombón)",
           "coffeeGram": "18g",
           "extractionMl": "35ml",
-          "milk": "160ml",
+          "milk": "100ml",
           "condensedMilk": "15g حليب مكثف",
           "cup": "Cup 4 oz (كوب زجاجي شفاف)",
           "steps": [
             "وضع 15 جرام حليب مكثف محلى في قاع الكأس الزجاجي الشفاف.",
             "استخلاص 35 مل إسبريسو وصبه ببطء شديد على ظهر ملعقة لتكوين طبقة ثانية منفصلة.",
-            "صب الحليب المبخر برفق لعمل طبقة ثالثة مبهرة بصرياً."
+            "أخذ ملعقة فوم من الحليب المبخر ووضعها فوق الإسبريسو بلطف."
           ],
           "rescue": {
             "problem": "الطبقات اختلطت ببعضها",
@@ -603,13 +603,13 @@
           },
           "proTip": "يُقدم مع ملعقة صغيرة ليقوم العميل بدمج الطبقات بنفسه قبل الشرب.",
           "name_en": "Café Bombón",
-          "notes_en": "Classic Spanish two-tier drink: sweetened condensed milk on bottom, dark espresso on top.",
+          "notes_en": "Classic Spanish layered drink: sweetened condensed milk on bottom, dark espresso, topped with a spoon of steamed milk microfoam.",
           "steps_en": [
-            "Add 30ml condensed milk into a clear 4 oz glass.",
-            "Extract double espresso into a mini shot pitcher.",
-            "Pour espresso gently over the back of a bar spoon onto condensed milk to form two distinct layers."
+            "Add 15g condensed milk into a clear 4 oz glass.",
+            "Extract double espresso into a mini shot pitcher and pour gently over the back of a spoon onto condensed milk.",
+            "Take a spoonful of steamed milk microfoam and gently place it on top of the espresso."
           ],
-          "proTip_en": "Serve in clear glass without stirring; the visual contrast between white and dark layers is the signature experience."
+          "proTip_en": "Serve in clear glass without stirring; the visual contrast between white, dark, and foam layers is the signature experience."
         }
       ]
     },
