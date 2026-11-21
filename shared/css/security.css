@@ -456,23 +456,28 @@ button, a, input, .card, .drink-card, .btn-detail-view, .menu-cat-pill, .sop-ste
 }
 
 /* Floating Emergency Lock Badge */
-.quick-station-lock-pill {
+.quick-station-lock-pill, .btn-quick-lock {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.72rem;
+  font-size: 0.76rem;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 700;
   background: rgba(239, 68, 68, 0.12);
   border: 1px solid rgba(239, 68, 68, 0.4);
   color: #ef4444;
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 20px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.quick-station-lock-pill:hover {
+.quick-station-lock-pill:hover, .btn-quick-lock:hover,
+.quick-station-lock-pill:active, .btn-quick-lock:active {
   background: #ef4444;
   color: #fff;
+  transform: scale(0.96);
 }
 
 /* --- 8. Checklist Google Sheets Sync Extensions --- */

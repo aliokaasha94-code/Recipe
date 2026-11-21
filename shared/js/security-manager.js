@@ -27,7 +27,7 @@
       enabled: true,
       lat: 31.10927, // إحداثيات فرع عماد أفندي المعتمد بكفر الشيخ
       lng: 30.94269,
-      radiusMeters: 250 // نطاق 250 متر حول الفرع فقط
+      radiusMeters: 150 // نطاق 150 متر حول الفرع فقط (تشديد أمني إضافي)
     },
     qrRequired: true,
     inactivityMinutes: 3,
@@ -721,6 +721,19 @@
         const title = touchzone.querySelector('.reveal-title');
         if (title) title.innerText = '🔒 معايير الجرامات والتحضير مشفرة أمنياً';
       }
+    }
+
+    lockStationImmediately() {
+      sessionStorage.removeItem(`emad_pin_auth_${this.stationId}`);
+      this.blurAllRevealedSpecs();
+      const modal = document.getElementById('recipe-detail-modal');
+      if (modal) {
+        modal.classList.remove('open');
+        document.body.classList.remove('modal-open');
+        document.body.style.overflow = '';
+      }
+      this.checkPinSession();
+      this.showToast('🔒 تم قفل المحطة فوراً لحماية البيانات');
     }
 
     // --- 6. Inactivity Auto-Lock Watchdog ---
