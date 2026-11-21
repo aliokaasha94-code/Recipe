@@ -1,0 +1,4 @@
+# Emad Afandi SOP - Private Enterprise Barista Operating System
+# All search crawlers and public indexers are strictly forbidden
+User-agent: *
+Disallow: /

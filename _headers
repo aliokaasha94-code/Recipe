@@ -1,0 +1,20 @@
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(self), geolocation=(self), microphone=(), payment=()
+  X-XSS-Protection: 1; mode=block
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/*.json
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/*.enc
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/manager-dashboard/*
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+  X-Frame-Options: DENY
+  X-Robots-Tag: noindex, nofollow, noarchive
