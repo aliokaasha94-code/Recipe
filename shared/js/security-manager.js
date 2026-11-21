@@ -1,11 +1,14 @@
 /**
  * =========================================================================
- * EMAD AFANDI ENTERPRISE SECURITY & IP PROTECTION MANAGER
- * 1. Station-Specific Passwords (PIN Code)
- * 2. GPS Geofencing (Café Branch Restriction)
- * 3. QR-Only Access & Anti-Link-Sharing
- * 4. Anti-Screenshot & Forensic Dynamic Watermarking
- * 5. Google Sheets Inspection Sync & Audit Trail
+ * EMAD AFANDI ENTERPRISE SECURITY & IP PROTECTION MANAGER (V4.0 MILITARY GRADE)
+ * 1. Zero-Trust Gateway & Instant Blackout Shield
+ * 2. GPS Geofencing (Kafr El-Sheikh Cafe Branch Strict Restriction)
+ * 3. Station-Specific PIN Codes (1010 / 2020 / 3030 / 9999)
+ * 4. Hold-to-Reveal Anti-Screenshot Armor (Tactile Fingerprint Sensor)
+ * 5. High-Contrast Forensic Dynamic Watermark (1-Sec Live Clock & Device ID)
+ * 6. App-Switch & Screen-Sleep Auto-Lock
+ * 7. Anti-DevTools & Anti-Tamper Shield
+ * 8. Google Sheets Inspection Sync & Real-time Audit Trail
  * =========================================================================
  */
 
@@ -22,12 +25,12 @@
     },
     gps: {
       enabled: true,
-      lat: 31.10927, // إحداثيات فرع عماد أفندي المعتمد
+      lat: 31.10927, // إحداثيات فرع عماد أفندي المعتمد بكفر الشيخ
       lng: 30.94269,
-      radiusMeters: 250 // نطاق 250 متر حول الفرع
+      radiusMeters: 250 // نطاق 250 متر حول الفرع فقط
     },
     qrRequired: true,
-    inactivityMinutes: 5,
+    inactivityMinutes: 3,
     sheetsWebhook: 'https://script.google.com/macros/s/AKfycbz4dgFH2gq687-E69yI3wqDOlfrKFVtx939qmW0S9XCfz14h_qF9zuEqEIcVl4NOYs-cA/exec'
   };
 
@@ -37,7 +40,9 @@
       this.config = this.loadConfig();
       this.currentPinInput = '';
       this.inactivityTimer = null;
+      this.watermarkInterval = null;
       this.deviceId = this.getOrCreateDeviceId();
+      this.isGpsVerified = false;
       this.init();
     }
 
@@ -64,20 +69,18 @@
         if (stored) {
           const parsed = JSON.parse(stored);
           const merged = Object.assign({}, DEFAULT_CONFIG, parsed);
-          // If stored GPS was 0 or uncalibrated, auto-upgrade to official branch coordinates
-          if (!merged.gps || merged.gps.lat === 0 || merged.gps.lat === undefined) {
-            merged.gps = Object.assign({}, DEFAULT_CONFIG.gps, merged.gps || {});
-            merged.gps.lat = DEFAULT_CONFIG.gps.lat;
-            merged.gps.lng = DEFAULT_CONFIG.gps.lng;
-          }
-          // Ensure official Google Sheets webhook is active
-          if (!merged.sheetsWebhook || merged.sheetsWebhook === '') {
-            merged.sheetsWebhook = DEFAULT_CONFIG.sheetsWebhook;
-          }
+          // Force official cafe branch coordinates
+          merged.gps = Object.assign({}, DEFAULT_CONFIG.gps, merged.gps || {});
+          merged.gps.lat = DEFAULT_CONFIG.gps.lat;
+          merged.gps.lng = DEFAULT_CONFIG.gps.lng;
+          merged.gps.radiusMeters = DEFAULT_CONFIG.gps.radiusMeters;
+          merged.gps.enabled = true;
+          merged.qrRequired = true;
+          if (!merged.sheetsWebhook) merged.sheetsWebhook = DEFAULT_CONFIG.sheetsWebhook;
           return merged;
         }
       } catch (e) {
-        console.warn('Failed to parse security config, using defaults');
+        console.warn('Using default security config');
       }
       return Object.assign({}, DEFAULT_CONFIG);
     }
@@ -96,98 +99,119 @@
     }
 
     init() {
-      // 1. Inject DOM Security Elements (Curtain, Watermark, Overlays)
+      // 1. Inject DOM Security Elements (Curtains, Watermark, Overlays)
       this.injectSecurityDom();
 
-      // 2. Setup Anti-Copy & Anti-Leak event listeners
+      // 2. Setup Anti-Copy, Anti-Screenshot, Anti-DevTools
       this.setupAntiLeakProtection();
 
-      // 3. Start Security Verification Pipeline
+      // 3. Start Security Verification Pipeline (QR -> GPS -> PIN)
       this.runVerificationPipeline();
 
-      // 4. Setup Inactivity Watchdog
+      // 4. Setup Inactivity & Sleep Watchdog
       this.setupInactivityWatcher();
 
-      // 5. Expose Global Security API
+      // 5. Setup Hold-to-Reveal Anti-Screenshot Armor on recipe modals
+      this.setupHoldToRevealObserver();
+
+      // 6. Expose Global Security API
       window.EmadSecurity = this;
     }
 
     // --- DOM Injection ---
     injectSecurityDom() {
-      // Anti-Capture Curtain
+      // 1. Anti-Capture Privacy Curtain (Cover screen on app switch / screenshot gesture)
       if (!document.getElementById('anti-capture-curtain')) {
         const curtain = document.createElement('div');
         curtain.id = 'anti-capture-curtain';
         curtain.innerHTML = `
           <img src="assets/emad-logo.png" alt="عماد أفندي" class="curtain-logo" onerror="this.style.display='none'">
-          <div class="curtain-msg">🔒 محتوى محمي • كافيه ومحمصة عماد أفندي</div>
+          <div class="curtain-msg">🔒 محتوى محمي • كافيه ومحمصة عماد أفندي<br><span style="font-size:0.8rem; color:#94a3b8; font-weight:500;">يُحظر تصوير أو نسخ الريسيبي والمعايير</span></div>
         `;
         document.body.appendChild(curtain);
       }
 
-      // Dynamic Forensic Watermark
+      // 2. High-Contrast Forensic Dynamic Watermark Overlay
       if (!document.getElementById('forensic-watermark-overlay')) {
         const watermark = document.createElement('div');
         watermark.id = 'forensic-watermark-overlay';
         watermark.className = 'forensic-watermark-overlay';
         document.body.appendChild(watermark);
         this.updateWatermarkStamps();
-        setInterval(() => this.updateWatermarkStamps(), 60000);
+        if (this.watermarkInterval) clearInterval(this.watermarkInterval);
+        this.watermarkInterval = setInterval(() => this.updateWatermarkStamps(), 1000);
       }
 
-      // Security Fullscreen Overlays Container
+      // 3. Security Fullscreen Overlays Container
       if (!document.getElementById('security-overlays-container')) {
         const container = document.createElement('div');
         container.id = 'security-overlays-container';
         container.innerHTML = `
-          <!-- 1. QR LOCK OVERLAY -->
+          <!-- A. QR LOCK OVERLAY -->
           <div id="qr-lock-overlay" class="security-fullscreen-overlay">
             <div class="security-card-box">
               <img src="assets/emad-logo.png" alt="عماد أفندي" class="security-brand-logo" onerror="this.style.display='none'">
               <div class="security-badge-icon">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M10 3v4"/><path d="M14 10h4"/><path d="M3 10h4"/><path d="M10 14v4"/><path d="M10 10h4"/></svg>
               </div>
-              <h3 class="security-card-title">الدخول مقيد برمز QR المحطة</h3>
+              <h3 class="security-card-title">الدخول مقيد بكود QR المحطة</h3>
               <p class="security-card-desc">
-                للحفاظ على سرية الريسيبي ومعايير التشغيل، يُسمح بالوصول فقط عبر مسح رمز الـ QR المطبوع على بار المحطة داخل الفرع.
+                للحفاظ على سرية الريسيبي ومعايير التشغيل، يُسمح بالوصول حصرياً عبر مسح رمز الـ QR المطبوع على بار المحطة داخل الفرع.
               </p>
               <button class="btn-security-action" onclick="window.EmadSecurity.scanQrCameraPrompt()">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-                <span>مسح كود QR المحطة</span>
+                <span>مسح كود QR من الكاميرا</span>
               </button>
-              <button class="btn-security-action" style="margin-top:10px; background:transparent; border:1px solid rgba(212,175,55,0.4); color:var(--gold-bright); font-size:0.78rem;" onclick="window.EmadSecurity.showOverlay('pin-lock-overlay')">
+              <button class="btn-security-action" style="margin-top:10px; background:transparent; border:1px solid rgba(212,175,55,0.4); color:var(--gold-bright); font-size:0.78rem;" onclick="window.EmadSecurity.promptMasterOverride()">
                 <span>🔑 دخول الإدارة برمز الماستر (Master PIN)</span>
               </button>
             </div>
           </div>
 
-          <!-- 2. GPS GEOFENCE OVERLAY -->
+          <!-- B. GPS SCANNING OVERLAY (Radar Pulse) -->
+          <div id="gps-checking-overlay" class="security-fullscreen-overlay">
+            <div class="security-card-box">
+              <img src="assets/emad-logo.png" alt="عماد أفندي" class="security-brand-logo" onerror="this.style.display='none'">
+              <div class="radar-pulse-wrap">
+                <div class="radar-ring"></div>
+                <div class="radar-ring"></div>
+                <div class="radar-center-dot"></div>
+              </div>
+              <h3 class="security-card-title">فحص التواجد الجغرافي</h3>
+              <p class="security-card-desc">
+                جاري التحقق من التواجد الجغرافي داخل فرع عماد أفندي عبر الأقمار الصناعية (GPS)...
+              </p>
+              <div style="font-size:0.76rem; color:#94a3b8;">يرجى الموافقة على إذن الموقع (Allow Location) في المتصفح</div>
+            </div>
+          </div>
+
+          <!-- C. GPS GEOFENCE LOCK OVERLAY (Outside Branch Alert) -->
           <div id="gps-lock-overlay" class="security-fullscreen-overlay">
             <div class="security-card-box">
               <img src="assets/emad-logo.png" alt="عماد أفندي" class="security-brand-logo" onerror="this.style.display='none'">
               <div class="security-badge-icon alert">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
               </div>
-              <h3 class="security-card-title">خارج النطاق الجغرافي للفرع</h3>
+              <h3 class="security-card-title">⛔ الوصول محظور (خارج الفرع)</h3>
               <p class="security-card-desc" id="gps-error-desc">
-                هذا النظام مشفر ومقيد جغرافياً ليعمل حصرياً داخل نطاق فرع عماد أفندي. يرجى تفعيل الموقع (GPS) والتواجد داخل الفرع للمتابعة.
+                هذا النظام مشفر ومقيد جغرافياً ليعمل حصرياً داخل نطاق فرع عماد أفندي. لا يُسمح بتصفح الريسيبي من خارج الفرع.
               </p>
               <button class="btn-security-action" onclick="window.EmadSecurity.retryGpsCheck()">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
                 <span>إعادة فحص الموقع الجغرافي</span>
               </button>
-              <button class="btn-security-action" style="margin-top:10px; background:transparent; border:1px solid rgba(212,175,55,0.4); color:var(--gold-bright); font-size:0.78rem;" onclick="window.EmadSecurity.showOverlay('pin-lock-overlay')">
+              <button class="btn-security-action" style="margin-top:10px; background:transparent; border:1px solid rgba(212,175,55,0.4); color:var(--gold-bright); font-size:0.78rem;" onclick="window.EmadSecurity.promptMasterOverride()">
                 <span>🔑 دخول الإدارة برمز الماستر (Master PIN)</span>
               </button>
             </div>
           </div>
 
-          <!-- 3. STATION PIN LOCK OVERLAY -->
+          <!-- D. STATION PIN LOCK OVERLAY -->
           <div id="pin-lock-overlay" class="security-fullscreen-overlay">
             <div class="security-card-box">
               <img src="assets/emad-logo.png" alt="عماد أفندي" class="security-brand-logo" onerror="this.style.display='none'">
               <h3 class="security-card-title" id="pin-station-title">${this.getStationTitle()}</h3>
-              <p class="security-card-desc">أدخل رمز الدخول السري المعتمد للمحطة</p>
+              <p class="security-card-desc">أدخل رمز الدخول السري المعتمد للمحطة (PIN)</p>
               
               <div class="pin-display-dots" id="pin-dots-display">
                 <div class="pin-dot" id="dot-0"></div>
@@ -215,7 +239,7 @@
             </div>
           </div>
 
-          <!-- 4. MANAGER SECURITY SETTINGS MODAL -->
+          <!-- E. MANAGER SETTINGS MODAL -->
           <div id="manager-settings-modal" class="modal-overlay" onclick="if(event.target===this) window.EmadSecurity.closeManagerModal()">
             <div class="modal-content" style="max-width:440px;">
               <div class="modal-header">
@@ -224,20 +248,18 @@
               </div>
               <div style="font-size:0.84rem; color:#cbd5e1; display:flex; flex-direction:column; gap:14px; margin-top:10px;">
                 
-                <!-- GPS Branch Calibration -->
                 <div style="background:#0c0f17; border:1px solid var(--border-gold); border-radius:12px; padding:12px;">
                   <strong style="color:var(--gold-bright); display:block; margin-bottom:6px;">📍 إحداثيات الفرع (Geofence):</strong>
                   <div style="font-size:0.78rem; margin-bottom:10px; color:#94a3b8;" id="manager-gps-coords-display">
-                    جاري القراءة...
+                    ${this.config.gps.lat.toFixed(5)}, ${this.config.gps.lng.toFixed(5)} (نطاق ${this.config.gps.radiusMeters}م)
                   </div>
                   <button class="btn-security-action" style="font-size:0.8rem; padding:8px 14px;" onclick="window.EmadSecurity.calibrateCurrentGpsAsBranch()">
                     🎯 تعيين موقعي الحالي كموقع الفرع المعتمد
                   </button>
                 </div>
 
-                <!-- Station Passwords -->
                 <div style="background:#0c0f17; border:1px solid var(--border-gold); border-radius:12px; padding:12px;">
-                  <strong style="color:var(--gold-bright); display:block; margin-bottom:8px;">🔑 تعديل باسووردات المحطات:</strong>
+                  <strong style="color:var(--gold-bright); display:block; margin-bottom:8px;">🔑 باسووردات المحطات:</strong>
                   <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; font-size:0.78rem;">
                     <div>
                       <label>الإسبريسو:</label>
@@ -258,11 +280,9 @@
                   </div>
                 </div>
 
-                <!-- Google Sheets Webhook -->
                 <div style="background:#0c0f17; border:1px solid var(--border-gold); border-radius:12px; padding:12px;">
                   <strong style="color:var(--gold-bright); display:block; margin-bottom:6px;">📊 رابط Google Sheets Webhook:</strong>
                   <input id="mgr-sheets-url" type="text" class="checklist-inspector-input" style="margin-bottom:4px; font-family:monospace; font-size:0.75rem;" placeholder="https://script.google.com/macros/s/.../exec" value="${this.config.sheetsWebhook || ''}">
-                  <span style="font-size:0.72rem; color:#94a3b8;">الصق رابط تطبيق الويب بعد نشر كود Google Apps Script.</span>
                 </div>
 
                 <button class="btn-security-action" onclick="window.EmadSecurity.saveManagerSettings()">
@@ -282,7 +302,7 @@
 
     // --- 2. Anti-Leak & Anti-Screenshot Event Listeners ---
     setupAntiLeakProtection() {
-      // A. Block Context Menu Everywhere
+      // A. Block Right-Click Context Menu Everywhere
       document.addEventListener('contextmenu', (e) => {
         e.preventDefault();
         return false;
@@ -291,7 +311,6 @@
       // B. Block Copy, Cut, Select, Drag
       ['copy', 'cut', 'selectstart', 'dragstart'].forEach(evt => {
         document.addEventListener(evt, (e) => {
-          // Allow inside text input fields only
           if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) {
             return true;
           }
@@ -300,7 +319,7 @@
         }, { capture: true });
       });
 
-      // C. Block Harmful Key Combinations (Ctrl+C, Ctrl+P, Ctrl+S, Ctrl+U, F12, PrintScreen)
+      // C. Intercept Screenshot / Print / Source Inspection Shortcuts
       document.addEventListener('keydown', (e) => {
         const isCtrl = e.ctrlKey || e.metaKey;
         const key = e.key.toLowerCase();
@@ -308,29 +327,37 @@
         if (
           (isCtrl && ['c', 'x', 's', 'p', 'u', 'a'].includes(key)) ||
           key === 'f12' ||
-          key === 'printscreen'
+          key === 'printscreen' ||
+          (isCtrl && e.shiftKey && ['i', 'j', 'c'].includes(key))
         ) {
           e.preventDefault();
           e.stopPropagation();
-          this.triggerCurtainFlash();
+          this.triggerCurtainFlash(true);
           return false;
         }
       }, { capture: true });
 
-      // D. Privacy Curtain on Tab Switch / App Minimize / Notification Tray
+      // D. Privacy Curtain on App Minimize / Sleep / Tab Switch
       const curtain = document.getElementById('anti-capture-curtain');
       const showCurtain = () => {
         if (curtain) curtain.classList.add('active');
+        // Instantly blur any revealed recipes
+        this.blurAllRevealedSpecs();
       };
       const hideCurtain = () => {
         if (curtain) curtain.classList.remove('active');
+        this.blurAllRevealedSpecs();
       };
 
       document.addEventListener('visibilitychange', () => {
         if (document.visibilityState === 'hidden') {
           showCurtain();
+          // Lock station on sleep / app switch for maximum security
+          sessionStorage.removeItem(`emad_pin_auth_${this.stationId}`);
         } else {
           hideCurtain();
+          // Require PIN again on wake-up
+          this.checkPinSession();
         }
       });
 
@@ -342,59 +369,75 @@
         hideCurtain();
       });
 
-      window.addEventListener('pageshow', () => {
-        hideCurtain();
-      });
+      // E. Anti-Tamper / Anti-DevTools Heartbeat
+      setInterval(() => {
+        const start = performance.now();
+        // eslint-disable-next-line no-debugger
+        debugger;
+        if (performance.now() - start > 100) {
+          document.body.innerHTML = `
+            <div style="background:#050608; color:#ef4444; height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; font-family:sans-serif; text-align:center; padding:20px;">
+              <h2 style="margin-bottom:8px;">⚠️ تم حظر الوصول</h2>
+              <p style="color:#cbd5e1;">تم رصد محاولة فحص الأكواد أو تصوير الشاشة. تم تسجيل المعرف الرقمي وإغلاق الجلسة.</p>
+            </div>
+          `;
+        }
+      }, 3000);
     }
 
-    triggerCurtainFlash() {
+    triggerCurtainFlash(isAlarm = false) {
       const curtain = document.getElementById('anti-capture-curtain');
       if (curtain) {
+        if (isAlarm) curtain.classList.add('alarm-strobe');
         curtain.classList.add('active');
-        setTimeout(() => curtain.classList.remove('active'), 800);
+        setTimeout(() => {
+          curtain.classList.remove('active');
+          if (isAlarm) curtain.classList.remove('alarm-strobe');
+        }, 1200);
       }
+      this.showToast('⚠️ تحذير: محتوى الريسيبي محمي ومراقب رقمياً! يُحظر التصوير أو النسخ.');
     }
 
+    // --- 3. Dynamic Forensic Watermark ---
     updateWatermarkStamps() {
       const overlay = document.getElementById('forensic-watermark-overlay');
       if (!overlay) return;
 
       const now = new Date();
-      const timeStr = now.toLocaleDateString('ar-EG-u-nu-latn') + ' ' + now.toLocaleTimeString('ar-EG-u-nu-latn', { hour: '2-digit', minute: '2-digit' });
-      const stampText = `عماد أفندي • ${this.getStationTitle()} • ${this.deviceId} • ${timeStr}`;
+      const timeStr = now.toLocaleDateString('ar-EG-u-nu-latn') + ' ' +
+                      now.toLocaleTimeString('ar-EG-u-nu-latn', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      const stampText = `عماد أفندي • ${this.getStationTitle()} • جهاز: ${this.deviceId} • ${timeStr} • ملكية فكرية محمية`;
 
       let html = '';
-      for (let i = 0; i < 14; i++) {
+      for (let i = 0; i < 16; i++) {
         html += `<div class="watermark-stamp">${stampText}</div>`;
       }
       overlay.innerHTML = html;
     }
 
-    // --- 3. Verification Pipeline: QR -> GPS -> PIN ---
+    // --- 4. Verification Pipeline: QR -> GPS -> PIN ---
     runVerificationPipeline() {
-      // 0. If Master access granted for this session, bypass QR & GPS
-      if (sessionStorage.getItem('emad_master_authorized') === 'true') {
-        this.hideAllOverlays();
-        return;
-      }
+      // Clear any old permanent bypasses on fresh load
+      sessionStorage.removeItem('emad_master_authorized');
 
-      // 1. Check QR Access
+      // Step 1: Check QR Access
       if (this.config.qrRequired && !this.checkQrSession()) {
         this.showOverlay('qr-lock-overlay');
         return;
       }
 
-      // 2. Check GPS Geofence
-      if (this.config.gps.enabled && this.config.gps.lat !== 0) {
-        this.checkGpsGeofence((passed) => {
+      // Step 2: Check GPS Geofence (Kafr El-Sheikh Cafe Branch)
+      if (this.config.gps.enabled) {
+        this.showOverlay('gps-checking-overlay');
+        this.checkGpsGeofence((passed, distKm) => {
           if (!passed) {
             this.showOverlay('gps-lock-overlay');
           } else {
+            this.isGpsVerified = true;
             this.checkPinSession();
           }
         });
       } else {
-        // GPS disabled or not yet calibrated
         this.checkPinSession();
       }
     }
@@ -417,14 +460,14 @@
     }
 
     scanQrCameraPrompt() {
-      alert('يرجى استخدام كاميرا هاتفك لمسح رمز الـ QR المطبوع على محطة العمل لفتح الريسيبي مباشرة.');
+      alert('يرجى توجيه كاميرا هاتفك إلى كود الـ QR المطبوع على بار المحطة بالفرع لفتح الريسيبي مباشرة.');
     }
 
     // --- GPS Geofencing Logic ---
     checkGpsGeofence(callback) {
       if (!navigator.geolocation) {
-        this.updateGpsError('متصفحك لا يدعم تحديد الموقع الجغرافي (GPS). يرجى فتح الموقع من متصفح حديث داخل الكافيه.');
-        callback(false);
+        this.updateGpsError('متصفحك لا يدعم تحديد الموقع الجغرافي (GPS). يرجى فتح الموقع من متصفح حديث داخل الفرع.');
+        callback(false, null);
         return;
       }
 
@@ -435,18 +478,24 @@
           const dist = this.calculateDistance(userLat, userLng, this.config.gps.lat, this.config.gps.lng);
 
           if (dist <= this.config.gps.radiusMeters) {
-            callback(true);
+            callback(true, 0);
           } else {
             const distKm = (dist / 1000).toFixed(1);
-            this.updateGpsError(`أنت على بعد ${distKm} كم من فرع عماد أفندي المعتمد. يسمح بالفتح فقط داخل الفرع (نطاق ${this.config.gps.radiusMeters} متر).`);
-            callback(false);
+            this.updateGpsError(`تم رصد موقعك على بُعد ${distKm} كم من فرع عماد أفندي بكفر الشيخ. يسمح بالفتح فقط داخل الفرع (نطاق ${this.config.gps.radiusMeters} متر).`);
+            callback(false, distKm);
           }
         },
         (err) => {
-          this.updateGpsError('تعذر التحقق من موقعك. يرجى تفعيل إذن الموقع الجغرافي (Location Permission) في المتصفح والتواجد داخل الفرع.');
-          callback(false);
+          let errDetail = 'يرجى تفعيل إذن الموقع الجغرافي (Location Permission) في المتصفح والتواجد داخل الفرع للمتابعة.';
+          if (err.code === 1) {
+            errDetail = 'تم رفض إذن الموقع الجغرافي. يرجى الدخول لإعدادات المتصفح والسماح بالموقع لفرع عماد أفندي.';
+          } else if (err.code === 2) {
+            errDetail = 'تعذر التقاط إشارة الـ GPS. تأكد من تفعيل خدمات الموقع بهاتفك.';
+          }
+          this.updateGpsError(errDetail);
+          callback(false, null);
         },
-        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+        { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
       );
     }
 
@@ -466,13 +515,22 @@
     }
 
     retryGpsCheck() {
-      this.hideAllOverlays();
       this.runVerificationPipeline();
     }
 
     updateGpsError(msg) {
       const el = document.getElementById('gps-error-desc');
       if (el) el.innerText = msg;
+    }
+
+    promptMasterOverride() {
+      const entered = prompt('أدخل رمز الماستر للإدارة (Master PIN):');
+      if (entered === (this.config.pins.master || '9999')) {
+        this.hideAllOverlays();
+        this.showToast('تم الدخول المؤقت بصلاحية المدير العام ✓');
+      } else if (entered !== null) {
+        alert('رمز الماستر غير صحيح!');
+      }
     }
 
     // --- Station PIN Logic ---
@@ -494,15 +552,12 @@
       this.currentPinInput += digit;
       this.updatePinDots();
 
-      // Check PIN when reaching 4 or 6 digits
       const targetPin = this.config.pins[this.stationId] || '1010';
       const masterPin = this.config.pins.master || '9999';
 
       if (this.currentPinInput === targetPin || this.currentPinInput === masterPin) {
-        // Success
         this.onPinSuccess(this.currentPinInput === masterPin);
       } else if (this.currentPinInput.length >= 4 && !masterPin.startsWith(this.currentPinInput) && !targetPin.startsWith(this.currentPinInput)) {
-        // Wrong PIN
         this.onPinFail();
       }
     }
@@ -533,16 +588,15 @@
     onPinSuccess(isMaster) {
       const sessionKey = `emad_pin_auth_${this.stationId}`;
       sessionStorage.setItem(sessionKey, 'true');
-      if (isMaster) {
-        sessionStorage.setItem('emad_master_authorized', 'true');
-        sessionStorage.setItem('emad_qr_authorized', 'true');
-      }
+      sessionStorage.setItem('emad_qr_authorized', 'true');
       this.hideAllOverlays();
       this.currentPinInput = '';
       this.updatePinDots();
 
       if (isMaster) {
-        this.showToast('تم تسجيل الدخول بصلاحية المدير العام (Master) ✓');
+        this.showToast('تم تسجيل الدخول بصلاحية الإدارة (Master) ✓');
+      } else {
+        this.showToast(`تم فتح ${this.getStationTitle()} بنجاح ✓`);
       }
     }
 
@@ -562,13 +616,119 @@
       }, 700);
     }
 
-    // --- Inactivity Auto-Lock Watchdog ---
+    // --- 5. HOLD-TO-REVEAL ANTI-SCREENSHOT ARMOR ---
+    setupHoldToRevealObserver() {
+      // Whenever the recipe modal content is mutated/opened, wrap specs with tactile armor
+      const modal = document.getElementById('recipe-detail-modal');
+      const content = document.getElementById('recipe-detail-content');
+      if (!modal || !content) return;
+
+      const observer = new MutationObserver(() => {
+        this.attachArmorToModalContent();
+      });
+
+      observer.observe(content, { childList: true });
+    }
+
+    attachArmorToModalContent() {
+      const content = document.getElementById('recipe-detail-content');
+      if (!content) return;
+
+      // Find the sheet body containing metrics & steps
+      const sheetBody = content.querySelector('.detail-sheet-body');
+      if (!sheetBody || sheetBody.dataset.armorAttached === 'true') return;
+      sheetBody.dataset.armorAttached = 'true';
+
+      // 1. Create Hold-to-Reveal Touchzone Banner
+      const touchzone = document.createElement('div');
+      touchzone.className = 'secret-reveal-touchzone';
+      touchzone.id = 'secret-reveal-touchzone';
+      touchzone.innerHTML = `
+        <div class="fingerprint-icon-wrap">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M12 2a10 10 0 0 0-10 10c0 4.4 2.9 8.2 7 9.5"/>
+            <path d="M12 6a6 6 0 0 0-6 6c0 2.2 1.2 4.1 3 5.1"/>
+            <path d="M12 10a2 2 0 0 0-2 2c0 .9.6 1.7 1.5 1.9"/>
+          </svg>
+        </div>
+        <div class="reveal-text-block">
+          <span class="reveal-title">🔒 معايير الجرامات والتحضير مشفرة أمنياً</span>
+          <span class="reveal-sub">اضغط واستمر باللمس بصباعك لكشف المعايير للتشغيل</span>
+        </div>
+      `;
+
+      // 2. Wrap all sensitive section blocks in .secret-vault-spec-wrapper
+      const sections = sheetBody.querySelectorAll('.sop-section-block');
+      if (sections.length > 0) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'secret-vault-spec-wrapper';
+        wrapper.id = 'secret-vault-spec-wrapper';
+
+        const vaultContent = document.createElement('div');
+        vaultContent.className = 'secret-vault-content';
+
+        // Move sections into vault content
+        sections.forEach(sec => vaultContent.appendChild(sec));
+        wrapper.appendChild(vaultContent);
+
+        // Place touchzone right above wrapper
+        const sizeSwitcher = sheetBody.querySelector('.detail-size-switchers');
+        if (sizeSwitcher && sizeSwitcher.nextSibling) {
+          sheetBody.insertBefore(touchzone, sizeSwitcher.nextSibling);
+        } else {
+          sheetBody.insertBefore(touchzone, sheetBody.firstChild);
+        }
+        sheetBody.appendChild(wrapper);
+
+        // 3. Attach Tactile Touch & Hold Events
+        const startReveal = (e) => {
+          // If multi-touch detected (e.g. 3-finger screenshot gesture), instant blackout!
+          if (e.touches && e.touches.length > 1) {
+            this.blurAllRevealedSpecs();
+            this.triggerCurtainFlash(true);
+            return;
+          }
+          wrapper.classList.add('revealed');
+          touchzone.classList.add('touching');
+          const title = touchzone.querySelector('.reveal-title');
+          if (title) title.innerText = '🔓 جاري عرض المعايير (ارفع يدك للإغلاق الفوري)';
+        };
+
+        const stopReveal = () => {
+          wrapper.classList.remove('revealed');
+          touchzone.classList.remove('touching');
+          const title = touchzone.querySelector('.reveal-title');
+          if (title) title.innerText = '🔒 معايير الجرامات والتحضير مشفرة أمنياً';
+        };
+
+        // Touch & Hold on touchzone or wrapper
+        [touchzone, wrapper].forEach(el => {
+          el.addEventListener('touchstart', startReveal, { passive: true });
+          el.addEventListener('touchend', stopReveal, { passive: true });
+          el.addEventListener('touchcancel', stopReveal, { passive: true });
+          el.addEventListener('mousedown', startReveal);
+        });
+        window.addEventListener('mouseup', stopReveal);
+      }
+    }
+
+    blurAllRevealedSpecs() {
+      const wrapper = document.getElementById('secret-vault-spec-wrapper');
+      const touchzone = document.getElementById('secret-reveal-touchzone');
+      if (wrapper) wrapper.classList.remove('revealed');
+      if (touchzone) {
+        touchzone.classList.remove('touching');
+        const title = touchzone.querySelector('.reveal-title');
+        if (title) title.innerText = '🔒 معايير الجرامات والتحضير مشفرة أمنياً';
+      }
+    }
+
+    // --- 6. Inactivity Auto-Lock Watchdog ---
     setupInactivityWatcher() {
       const resetInactivity = () => {
         clearTimeout(this.inactivityTimer);
-        const timeoutMs = (this.config.inactivityMinutes || 5) * 60 * 1000;
+        const timeoutMs = (this.config.inactivityMinutes || 3) * 60 * 1000;
         this.inactivityTimer = setTimeout(() => {
-          // Lock station
           sessionStorage.removeItem(`emad_pin_auth_${this.stationId}`);
           this.checkPinSession();
         }, timeoutMs);
@@ -581,9 +741,12 @@
       resetInactivity();
     }
 
-    // --- Overlay Helpers ---
+    // --- 7. Overlay Helpers ---
     showOverlay(id) {
-      this.hideAllOverlays();
+      document.body.classList.remove('vault-unlocked');
+      document.querySelectorAll('.security-fullscreen-overlay').forEach(el => {
+        el.classList.remove('active');
+      });
       const el = document.getElementById(id);
       if (el) el.classList.add('active');
     }
@@ -592,6 +755,7 @@
       document.querySelectorAll('.security-fullscreen-overlay').forEach(el => {
         el.classList.remove('active');
       });
+      document.body.classList.add('vault-unlocked');
     }
 
     showToast(msg) {
@@ -607,16 +771,12 @@
       setTimeout(() => toast.classList.remove('show'), 3500);
     }
 
-    // --- Manager Settings Controls ---
+    // --- 8. Manager Settings Controls ---
     openManagerModal() {
       const modal = document.getElementById('manager-settings-modal');
       const coordsDisplay = document.getElementById('manager-gps-coords-display');
       if (coordsDisplay) {
-        if (this.config.gps.lat === 0) {
-          coordsDisplay.innerText = 'لم يتم تحديد موقع الفرع بعد (غير مقيد)';
-        } else {
-          coordsDisplay.innerText = `خط العرض: ${this.config.gps.lat.toFixed(5)} • خط الطول: ${this.config.gps.lng.toFixed(5)}`;
-        }
+        coordsDisplay.innerText = `${this.config.gps.lat.toFixed(5)}, ${this.config.gps.lng.toFixed(5)} (نطاق ${this.config.gps.radiusMeters}م)`;
       }
       if (modal) modal.classList.add('open');
     }
@@ -664,34 +824,34 @@
       this.showToast('💾 تم حفظ كافة إعدادات الأمان وتطبيقها بنجاح!');
     }
 
-    // --- Google Sheets Sync for Station Hygiene Inspection ---
+    // --- 9. Google Sheets Sync for Station Hygiene Inspection ---
     async submitChecklistToGoogleSheets(detailsPayload) {
       const webhookUrl = this.config.sheetsWebhook;
 
-      // Always save locally in history
       const logHistory = JSON.parse(localStorage.getItem('emad_inspection_logs') || '[]');
       logHistory.unshift(detailsPayload);
       if (logHistory.length > 50) logHistory.pop();
       localStorage.setItem('emad_inspection_logs', JSON.stringify(logHistory));
 
       if (!webhookUrl) {
-        this.showToast('✓ تم اعتماد الفحص محلياً (يمكنك ربط Google Sheets من الإعدادات)');
+        this.showToast('✓ تم اعتماد الفحص محلياً');
         return { success: true, localOnly: true };
       }
 
       try {
-        await fetch(webhookUrl, {
+        const response = await fetch(webhookUrl, {
           method: 'POST',
           mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(detailsPayload)
         });
-        this.showToast('✓ تم اعتماد الفحص وإرسال السجل إلى Google Sheet بنجاح!');
+
+        this.showToast('✓ تم اعتماد الفحص وترحيله لشيت جوجل بنجاح!');
         return { success: true };
       } catch (err) {
-        console.error('Google Sheets Sync failed:', err);
-        this.showToast('✓ تم اعتماد الفحص محلياً، وجاري إعادة المحاولة للمزامنة.');
-        return { success: false, error: err };
+        console.warn('Checklist sync warning (saved locally):', err);
+        this.showToast('✓ تم حفظ الفحص محلياً بنجاح!');
+        return { success: true, fallbackLocal: true };
       }
     }
   }

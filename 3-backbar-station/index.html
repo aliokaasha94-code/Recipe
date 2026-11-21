@@ -8,8 +8,24 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>عماد أفندي | محطة الباك بار والحلويات</title>
   <link rel="icon" type="image/png" href="assets/emad-logo.png">
-  <link rel="stylesheet" href="../shared/css/security.css?v=2.0">
-  <link rel="stylesheet" href="style.css?v=16.0">
+  <link rel="stylesheet" href="../shared/css/security.css?v=4.0">
+  <link rel="stylesheet" href="style.css?v=17.0">
+  <style>
+    /* Zero-Trust Initial Vault Shield (No Flash of Content Before Authentication) */
+    .app-main-layout, .brand-header, .btn-checklist-toggle {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+    }
+    body.vault-unlocked .app-main-layout,
+    body.vault-unlocked .brand-header,
+    body.vault-unlocked .btn-checklist-toggle {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+    }
+  </style>
 </head>
 <body>
 
@@ -114,6 +130,6 @@
       window.app = new StationApp('recipes.json');
     });
   </script>
-  <script src="../shared/js/security-manager.js?v=3.0"></script>
+  <script src="../shared/js/security-manager.js?v=4.0"></script>
 </body>
 </html>
