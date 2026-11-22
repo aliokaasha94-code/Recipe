@@ -30,7 +30,7 @@
       radiusMeters: 150 // نطاق 150 متر حول الفرع فقط (تشديد أمني إضافي)
     },
     qrRequired: true,
-    inactivityMinutes: 3,
+    inactivityMinutes: 4,
     sheetsWebhook: 'https://script.google.com/macros/s/AKfycbz4dgFH2gq687-E69yI3wqDOlfrKFVtx939qmW0S9XCfz14h_qF9zuEqEIcVl4NOYs-cA/exec'
   };
 
@@ -76,6 +76,7 @@
           merged.gps.radiusMeters = DEFAULT_CONFIG.gps.radiusMeters;
           merged.gps.enabled = true;
           merged.qrRequired = true;
+          merged.inactivityMinutes = DEFAULT_CONFIG.inactivityMinutes;
           if (!merged.sheetsWebhook) merged.sheetsWebhook = DEFAULT_CONFIG.sheetsWebhook;
           return merged;
         }
@@ -108,13 +109,10 @@
       // 3. Start Security Verification Pipeline (QR -> GPS -> PIN)
       this.runVerificationPipeline();
 
-      // 4. Setup Inactivity & Sleep Watchdog
+      // 4. Setup Inactivity (4 Min Auto-Lock) & Sleep Watchdog
       this.setupInactivityWatcher();
 
-      // 5. Setup Hold-to-Reveal Anti-Screenshot Armor on recipe modals
-      this.setupHoldToRevealObserver();
-
-      // 6. Expose Global Security API
+      // 5. Expose Global Security API
       window.EmadSecurity = this;
     }
 
@@ -736,18 +734,25 @@
       this.showToast('🔒 تم قفل المحطة فوراً لحماية البيانات');
     }
 
-    // --- 6. Inactivity Auto-Lock Watchdog ---
+    // --- 6. Inactivity Auto-Lock Watchdog (4 Minutes) ---
     setupInactivityWatcher() {
       const resetInactivity = () => {
         clearTimeout(this.inactivityTimer);
-        const timeoutMs = (this.config.inactivityMinutes || 3) * 60 * 1000;
+        const timeoutMs = (this.config.inactivityMinutes || 4) * 60 * 1000;
         this.inactivityTimer = setTimeout(() => {
           sessionStorage.removeItem(`emad_pin_auth_${this.stationId}`);
+          const modal = document.getElementById('recipe-detail-modal');
+          if (modal) {
+            modal.classList.remove('open');
+            document.body.classList.remove('modal-open');
+            document.body.style.overflow = '';
+          }
           this.checkPinSession();
+          this.showToast('🔒 تم قفل المحطة تلقائياً لعدم التفاعل لمدة 4 دقائق');
         }, timeoutMs);
       };
 
-      ['touchstart', 'click', 'mousemove', 'keydown', 'scroll'].forEach(evt => {
+      ['touchstart', 'touchmove', 'click', 'mousemove', 'keydown', 'scroll'].forEach(evt => {
         window.addEventListener(evt, resetInactivity, { passive: true });
       });
 
